@@ -31,6 +31,7 @@ nav:
 
   - Definição: estudos/banco_de_dados/definicao_banco_de_dados.md
   - Estudo: estudos/banco_de_dados/estudo_banco_de_dados.md
+  - Hospedagem: estudos/banco_de_dados/hospedagem_banco_de_dados.md
 
 - Frontend:
 
@@ -38,8 +39,9 @@ nav:
 
 - Design:
 
-  - Protótipo Interativo: estudos/design/identidade_visual/prototipo_interativo.md
-  - Identidade Visual: estudos/design/identidade_visual/identidade_visual.md
+  - Protótipo Interativo: estudos/design/prototipo_interativo.md
+  - Identidade Visual: estudos/design/identidade_visual.md
+  - Dashboards escolhidos: estudos/design/definicao_dashboards.md
 
 - Git & Organização:
 
