@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Escolha da Arquitetura - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="../checando_tecnologias/" class="dropdown-item">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_arquiteturas/" class="dropdown-item">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../API/levantamento_api/" class="dropdown-item">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="../../requisitos/estudo_requisitos_software/" class="dropdown-item">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/dailies/" class="dropdown-item">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/sprint_plannings/" class="dropdown-item">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../../ideia_escolhida_projeto/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../checando_tecnologias/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#definir-arquitetura-do-sistema" class="nav-link">Definir arquitetura do sistema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#monitoramento-legislativo-protecao-de-criancas-na-internet" class="nav-link">Monitoramento Legislativo: Proteção de Crianças na Internet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#avaliando-arquiteturas-estudadas" class="nav-link">Avaliando Arquiteturas Estudadas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-monolitica" class="nav-link">Arquitetura Monolítica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-de-microsservicos" class="nav-link">Arquitetura de Microsserviços</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-mvc" class="nav-link">Arquitetura MVC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-em-camadas" class="nav-link">Arquitetura em Camadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#decisoes-de-arquitetura" class="nav-link">Decisões de Arquitetura</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#monolito" class="nav-link">Monolito</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#em-camadas" class="nav-link">Em Camadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mvc" class="nav-link">MVC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#estrutura" class="nav-link">Estrutura</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="definir-arquitetura-do-sistema"><strong>Definir arquitetura do sistema</strong></h1>
+<h1 id="monitoramento-legislativo-protecao-de-criancas-na-internet"><strong>Monitoramento Legislativo: Proteção de Crianças na Internet</strong></h1>
+<p>Neste documento, irei analisar superficialmente nosso projeto (já que ainda não decidimos muitas coisas) para já ter uma noção de qual tipo de Arquitetura seria bom para usarmos.</p>
+<p>Terei meu conhecimento com base no estudo que documentei no seguinte link: </p>
+<blockquote>
+<p><a href="https://www.notion.so/Estudo-Arquitetura-de-Software-32d40c012af180298e76e6ef7712b3ed?pvs=21">https://www.notion.so/Estudo-Arquitetura-de-Software-1-32d40c012af180298e76e6ef7712b3ed?source=copy_link</a>
+</p>
+</blockquote>
+<p>Como os Requisitos do projeto ainda não foram definidos, irei citar objetivos que imagino que serão mirados:</p>
+<h3 id="objetivos-do-sistema">Objetivos do sistema</h3>
+<ul>
+<li>Coletar dados de APIs legislativas</li>
+<li>Classificar proposições por tema (NLP)</li>
+<li>Gerar indicadores e análises</li>
+<li>Exibir dashboards interativos</li>
+</ul>
+<h1 id="avaliando-arquiteturas-estudadas">Avaliando Arquiteturas Estudadas</h1>
+<h2 id="arquitetura-monolitica">Arquitetura Monolítica</h2>
+<p>Todo o sistema em uma única aplicação:</p>
+<ul>
+<li>API</li>
+<li>Lógica de negócio</li>
+<li>NLP</li>
+<li>Banco de dados</li>
+</ul>
+<h3 id="vantagens">Vantagens</h3>
+<ul>
+<li>Simples de implementar</li>
+<li>Mais rápido para começar</li>
+<li>Fácil deploy</li>
+<li>Ideal para equipe pequena</li>
+<li>Menor custo de infraestrutura</li>
+</ul>
+<h3 id="desvantagens">Desvantagens</h3>
+<ul>
+<li>Escalabilidade limitada</li>
+<li>Pode ficar difícil de manter se crescer muito</li>
+<li>Forte acoplamento se mal estruturado</li>
+</ul>
+<h2 id="arquitetura-de-microsservicos"><strong>Arquitetura de Microsserviços</strong></h2>
+<p>Separação em serviços:</p>
+<ul>
+<li>Serviço de coleta de dados</li>
+<li>Serviço de classificação (NLP)</li>
+<li>Serviço de análise</li>
+<li>Serviço de visualização</li>
+</ul>
+<h3 id="vantagens_1">Vantagens</h3>
+<ul>
+<li>Alta escalabilidade</li>
+<li>Independência entre serviços</li>
+<li>Flexibilidade tecnológica</li>
+</ul>
+<h3 id="desvantagens_1">Desvantagens</h3>
+<ul>
+<li>Alta complexidade</li>
+<li>Overhead de comunicação</li>
+<li>Mais difícil de implementar</li>
+<li>Exige infraestrutura avançada</li>
+</ul>
+<h2 id="arquitetura-mvc"><strong>Arquitetura MVC</strong></h2>
+<p>Separação em:</p>
+<ul>
+<li>Model → dados e regras</li>
+<li>View → interface</li>
+<li>Controller → controle de requisições</li>
+</ul>
+<h3 id="vantagens_2">Vantagens</h3>
+<ul>
+<li>Organização clara</li>
+<li>Separação de responsabilidades</li>
+<li>Facilita manutenção</li>
+<li>Muito compatível com aplicações web</li>
+</ul>
+<h3 id="desvantagens_2">Desvantagens</h3>
+<ul>
+<li>Pode gerar excesso de responsabilidades no Controller</li>
+<li>Não resolve arquitetura global sozinho</li>
+</ul>
+<h2 id="arquitetura-em-camadas">Arquitetura em Camadas</h2>
+<p>Divisão por níveis:</p>
+<ul>
+<li>Interface (Frontend)</li>
+<li>Aplicação (Controllers / Use Cases)</li>
+<li>Negócio (Services / NLP)</li>
+<li>Dados (Repositories / Banco)</li>
+</ul>
+<h3 id="vantagens_3">Vantagens</h3>
+<ul>
+<li>Alta organização</li>
+<li>Facilita manutenção</li>
+<li>Boa separação de responsabilidades</li>
+<li>Muito usada em sistemas reais</li>
+</ul>
+<h3 id="desvantagens_3">Desvantagens</h3>
+<ul>
+<li>Pode gerar dependência rígida entre camadas</li>
+<li>Pode impactar performance se mal usada</li>
+</ul>
+<h1 id="decisoes-de-arquitetura">Decisões de Arquitetura</h1>
+<p>O sistema será desenvolvido como um <strong>monolito</strong>, organizado em <strong>arquitetura em camadas</strong>, utilizando o padrão <strong>MVC</strong> para separação de responsabilidades na interface e controle.</p>
+<p>A seguir está disposto a escolha de cada parte, e como, a princípio, funcionará.</p>
+<h2 id="monolito">Monolito</h2>
+<p>O projeto será um Monolito, pois a complexidade aumentaria exponencialmente ao fazer em Microsserviços, levando em conta o escopo da disciplina e do projeto. </p>
+<p>Tudo será feito um único sistema.</p>
+<h2 id="em-camadas">Em Camadas</h2>
+<p>O sistema será dividido em camadas, como na Arquitetura em Camadas:</p>
+<ol>
+<li>Interface (Front-End) - Dashboards, Filtros e Visualização</li>
+<li>Camada de Aplicação - Controller (Recebe requisições e controla o fluxo)</li>
+<li>Camada de Negócios - Service (Regras de negócio, NLP e Classificação)</li>
+<li>Camada de Dados - Repository (Banco de Dados e API externa)</li>
+<li>Infraestrutura - Banco, APIs e Configurações</li>
+</ol>
+<blockquote>
+<p>Cada camada só conversa com a de baixo (FLUXO DE DEPENDÊNCIA)
+</p>
+</blockquote>
+<p>Interface → Controller → Service → Repository → Banco</p>
+<h2 id="mvc">MVC</h2>
+<p>E iremos mapear tudo no sistema em MVC - MODEL VIEW CONTROLLER.</p>
+<p>MODEL - Service, Repository (Dados e Regras de negócio)</p>
+<p>VIEW - Front-End (Interface do Usuário)</p>
+<p>CONTROLLER - Recebe requisições e decide o fluxo</p>
+<h4 id="fluxo-mvc">Fluxo MVC</h4>
+<ul>
+<li>Usuário interage com a View (Frontend)</li>
+<li>Requisição vai para o Controller</li>
+<li>Controller chama Service</li>
+<li>Service processa (NLP, regras)</li>
+<li>Repository acessa dados</li>
+<li>Resultado volta para o Controller</li>
+<li>Controller responde para a View</li>
+</ul>
+<h2 id="estrutura">Estrutura</h2>
+<h3 id="backend">Backend</h3>
+<ul>
+<li><strong>Controller</strong><ul>
+<li>Recebe requisições</li>
+</ul>
+</li>
+<li><strong>Service</strong><ul>
+<li>Regras de negócio</li>
+<li>NLP</li>
+</ul>
+</li>
+<li><strong>Repository</strong><ul>
+<li>Acesso a dados</li>
+</ul>
+</li>
+<li><strong>Infraestrutura</strong><ul>
+<li>Banco de dados</li>
+<li>APIs externas</li>
+</ul>
+</li>
+</ul>
+<h3 id="frontend">Frontend</h3>
+<ul>
+<li>Dashboards</li>
+<li>Filtros</li>
+<li>Visualização de dados</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

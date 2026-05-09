@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Tecnologias - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../escolha_arquitetura/" class="dropdown-item">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_arquiteturas/" class="dropdown-item">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../API/levantamento_api/" class="dropdown-item">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="../../requisitos/estudo_requisitos_software/" class="dropdown-item">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/dailies/" class="dropdown-item">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/sprint_plannings/" class="dropdown-item">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../escolha_arquitetura/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../diagrama_arquitetura_v1/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#checando-compatibilidade-entre-tecnologias-escolhidas" class="nav-link">Checando compatibilidade entre Tecnologias escolhidas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#tecnologias-front-end" class="nav-link">Tecnologias Front-End</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#compatibilidade-entre-front-end-e-back-end" class="nav-link">Compatibilidade entre Front-End e Back-End</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#compatibilidade-com-banco-de-dados" class="nav-link">Compatibilidade com Banco de Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#compatibilidade-com-ia" class="nav-link">Compatibilidade com IA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#compatibilidade-com-api-externa" class="nav-link">Compatibilidade com API externa</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#versoes-recomendadas" class="nav-link">Versões recomendadas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#linguagem" class="nav-link">Linguagem</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#backend" class="nav-link">Backend</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#banco" class="nav-link">Banco</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ia" class="nav-link">IA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#frontend" class="nav-link">Frontend</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#possiveis-conflitos-ou-limitacoes" class="nav-link">Possíveis conflitos ou limitações</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#cors-entre-front-end-e-back-end" class="nav-link">CORS entre Front-End e Back-End</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-consumo-de-memoria-com-ia" class="nav-link">2. Consumo de memória com IA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-serializacao-de-objetos-do-banco" class="nav-link">3. Serialização de objetos do banco</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-latencia-de-apis-externas" class="nav-link">4. Latência de APIs externas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-escalabilidade-do-flask" class="nav-link">5. Escalabilidade do Flask</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-compatibilidade-de-versoes" class="nav-link">6. Compatibilidade de versões</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-seguranca-da-api" class="nav-link">7. Segurança da API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#conclusao" class="nav-link">Conclusão</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#lista-de-tecnologias" class="nav-link">Lista de tecnologias</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="checando-compatibilidade-entre-tecnologias-escolhidas">Checando compatibilidade entre Tecnologias escolhidas</h1>
+<ul>
+<li>Tecnologia Front-End<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Fetch API para comunicação com o Back-End</li>
+</ul>
+</li>
+<li>Tecnologia Back-End<ul>
+<li>Back-End: Python + Flask</li>
+<li>Banco de Dados: PostgreSQL (ainda falta a escolha)</li>
+<li>IA: spaCy ou transformers (ainda falta estudo e a escolha)</li>
+</ul>
+</li>
+</ul>
+<h2 id="tecnologias-front-end">Tecnologias Front-End</h2>
+<ul>
+<li><strong>HTML</strong></li>
+<li><strong>CSS</strong></li>
+<li><strong>JavaScript</strong></li>
+<li><strong>Fetch API</strong> para comunicação com o Back-End</li>
+</ul>
+<h3 id="compatibilidade">Compatibilidade</h3>
+<p>O front-end utiliza tecnologias nativas do navegador, o que garante compatibilidade com qualquer back-end capaz de expor rotas HTTP e retornar dados em formato JSON.</p>
+<p>A <strong>Fetch API</strong> permite comunicação direta com APIs REST, sendo compatível com frameworks Python modernos.</p>
+<p>Compatível com:</p>
+<ul>
+<li>Flask</li>
+<li>PostgreSQL indiretamente via backend (O frontend <strong>nunca acessa o banco diretamente</strong>, apenas via backend)</li>
+</ul>
+<h1 id="compatibilidade-entre-front-end-e-back-end">Compatibilidade entre Front-End e Back-End</h1>
+<p>A comunicação entre front-end e back-end será feita através de:</p>
+<ul>
+<li>requisições HTTP</li>
+<li>API REST</li>
+<li>respostas em JSON</li>
+</ul>
+<p>Fluxo esperado:</p>
+<pre><code>Frontend (JavaScript)
+↓
+Fetch API
+↓
+Backend Python
+↓
+Resposta JSON
+↓
+Frontend atualiza interface
+</code></pre>
+<h3 id="validacao">Validação</h3>
+<p>Flask oferece suporte nativo para:</p>
+<ul>
+<li>criação de APIs</li>
+<li>Flask facilita o retorno de JSON, mas a serialização de objetos complexos deve ser tratada manualmente ou com bibliotecas auxiliares.</li>
+<li>tratamento de requisições HTTP</li>
+</ul>
+<p>Portanto: <strong>HTML/CSS/JS + Fetch é compatível com Flask</strong></p>
+<h1 id="compatibilidade-com-banco-de-dados">Compatibilidade com Banco de Dados</h1>
+<p>O banco previsto é:</p>
+<ul>
+<li><strong>PostgreSQL</strong></li>
+</ul>
+<h3 id="compatibilidade-com-python">Compatibilidade com Python</h3>
+<p>Python possui suporte estável para PostgreSQL por meio das bibliotecas:</p>
+<ul>
+<li><code>psycopg</code></li>
+<li><code>SQLAlchemy</code></li>
+</ul>
+<h3 id="compatibilidade-por-framework">Compatibilidade por framework</h3>
+<h3 id="flask">Flask</h3>
+<p>Compatível com:</p>
+<ul>
+<li>SQLAlchemy</li>
+<li>psycopg</li>
+</ul>
+<p>Portanto: <strong>Python + PostgreSQL é totalmente compatível</strong></p>
+<h1 id="compatibilidade-com-ia">Compatibilidade com IA</h1>
+<p>As bibliotecas avaliadas são:</p>
+<ul>
+<li><strong>spaCy</strong></li>
+<li><strong>transformers</strong></li>
+</ul>
+<p>Ambas possuem suporte para:</p>
+<ul>
+<li>Python 3.10+</li>
+<li>integração com Flask</li>
+<li>processamento de texto em português (transformers suporta português dependendo do modelo escolhido [ex: BERTimbau])</li>
+</ul>
+<h3 id="uso">Uso</h3>
+<p>A IA poderá ser utilizada para tarefas como classificação e análise, dependendo do modelo e treinamento adotados.</p>
+<h3 id="compatibilidade_1">Compatibilidade</h3>
+<p>A IA será executada no backend:</p>
+<pre><code>Backend Python
+↓
+Biblioteca NLP
+↓
+Processamento
+↓
+Banco PostgreSQL
+</code></pre>
+<p>Portanto: <strong>IA compatível com backend em Python</strong></p>
+<h1 id="compatibilidade-com-api-externa">Compatibilidade com API externa</h1>
+<p>O sistema utilizará API pública do governo para coleta de dados.</p>
+<p>Exemplo:</p>
+<ul>
+<li>API legislativa da Câmara</li>
+<li>API legislativa do Senado</li>
+</ul>
+<p>A integração será feita por:</p>
+<ul>
+<li>requisições HTTP</li>
+<li>consumo de JSON</li>
+</ul>
+<p>Python oferece bibliotecas adequadas:</p>
+<ul>
+<li><code>requests</code></li>
+<li><code>httpx</code></li>
+</ul>
+<p>Portanto: <strong>Python possui integração direta com APIs governamentais</strong></p>
+<h1 id="versoes-recomendadas">Versões recomendadas</h1>
+<h2 id="linguagem">Linguagem</h2>
+<ul>
+<li>Python <strong>3.11+</strong></li>
+</ul>
+<h2 id="backend">Backend</h2>
+<ul>
+<li>Flask <strong>3.x</strong></li>
+</ul>
+<h2 id="banco">Banco</h2>
+<ul>
+<li>PostgreSQL <strong>15+</strong></li>
+</ul>
+<h2 id="ia">IA</h2>
+<ul>
+<li>spaCy <strong>3.x</strong>
+ou</li>
+<li>transformers <strong>4.x</strong></li>
+</ul>
+<h2 id="frontend">Frontend</h2>
+<ul>
+<li>JavaScript ES6+</li>
+</ul>
+<p>Essas versões possuem boa documentação e suporte atual.</p>
+<h1 id="possiveis-conflitos-ou-limitacoes">Possíveis conflitos ou limitações</h1>
+<h2 id="cors-entre-front-end-e-back-end">CORS entre Front-End e Back-End</h2>
+<p>SE o front-end e o back-end rodarem em portas ou domínios diferentes, o navegador pode bloquear as requisições por política de segurança.</p>
+<p>Exemplo:</p>
+<pre><code>Frontend → localhost:3000
+Backend → localhost:5000
+</code></pre>
+<p>Isso pode gerar erro:</p>
+<pre><code>Blocked by CORS policy
+</code></pre>
+<h3 id="opcoes-de-solucao">Opções de solução</h3>
+<h4 id="opcao-a-habilitar-cors-no-flask">Opção A — habilitar CORS no Flask</h4>
+<p>Usar: Flask-CORS.</p>
+<p>Vantagens:</p>
+<ul>
+<li>simples</li>
+<li>rápida</li>
+<li>funciona bem</li>
+</ul>
+<p>Boa para protótipos e MVP.</p>
+<h4 id="opcao-b-servir-tudo-pelo-mesmo-dominio">Opção B — servir tudo pelo mesmo domínio</h4>
+<p>Backend entrega o frontend.</p>
+<p>Exemplo:</p>
+<pre><code>meusite.com
+</code></pre>
+<p>Vantagens:</p>
+<ul>
+<li>elimina CORS</li>
+<li>arquitetura mais limpa</li>
+</ul>
+<p>Boa para produção simples.</p>
+<h4 id="opcao-c-usar-reverse-proxy">Opção C — usar reverse proxy</h4>
+<p>Com: Nginx.</p>
+<p>Vantagens:</p>
+<ul>
+<li>profissional</li>
+<li>escalável</li>
+<li>seguro</li>
+</ul>
+<p>Boa para produção real.</p>
+<h4 id="melhor-escolha-pratica">Melhor escolha prática</h4>
+<p>Provavelmente não iremos separar o Front-End e Back-End em domínios difentes, mas por efeito de planejamento, o ideal seria usarmos Flask-CORS.</p>
+<h2 id="2-consumo-de-memoria-com-ia">2. Consumo de memória com IA</h2>
+<p>A biblioteca Transformers pode exigir:</p>
+<ul>
+<li>muita RAM</li>
+<li>mais processamento</li>
+<li>maior tempo de resposta</li>
+</ul>
+<p>Em máquinas modestas isso pode causar:</p>
+<ul>
+<li>lentidão</li>
+<li>travamentos</li>
+<li>uso excessivo da CPU</li>
+</ul>
+<h3 id="limitacao">Limitação</h3>
+<p>Para ambientes simples: spaCy costuma ser mais leve</p>
+<h3 id="opcoes">Opções</h3>
+<h4 id="opcao-a-usar-spacy">Opção A — usar spaCy</h4>
+<p>spaCy</p>
+<p>Vantagens: leve, rápido e simples.</p>
+<p>Ideal: classificação básica e extração de entidades.</p>
+<h4 id="opcao-b-modelos-menores">Opção B — modelos menores</h4>
+<p>Com: Transformers.</p>
+<p>Exemplos: DistilBERT e MiniLM.</p>
+<p>Vantagens: melhor precisão e menor custo.</p>
+<h4 id="opcao-c-usar-api-externa">Opção C — usar API externa</h4>
+<p>Exemplo: OpenAI API e Hugging Face Inference API.</p>
+<p>Vantagens: sem peso local e escalável.</p>
+<p>Desvantagem: custo financeiro.</p>
+<h4 id="opcao-d-microservico-separado">Opção D — microserviço separado</h4>
+<p>IA em serviço próprio.</p>
+<pre><code>Flask → serviço IA → resposta
+</code></pre>
+<p>Vantagens: desacopla sistema e facilita manutenção.</p>
+<h4 id="melhor-escolha-pratica_1">Melhor escolha prática</h4>
+<p>Ainda precisamos estudar para tomar essa decisão, mas a princípio, spaCy ou API externas seriam boas escolhas.</p>
+<h2 id="3-serializacao-de-objetos-do-banco">3. Serialização de objetos do banco</h2>
+<p>O SQLAlchemy retorna objetos Python, que não podem ser enviados diretamente em JSON.</p>
+<p>Exemplo do problema:</p>
+<pre><code>TypeError: Object is not JSON serializable
+</code></pre>
+<h3 id="opcoes_1">Opções</h3>
+<h4 id="opcao-a-manual">Opção A — manual</h4>
+<p>Converter objeto em dict</p>
+<p>Simples, porém repetitivo.</p>
+<h4 id="opcao-b-usar-marshmallow">Opção B — usar Marshmallow</h4>
+<p>Marshmallow</p>
+<p>Vantagens: elegante e padronizado.</p>
+<h4 id="opcao-c-usar-pydantic">Opção C — usar Pydantic</h4>
+<p>Pydantic</p>
+<p>Vantagens: validação forte e moderno.</p>
+<h4 id="opcao-d-trocar-flask-por-fastapi">Opção D — trocar Flask por FastAPI</h4>
+<p>FastAPI</p>
+<p>Vantagens: JSON automático, integração melhor com IA e 0validação nativa.</p>
+<h4 id="melhor-escolha-pratica_2">Melhor escolha prática</h4>
+<p>Flask: SQLAlchemy + Marshmallow</p>
+<h2 id="4-latencia-de-apis-externas">4. Latência de APIs externas</h2>
+<p>Ao consultar APIs públicas do governo:</p>
+<ul>
+<li>a API pode ficar lenta</li>
+<li>a API pode ficar indisponível</li>
+<li>mudanças no formato JSON podem quebrar o sistema</li>
+</ul>
+<p>Dependência externa aumenta risco operacional.</p>
+<h3 id="4-opcoes">4. Opções</h3>
+<h4 id="opcao-a-cache-local">Opção A — cache local</h4>
+<p>Com: Redis.</p>
+<p>Vantagens: acelera sistema e reduz chamadas.</p>
+<h4 id="opcao-b-salvar-dados-no-banco">Opção B — salvar dados no banco</h4>
+<p>Guardar respostas no PostgreSQL.</p>
+<p>Vantagens: histórico e resiliência.</p>
+<h4 id="opcao-c-fila-assincrona">Opção C — fila assíncrona</h4>
+<p>Com: Celery.</p>
+<p>Vantagens: processamento em segundo plano.</p>
+<h4 id="opcao-d-usar-tarefas-agendadas">Opção D — usar tarefas agendadas</h4>
+<p>Atualizar dados periodicamente</p>
+<p>Exemplo:</p>
+<pre><code>todo dia às 02:00
+</code></pre>
+<h4 id="melhor-escolha-pratica_3">Melhor escolha prática</h4>
+<p>Salvar dados no banco, com tarefas agendadas (B + D).</p>
+<h2 id="5-escalabilidade-do-flask">5. Escalabilidade do Flask</h2>
+<p>O Flask é ótimo para projetos pequenos, porém:</p>
+<p>em cargas maiores pode exigir:</p>
+<ul>
+<li>cache</li>
+<li>filas</li>
+<li>workers</li>
+<li>balanceamento</li>
+</ul>
+<p>Para crescimento grande, arquitetura pode precisar evoluir.</p>
+<h3 id="5-opcoes">5. Opções</h3>
+<h4 id="opcao-a-manter-flask">Opção A — manter Flask</h4>
+<p>Com:</p>
+<ul>
+<li>Gunicorn</li>
+<li>Nginx</li>
+</ul>
+<p>Vantagens:</p>
+<ul>
+<li>suficiente para médio porte</li>
+</ul>
+<h4 id="opcao-b-trocar-para-fastapi">Opção B — trocar para FastAPI</h4>
+<p>FastAPI</p>
+<p>Vantagens:</p>
+<ul>
+<li>mais rápido</li>
+<li>melhor async</li>
+<li>ótimo para IA</li>
+</ul>
+<h4 id="opcao-c-arquitetura-de-microservicos">Opção C — arquitetura de microserviços</h4>
+<p>Separar:</p>
+<pre><code>frontend
+backend
+IA
+coleta
+</code></pre>
+<p>Boa para crescimento grande.</p>
+<h4 id="melhor-escolha-pratica_4">Melhor escolha prática</h4>
+<p>Não projetamos que o projeto creça ao ponto do Flask ficar obsoleto, mas no caso hipotético, seria inviável trocar a arquitetura e/ou tecnologia em uso, então seriausar o Flask com Gunicorn / Nginx.</p>
+<h2 id="6-compatibilidade-de-versoes">6. Compatibilidade de versões</h2>
+<p>Bibliotecas podem ter conflitos entre versões.</p>
+<p>Exemplo:</p>
+<ul>
+<li>Python novo demais</li>
+<li>SQLAlchemy novo</li>
+<li>modelo antigo do spaCy</li>
+</ul>
+<p>Pode gerar:</p>
+<pre><code>ImportError
+DeprecationWarning
+</code></pre>
+<h3 id="solucoes">Soluções</h3>
+<h4 id="requirementstxt">requirements.txt</h4>
+<pre><code>Flask==3.0.2
+SQLAlchemy==2.0.25
+</code></pre>
+<h4 id="virtualenv">virtualenv</h4>
+<p>Ambiente isolado</p>
+<h4 id="docker">Docker</h4>
+<p>Docker</p>
+<p>Vantagens:</p>
+<ul>
+<li>ambiente reproduzível</li>
+<li>evita conflitos</li>
+</ul>
+<h4 id="melhor-escolha">Melhor escolha</h4>
+<p>A melhor escolha é o Docker + requirements.txt</p>
+<h2 id="7-seguranca-da-api">7. Segurança da API</h2>
+<p>Se a API for pública sem proteção:</p>
+<p>Riscos:</p>
+<ul>
+<li>acesso indevido</li>
+<li>abuso de requisições</li>
+<li>vazamento de dados</li>
+</ul>
+<h3 id="pode-exigir">Pode exigir</h3>
+<ul>
+<li>autenticação</li>
+<li>rate limiting</li>
+<li>validação de entrada</li>
+</ul>
+<h3 id="opcoes_2">Opções</h3>
+<h4 id="autenticacao-jwt">autenticação JWT</h4>
+<p>JSON Web Token</p>
+<h4 id="rate-limiting">rate limiting</h4>
+<p>Com: Flask-Limiter</p>
+<h4 id="validacao-de-entrada">validação de entrada</h4>
+<p>Com:</p>
+<ul>
+<li>Marshmallow</li>
+<li>Pydantic</li>
+</ul>
+<h4 id="https">HTTPS</h4>
+<p>Via: Nginx</p>
+<h4 id="melhor-escolha_1">Melhor escolha</h4>
+<p>Escolha não é baseada num estudo profundo, mas seria bom JWT + validação + rate limiting.</p>
+<h1 id="conclusao">Conclusão</h1>
+<p>A análise realizada demonstra que o conjunto de tecnologias proposto apresenta <strong>compatibilidade técnica adequada para o desenvolvimento do sistema</strong>, com boa integração entre as camadas de front-end, back-end, banco de dados, inteligência artificial e consumo de APIs externas.</p>
+<p>No front-end, o uso de <strong>HTML, CSS, JavaScript e Fetch API</strong> oferece uma base simples, estável e amplamente suportada pelos navegadores modernos, permitindo comunicação eficiente com o back-end por meio de <strong>requisições HTTP e respostas em JSON</strong>. No back-end, a combinação de <strong>Python com Flask</strong> mostra-se compatível com a construção de APIs REST, além de possuir integração consolidada com o <strong>PostgreSQL</strong> através de bibliotecas como <strong>psycopg</strong> e <strong>SQLAlchemy</strong>.</p>
+<p>Para a camada de processamento inteligente, tanto <strong>spaCy</strong> quanto <strong>transformers</strong> são opções viáveis dentro do ecossistema Python. Entretanto, a escolha final deverá considerar o equilíbrio entre <strong>desempenho, consumo de recursos e complexidade das análises desejadas</strong>, já que cada biblioteca atende necessidades distintas.</p>
+<p>Também foram identificadas algumas limitações técnicas previsíveis, ao crescermos o Projeto, como:</p>
+<ul>
+<li>necessidade de configuração de <strong>CORS</strong>, se dividirmos o Front-End e Back-End em domínios diferentes;</li>
+<li>consumo elevado de recursos em modelos de IA mais robustos;</li>
+<li>serialização de objetos do banco para JSON;</li>
+<li>dependência de APIs externas;</li>
+<li>controle de versões;</li>
+<li>segurança da API.</li>
+</ul>
+<p>Apesar disso, todos esses pontos possuem <strong>soluções práticas já conhecidas</strong>, como:</p>
+<ul>
+<li>uso de <strong>Flask-CORS</strong>;</li>
+<li><strong>Marshmallow</strong> para serialização;</li>
+<li><strong>Docker</strong> para padronização do ambiente;</li>
+<li><strong>JWT</strong> para autenticação;</li>
+<li><strong>Nginx</strong> para proxy e segurança;</li>
+<li>armazenamento local e agendamento para reduzir dependência de APIs externas.</li>
+</ul>
+<p>Dessa forma, conclui-se que o stack tecnológico atualmente planejado é <strong>tecnicamente viável</strong>, possui <strong>baixo risco de incompatibilidade</strong> e oferece uma base consistente para o desenvolvimento inicial do projeto. As principais decisões que ainda precisam ser aprofundadas antes da implementação são:</p>
+<ul>
+<li>definição final do <strong>PostgreSQL como banco de dados</strong></li>
+<li>escolha entre <strong>spaCy ou transformers</strong></li>
+<li>validação do nível de processamento de IA necessário para o sistema</li>
+</ul>
+<p>Com essas definições concluídas, o projeto poderá avançar para a fase de implementação com maior segurança técnica.</p>
+<h2 id="lista-de-tecnologias">Lista de tecnologias</h2>
+<p>Abaixo está a organização das tecnologias previstas no projeto, indicando <strong>onde cada uma será utilizada</strong>, <strong>qual sua finalidade</strong> e <strong>qual a prioridade que temos que dar a ela no processo de desenvolvimento.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Onde se encontra</th>
+<th>Propósito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HTML</strong></td>
+<td>Front-End</td>
+<td>Estrutura das páginas e interface</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>CSS</strong></td>
+<td>Front-End</td>
+<td>Estilização visual da interface</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>JavaScript</strong></td>
+<td>Front-End</td>
+<td>Interatividade da interface</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>Fetch API</strong></td>
+<td>Front-End</td>
+<td>Comunicação com o Back-End via HTTP</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>Python</strong></td>
+<td>Back-End</td>
+<td>Linguagem principal da lógica do sistema</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>Flask</strong></td>
+<td>Back-End</td>
+<td>Criação da API REST</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL (provavelmente)</strong></td>
+<td>Banco de Dados</td>
+<td>Armazenamento estruturado dos dados</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>SQLAlchemy</strong></td>
+<td>Back-End</td>
+<td>ORM para integração com banco</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>psycopg (provavelmente)</strong></td>
+<td>Back-End</td>
+<td>Driver de conexão com PostgreSQL</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>spaCy</strong> <em>(ou)</em> <strong>transformers</strong></td>
+<td>Back-End / IA</td>
+<td>Processamento de linguagem natural</td>
+<td>Média</td>
+</tr>
+<tr>
+<td><strong>requests / httpx</strong></td>
+<td>Back-End</td>
+<td>Consumo de APIs externas</td>
+<td>Média</td>
+</tr>
+<tr>
+<td><strong>Marshmallow</strong></td>
+<td>Back-End</td>
+<td>Serialização de objetos para JSON</td>
+<td>Média</td>
+</tr>
+<tr>
+<td><strong>Docker</strong></td>
+<td>Infraestrutura</td>
+<td>Padronização do ambiente</td>
+<td>Média</td>
+</tr>
+<tr>
+<td><strong>Flask-CORS</strong></td>
+<td>Back-End</td>
+<td>Permitir comunicação entre front e back, se tiver Front e Back tiverem domínios diferentes</td>
+<td>Baixa</td>
+</tr>
+<tr>
+<td><strong>JWT</strong></td>
+<td>Segurança</td>
+<td>Autenticação da API</td>
+<td>Baixa</td>
+</tr>
+<tr>
+<td><strong>Flask-Limiter</strong></td>
+<td>Segurança</td>
+<td>Controle de abuso de requisições</td>
+<td>Baixa</td>
+</tr>
+<tr>
+<td><strong>Nginx</strong></td>
+<td>Infraestrutura</td>
+<td>Proxy reverso e segurança</td>
+<td>Baixa</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>O que já basta para funcionar são as tecnologias de prioridade Alta, e junto as de Média, o projeto já fica bastante robusto. Com os de prioridade Baixa, já começa a fugir do nosso escopo, mas os listei para o caso de acabarmos antes do tempo previsto, e quisermos evoluir tudo.</strong>
+</p>
+</blockquote></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

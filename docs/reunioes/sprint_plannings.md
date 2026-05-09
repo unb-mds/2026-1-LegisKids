@@ -89,3 +89,42 @@ Issues propostas:
 8 – FEATURE – Implementar Banco de Dados -  Renan, Ítalo e Luis (L)  
 
 9 – FEATURE – Classificar as proposições - Luis (L) 
+
+# 27/04
+# Sprint Planning da Sprint 5
+
+1- Concertar erros de diretórios na nova implementação da API – Renan (S)  
+
+2- Criar v2 diagrama da Arquitetura, com a nova visão do projeto (não guardaremos todas requisições, apenas usuário, histórico e PL favoritos) - Renan (M)  
+
+3- Revisão de User Stories e levá-los ao GH Project para começarmos a usá-los na próxima Sprint – Caio e Luís (M)  
+
+4- Acabar Protótipo Interativo do site: veio da Sprint 4 – Caio, Arthur (M)  
+
+5- Implementar banco de dados (base do DB)-> veio da Sprint 4 – Renan e Ítalo (L)  
+
+6- Desenvolver um Front-End básico, mas funcional para fazer requisições  
+
+6.1 Front-end básico implementado (HTML, CSS, JS + FETCH API) - Renan e Caio (L)  
+
+6.2  Controller implementado – Renan e Caio (M)  
+
+7. Melhorar filtros da API - Luís - (M)  
+
+8. Estudo de IA - Ítalo e Arthur (S-M)  
+	- Como vai ser a implementação no código 
+
+# Sprint Planning da Sprint 6
+1- Pasta docs/assets para fotos organizadas no MK Docs - Renan (S)  
+2- Limpar e reorganizar arquivos no MK Docs – Renan (S-M)  
+3- Ver como vai ser a parte de localização do banco de dados (se vai usar um computador dos integrantes ou pagar um na nuvem, etc) - Renan (S)  
+4- Banco de Dados (definir Dashboards que desejamos usar, definir os dados que iremos usar e guardar, e planejamento das tabelas do BD (usuário (favoritos, histórico, usuario), requisições)) [Várias Sub-Issues]- Renan + algúem (L)  
+5- Definir nome do Projeto – todo mundo (XS)  
+6 - Implementar Front-End básico, que comunica com JavaScript, usa Fetch API para comunicar com o Controller, chama a função de consumir API já existente, e mostra na tela – Caio e Arthur (L) [Dividir em várias sub-issues]   
+7 - Começar a criar um README para o projeto – Caio e Ítalo (Renan como Reviewer) (S)  
+
+Anotações:  
+- Concluir as issues da Sprint 5 
+- Review dos Requisitos - Luís hoje 
+- CUIDADO COM O QUE USAR NO GOOGLE OAUTH (USAR APENAS O QUE É GRÁTIS) 
+- Revisar os Pull Requests, visando melhora da entrega 

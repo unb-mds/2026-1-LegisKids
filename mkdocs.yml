@@ -1,0 +1,75 @@
+site_name: Monitoramento Legislativo – Proteção de Crianças na Internet
+site_description: Plataforma de monitoramento e análise de proposições legislativas
+site_author: Equipe do Projeto
+
+theme:
+  name: mkdocs
+
+nav:
+
+- Home: index.md
+
+- Projeto:
+
+  - Ideia: ideia_escolhida_projeto.md
+
+- Arquitetura:
+
+  - Escolha da Arquitetura: estudos/arquitetura/escolha_arquitetura.md
+  - Tecnologias: estudos/arquitetura/checando_tecnologias.md
+  - Diagrama V1: estudos/arquitetura/diagrama_arquitetura_v1.md
+  - Diagrama V2: estudos/arquitetura/diagrama_arquitetura_v2.md
+  - Fluxo de Dados: estudos/arquitetura/estudo_fluxo_de_dados.md
+  - Login: estudos/arquitetura/estudo_login.md
+  - Estudo Inicial: estudos/arquitetura/estudo_arquiteturas.md
+
+- Backend:
+
+  - API: estudos/API/levantamento_api.md
+
+- Banco de Dados:
+
+  - Definição: estudos/banco_de_dados/definicao_banco_de_dados.md
+  - Estudo: estudos/banco_de_dados/estudo_banco_de_dados.md
+
+- Frontend:
+
+  - Tecnologias e Estrutura: estudos/frontend/tecnologias_estrutura.md
+
+- Design:
+
+  - Protótipo Interativo: estudos/design/identidade_visual/prototipo_interativo.md
+  - Identidade Visual: estudos/design/identidade_visual/identidade_visual.md
+
+- Git & Organização:
+
+  - GitHub: estudos/git_github/estudo_github.md
+  - Labels de Issue: estudos/git_github/labels_tamanho_issue.md
+  - Nome de Arquivos: padrao_organizacao/padrao_nomes_arquivos.md
+  - Organização Geral: padrao_organizacao/organizacao_geral.md
+
+- Metodologia:
+
+  - Métodos Ágeis: estudos/metodos_ageis/metodos_ageis.md
+
+- Gestão:
+
+  - Requisitos: estudos/requisitos/requisitos_de_software.md
+  - Documento Complementar: estudos/requisitos/estudo_requisitos_software.md
+  - Dailies: reunioes/dailies.md
+  - Horários: reunioes/horarios.md
+  - Reviews e Retrospectivas: reunioes/reviews_retrospectives.md
+  - Sprint Planning: reunioes/sprint_plannings.md
+  - Kanban: padrao_organizacao/padrao_kanban.md
+
+- Padrões:
+
+  - Commits: padrao_organizacao/padrao_commits.md
+  - Pull Requests: padrao_organizacao/padrao_PR.md
+
+- Requisitos:
+    - Documento: estudos/requisitos/requisitos_de_software.md
+
+plugins:
+
+- search

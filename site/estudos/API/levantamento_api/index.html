@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>API - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../arquitetura/escolha_arquitetura/" class="dropdown-item">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/checando_tecnologias/" class="dropdown-item">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_arquiteturas/" class="dropdown-item">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="../../requisitos/estudo_requisitos_software/" class="dropdown-item">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/dailies/" class="dropdown-item">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/sprint_plannings/" class="dropdown-item">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../arquitetura/estudo_arquiteturas/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../banco_de_dados/definicao_banco_de_dados/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estudo-de-apis-monitoramento-legislativo" class="nav-link">📡 Estudo de APIs – Monitoramento Legislativo</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#fontes-de-dados" class="nav-link">📌 Fontes de Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#decisao-para-o-projeto" class="nav-link">✅ Decisão para o Projeto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#o-que-a-api-da-camara-oferece" class="nav-link">📊 O que a API da Câmara oferece</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#endpoints-principais" class="nav-link">🔗 Endpoints principais</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#formato-e-atualizacao" class="nav-link">⚙️ Formato e Atualização</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#cobertura-para-a-issue" class="nav-link">🎯 Cobertura para a Issue</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#limitacoes-e-riscos" class="nav-link">⚠️ Limitações e Riscos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusao" class="nav-link">🧠 Conclusão</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="estudo-de-apis-monitoramento-legislativo">📡 Estudo de APIs – Monitoramento Legislativo</h1>
+<h2 id="fontes-de-dados">📌 Fontes de Dados</h2>
+<h3 id="coleta-primaria">🔹 Coleta Primária</h3>
+<h4 id="camara-dos-deputados">Câmara dos Deputados</h4>
+<ul>
+<li>Fonte principal para o projeto</li>
+<li>Fornece dados completos sobre proposições e tramitações</li>
+<li>Documentação: Swagger UI / Dados Abertos</li>
+</ul>
+<h4 id="senado-federal">Senado Federal</h4>
+<ul>
+<li>Fonte complementar para dados legislativos</li>
+</ul>
+<hr />
+<h3 id="enriquecimento-e-consolidacao">🔹 Enriquecimento e Consolidação</h3>
+<h4 id="lexml">LexML</h4>
+<ul>
+<li>Não deve ser fonte primária</li>
+<li>Usado para:</li>
+<li>normalização de dados</li>
+<li>deduplicação</li>
+<li>resolução de documentos jurídicos</li>
+</ul>
+<hr />
+<h3 id="publicacao-oficial">🔹 Publicação Oficial</h3>
+<h4 id="diario-oficial-da-uniao-dou">Diário Oficial da União (DOU)</h4>
+<ul>
+<li>Fonte prioritária para atos normativos publicados oficialmente</li>
+<li>API disponível no catálogo de APIs governamentais</li>
+</ul>
+<hr />
+<h3 id="descoberta-de-dados">🔹 Descoberta de Dados</h3>
+<h4 id="portal-de-dados-abertos-dadosgovbr">Portal de Dados Abertos (dados.gov.br)</h4>
+<ul>
+<li>Uso apenas como apoio</li>
+<li>Permite:</li>
+<li>descobrir datasets</li>
+<li>identificar organizações e grupos</li>
+<li>buscar por tags</li>
+</ul>
+<hr />
+<h2 id="decisao-para-o-projeto">✅ Decisão para o Projeto</h2>
+<p>Apesar da existência de múltiplas APIs, para viabilizar o projeto no tempo disponível:</p>
+<p>👉 <strong>Será utilizada apenas a API da Câmara dos Deputados como fonte principal</strong></p>
+<hr />
+<h2 id="o-que-a-api-da-camara-oferece">📊 O que a API da Câmara oferece</h2>
+<p>A API atende bem aos seguintes pontos:</p>
+<ul>
+<li><strong>Proposições</strong></li>
+<li>
+<p>Lista e detalha projetos de lei e outras proposições</p>
+</li>
+<li>
+<p><strong>Tramitações</strong></p>
+</li>
+<li>
+<p>Acompanhamento do andamento das proposições</p>
+</li>
+<li>
+<p><strong>Autores</strong></p>
+</li>
+<li>
+<p>Identificação dos autores das proposições</p>
+</li>
+<li>
+<p><strong>Comissões / Órgãos</strong></p>
+</li>
+<li>
+<p>Dados sobre comissões, plenário e outros órgãos</p>
+</li>
+<li>
+<p><strong>Temas</strong></p>
+</li>
+<li>Classificação temática oficial</li>
+</ul>
+<hr />
+<h2 id="endpoints-principais">🔗 Endpoints principais</h2>
+<ul>
+<li><code>/api/v2/proposicoes</code></li>
+<li><code>/api/v2/proposicoes/{id}</code></li>
+<li><code>/api/v2/proposicoes/{id}/tramitacoes</code></li>
+<li><code>/api/v2/proposicoes/{id}/autores</code></li>
+<li><code>/api/v2/proposicoes/{id}/temas</code></li>
+<li><code>/api/v2/orgaos</code></li>
+<li><code>/api/v2/orgaos/{id}</code></li>
+</ul>
+<hr />
+<h2 id="formato-e-atualizacao">⚙️ Formato e Atualização</h2>
+<p>A API da Câmara oferece:</p>
+<ul>
+<li>API REST</li>
+<li>Formatos de dados:</li>
+<li>JSON</li>
+<li>CSV</li>
+<li>XML</li>
+<li>XLSX</li>
+<li>ODS</li>
+<li>Atualização diária dos dados principais</li>
+</ul>
+<hr />
+<h2 id="cobertura-para-a-issue">🎯 Cobertura para a Issue</h2>
+<p>A API cobre:</p>
+<ul>
+<li>proposições  </li>
+<li>tramitações  </li>
+<li>autores  </li>
+<li>comissões  </li>
+<li>temas  </li>
+</ul>
+<hr />
+<h2 id="limitacoes-e-riscos">⚠️ Limitações e Riscos</h2>
+<p>A API <strong>não cobre sozinha</strong>:</p>
+<ul>
+<li>Senado Federal  </li>
+<li>Publicação oficial no DOU  </li>
+<li>Classificação específica sobre proteção digital de crianças  </li>
+</ul>
+<h3 id="pontos-de-atencao">Pontos de atenção:</h3>
+<ul>
+<li>cobre apenas a Câmara dos Deputados  </li>
+<li>classificação temática é genérica  </li>
+<li>possíveis mudanças técnicas na API  </li>
+<li>necessidade de filtros próprios (ex: palavras-chave)</li>
+</ul>
+<hr />
+<h2 id="conclusao">🧠 Conclusão</h2>
+<p>A API da Câmara dos Deputados atende adequadamente o escopo do projeto e deve ser utilizada como <strong>fonte prioritária inicial</strong>, pois oferece dados oficiais com integração simples sobre:</p>
+<ul>
+<li>proposições  </li>
+<li>tramitações  </li>
+<li>autores  </li>
+<li>comissões  </li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

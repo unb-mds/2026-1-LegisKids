@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Estudo Inicial - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../escolha_arquitetura/" class="dropdown-item">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="../checando_tecnologias/" class="dropdown-item">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../API/levantamento_api/" class="dropdown-item">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="../../requisitos/estudo_requisitos_software/" class="dropdown-item">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/dailies/" class="dropdown-item">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/sprint_plannings/" class="dropdown-item">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../estudo_login/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../API/levantamento_api/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estudo-arquitetura-de-software" class="nav-link">Estudo Arquitetura de Software</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estudar-o-conceito-de-arquitetura-de-software" class="nav-link">Estudar o conceito de Arquitetura de Software</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#entender-a-diferenca-entre-arquitetura-e-design-de-software" class="nav-link">Entender a diferença entre arquitetura e design de software</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-de-software" class="nav-link">Arquitetura de Software</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#design-de-software" class="nav-link">Design de Software</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#analogia" class="nav-link">Analogia</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#na-pratica" class="nav-link">Na prática</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#diferenca-e-relacao" class="nav-link">Diferença e Relação</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#erros-comuns" class="nav-link">Erros comuns</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#pesquisar-padroes-arquiteturais-comuns" class="nav-link">Pesquisar padrões arquiteturais comuns</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-monolitica" class="nav-link">Arquitetura monolítica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-baseada-em-microsservicos" class="nav-link">Arquitetura baseada em microsserviços</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-model-view-controller-mvc" class="nav-link">Arquitetura Model-View-Controller (MVC)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-em-camadas-layers" class="nav-link">Arquitetura em camadas (Layers)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estudar-principios-importantes" class="nav-link">Estudar princípios importantes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#baixo-acoplamento-low-coupling" class="nav-link">Baixo acoplamento (Low Coupling)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#alta-coesao-high-cohesion" class="nav-link">Alta coesão (High Cohesion)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#separacao-de-responsabilidades-separation-of-concerns" class="nav-link">Separação de responsabilidades (Separation of Concerns)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusao_6" class="nav-link">Conclusão</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#analisar-exemplos-reais-de-arquiteturas-utilizadas-em-sistemas-conhecidos" class="nav-link">Analisar exemplos reais de arquiteturas utilizadas em sistemas conhecidos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#netflix" class="nav-link">Netflix</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#amazon" class="nav-link">Amazon</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#instagram" class="nav-link">Instagram</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#whatsapp" class="nav-link">Whatsapp</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusao_7" class="nav-link">Conclusão</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#relacionar-os-aprendizados-com-o-projeto-da-disciplina" class="nav-link">Relacionar os aprendizados com o projeto da disciplina</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#monitoramento-legislativo-protecao-de-criancas-na-internet" class="nav-link">Monitoramento Legislativo: Proteção de Crianças na Internet</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#primeira-analise" class="nav-link">Primeira análise</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#resumo_1" class="nav-link">Resumo</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#o-que-e-arquitetura-de-software" class="nav-link">O que é Arquitetura de Software</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arquitetura-vs-design" class="nav-link">Arquitetura vs Design</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#principais-padroes-arquiteturais" class="nav-link">Principais padrões arquiteturais</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#principios-fundamentais" class="nav-link">Princípios fundamentais</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#aplicacao-no-projeto" class="nav-link">Aplicação no projeto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusao-geral" class="nav-link">Conclusão geral</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="estudo-arquitetura-de-software">Estudo Arquitetura de Software</h1>
+<h1 id="estudar-o-conceito-de-arquitetura-de-software">Estudar o conceito de Arquitetura de Software</h1>
+<blockquote>
+<p><em>“Arquitetura de software é a estrutura fundamental ou o esqueleto de um sistema de software, que define seus componentes, suas relações e seus princípios de projeto e evolução.”</em>
+</p>
+</blockquote>
+<p>Arquitetura de software funciona como um <em>“tudo em todo o lugar ao mesmo tempo”</em> organizado a fim de evitar o caos. E por isso é essencial destrinchar o modelo de negócio para representá-lo em software.</p>
+<p>Além disso, a arquitetura não trata apenas da estrutura do sistema, mas também das <strong>decisões técnicas mais importantes</strong> que impactam diretamente atributos de qualidade, como desempenho, segurança, escalabilidade e manutenibilidade. Essas decisões costumam ser difíceis de mudar depois que o sistema já está em produção, o que torna a arquitetura uma etapa crítica do desenvolvimento.</p>
+<p>Um padrão arquitetural é uma solução já estabelecida para desenvolvimento de softwares, sendo um modelo reutilizável para problemas já conhecidos. Esses padrões já foram estudados, testados em projetos reais e passaram por melhorias, ou seja, são soluções difundidas e aceitas no mercado. Confira algumas vantagens no uso de padrões arquiteturais:</p>
+<ul>
+<li>Maior flexibilidade e escalabilidade de software</li>
+<li>Facilidade de manutenção e evolução</li>
+<li>Segurança</li>
+<li>Melhor desempenho das aplicações</li>
+<li>Redução de custos e riscos</li>
+</ul>
+<p>Por fim, a arquitetura de software também está diretamente ligada à <strong>evolução do sistema ao longo do tempo</strong>, permitindo que novas funcionalidades sejam adicionadas com menor impacto no que já existe. Uma boa arquitetura não é apenas a que resolve o problema atual, mas a que permite que o sistema continue saudável e sustentável no futuro.</p>
+<hr />
+<h1 id="entender-a-diferenca-entre-arquitetura-e-design-de-software">Entender a diferença entre arquitetura e design de software</h1>
+<h2 id="arquitetura-de-software">Arquitetura de Software</h2>
+<p>É sobre <strong>como o sistema é organizado como um todo</strong>.</p>
+<p>Imagine um sistema de delivery (tipo iFood):</p>
+<p><strong>Decisão arquitetural:</strong></p>
+<ul>
+<li>Ter serviços separados:<ul>
+<li>Usuário</li>
+<li>Pedido</li>
+<li>Pagamento</li>
+</ul>
+</li>
+</ul>
+<p>Você está decidindo a <strong>estrutura do sistema.</strong></p>
+<p>Além disso, arquitetura envolve decisões de alto impacto, como:</p>
+<ul>
+<li>Escolha entre padrões de arquitetura</li>
+<li>Tipo de comunicação (<strong>REST, mensageria, eventos</strong>)</li>
+<li>Uso de banco de dados (<strong>relacional ou NoSQL</strong>)</li>
+<li>Estratégias de <strong>escalabilidade e disponibilidade</strong></li>
+</ul>
+<p>Essas decisões são difíceis de mudar depois, por isso são chamadas de <strong>decisões arquiteturalmente significativas</strong>.</p>
+<h2 id="design-de-software">Design de Software</h2>
+<p>É sobre <strong>como cada parte interna é construída</strong>.</p>
+<p>Imagine um sistema de delivery (tipo iFood):</p>
+<p>Decisão de Design:</p>
+<ul>
+<li>Criar uma classe <code>Pedido</code></li>
+<li>Criar método <code>calcularTotal()</code></li>
+<li>Usar padrão <strong>Strategy</strong> para cálculo de frete</li>
+</ul>
+<p>Aqui você está lidando com a <strong>implementação detalhada</strong>.</p>
+<p>O design também envolve:</p>
+<ul>
+<li>Estrutura de classes e objetos</li>
+<li>Escolha de <strong>padrões de projeto (Design Patterns)</strong></li>
+<li>Organização de métodos e responsabilidades</li>
+<li>Legibilidade e manutenibilidade do código</li>
+</ul>
+<h2 id="analogia">Analogia</h2>
+<ul>
+<li>Arquitetura = planta da casa 🏠<ul>
+<li>Define: quantos andares, divisão dos cômodos</li>
+</ul>
+</li>
+<li>Design = decoração e organização interna 🛋️<ul>
+<li>Define: onde fica o sofá, mesa, etc.</li>
+</ul>
+</li>
+</ul>
+<p>Uma casa mal projetada (arquitetura ruim) não se resolve só com boa decoração (design).</p>
+<h2 id="na-pratica">Na prática</h2>
+<p>Exemplo de um jogo:</p>
+<p>Arquitetura de Software:</p>
+<ul>
+<li>Vai ser <strong>jogo mobile ou web?</strong></li>
+<li>Vai ter <strong>servidor online ou offline?</strong></li>
+<li>Vai separar em:<ul>
+<li>sistema de login</li>
+<li>sistema de partidas</li>
+<li>sistema de ranking</li>
+</ul>
+</li>
+</ul>
+<p>Design de Software:</p>
+<ul>
+<li>Como funciona a classe <code>Player</code></li>
+<li>Como calcular o dano</li>
+<li>Como organizar o código do ataque</li>
+<li>Quais métodos usar</li>
+</ul>
+<h2 id="diferenca-e-relacao">Diferença e Relação</h2>
+<h3 id="diferenca-principal">Diferença principal</h3>
+<ul>
+<li><strong>Arquitetura</strong> → visão macro (alto nível)</li>
+<li><strong>Design</strong> → visão micro (baixo nível)</li>
+</ul>
+<h3 id="relacao-entre-os-dois">Relação entre os dois</h3>
+<p>Arquitetura e design <strong>não são coisas separadas</strong>, mas sim <strong>níveis diferentes da mesma decisão</strong>.</p>
+<ul>
+<li>A arquitetura <strong>define limites e regras</strong></li>
+<li>O design <strong>preenche esses limites com implementação</strong></li>
+</ul>
+<p>Ou seja:</p>
+<blockquote>
+<p>A arquitetura guia o design, e o design concretiza a arquitetura.
+</p>
+</blockquote>
+<h2 id="erros-comuns">Erros comuns</h2>
+<p>Um erro muito comum é confundir:</p>
+<ul>
+<li>“Escolher microsserviços” → <strong>Arquitetura</strong></li>
+<li>“Usar padrão Factory” → <strong>Design</strong></li>
+</ul>
+<p>Outro erro é tentar resolver problemas arquiteturais com design, por exemplo:</p>
+<ul>
+<li>Problema de escalabilidade → não se resolve só com código melhor</li>
+<li>Problema de organização → não se resolve só com classes bem feitas</li>
+</ul>
+<h1 id="pesquisar-padroes-arquiteturais-comuns">Pesquisar padrões arquiteturais comuns</h1>
+<p>Nessa semana vou estudar a arquitetura <strong>monolítica</strong>, <strong>baseada em microsserviços</strong>, <strong>MVC</strong> e <strong>em camadas</strong>, para não me sobrecarregar. No futuro vou estudar a arquitetura com <strong>pipes e filters</strong>, a <strong>orientada a serviços</strong>, a <strong>client-server</strong> e a <strong>hexagonal</strong>.</p>
+<h2 id="arquitetura-monolitica"><strong>Arquitetura monolítica</strong></h2>
+<p>Um <strong>sistema monolítico</strong> é uma aplicação onde <strong>tudo fica junto em um único bloco</strong>:</p>
+<ul>
+<li>interface (tela)</li>
+<li>regras de negócio</li>
+<li>banco de dados</li>
+</ul>
+<p>Tudo roda <strong>no mesmo sistema</strong> e geralmente em <strong>um único processo</strong>.</p>
+<h3 id="como-funciona">Como funciona</h3>
+<ul>
+<li>Todas as partes são <strong>dependentes entre si</strong></li>
+<li>Se você muda uma coisa, pode afetar o sistema inteiro</li>
+<li>Normalmente é gerado <strong>um único pacote para rodar</strong></li>
+</ul>
+<h3 id="exemplo-simples">Exemplo simples</h3>
+<p>Sistema de pedidos de uma lanchonete:</p>
+<ul>
+<li>Tela (menu, pedidos, pagamento)</li>
+<li>Lógica (calcular preço, validar pedido)</li>
+<li>Banco de dados</li>
+</ul>
+<p>Tudo isso está <strong>dentro da mesma aplicação</strong></p>
+<h3 id="tipos-de-monolito">Tipos de monolito</h3>
+<p>Segundo Sam Newman, existem 3 tipos:</p>
+<ul>
+<li><strong>Monolito simples</strong> → tudo junto em um único processo</li>
+<li><strong>Monolito modular</strong> → dividido em módulos (ex: pedidos, pagamento), mas ainda é um sistema único</li>
+<li><strong>Monolito distribuído</strong> → partes separadas, mas muito dependentes (pode virar bagunça)</li>
+</ul>
+<h3 id="vantagens">Vantagens</h3>
+<ul>
+<li>Mais <strong>simples de desenvolver</strong></li>
+<li><strong>Rápido para começar</strong> (ótimo para projetos pequenos)</li>
+<li>Fácil de fazer deploy (um único sistema)</li>
+</ul>
+<h3 id="desvantagens">Desvantagens</h3>
+<ul>
+<li>Difícil de escalar</li>
+<li>Mudanças podem quebrar outras partes</li>
+<li>Um erro pode derrubar tudo (ponto único de falha)</li>
+</ul>
+<h3 id="conclusao">Conclusão</h3>
+<ul>
+<li>Simples no início</li>
+<li>Complica quando cresce</li>
+</ul>
+<h2 id="arquitetura-baseada-em-microsservicos"><strong>Arquitetura baseada em microsserviços</strong></h2>
+<p>Microsserviços são uma arquitetura onde o sistema é dividido em <strong>vários serviços pequenos e independentes</strong>, cada um responsável por uma funcionalidade.</p>
+<h3 id="como-funciona_1">Como funciona</h3>
+<ul>
+<li>Cada serviço é <strong>independente</strong></li>
+<li>Cada um pode ter seu <strong>próprio banco de dados</strong></li>
+<li>Os serviços se comunicam por <strong>APIs ou mensageria</strong></li>
+<li>É possível usar <strong>linguagens e tecnologias diferentes</strong></li>
+</ul>
+<h3 id="exemplo-simples_1">Exemplo simples</h3>
+<p>Sistema de uma lanchonete:</p>
+<ul>
+<li><strong>Menu</strong> → mostra produtos</li>
+<li><strong>Pedidos</strong> → gerencia pedidos</li>
+<li><strong>Pagamento</strong> → processa pagamentos</li>
+<li><strong>Análise de dados</strong> → avalia vendas</li>
+</ul>
+<p>Cada um desses é um <strong>microsserviço separado</strong></p>
+<h3 id="o-que-muda-em-relacao-ao-monolito">O que muda em relação ao monolito</h3>
+<ul>
+<li>Antes: tudo em um único sistema</li>
+<li>Agora: vários serviços menores trabalhando juntos</li>
+</ul>
+<p>Exemplo:</p>
+<ul>
+<li>Pagamento pode usar <strong>Java</strong></li>
+<li>Análise de dados pode usar <strong>Python</strong></li>
+</ul>
+<h3 id="vantagens_1">Vantagens</h3>
+<ul>
+<li>Mais <strong>flexível</strong></li>
+<li>Mais fácil de <strong>escalar</strong> (só o que precisa)</li>
+<li>Times podem trabalhar <strong>independentemente</strong></li>
+<li>Facilita adicionar <strong>novas funcionalidades</strong></li>
+</ul>
+<h3 id="desvantagens_1">Desvantagens</h3>
+<ul>
+<li>Mais <strong>complexo de implementar</strong></li>
+<li>Maior custo de <strong>infraestrutura</strong></li>
+<li>Comunicação entre serviços pode gerar problemas</li>
+<li>Mais difícil de <strong>manter e monitorar</strong></li>
+</ul>
+<h3 id="conclusao_1">Conclusão</h3>
+<ul>
+<li>Ótimo para sistemas grandes e em crescimento</li>
+<li>Permite escalar e evoluir melhor</li>
+<li>Mas só vale a pena se a <strong>complexidade for justificada</strong></li>
+</ul>
+<h2 id="arquitetura-model-view-controller-mvc"><strong>Arquitetura Model-View-Controller (MVC)</strong></h2>
+<p>O <strong>MVC</strong> é um padrão de arquitetura muito comum no desenvolvimento web, usado para <strong>organizar melhor o código</strong> e separar responsabilidades.</p>
+<h3 id="como-funciona_2">Como funciona</h3>
+<p>O sistema é dividido em <strong>três partes principais</strong>:</p>
+<ul>
+<li><strong>Model (Modelo)</strong><ul>
+<li>Contém as <strong>regras de negócio</strong></li>
+<li>Manipula e acessa os <strong>dados</strong> (banco, APIs, etc.)</li>
+</ul>
+</li>
+<li><strong>View (Visão)</strong><ul>
+<li>Responsável pela <strong>interface com o usuário</strong></li>
+<li>Mostra os dados na tela</li>
+</ul>
+</li>
+<li><strong>Controller (Controlador)</strong><ul>
+<li>Faz a <strong>ligação entre Model e View</strong></li>
+<li>Recebe ações do usuário (cliques, requisições)</li>
+<li>Decide o que fazer e qual resposta retornar</li>
+</ul>
+</li>
+</ul>
+<h3 id="exemplo-simples_2">Exemplo simples</h3>
+<p>Sistema de lanchonete:</p>
+<ul>
+<li><strong>Model</strong> → calcula preço, valida pedido</li>
+<li><strong>View</strong> → tela com menu e pedidos</li>
+<li><strong>Controller</strong> → recebe o pedido e chama o model</li>
+</ul>
+<h3 id="fluxo-basico">Fluxo básico</h3>
+<ol>
+<li>Usuário interage com a <strong>View</strong></li>
+<li>A View envia a ação para o <strong>Controller</strong></li>
+<li>O Controller chama o <strong>Model</strong></li>
+<li>O Model processa os dados</li>
+<li>O resultado volta para a <strong>View</strong></li>
+<li>A View mostra para o usuário</li>
+</ol>
+<h3 id="ideia-principal">Ideia Principal</h3>
+<p>O MVC separa duas coisas importantes:</p>
+<ul>
+<li><strong>Interface (View) ≠ Lógica (Model)</strong></li>
+<li><strong>Controle (Controller) ≠ Apresentação (View)</strong></li>
+</ul>
+<p>Isso deixa o sistema mais organizado e fácil de manter</p>
+<h3 id="vantagens_2">Vantagens</h3>
+<ul>
+<li>Código mais <strong>organizado</strong></li>
+<li>Facilita <strong>manutenção</strong></li>
+<li>Permite <strong>reuso de código</strong></li>
+<li>Mais fácil trabalhar em equipe</li>
+</ul>
+<h3 id="desvantagens_2">Desvantagens</h3>
+<ul>
+<li>Pode ser <strong>mais complexo no início</strong></li>
+<li>Exige boa organização para não virar bagunça</li>
+</ul>
+<h3 id="conclusao_2">Conclusão</h3>
+<ul>
+<li>MVC ajuda a <strong>separar responsabilidades</strong></li>
+<li>Muito usado em sistemas web</li>
+<li>É um dos primeiros padrões importantes para aprender</li>
+</ul>
+<h2 id="arquitetura-em-camadas-layers"><strong>Arquitetura em camadas (Layers)</strong></h2>
+<p>A <strong>arquitetura em camadas</strong> organiza o sistema em <strong>níveis</strong>, onde cada camada tem uma função específica e depende da camada abaixo.</p>
+<h3 id="como-funciona_3">Como funciona</h3>
+<ul>
+<li>O sistema é dividido em <strong>camadas</strong></li>
+<li>Cada camada usa os serviços da camada inferior</li>
+<li>A comunicação geralmente segue um fluxo <strong>de cima para baixo</strong></li>
+</ul>
+<h3 id="exemplo-de-camadas">Exemplo de camadas</h3>
+<p>Um sistema típico pode ter:</p>
+<ul>
+<li><strong>Interface (UI)</strong><ul>
+<li>Tela que o usuário vê (front-end)</li>
+</ul>
+</li>
+<li><strong>Camada de aplicação</strong><ul>
+<li>Controle de fluxo, autenticação, regras básicas</li>
+</ul>
+</li>
+<li><strong>Lógica de negócio</strong><ul>
+<li>Regras principais do sistema</li>
+</ul>
+</li>
+<li><strong>Infraestrutura</strong><ul>
+<li>Banco de dados, sistema operacional, etc.</li>
+</ul>
+</li>
+</ul>
+<h3 id="exemplo-simples_3">Exemplo simples</h3>
+<p>Sistema de inscrição:</p>
+<ul>
+<li><strong>Front-end</strong> → formulário</li>
+<li><strong>Servidor (API)</strong> → processa os dados</li>
+<li><strong>Banco de dados</strong> → armazena informações</li>
+</ul>
+<p>O front-end <strong>não acessa direto o banco</strong>, tudo passa pela API</p>
+<h3 id="ideia-principal_1">Ideia Principal</h3>
+<ul>
+<li>Cada camada tem uma <strong>responsabilidade clara</strong></li>
+<li>Uma camada <strong>depende da outra (de baixo)</strong></li>
+<li>Organização por <strong>níveis</strong></li>
+</ul>
+<h3 id="diferenca-para-mvc">Diferença para MVC</h3>
+<ul>
+<li><strong>MVC</strong> → separa por tipo de responsabilidade (Model, View, Controller)</li>
+<li><strong>Camadas</strong> → separa por <strong>níveis do sistema</strong></li>
+</ul>
+<p>São conceitos diferentes, mas podem ser usados juntos</p>
+<h3 id="vantagens_3">Vantagens</h3>
+<ul>
+<li>Organização clara do sistema</li>
+<li>Facilita divisão entre equipes</li>
+<li>Permite reaproveitar partes do sistema</li>
+<li>Boa para sistemas grandes e estruturados</li>
+</ul>
+<h3 id="desvantagens_3">Desvantagens</h3>
+<ul>
+<li>Pode adicionar <strong>complexidade</strong></li>
+<li>Pode gerar <strong>dependência rígida entre camadas</strong></li>
+<li>Às vezes pode impactar performance</li>
+</ul>
+<h3 id="quando-usar">Quando usar</h3>
+<ul>
+<li>Quando há <strong>times diferentes trabalhando</strong></li>
+<li>Quando o sistema precisa de <strong>segurança por níveis</strong></li>
+<li>Quando você quer <strong>evoluir um sistema existente</strong></li>
+</ul>
+<h3 id="conclusao_3">Conclusão</h3>
+<ul>
+<li>Divide o sistema em <strong>camadas hierárquicas</strong></li>
+<li>Cada camada depende da de baixo</li>
+<li>Muito usado em aplicações web (front-end + API + banco)</li>
+</ul>
+<h1 id="estudar-principios-importantes">Estudar princípios importantes</h1>
+<p>Nessa semana, vou estudar apenas os princípios mais básicos da Arquitetura de Software, para nas seguintes conseguir aprofundar nos demais conceitos.</p>
+<h2 id="baixo-acoplamento-low-coupling">Baixo acoplamento (Low Coupling)</h2>
+<p>É quando as partes do sistema têm <strong>pouca dependência entre si</strong>.</p>
+<h4 id="como-funciona_4">Como funciona</h4>
+<ul>
+<li>Um módulo <strong>não depende fortemente</strong> de outro</li>
+<li>Mudanças em uma parte <strong>não quebram o resto</strong></li>
+</ul>
+<h4 id="exemplo-simples_4">Exemplo simples</h4>
+<p>❌ Alto acoplamento:</p>
+<ul>
+<li>Classe de Pedido chama diretamente o banco de dados</li>
+</ul>
+<p>✅ Baixo acoplamento:</p>
+<ul>
+<li>Pedido chama uma <strong>interface</strong> (ex: <code>RepositorioPedido</code>)</li>
+<li>O banco é só uma implementação</li>
+</ul>
+<h4 id="ideia-principal_2">Ideia Principal</h4>
+<ul>
+<li>Quanto menos dependência, melhor</li>
+<li>Facilita mudanças e manutenção</li>
+</ul>
+<h4 id="vantagens_4">Vantagens</h4>
+<ul>
+<li>Código mais <strong>flexível</strong></li>
+<li>Mais fácil de <strong>testar</strong></li>
+<li>Menos impacto ao modificar algo</li>
+</ul>
+<h4 id="resumo">Resumo</h4>
+<p>Evite depender diretamente — use abstrações</p>
+<h2 id="alta-coesao-high-cohesion"><strong>Alta coesão (High Cohesion)</strong></h2>
+<p>É quando uma classe ou módulo tem <strong>uma responsabilidade bem definida</strong>.</p>
+<h3 id="como-funciona_5">Como funciona</h3>
+<ul>
+<li>Cada parte do sistema faz <strong>uma coisa só</strong></li>
+<li>Tudo dentro dela está <strong>relacionado</strong></li>
+</ul>
+<h3 id="exemplo-simples_5">Exemplo Simples</h3>
+<p>❌ Baixa coesão:</p>
+<ul>
+<li>Classe faz login, cálculo e envio de email</li>
+</ul>
+<p>✅ Alta coesão:</p>
+<ul>
+<li><code>AuthService</code> → login</li>
+<li><code>Calculadora</code> → cálculos</li>
+<li><code>EmailService</code> → envio de email</li>
+</ul>
+<h3 id="ideia-principal_3">Ideia Principal</h3>
+<p>Código organizado por <strong>função clara</strong></p>
+<h3 id="vantagens_5">Vantagens</h3>
+<ul>
+<li>Código mais <strong>legível</strong></li>
+<li>Mais fácil de <strong>manter</strong></li>
+<li>Facilita reaproveitamento</li>
+</ul>
+<h3 id="conclusao_4">Conclusão</h3>
+<p><strong>Uma classe = uma responsabilidade</strong></p>
+<h2 id="separacao-de-responsabilidades-separation-of-concerns"><strong>Separação de responsabilidades (Separation of Concerns)</strong></h2>
+<p>É dividir o sistema em partes, onde cada uma cuida de <strong>um aspecto específico</strong>.</p>
+<h3 id="como-funciona_6">Como funciona</h3>
+<ul>
+<li>Cada parte resolve <strong>um tipo de problema</strong></li>
+<li>Evita misturar coisas diferentes</li>
+</ul>
+<h3 id="exemplo-simples_6">Exemplo simples</h3>
+<p>Sem separação:</p>
+<ul>
+<li>Código mistura: tela + regra de negócio + banco</li>
+</ul>
+<p>Com separação:</p>
+<ul>
+<li><strong>View</strong> → interface</li>
+<li><strong>Service</strong> → regras</li>
+<li><strong>Repository</strong> → banco</li>
+</ul>
+<h3 id="ideia-principal_4">Ideia Principal</h3>
+<p>Separar o sistema por <strong>interesses (concerns)</strong></p>
+<h3 id="vantagens_6">Vantagens</h3>
+<ul>
+<li>Organização clara</li>
+<li>Facilita evolução do sistema</li>
+<li>Reduz complexidade</li>
+</ul>
+<h3 id="conclusao_5">Conclusão</h3>
+<p>Não misture responsabilidades diferentes</p>
+<h2 id="conclusao_6">Conclusão</h2>
+<ul>
+<li><strong>Separação de responsabilidades</strong> → divide o sistema em áres de funcionamento</li>
+<li><strong>Alta coesão</strong> → cada classe parte faz bem seu papel</li>
+<li><strong>Baixo acoplamento</strong> → as partes não ficam dependentes demais</li>
+</ul>
+<h1 id="analisar-exemplos-reais-de-arquiteturas-utilizadas-em-sistemas-conhecidos">Analisar exemplos reais de arquiteturas utilizadas em sistemas conhecidos</h1>
+<h2 id="netflix">Netflix</h2>
+<h3 id="arquitetura">Arquitetura</h3>
+<ul>
+<li><strong>Microsserviços</strong></li>
+<li>Altamente <strong>distribuída</strong></li>
+<li>Rodando na nuvem (AWS)</li>
+</ul>
+<h3 id="como-funciona_7">Como funciona</h3>
+<ul>
+<li>Cada funcionalidade é um serviço:<ul>
+<li>catálogo</li>
+<li>recomendações</li>
+<li>streaming</li>
+<li>autenticação</li>
+</ul>
+</li>
+<li>Serviços se comunicam via <strong>APIs</strong></li>
+</ul>
+<h3 id="decisoes-importantes">Decisões importantes</h3>
+<ul>
+<li>Precisava escalar para <strong>milhões de usuários</strong></li>
+<li>Sistema precisa estar disponível <strong>24/7</strong></li>
+</ul>
+<h3 id="principios-aplicados">Princípios aplicados</h3>
+<ul>
+<li>Baixo acoplamento → serviços independentes</li>
+<li>Alta coesão → cada serviço faz uma coisa</li>
+<li>Separação de responsabilidades → cada domínio isolado</li>
+</ul>
+<h3 id="trade-off">Trade-off</h3>
+<ul>
+<li>Muito <strong>complexo</strong></li>
+<li>Alto custo de infraestrutura</li>
+</ul>
+<h2 id="amazon">Amazon</h2>
+<h3 id="arquitetura_1">Arquitetura</h3>
+<ul>
+<li>Microsserviços (pioneira nisso)</li>
+<li>Também usa <strong>arquitetura em camadas internamente</strong></li>
+</ul>
+<h3 id="como-funciona_8">Como funciona</h3>
+<p>Serviços separados:</p>
+<ul>
+<li>carrinho</li>
+<li>pagamento</li>
+<li>estoque</li>
+<li>recomendações</li>
+</ul>
+<h3 id="decisao-famosa">Decisão famosa</h3>
+<p>Regra interna:</p>
+<blockquote>
+<p>“Times devem se comunicar apenas por APIs”
+</p>
+</blockquote>
+<h3 id="principios">Princípios</h3>
+<ul>
+<li>Baixo acoplamento (times independentes)</li>
+<li>Separação de responsabilidades clara</li>
+<li>Escalabilidade extrema</li>
+</ul>
+<h3 id="trade-off_1">Trade-off</h3>
+<ul>
+<li>Complexidade organizacional e técnica</li>
+</ul>
+<h2 id="instagram">Instagram</h2>
+<h3 id="arquitetura_2">Arquitetura</h3>
+<ul>
+<li>Começou como <strong>monolito (Django)</strong></li>
+<li>Depois evoluiu com partes distribuídas</li>
+</ul>
+<h3 id="como-funciona_9">Como funciona</h3>
+<ul>
+<li>Backend centralizado</li>
+<li>Otimizações pesadas para escalar</li>
+</ul>
+<h3 id="decisao-importante">Decisão importante</h3>
+<ul>
+<li>Começar simples → depois escalar</li>
+</ul>
+<p><strong>Não começaram com microsserviços</strong></p>
+<h3 id="principios_1">Princípios</h3>
+<ul>
+<li>Alta coesão (código bem organizado)</li>
+<li>KISS ("Keep It Simple, Stupid”: simplicidade no início, princípio que ainda vou estudar)</li>
+<li>Evolução gradual da arquitetura</li>
+</ul>
+<h3 id="trade-off_2">Trade-off</h3>
+<ul>
+<li>Escalar monolito exige engenharia avançada</li>
+</ul>
+<h2 id="whatsapp">Whatsapp</h2>
+<h3 id="arquitetura_3">Arquitetura</h3>
+<ul>
+<li>Sistema <strong>distribuído</strong></li>
+<li>Baseado em <strong>Erlang</strong></li>
+<li>Focado em <strong>mensageria</strong></li>
+</ul>
+<h3 id="como-funciona_10">Como funciona</h3>
+<ul>
+<li>Servidores lidam com milhões de conexões simultâneas</li>
+<li>Comunicação em tempo real</li>
+</ul>
+<h3 id="decisao-importante_1">Decisão importante</h3>
+<ul>
+<li>Escolher tecnologia que suporta <strong>concorrência massiva</strong></li>
+</ul>
+<h3 id="principios_2">Princípios</h3>
+<ul>
+<li>Alta coesão (foco em mensagens)</li>
+<li>Baixo acoplamento entre servidores</li>
+<li>Simplicidade (menos features, mais eficiência)</li>
+</ul>
+<h3 id="trade-off_3">Trade-off</h3>
+<ul>
+<li>Menos flexível para features complexas</li>
+</ul>
+<h2 id="conclusao_7">Conclusão</h2>
+<p>Não existe “melhor arquitetura” universal.</p>
+<p>Tudo depende de:</p>
+<ul>
+<li>Escala do sistema</li>
+<li>Complexidade</li>
+<li>Equipe</li>
+<li>Objetivo do negócio</li>
+</ul>
+<p>Após análise:</p>
+<ul>
+<li>Sistemas pequenos → <strong>monolito + simplicidade</strong></li>
+<li>Sistemas grandes → <strong>microsserviços / distribuído</strong></li>
+</ul>
+<h1 id="relacionar-os-aprendizados-com-o-projeto-da-disciplina">Relacionar os aprendizados com o projeto da disciplina</h1>
+<h2 id="monitoramento-legislativo-protecao-de-criancas-na-internet">Monitoramento Legislativo: Proteção de Crianças na Internet</h2>
+<p>Plataforma para <strong>monitorar, classificar e analisar proposições legislativas sobre proteção de crianças e adolescentes no ambiente digital</strong>.</p>
+<p>Foco em temas como: <strong>cyberbullying, exploração sexual online, proteção de dados de menores, regulação de plataformas digitais e exposição a conteúdo nocivo</strong>.</p>
+<h2 id="primeira-analise">Primeira análise</h2>
+<h3 id="arquitetura-ideal">Arquitetura ideal</h3>
+<p><strong>Monolito em camadas + MVC</strong></p>
+<ul>
+<li>Complexidade média</li>
+<li>Projeto acadêmico</li>
+<li>Mais simples de desenvolver e manter</li>
+<li>Permite evolução futura</li>
+</ul>
+<h3 id="estrutura-ideal">Estrutura ideal</h3>
+<ul>
+<li><strong>View (Frontend)</strong><ul>
+<li>Dashboards, gráficos, filtros</li>
+</ul>
+</li>
+<li><strong>Controller (API)</strong><ul>
+<li>Recebe requisições (busca, filtros, relatórios)</li>
+</ul>
+</li>
+<li><strong>Service (Lógica de negócio)</strong><ul>
+<li>Classificação por tema</li>
+<li>Análise de dados</li>
+<li>Processamento com NLP</li>
+</ul>
+</li>
+<li><strong>Repository (Dados)</strong><ul>
+<li>Acesso ao banco</li>
+<li>Integração com APIs legislativas</li>
+</ul>
+</li>
+<li><strong>Infraestrutura</strong><ul>
+<li>Banco de dados</li>
+<li>APIs externas</li>
+</ul>
+</li>
+</ul>
+<h1 id="resumo_1">Resumo</h1>
+<h2 id="o-que-e-arquitetura-de-software"><strong>O que é Arquitetura de Software</strong></h2>
+<ul>
+<li>É a <strong>estrutura do sistema</strong> (componentes + relações)</li>
+<li>Define decisões críticas como:<ul>
+<li>desempenho</li>
+<li>escalabilidade</li>
+<li>segurança</li>
+<li>manutenção</li>
+</ul>
+</li>
+</ul>
+<p>São decisões <strong>difíceis de mudar depois</strong></p>
+<h2 id="arquitetura-vs-design"><strong>Arquitetura vs Design</strong></h2>
+<ul>
+<li><strong>Arquitetura</strong> → visão <strong>macro</strong><ul>
+<li>organização do sistema</li>
+<li>escolha de tecnologias e padrões</li>
+</ul>
+</li>
+<li><strong>Design</strong> → visão <strong>micro</strong><ul>
+<li>classes, métodos, implementação</li>
+</ul>
+</li>
+</ul>
+<p><strong>Arquitetura guia o design</strong></p>
+<h2 id="principais-padroes-arquiteturais"><strong>Principais padrões arquiteturais</strong></h2>
+<h3 id="monolito">Monolito</h3>
+<ul>
+<li>Tudo em um único sistema</li>
+<li>Simples no início</li>
+<li>Difícil de escalar</li>
+</ul>
+<h3 id="microsservicos">Microsserviços</h3>
+<ul>
+<li>Sistema dividido em serviços independentes</li>
+<li>Alta escalabilidade e flexibilidade</li>
+<li>Alta complexidade</li>
+</ul>
+<h3 id="mvc">MVC</h3>
+<ul>
+<li>Divide em:<ul>
+<li>Model (dados)</li>
+<li>View (interface)</li>
+<li>Controller (controle)</li>
+</ul>
+</li>
+</ul>
+<p>Foca na <strong>organização do código</strong></p>
+<h3 id="camadas">Camadas</h3>
+<ul>
+<li>Divide o sistema por níveis:<ul>
+<li>UI → aplicação → negócio → dados</li>
+</ul>
+</li>
+</ul>
+<p>Foca na <strong>estrutura do sistema</strong></p>
+<h2 id="principios-fundamentais"><strong>Princípios fundamentais</strong></h2>
+<h3 id="separacao-de-responsabilidades">Separação de responsabilidades</h3>
+<ul>
+<li>Dividir o sistema em partes com funções diferentes</li>
+</ul>
+<h3 id="alta-coesao">Alta coesão</h3>
+<ul>
+<li>Cada parte faz <strong>uma coisa bem definida</strong></li>
+</ul>
+<h3 id="baixo-acoplamento">Baixo acoplamento</h3>
+<ul>
+<li>Partes do sistema <strong>não dependem muito entre si</strong></li>
+</ul>
+<h3 id="relacao-entre-eles">Relação entre eles</h3>
+<ul>
+<li>Separação → divide o sistema</li>
+<li>Coesão → organiza cada parte</li>
+<li>Acoplamento → reduz dependência</li>
+</ul>
+<h3 id="sistemas-reais"><strong>Sistemas reais</strong></h3>
+<ul>
+<li><strong>Netflix / Amazon</strong> → microsserviços (escala grande)</li>
+<li><strong>Instagram</strong> → começou monolito, depois evoluiu</li>
+<li><strong>WhatsApp</strong> → sistema distribuído focado em performance</li>
+</ul>
+<p>Não existe arquitetura única ideal</p>
+<h3 id="regra-geral"><strong>Regra geral</strong></h3>
+<ul>
+<li>Sistemas pequenos → <strong>monolito + simplicidade</strong></li>
+<li>Sistemas grandes → <strong>microsserviços</strong></li>
+</ul>
+<h2 id="aplicacao-no-projeto"><strong>Aplicação no projeto</strong></h2>
+<p>Projeto: monitoramento legislativo</p>
+<h3 id="arquitetura-ideal_1">Arquitetura ideal:</h3>
+<p><strong>Monolito em camadas + MVC</strong></p>
+<h3 id="estrutura">Estrutura:</h3>
+<ul>
+<li>Frontend (visualização)</li>
+<li>Backend (API + lógica)</li>
+<li>Banco de dados</li>
+<li>Integração com APIs</li>
+</ul>
+<h3 id="servicos-principais">Serviços principais:</h3>
+<ul>
+<li>Coleta de dados</li>
+<li>Classificação (NLP)</li>
+<li>Análise</li>
+<li>Visualização</li>
+</ul>
+<h2 id="conclusao-geral"><strong>Conclusão geral</strong></h2>
+<ul>
+<li>Arquitetura define o <strong>futuro do sistema</strong></li>
+<li>Bons princípios evitam problemas de crescimento</li>
+<li>A melhor solução depende do <strong>contexto</strong></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
