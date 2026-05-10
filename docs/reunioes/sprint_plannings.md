@@ -113,3 +113,18 @@ Issues propostas:
 
 8. Estudo de IA - Ítalo e Arthur (S-M)  
 	- Como vai ser a implementação no código 
+
+# Sprint Planning da Sprint 6
+1- Pasta docs/assets para fotos organizadas no MK Docs - Renan (S)  
+2- Limpar e reorganizar arquivos no MK Docs – Renan (S-M)  
+3- Ver como vai ser a parte de localização do banco de dados (se vai usar um computador dos integrantes ou pagar um na nuvem, etc) - Renan (S)  
+4- Banco de Dados (definir Dashboards que desejamos usar, definir os dados que iremos usar e guardar, e planejamento das tabelas do BD (usuário (favoritos, histórico, usuario), requisições)) [Várias Sub-Issues]- Renan + algúem (L)  
+5- Definir nome do Projeto – todo mundo (XS)  
+6 - Implementar Front-End básico, que comunica com JavaScript, usa Fetch API para comunicar com o Controller, chama a função de consumir API já existente, e mostra na tela – Caio e Arthur (L) [Dividir em várias sub-issues]   
+7 - Começar a criar um README para o projeto – Caio e Ítalo (Renan como Reviewer) (S)  
+
+Anotações:  
+- Concluir as issues da Sprint 5 
+- Review dos Requisitos - Luís hoje 
+- CUIDADO COM O QUE USAR NO GOOGLE OAUTH (USAR APENAS O QUE É GRÁTIS) 
+- Revisar os Pull Requests, visando melhora da entrega 

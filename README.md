@@ -14,40 +14,7 @@ O **Nome do Projeto** é um sistema web desenvolvido para monitorar, analisar e 
 Acesse o protótipo interativo no Figma:
 (https://embed.figma.com/design/9Gdfmyo1J2oWtnAmUYd1Vl/Prototipo-Site-MDS?node-id=0-1&t=diM94hTSvFm83IMz-1&embed-host=notion&footer=false&theme=system)
 
-## Integrantes da Equipe
-Squad-08 MDS 2026/1 – FGA/UnB
-<table>
-  <tr>
-    <td align="center">
-      <img src="assets/images/team/caio-bechepeche.jpg" width="100px;" alt="Caio Bechepeche Mota"/><br />
-      <sub><b>NCaio Bechepeche Mota</b></sub><br />
-      <a href="https://github.com/CaioMota16">GitHub</a>
-    </td>
-    <td align="center">
-      <img src="assets/images/team/renan-curione.jpg" width="auto;" height="100px;" alt="Renan Curione de Castro"/><br />
-      <sub><b>Renan Curione de Castro</b></sub><br />
-      <a href="https://github.com/thatsrenan">GitHub</a>
-    </td>
-    <td align="center">
-      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt=" Ítalo Lacerda Martins"/><br />
-      <sub><b>Italo Lacerda Martins</b></sub><br />
-      <a href="https://github.com/italo-lm">GitHub</a>
-    </td>
-    <td align="center">
-      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt="Luís Henrique Luna de Arruda"/><br />
-      <sub><b>Luís Henrique Luna de Arruda</b></sub><br />
-      <a href="https://github.com/Donnk61">GitHub</a>
-    </td>
-    <td align="center">
-      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt="Arthur Palhares Ferreira Silva"/><br />
-      <sub><b>Arthur Palhares Ferreira Silva</b></sub><br />
-      <a href="https://github.com/arthurpalhares1">GitHub</a>
-    </td>
-  </tr>
-</table>
-
 ---
-
 ## Objetivo do Sistema
 
 O objetivo do sistema é fornecer uma ferramenta que:
@@ -183,6 +150,40 @@ Caso existam migrations:
 flask db upgrade
 ```
 ---
+
+## Integrantes da Equipe
+Squad-08 MDS 2026/1 – FGA/UnB
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/images/team/caio-bechepeche.jpg" width="100px;" alt="Caio Bechepeche Mota"/><br />
+      <sub><b>Caio Bechepeche Mota</b></sub><br />
+      <a href="https://github.com/CaioMota16">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="assets/images/team/renan-curione.jpg" width="auto;" height="100px;" alt="Renan Curione de Castro"/><br />
+      <sub><b>Renan Curione de Castro</b></sub><br />
+      <a href="https://github.com/thatsrenan">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt=" Ítalo Lacerda Martins"/><br />
+      <sub><b>Italo Lacerda Martins</b></sub><br />
+      <a href="https://github.com/italo-lm">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt="Luís Henrique Luna de Arruda"/><br />
+      <sub><b>Luís Henrique Luna de Arruda</b></sub><br />
+      <a href="https://github.com/Donnk61">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt="Arthur Palhares Ferreira Silva"/><br />
+      <sub><b>Arthur Palhares Ferreira Silva</b></sub><br />
+      <a href="https://github.com/arthurpalhares1">GitHub</a>
+    </td>
+  </tr>
+</table>
+
+---
 ## Contribuindo
 1. Fork o projeto
 2. Crie uma branch para sua feature (<code>git checkout -b feature/nova-feature</code>)
@@ -192,6 +193,7 @@ flask db upgrade
 ---
 
 ## Licenca
+Este projeto esta sob a licenca MIT. Veja o arquivo <code>LICENSE</code> para detalhes.
 
 ---
 
