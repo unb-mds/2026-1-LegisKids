@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Requisitos - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../arquitetura/escolha_arquitetura/" class="dropdown-item">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/checando_tecnologias/" class="dropdown-item">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_arquiteturas/" class="dropdown-item">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../API/levantamento_api/" class="dropdown-item">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="../estudo_requisitos_software/" class="dropdown-item">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/dailies/" class="dropdown-item">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/sprint_plannings/" class="dropdown-item">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../../padrao_organizacao/padrao_PR/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#requisitos-de-software" class="nav-link">Requisitos de Software</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#epico-1-coleta-de-dados-legislativos" class="nav-link">ÉPICO 1 — Coleta de Dados Legislativos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#epico-2-classificacao-de-proposicoes" class="nav-link">ÉPICO 2 — Classificação de Proposições</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-3-busca-e-filtros" class="nav-link">ÉPICO 3 — Busca e Filtros</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-4-indicadores-e-analises" class="nav-link">ÉPICO 4 — Indicadores e Análises</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-5-visualizacao-de-dados" class="nav-link">ÉPICO 5 — Visualização de Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-6-detalhamento-das-proposicoes" class="nav-link">ÉPICO 6 — Detalhamento das Proposições</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-7-alertas-e-monitoramento" class="nav-link">ÉPICO 7 — Alertas e Monitoramento</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-8-seguranca-e-acesso" class="nav-link">ÉPICO 8 — Segurança e Acesso</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-9-usabilidade-e-performance" class="nav-link">ÉPICO 9 — Usabilidade e Performance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#epico-10-autenticacao-e-conta" class="nav-link">Épico 10 — Autenticação e Conta</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#link-para-requisitos-no-figma" class="nav-link">Link para Requisitos no FIGMA:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="requisitos-de-software">Requisitos de Software</h1>
+<h2 id="epico-1-coleta-de-dados-legislativos">ÉPICO 1 — Coleta de Dados Legislativos</h2>
+<h3 id="us01-coleta-automatica-de-proposicoes">US01 — Coleta automática de proposições</h3>
+<p><strong>Como</strong> analista</p>
+<p><strong>Quero</strong> que o sistema colete proposições legislativas de fontes oficiais</p>
+<p><strong>Para que</strong> eu tenha dados atualizados automaticamente</p>
+<p><strong>Critérios de aceitação:</strong></p>
+<ul>
+<li>Deve coletar dados da Câmara e Senado</li>
+<li>Deve evitar duplicação de dados</li>
+<li>Deve registrar data da coleta</li>
+</ul>
+<h3 id="us02-integracao-com-apis-legislativas">US02 — Integração com APIs legislativas</h3>
+<p><strong>Como</strong> sistema</p>
+<p><strong>Quero</strong> integrar APIs oficiais</p>
+<p><strong>Para que</strong> os dados sejam confiáveis</p>
+<p><strong>Critérios de aceitação:</strong></p>
+<ul>
+<li>Integração com API da Câmara dos Deputados</li>
+<li>Tratamento de falhas de conexão</li>
+<li>Logs de erro</li>
+</ul>
+<h3 id="us03-atualizacao-automatica">US03 — Atualização automática</h3>
+<p><strong>Como</strong> analista</p>
+<p><strong>Quero</strong> que os dados sejam atualizados automaticamente</p>
+<p><strong>Para que</strong> eu não precise atualizar manualmente</p>
+<p><strong>Critérios de aceitação:</strong></p>
+<ul>
+<li>Permitir configuração de intervalo</li>
+<li>Execução automática diária</li>
+<li>Registro de última atualização</li>
+</ul>
+<h3 id="us04-armazenamento-de-proposicoes">US04 — Armazenamento de proposições</h3>
+<p><strong>Como</strong> sistema</p>
+<p><strong>Quero</strong> armazenar proposições em banco de dados</p>
+<p><strong>Para que</strong> elas possam ser consultadas</p>
+<p><strong>Critérios de aceitação:</strong></p>
+<ul>
+<li>Persistência confiável</li>
+<li>Estrutura com campos obrigatórios</li>
+<li>Suporte a crescimento de dados</li>
+</ul>
+<h2 id="epico-2-classificacao-de-proposicoes">ÉPICO 2 — Classificação de Proposições</h2>
+<h3 id="us05-classificacao-automatica-por-subtema">US05 — Classificação automática por subtema</h3>
+<p><strong>Como</strong> analista</p>
+<p><strong>Quero</strong> que o sistema classifique proposições automaticamente</p>
+<p><strong>Para que</strong> eu possa analisar rapidamente grandes volumes</p>
+<p><strong>Critérios de aceitação:</strong></p>
+<ul>
+<li>Uso de NLP</li>
+<li>Classificação em pelo menos um subtema</li>
+<li>Possibilidade de múltiplos subtemas</li>
+</ul>
+<h3 id="us06-classificacao-manual">US06 — Classificação manual</h3>
+<p><strong>Como</strong> administrador</p>
+<p><strong>Quero</strong> corrigir classificações</p>
+<p><strong>Para que</strong> o sistema seja mais preciso</p>
+<p><strong>Critérios de aceitação:</strong></p>
+<ul>
+<li>Apenas admins podem editar</li>
+<li>Alterações devem ser salvas</li>
+<li>Histórico deve ser registrado</li>
+</ul>
+<h3 id="us07-multiplos-subtemas">US07 — Múltiplos subtemas</h3>
+<p><strong>Como</strong> analista</p>
+<p><strong>Quero</strong> associar múltiplos subtemas a uma proposição</p>
+<p><strong>Para que</strong> a classificação seja mais fiel</p>
+<p><strong>Critérios de aceitação:</strong></p>
+<ul>
+<li>Permitir múltiplas seleções</li>
+<li>Exibição clara dos subtemas</li>
+</ul>
+<h1 id="epico-3-busca-e-filtros">ÉPICO 3 — Busca e Filtros</h1>
+<h3 id="us08-busca-por-palavra-chave">US08 — Busca por palavra-chave</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> buscar proposições por palavra-chave</p>
+<p><strong>Para que</strong> eu encontre conteúdos relevantes</p>
+<p><strong>Critérios:</strong></p>
+<ul>
+<li>Busca parcial</li>
+<li>Ordenação por data ou relevância (TF-IDF, score, etc.)</li>
+</ul>
+<h3 id="us09-filtros-avancados">US09 — Filtros avançados</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> filtrar por parlamentar, partido, data e subtema</p>
+<p><strong>Para que</strong> eu refine minha busca</p>
+<p><strong>Critérios</strong>:</p>
+<ul>
+<li>Filtros combináveis</li>
+<li>Atualização dinâmica dos resultados</li>
+</ul>
+<h3 id="us10-paginacao">US10 — Paginação</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> ver resultados paginados</p>
+<p><strong>Para que</strong> a navegação seja organizada</p>
+<p><strong>Critérios:</strong></p>
+<ul>
+<li>Limite de itens por página</li>
+<li>Navegação entre páginas</li>
+</ul>
+<h1 id="epico-4-indicadores-e-analises">ÉPICO 4 — Indicadores e Análises</h1>
+<h3 id="us11-visualizacao-de-indicadores">US11 — Visualização de indicadores</h3>
+<p><strong>Como</strong> analista</p>
+<p><strong>Quero</strong> ver gráficos de proposições</p>
+<p><strong>Para que</strong> eu identifique padrões</p>
+<p><strong>Critérios:</strong></p>
+<ul>
+<li>Gráfico por subtema</li>
+<li>Evolução temporal</li>
+<li>Parlamentares mais ativos</li>
+</ul>
+<h3 id="us12-identificacao-de-novos-temas">US12 — Identificação de novos temas</h3>
+<p><strong>Como</strong> analista</p>
+<p><strong>Quero</strong> identificar novos temas emergentes</p>
+<p><strong>Para que</strong> eu acompanhe tendências</p>
+<p><strong>Critérios:</strong></p>
+<ul>
+<li>Detecção automática</li>
+<li>Destaque de novos termos</li>
+</ul>
+<h3 id="us13-estatisticas-automaticas">US13 — Estatísticas automáticas</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> ver estatísticas resumidas</p>
+<p><strong>Para que</strong> eu entenda rapidamente os dados</p>
+<h1 id="epico-5-visualizacao-de-dados">ÉPICO 5 — Visualização de Dados</h1>
+<h3 id="us14-dashboard-interativo">US14 — Dashboard interativo</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> acessar dashboards interativos</p>
+<p><strong>Para que</strong> eu explore os dados facilmente</p>
+<p><strong>Critérios:</strong></p>
+<ul>
+<li>Interação com gráficos</li>
+<li>Atualização dinâmica</li>
+</ul>
+<h3 id="us15-exportacao-de-dados">US15 — Exportação de dados</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> exportar dados</p>
+<p><strong>Para que</strong> eu use externamente</p>
+<p><strong>Critérios:</strong></p>
+<ul>
+<li>Exportação em CSV, Excel e PDF</li>
+<li>Dados consistentes</li>
+</ul>
+<h1 id="epico-6-detalhamento-das-proposicoes">ÉPICO 6 — Detalhamento das Proposições</h1>
+<h3 id="us16-visualizar-detalhes">US16 — Visualizar detalhes</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> ver detalhes completos de uma proposição</p>
+<p><strong>Para que</strong> eu entenda seu conteúdo</p>
+<p><strong>Critérios:</strong></p>
+<ul>
+<li>Título, autor, partido</li>
+<li>Data e situação</li>
+<li>Link oficial</li>
+</ul>
+<h1 id="epico-7-alertas-e-monitoramento">ÉPICO 7 — Alertas e Monitoramento</h1>
+<h3 id="us17-receber-alertas">US17 — Receber alertas</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> receber alertas de novas proposições</p>
+<p><strong>Para que</strong> eu me mantenha atualizado</p>
+<hr />
+<h3 id="us18-configurar-alertas">US18 — Configurar alertas</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> configurar alertas por subtema</p>
+<p><strong>Para que</strong> receba apenas o que importa</p>
+<hr />
+<h3 id="us19-historico-de-mudancas">US19 — Histórico de mudanças</h3>
+<p><strong>Como</strong> administrador</p>
+<p><strong>Quero</strong> ver mudanças nas proposições</p>
+<p><strong>Para que</strong> eu acompanhe alterações</p>
+<h1 id="epico-8-seguranca-e-acesso">ÉPICO 8 — Segurança e Acesso</h1>
+<h3 id="us20-controle-de-acesso">US20 — Controle de acesso</h3>
+<p><strong>Como</strong> administrador</p>
+<p><strong>Quero</strong> gerenciar usuários</p>
+<p><strong>Para que</strong> controle permissões</p>
+<hr />
+<h3 id="us21-seguranca-de-dados">US21 — Segurança de dados</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> que meus dados estejam seguros</p>
+<p><strong>Para que</strong> eu confie no sistema</p>
+<hr />
+<h1 id="epico-9-usabilidade-e-performance">ÉPICO 9 — Usabilidade e Performance</h1>
+<h3 id="us22-interface-responsiva">US22 — Interface responsiva</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> acessar em qualquer dispositivo</p>
+<p><strong>Para que</strong> tenha boa experiência</p>
+<h3 id="us23-performance">US23 — Performance</h3>
+<p><strong>Como</strong> usuário</p>
+<p><strong>Quero</strong> respostas rápidas (até 3s)</p>
+<p><strong>Para que</strong> o sistema seja eficiente</p>
+<h1 id="epico-10-autenticacao-e-conta">Épico 10 — Autenticação e Conta</h1>
+<h3 id="us23-login-com-conta-govbr">US23 — Login com conta Gov.br</h3>
+<p><strong>Como</strong> cidadão brasileiro</p>
+<p><strong>Quero</strong> fazer login no aplicativo utilizando minha conta Gov.br</p>
+<p><strong>Para que</strong> eu possa acessar funcionalidades personalizadas com segurança.</p>
+<h3 id="us24-redirecionamento-seguro-pos-login">US24 — Redirecionamento seguro pós-login</h3>
+<p><strong>Como</strong> usuário do aplicativo</p>
+<p><strong>Quero</strong> ser redirecionado de forma segura de volta ao app após o login com Gov.br</p>
+<p><strong>Para qu</strong>e minha sessão seja corretamente iniciada.</p>
+<h3 id="us25-persistencia-de-sessao-apos-login">US25 — Persistência de sessão após login</h3>
+<p><strong>Como</strong> usuário autenticado</p>
+<p><strong>Quero</strong> permanecer logado no app mesmo após fechá-lo</p>
+<p><strong>Para que</strong> eu não precise realizar o login novamente com frequência.</p>
+<h3 id="us26-identificacao-de-perfil">US26 — Identificação de perfil</h3>
+<p><strong>Como</strong> administrador da plataforma</p>
+<p><strong>Quero</strong> que usuários tenham perfis distintos (ex: pesquisador, analista, gestor)</p>
+<p><strong>Para</strong> controlar níveis de acesso às funcionalidades</p>
+<h2 id="link-para-requisitos-no-figma">Link para Requisitos no FIGMA:</h2>
+<p><a href="https://www.figma.com/board/Cv80eRJrI3DRN5TJEbaPTt/Squad-8-MDS?node-id=0-1&amp;t=EwVNVa55V9XdCgGo-1">https://www.figma.com/board/Cv80eRJrI3DRN5TJEbaPTt/Squad-8-MDS?node-id=0-1&amp;t=EwVNVa55V9XdCgGo-1</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
