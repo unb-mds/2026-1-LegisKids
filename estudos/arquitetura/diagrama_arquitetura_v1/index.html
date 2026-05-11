@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +10,9 @@
         <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Diagrama V1 - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../../css/brands.min.css" rel="stylesheet">
-        <link href="../../../css/solid.min.css" rel="stylesheet">
-        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
     </head>
@@ -26,7 +22,7 @@
             <div class="container">
                 <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,11 +30,11 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="nav-item">
+                            <li class="navitem">
                                 <a href="../../.." class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Projeto <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -46,8 +42,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Arquitetura <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -59,7 +55,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Diagrama V1</a>
+    <a href="./" class="dropdown-item active">Diagrama V1</a>
 </li>
                                     
 <li>
@@ -79,8 +75,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Backend <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -88,8 +84,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Banco de Dados <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -99,10 +95,14 @@
 <li>
     <a href="../../banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
 </li>
+                                    
+<li>
+    <a href="../../banco_de_dados/hospedagem_banco_de_dados/" class="dropdown-item">Hospedagem</a>
+</li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Frontend <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -110,21 +110,25 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Design <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+    <a href="../../design/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
 </li>
                                     
 <li>
-    <a href="../../design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+    <a href="../../design/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                    
+<li>
+    <a href="../../design/definicao_dashboards/" class="dropdown-item">Dashboards escolhidos</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Git & Organização <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -144,8 +148,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Metodologia <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -153,8 +157,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gestão <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -186,8 +190,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Padrões <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -199,20 +203,20 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Requisitos <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+    <a href="../../requisitos/requisitos_de_software/" class="dropdown-item">Documento</a>
 </li>
                                 </ul>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ms-md-auto">
+                    <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -233,142 +237,142 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#diagrama-da-arquitetura-do-projeto-v1" class="nav-link">Diagrama da Arquitetura do Projeto v1</a>
+            <li class="nav-item" data-level="1"><a href="#diagrama-da-arquitetura-do-projeto-v1" class="nav-link">Diagrama da Arquitetura do Projeto v1</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#fluxo" class="nav-link">Fluxo</a>
+            <li class="nav-item" data-level="1"><a href="#fluxo" class="nav-link">Fluxo</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#fluxo-do-sistema" class="nav-link">Fluxo do Sistema</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#fluxo-do-usuario" class="nav-link">Fluxo do Usuário</a>
+            <li class="nav-item" data-level="2"><a href="#fluxo-do-sistema" class="nav-link">Fluxo do Sistema</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#fluxo-de-dados" class="nav-link">Fluxo de Dados</a>
+            <li class="nav-item" data-level="2"><a href="#fluxo-do-usuario" class="nav-link">Fluxo do Usuário</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#estrutura" class="nav-link">Estrutura</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#organizacao-das-pastas" class="nav-link">Organização das pastas</a>
+            <li class="nav-item" data-level="2"><a href="#fluxo-de-dados" class="nav-link">Fluxo de Dados</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#justificativa-da-arquitetura" class="nav-link">Justificativa da Arquitetura</a>
+            <li class="nav-item" data-level="1"><a href="#estrutura" class="nav-link">Estrutura</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#tecnologias-definidas" class="nav-link">Tecnologias definidas</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#objetivos-da-arquitetura" class="nav-link">Objetivos da arquitetura</a>
+            <li class="nav-item" data-level="2"><a href="#organizacao-das-pastas" class="nav-link">Organização das pastas</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#arquitetura-escolhida" class="nav-link">Arquitetura escolhida</a>
+            <li class="nav-item" data-level="1"><a href="#justificativa-da-arquitetura" class="nav-link">Justificativa da Arquitetura</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#camadas-do-sistema" class="nav-link">Camadas do sistema</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#fluxos" class="nav-link">Fluxos</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#fluxo-principal-do-sistema" class="nav-link">Fluxo principal do sistema</a>
+            <li class="nav-item" data-level="2"><a href="#tecnologias-definidas" class="nav-link">Tecnologias definidas</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#fluxo-de-interacao-do-usuario" class="nav-link">Fluxo de interação do usuário</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#fluxo-automatico-de-dados" class="nav-link">Fluxo automático de dados</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#fluxo-futuro-de-autenticacao-govbr" class="nav-link">Fluxo futuro de autenticação (Gov.br)</a>
+            <li class="nav-item" data-level="2"><a href="#objetivos-da-arquitetura" class="nav-link">Objetivos da arquitetura</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#estrutura-do-projeto" class="nav-link">Estrutura do projeto</a>
+            <li class="nav-item" data-level="1"><a href="#arquitetura-escolhida" class="nav-link">Arquitetura escolhida</a>
               <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#organizacao-das-pastas_1" class="nav-link">Organização das pastas</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#frontend_2" class="nav-link">frontend/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendauth" class="nav-link">backend/auth/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendroutes" class="nav-link">backend/routes/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendcontrollers_1" class="nav-link">backend/controllers/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendservices_1" class="nav-link">backend/services/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendrepositories_1" class="nav-link">backend/repositories/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendai_1" class="nav-link">backend/ai/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendmodels_1" class="nav-link">backend/models/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#backendconfig_1" class="nav-link">backend/config/</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#database_1" class="nav-link">database/</a>
+            <li class="nav-item" data-level="2"><a href="#camadas-do-sistema" class="nav-link">Camadas do sistema</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#justificativa-da-arquitetura_1" class="nav-link">Justificativa da arquitetura</a>
+            <li class="nav-item" data-level="1"><a href="#fluxos" class="nav-link">Fluxos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#fluxo-principal-do-sistema" class="nav-link">Fluxo principal do sistema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fluxo-de-interacao-do-usuario" class="nav-link">Fluxo de interação do usuário</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fluxo-automatico-de-dados" class="nav-link">Fluxo automático de dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fluxo-futuro-de-autenticacao-govbr" class="nav-link">Fluxo futuro de autenticação (Gov.br)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#estrutura-do-projeto" class="nav-link">Estrutura do projeto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#organizacao-das-pastas_1" class="nav-link">Organização das pastas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#frontend_2" class="nav-link">frontend/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendauth" class="nav-link">backend/auth/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendroutes" class="nav-link">backend/routes/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendcontrollers_1" class="nav-link">backend/controllers/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendservices_1" class="nav-link">backend/services/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendrepositories_1" class="nav-link">backend/repositories/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendai_1" class="nav-link">backend/ai/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendmodels_1" class="nav-link">backend/models/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#backendconfig_1" class="nav-link">backend/config/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#database_1" class="nav-link">database/</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#justificativa-da-arquitetura_1" class="nav-link">Justificativa da arquitetura</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -865,7 +869,8 @@ Usuário logado
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
         <script>
             var base_url = "../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -878,7 +883,7 @@ Usuário logado
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -898,7 +903,7 @@ Usuário logado
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
               <table class="table">
