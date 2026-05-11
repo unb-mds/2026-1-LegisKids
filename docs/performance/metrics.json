@@ -1,0 +1,1086 @@
+{
+  "generated_at": "2026-05-11T17:33:28Z",
+  "repository": "unb-mds/2026-1-Squad08",
+  "students": [
+    {
+      "name": "Arthur Palhares",
+      "github": "arthurpalhares1",
+      "emails": [
+        "arthur.palhares05@gmail.com"
+      ],
+      "commits_count": 47,
+      "issues_count": 0,
+      "issue_characters_total": 0,
+      "issue_characters_average": 0,
+      "commit_timeline": {
+        "2026-05": 3,
+        "2026-04": 44
+      },
+      "issue_timeline": {}
+    },
+    {
+      "name": "Caio Bechepeche Mota",
+      "github": "CaioMota16",
+      "emails": [
+        "caiombechepeche@gmail.com",
+        "160689206+CaioMota16@users.noreply.github.com"
+      ],
+      "commits_count": 24,
+      "issues_count": 0,
+      "issue_characters_total": 0,
+      "issue_characters_average": 0,
+      "commit_timeline": {
+        "2026-05": 8,
+        "2026-04": 16
+      },
+      "issue_timeline": {}
+    },
+    {
+      "name": "Carla Rocha",
+      "github": "carlarodrigs",
+      "emails": [
+        "rocha.carla@gmail.com"
+      ],
+      "commits_count": 1,
+      "issues_count": 0,
+      "issue_characters_total": 0,
+      "issue_characters_average": 0,
+      "commit_timeline": {
+        "2026-03": 1
+      },
+      "issue_timeline": {}
+    },
+    {
+      "name": "Ítalo Lacerda",
+      "github": "italo-lm",
+      "emails": [
+        "italo.lacerda.m2.0@gmail.com"
+      ],
+      "commits_count": 1,
+      "issues_count": 0,
+      "issue_characters_total": 0,
+      "issue_characters_average": 0,
+      "commit_timeline": {
+        "2026-04": 1
+      },
+      "issue_timeline": {}
+    },
+    {
+      "name": "Luís Henrique Arruda",
+      "github": "Donnk61",
+      "emails": [
+        "luis.arruda@gmail.com",
+        "luishen.arruda@gmail.com"
+      ],
+      "commits_count": 21,
+      "issues_count": 0,
+      "issue_characters_total": 0,
+      "issue_characters_average": 0,
+      "commit_timeline": {
+        "2026-05": 6,
+        "2026-04": 15
+      },
+      "issue_timeline": {}
+    },
+    {
+      "name": "Renan Curione de Castro",
+      "github": "thatsrenan",
+      "emails": [
+        "bambam.ccastro@gmail.com",
+        "161871698+thatsrenan@users.noreply.github.com"
+      ],
+      "commits_count": 46,
+      "issues_count": 0,
+      "issue_characters_total": 0,
+      "issue_characters_average": 0,
+      "commit_timeline": {
+        "2026-05": 15,
+        "2026-04": 31
+      },
+      "issue_timeline": {}
+    }
+  ],
+  "commits": [
+    {
+      "hash": "54d3a9077f077bf1fbc955a7577bc12e181c126a",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-05-11T13:24:25-04:00",
+      "message": "chore: setup OpenSpec Claude Code integration"
+    },
+    {
+      "hash": "62b71481f89258abb9ba902d305604008cf16d8a",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-05-11T12:57:00-04:00",
+      "message": "chore: initialize OpenSpec"
+    },
+    {
+      "hash": "63de1d451a020ad6e7fbe77106d83c72c065c653",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-05-11T00:17:20-03:00",
+      "message": "Merge pull request #84 from unb-mds/docs/83-criacao-readme"
+    },
+    {
+      "hash": "0e88837a1a7143dcc7239ccf75df436dff37137c",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-05-10T02:49:45-03:00",
+      "message": "Merge pull request #85 from unb-mds/docs/46-estudo-ia"
+    },
+    {
+      "hash": "f884124f8f816a36d036db83d5fe833aff3b5c02",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-05-10T02:44:31-03:00",
+      "message": "Merge branch 'develop' of https://github.com/unb-mds/2026-1-Squad08 into feat/cria-navbar"
+    },
+    {
+      "hash": "905174e61b8203a345554c78893afa186d2e65f0",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-05-10T02:44:28-03:00",
+      "message": "feat: criação da navbar"
+    },
+    {
+      "hash": "b4c350cb39efdfd74122bd6b4834f1940394bee9",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-05-09T16:23:49-03:00",
+      "message": "Merge pull request #86 from unb-mds/feat/78-estrutura-frontend"
+    },
+    {
+      "hash": "b71c8edeb3481309c42c9db8f03402891d78df50",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-05-09T11:59:34-03:00",
+      "message": "Merge pull request #90 from unb-mds/docs/72-definir-dashboards-do-sistema"
+    },
+    {
+      "hash": "7730b1f68c76f86b135d77b8927c6031de2c67a6",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-09T11:57:11-03:00",
+      "message": "docs: adição arquivo .md sobre escolha de dashboards e adição de caminhos para o .yml"
+    },
+    {
+      "hash": "b892fa4516be9d6ab5d1b2e7eb3bdd9ffb60e69c",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-05-09T11:52:05-03:00",
+      "message": "Merge pull request #89 from unb-mds/docs/71-definir-hospedagem-do-banco-de-dados-local-vs-nuvem"
+    },
+    {
+      "hash": "d8de2cae8ba8fbec8d89cc99882ef93492553e7a",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-09T11:48:42-03:00",
+      "message": "docs: adição arquivo .md sobre definição de hospedagem do banco de dados"
+    },
+    {
+      "hash": "936d4ba706c1d65b374431790e9b8a76165a79e6",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-05-09T10:28:13-04:00",
+      "message": "Merge origin/develop into feature/filtros-tematicos-api-camara"
+    },
+    {
+      "hash": "a1badc410b78b5b41cee197354164a48accaf883",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-05-09T10:19:25-04:00",
+      "message": "feat: Adicionado filtros de pesquisa, como o tema da proposição e a busca por palavras chaves"
+    },
+    {
+      "hash": "9e497ed903955da7e1803c468f1234ab5efb1b0e",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-05-09T10:37:34-03:00",
+      "message": "Merge pull request #87 from unb-mds/feature/filtros-tematicos-api-camara"
+    },
+    {
+      "hash": "bc00da3cbda4fbb29af738c729de9d599bdf400f",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-05-08T11:10:10-03:00",
+      "message": "chore: adiciona pastas auxiliares do frontend"
+    },
+    {
+      "hash": "41cfdfb00f07aa077eafd99e0af8df03a5253b3a",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-05-08T11:01:01-03:00",
+      "message": "feat: cria estrutura inicial do front-end"
+    },
+    {
+      "hash": "265c42432bcd5fedf3ee0215eabb8a4ff0757fb1",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-05-06T11:44:42-03:00",
+      "message": "docs: adiciona estudo de IA"
+    },
+    {
+      "hash": "ba5175c1a976070c6a0a081ce4adb82cefba8f7d",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-05-06T02:04:12-03:00",
+      "message": "docs: Protótipo README"
+    },
+    {
+      "hash": "09255081ba9825999b2193d725aa853cd19b47df",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-05-04T22:37:56-03:00",
+      "message": "Merge pull request #64 from unb-mds/refactor/61-correcao-requisitos"
+    },
+    {
+      "hash": "0c466525d078897e563080d03b41f5f061c9b8b0",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-05-04T22:13:15-03:00",
+      "message": "refactor: histórias de usuário e critérios de aceitação revisados"
+    },
+    {
+      "hash": "a100bfe7cd73f97a5ddc4365f6aa5eff90e0861b",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-04T15:00:59-03:00",
+      "message": "docs: atualização dos arquivos de review, retrospectiva e planning do projeto"
+    },
+    {
+      "hash": "285c916c75c094b15cc5141bb7acec78fab0a9af",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-05-04T01:57:08-03:00",
+      "message": "refactor: modifica requisitos feitos no Figma e na documentação"
+    },
+    {
+      "hash": "24540b9bd46c6ed5d7fc600f39fee25dd86af853",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-05-03T21:51:11-03:00",
+      "message": "Merge pull request #63 from unb-mds/50-criar-github-pages-com-mkdocs-e-revisar-todas-as-documentações"
+    },
+    {
+      "hash": "fa926a9b9de4180b799b147c356718c588d9b389",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T17:41:58-03:00",
+      "message": "feature: base do MK Docs implementada"
+    },
+    {
+      "hash": "9783b3534626ab9cd8e65168e8b7404bfb85f668",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T17:34:34-03:00",
+      "message": "feature: Correção de nome de arquivos, diretórios, e aplicação da base do MK Docs"
+    },
+    {
+      "hash": "8d220f2127e155afe7f443234b7dfa92f1c5a18a",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T17:41:58-03:00",
+      "message": "fix: correção de alguns caminhos .md"
+    },
+    {
+      "hash": "19db37a3bbae12d159ec8c2a21e958b8bdbf365b",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T17:34:34-03:00",
+      "message": "docs: Correção de nomes, ajustes de diretórios e estrutura base do MK Docs está estruturada, mas ainda possui erros claros"
+    },
+    {
+      "hash": "4a78fa39f898c2d5b1e65b90f3ffa8e8563f4e61",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T21:45:00-03:00",
+      "message": "Deployed a70cd00 with MkDocs version: 1.6.1"
+    },
+    {
+      "hash": "eb41a757b52525e5b3b7e7bd63a15ef2c59151b2",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T17:41:58-03:00",
+      "message": "fix: correção de alguns caminhos .md"
+    },
+    {
+      "hash": "2451a68ba97db151ffac93f44a3d9efe09518d73",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T17:34:34-03:00",
+      "message": "docs: Correção de nomes, ajustes de diretórios e estrutura base do MK Docs está estruturada, mas ainda possui erros claros"
+    },
+    {
+      "hash": "4dbd1de2a8c3a43e4efafe781eee687b33ad343f",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-05-03T16:16:28-03:00",
+      "message": "Merge pull request #62 from unb-mds/docs/45-revisar-arquitetura-e-ajustá-la-à-nova-visão-do-projeto"
+    },
+    {
+      "hash": "06856290cabfac306ff0d60f22ac24cd73f16922",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-05-03T16:14:00-03:00",
+      "message": "docs: adição dos arquivos markdown, sobre estudo de login, fluxo de dados e diagrama de arquitetura v2,que resolvem a issue 45, ao resolver suas 3 sub-issues"
+    },
+    {
+      "hash": "543fb57f79f60e493b65f851ef239a5111d28e0d",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-30T22:40:44-03:00",
+      "message": "Merge pull request #60 from unb-mds/feature/37-implementa-prototipo-interativo"
+    },
+    {
+      "hash": "f10d2e7cb1c841c9c9f7e8e7f235aa20b53e778c",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-04-30T22:35:39-03:00",
+      "message": "feature: implementa protótipo interativo"
+    },
+    {
+      "hash": "fa26f6ec205ac6c2325e835fd216885425555e15",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-30T22:23:13-03:00",
+      "message": "Merge pull request #59 from unb-mds/refactor/20-criar-ideias-identidade-visual"
+    },
+    {
+      "hash": "eea15ee98e132a325dcd78b987e9a5e93bbb50f8",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-04-30T22:14:01-03:00",
+      "message": "refactor: deleta arquivos desnecessários de identidade visual"
+    },
+    {
+      "hash": "9e2a709c1d2bb98f914a666b06f39fb66d445ffc",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-29T22:57:07-03:00",
+      "message": "Merge pull request #53 from unb-mds/docs/49-configurar-novo-fluxo-de-kanban"
+    },
+    {
+      "hash": "e52e8f61546ca2880f3a3ace73d8c6152cb34408",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-29T22:52:00-03:00",
+      "message": "docs: adição do .md que explica a configuração do Kanban do nosso GH Project"
+    },
+    {
+      "hash": "be0667c975b8dcd519e9eb6da389b429d8d0827e",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-29T22:35:50-03:00",
+      "message": "docs: atualização do documento de daily"
+    },
+    {
+      "hash": "69f6ec2eef7516d034f0718944d851be1b309509",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-29T14:26:39-03:00",
+      "message": "Merge pull request #48 from unb-mds/fix/44-corrigir-erros-da-nova-implementação-da-api"
+    },
+    {
+      "hash": "8b3294f510f85f064d5a796c778447d7347b7e0a",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-29T14:20:50-03:00",
+      "message": "fix: reorganizando os arquivos da api, levando para os diretórios certos (pasta src e backend estavam duplicadas)"
+    },
+    {
+      "hash": "e7049740928b6717f68cdc95091901c45423a1c5",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-29T14:10:39-03:00",
+      "message": "Merge pull request from unb-mds/develop"
+    },
+    {
+      "hash": "5494127e0d4b4c5dceef7f49d9d6f59c30827dd8",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-27T14:20:41-03:00",
+      "message": "docs: atualização de cerimônias Scrum"
+    },
+    {
+      "hash": "837ee622f5aca04f9a0289901b4c4c3369e1f5ad",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-04-26T15:57:11-04:00",
+      "message": "feat: adiciona novos filtros a busca, já tratando possíveis erros ao digitar as datas e os demais filtros incorretamente"
+    },
+    {
+      "hash": "17ad3b00a12e6fd4cf3a00606b3598d41be3c8bc",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-26T16:08:32-03:00",
+      "message": "Merge pull request #43 from issue #33"
+    },
+    {
+      "hash": "577ef807c5522fb6fe170930cb892702623b0df9",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-25T11:13:46-03:00",
+      "message": "Merge pull request #42 from unb-mds/docs/28-definir-banco-de-dados"
+    },
+    {
+      "hash": "03858387cfe2fa00f0e7d89f2fc254017cab642f",
+      "author": "italo-lm",
+      "email": "italo.lacerda.m2.0@gmail.com",
+      "date": "2026-04-25T11:02:58-03:00",
+      "message": "docs: Concluindo a definição de banco de dados"
+    },
+    {
+      "hash": "6f0fb27790dea872b5d4bc8952f4ba73b114fafb",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-25T10:43:32-03:00",
+      "message": "docs: adição parcial do arquivo .md de Definição de Banco de Dados"
+    },
+    {
+      "hash": "4441968bc4ae97bc9ab97acc1453c5e28d8f65de",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-24T23:15:04-03:00",
+      "message": "Merge pull request #40 from unb-mds/32-criar-material-para-os-membros-de-como-fazer-um-pull-request-pr"
+    },
+    {
+      "hash": "71d7ce8bed7ad73b002a07f67576a070bdf57063",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-04-24T22:13:16-04:00",
+      "message": "Arquivo sobre padronização do PR adicionado na pasta 'docs' junto da criação da pasta 'backend'"
+    },
+    {
+      "hash": "9a2344c6e865a6e6889e82d52b712b14d167f24e",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-24T16:30:31-03:00",
+      "message": "Merge pull request #39 from unb-mds/30-implementar-estrutura-inicial-de-pastas-do-projeto"
+    },
+    {
+      "hash": "c83f645c3d187dafd26b24d503a2a9768c240ef3",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-24T16:28:15-03:00",
+      "message": "refactor: Estrutura básica da fase inicial do projeto implementada"
+    },
+    {
+      "hash": "f0041805e331d0c144aa5565740dd1ee0aef9c72",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T22:15:52-03:00",
+      "message": "Merge pull request #38 from unb-mds/docs/adicionar-documentacao-visual"
+    },
+    {
+      "hash": "8588183ef81b369ff4a3f720f804e5982a3cb325",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-23T13:05:06-03:00",
+      "message": "Merge pull request #35 from unb-mds/29-padronização-de-commits"
+    },
+    {
+      "hash": "f6282b2dd10115b71a1cea9e2986d245002f6fbd",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-04-23T01:10:05-03:00",
+      "message": "docs: adiciona documentação de identidade visual"
+    },
+    {
+      "hash": "23f8fa3a3c6ea62d34e6181513cb4b2df8be1c85",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T00:45:21-03:00",
+      "message": "Rename organizacao_geral to organizacao_geral.md"
+    },
+    {
+      "hash": "bc64ee73f7ff42e3628fc6f364465de9a4234299",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T00:45:00-03:00",
+      "message": "Rename nome_de_arquivos to nome_de_arquivos.md"
+    },
+    {
+      "hash": "8e7145aadef8523ac8e1213abaf152c00c36a18e",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T00:40:58-03:00",
+      "message": "Create organizacao_geral"
+    },
+    {
+      "hash": "92b259acf9b31a6695b9e10b4cc03c8bbaf8a400",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T00:39:33-03:00",
+      "message": "Delete docs/estudos/padrao_organizacao /organizacao_geral.md"
+    },
+    {
+      "hash": "590cfc8c2424158e84104357805a1189c5076c64",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T00:39:15-03:00",
+      "message": "Delete docs/estudos/padrao_organizacao /nomes_de_arquivos.md"
+    },
+    {
+      "hash": "3928a7e50da43c0a7b7598cbdac9d7a6f0b418b5",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T00:37:55-03:00",
+      "message": "Create nome_de_arquivos"
+    },
+    {
+      "hash": "be4f7cb3468fce10f22456b912ec09d91b464d2f",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-23T00:09:17-03:00",
+      "message": "Rename  nomes_de_arquivos.md to nomes_de_arquivos.md"
+    },
+    {
+      "hash": "77996181ee58b7af2e607815ad3316d20217ede8",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:46:18-03:00",
+      "message": "Rename estudo_github.md to estudo_github.md"
+    },
+    {
+      "hash": "6953cc6b574c8d32d604b1347a01b4cd29c945bd",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:45:54-03:00",
+      "message": "Rename labels_tamanho_issue.md to labels_tamanho_issue.md"
+    },
+    {
+      "hash": "16fb9be2bfdfe8430bff0f8c3958ad873cb8859e",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:43:53-03:00",
+      "message": "Rename metodos-ageis.md to metodos_ageis.md"
+    },
+    {
+      "hash": "1aa47fe92415c89167514964efce08327ef39026",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:43:26-03:00",
+      "message": "Rename checando-tecnologias.md to checando_tecnologias.md"
+    },
+    {
+      "hash": "f715897be12c35a9ef0ac7c175a2c245d89d926c",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:42:57-03:00",
+      "message": "Rename requisitos-software.md to requisitos_software.md"
+    },
+    {
+      "hash": "8f1bdacc1f1d4f1bf42eb0e573477784e2c6e0b5",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:42:37-03:00",
+      "message": "Rename ideia-escolhida-projeto.md to ideia_escolhida_projeto.md"
+    },
+    {
+      "hash": "16fddb38f5b8e1bdb273d6e0e86a3366d6a6810e",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:42:14-03:00",
+      "message": "Rename estudo-github.md to estudo_github.md"
+    },
+    {
+      "hash": "6a0c9c97e698947c25a9d949f65256cc3329613c",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:41:41-03:00",
+      "message": "Rename tecnologias-estrutura.md to tecnologias_estrutura.md"
+    },
+    {
+      "hash": "d6c4a7e225a4c307c5b5959ee393f3c51d8c903e",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:41:20-03:00",
+      "message": "Rename estudo-banco-de-dados.md to estudo_banco_de_dados.md"
+    },
+    {
+      "hash": "f2db5a6fc8c69c59bdf11716e8288209fa274d3e",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:40:33-03:00",
+      "message": "Rename estudo-arquiteturas.md to estudo_arquiteturas.md"
+    },
+    {
+      "hash": "0344efa5758dda1c913a3b17e511993dfad05e88",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:40:21-03:00",
+      "message": "Rename escolha-arquitetura.md to escolha_arquitetura.md"
+    },
+    {
+      "hash": "a1d7bc1df693248886551b33f3d40a5f12275ea0",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:39:01-03:00",
+      "message": "docs: adiciona organizacao geral"
+    },
+    {
+      "hash": "834201ef219f96ec2cfd0bc51d6a872c6af3f925",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:37:34-03:00",
+      "message": "Delete docs/estudos/padrao_organizacao directory"
+    },
+    {
+      "hash": "79950bdb85f07924d641fd40ce11fa65866acf31",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:36:20-03:00",
+      "message": "Rename organizacao_geral.md to organizacao_geral.md"
+    },
+    {
+      "hash": "beca5721a3cee4203a953936d0c8031a918f6002",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:35:53-03:00",
+      "message": "Rename nomes_de_arquivos.md to  nomes_de_arquivos.md"
+    },
+    {
+      "hash": "5ff62383391473d92760e0a839e1b2b2026ff14f",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:35:12-03:00",
+      "message": "docs: adiciona organizacao geral"
+    },
+    {
+      "hash": "a89e34a49ec5b561cf1689f7cde850cea890a16f",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:33:33-03:00",
+      "message": "Delete docs/estudos/padrao-organizacao  directory"
+    },
+    {
+      "hash": "276e1f5abf1419dfbb065f790219af37a8a0fa49",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:33:11-03:00",
+      "message": "Rename organizacao_geral.md to organizacao_geral.md"
+    },
+    {
+      "hash": "b8042146cb2b46cf7b1a08690f89591d401183ae",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:32:20-03:00",
+      "message": "docs: adiciona organizacao geral"
+    },
+    {
+      "hash": "22a9c7987949c7a051dbfddc999e84567a489605",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-22T19:30:27-03:00",
+      "message": "docs: adiciona padronização de nomes de arquivos"
+    },
+    {
+      "hash": "2969c292a5656b8d91115f05e853b8d7ea8052e5",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-22T15:03:23-03:00",
+      "message": "docs: adiciona arquivo do padrão de commits"
+    },
+    {
+      "hash": "445035932daeec994fa7080580d2721c4dd9060f",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-22T10:50:42-03:00",
+      "message": "Merge pull request #34 from unb-mds/27-criar-labels-de-tamanho-xs-s-m-l-xl"
+    },
+    {
+      "hash": "512ada9d8749e7fe9436993739458891ec2e4437",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-22T10:45:19-03:00",
+      "message": "Subindo arquivo .md sobre a criação de labels para definir tamanho das Issues"
+    },
+    {
+      "hash": "f0ff545f0159dbb3781443234fcfa7c6a1f2a74d",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-21T21:07:09-03:00",
+      "message": "Update tecnologias-estrutura.md"
+    },
+    {
+      "hash": "3a7fdc698d59b61b2e563c782029c1b2fd728c97",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-04-20T14:40:43-04:00",
+      "message": "teste de PR"
+    },
+    {
+      "hash": "51130e9da5a283ff40e533576756f4d8f5164966",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-20T15:07:41-03:00",
+      "message": "Atualização de Cerimônias Scrum - 20/04"
+    },
+    {
+      "hash": "ed527d367f215c1f19e41e6fa6eb0ac0779f3186",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-20T14:50:36-03:00",
+      "message": "Merge pull request #26 from unb-mds/25-treste-branch"
+    },
+    {
+      "hash": "2a4a1865778c8d4b16fa806c68b25ecf158c59ab",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-19T15:23:59-03:00",
+      "message": "Subindo .md Diagrama da Arquitetura do Projeto"
+    },
+    {
+      "hash": "bfba9787f95e5279308abd013df000fa09b8fca4",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-04-18T15:30:26-04:00",
+      "message": "delete .venv  arquivo criado pelo meu computador"
+    },
+    {
+      "hash": "8fe6e2218ad8f03a18dc9b9449894c793edc8675",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-18T14:37:07-04:00",
+      "message": "Delete .venv diretório, que criou sozinho"
+    },
+    {
+      "hash": "c6d852dee4b38b31e95252d64fdb6ab5810bf7a6",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-18T15:32:30-03:00",
+      "message": "Merge pull request #24 from unb-mds/22-estudoimplementar-api-da-câmara-dos-deputados"
+    },
+    {
+      "hash": "32c20cce8d420d449bcd66b280f9de0f5d7470a5",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-04-18T15:20:02-04:00",
+      "message": "implementação inicial com API da câmara dos Deputados"
+    },
+    {
+      "hash": "50343af8e782979a17c9e41cbbd35fc9bfb21560",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-17T11:16:47-03:00",
+      "message": "Subindo arquivo .md Checando Tecnologias, de Arquitetura"
+    },
+    {
+      "hash": "765a668eb4c1cf6c9c01f8923dd19dff20ba1fc3",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-16T20:15:24-03:00",
+      "message": "Atualização de Cerimônia do arquivo de Dailies 16/04"
+    },
+    {
+      "hash": "d434de9f61f9347e5aed3599bce6fe4176370eea",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-16T19:10:01-03:00",
+      "message": "Subindo .md de Estudo de Banco de Dados, junto à crição de pasta dedicada"
+    },
+    {
+      "hash": "28cff541d313b6b11af33e5e4e04785637cf8d23",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-16T18:14:31-03:00",
+      "message": "Create tecnologias-estrutura.md"
+    },
+    {
+      "hash": "77c1745c37f089f757a4ed050e4cf43fc33a4a69",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-16T12:58:35-03:00",
+      "message": "Refatoração da forma em que documentamos nossas cerimônias Scrum"
+    },
+    {
+      "hash": "c833f0e3baf75f5b0d29e9ebdfdef16f067261e5",
+      "author": "Caio Bechepeche Mota",
+      "email": "160689206+CaioMota16@users.noreply.github.com",
+      "date": "2026-04-14T17:19:21-03:00",
+      "message": "Add files via upload"
+    },
+    {
+      "hash": "6d3b258c3cb1603e2e778febff6e06607284b0ec",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-13T20:56:30-03:00",
+      "message": "Subindo todos arquivos de documentação de Cerimônias Scrum passadas"
+    },
+    {
+      "hash": "f740c6010a13f79227fc5ae3dc5062c8af93b123",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T20:37:05-03:00",
+      "message": "Subindo arquivo do Planning da Sprint 0 (antigo)"
+    },
+    {
+      "hash": "8c45a5c34d56d73c6502c52b6eb5ace6912091c8",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T20:30:44-03:00",
+      "message": "Mudando nome do arquivo review_retro_13-04.md"
+    },
+    {
+      "hash": "5da427575b1bdf0d1edd0a34bf0c8bc6069b849a",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T20:30:00-03:00",
+      "message": "Subindo Planning Sprint 3"
+    },
+    {
+      "hash": "7425cc8c2c57f65458897dca91f3fd07a6ebb5df",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T20:28:36-03:00",
+      "message": "Mudando organização de documentação de Review retrospectiva  e planning"
+    },
+    {
+      "hash": "48b2ca090103f603c49c224c54ab896d6f9a73db",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T20:19:32-03:00",
+      "message": "Subindo as Dailies da Sprint 2"
+    },
+    {
+      "hash": "b8d2dcc4b07b627c91c57fa538eb22408be99cec",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T14:50:41-03:00",
+      "message": "Correção do horarios.md"
+    },
+    {
+      "hash": "904b7d4ce36ac8e0a9d87f3c087f20378e8b237e",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T14:49:22-03:00",
+      "message": "Criação do arquivo MD dos horários das Cerimônias SCRUM do grupo"
+    },
+    {
+      "hash": "8d7f520d63500f14c89fd53197d7ab61fae3db8e",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-04-13T13:59:48-03:00",
+      "message": "Criação do arquivo MD ata 13/04"
+    },
+    {
+      "hash": "52b8632ba392c25d0bde9df77f01bddf9956e28b",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-11T16:13:48-04:00",
+      "message": "Adicionado a documentação de estudo da API para monitoramento legislativo"
+    },
+    {
+      "hash": "bd68f91333c63a47725c30994608ea5ccc49e096",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-04-11T16:58:24-04:00",
+      "message": ":Revert \"Delete docs/estudos directory\""
+    },
+    {
+      "hash": "145bbe345cd19ffeea8428640578cb3f7f1704bc",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:51:27-03:00",
+      "message": "Delete docs/estudos directory"
+    },
+    {
+      "hash": "b1225e33a564bf73fbf60be27d0fe11360978014",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:50:17-03:00",
+      "message": "Delete docs/ideia-escolhida-projeto.md"
+    },
+    {
+      "hash": "b571bcda46725c8c4d5fc3b9480f1acf4a0a7402",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:37:20-03:00",
+      "message": "Rename padrao.md to padrao-organizacao.md"
+    },
+    {
+      "hash": "dff911842f41a823f49a1b508d94ef0de0c9f024",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:36:12-03:00",
+      "message": "Create padrao.md"
+    },
+    {
+      "hash": "79c335297bab5acb4dff82f7d6f736b8f1d5c6a6",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:24:17-03:00",
+      "message": "Rename requisitos-software.md file"
+    },
+    {
+      "hash": "124a7f7dbc2e910ce7ff4548ba00fdaf93295b66",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:21:21-03:00",
+      "message": "Rename  metodos-ageis.md to metodos-ageis.md"
+    },
+    {
+      "hash": "57a1d00d9219179eb356de204c6384b971f0a9d6",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:20:48-03:00",
+      "message": "Rename estudo.md to estudo-github.md"
+    },
+    {
+      "hash": "6b09352daa7634d1a1d9dd503e35ff96fbfef52a",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:20:24-03:00",
+      "message": "Rename metodos-ageis.md to  metodos-ageis.md"
+    },
+    {
+      "hash": "4f0f9af9c62ec27fb951c935ea9cce7f5cd125ec",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:19:14-03:00",
+      "message": "Rename métodos-ágeis.md to metodos-ageis.md"
+    },
+    {
+      "hash": "65f39635b2e29a83ca6319a73ed903dd8f323c26",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-08T20:18:25-03:00",
+      "message": "Rename IdeiaEscolhida_Projeto.md to ideia-escolhida-projeto.md"
+    },
+    {
+      "hash": "15756286e41b384d661a31f73a0342dcb8a1d08d",
+      "author": "caiom",
+      "email": "caiombechepeche@gmail.com",
+      "date": "2026-04-07T21:41:37-03:00",
+      "message": "Adiciona anotação de requisitos de software"
+    },
+    {
+      "hash": "4ea80d0119d956af66ee3667d32704d237d75617",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T15:03:23-03:00",
+      "message": "Create estudo.md"
+    },
+    {
+      "hash": "59bc677794104d99e22400f1458db52b1dd92cb1",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:59:50-03:00",
+      "message": "Delete docs/estudos/git-github.md"
+    },
+    {
+      "hash": "d92b04118f57cf38b8919b5407dc0815e88d5c92",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:59:36-03:00",
+      "message": "Create Git and GitHub study documentation"
+    },
+    {
+      "hash": "c1cbb7b6641bc208b41ea48bd07d123b85bbefec",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:56:50-03:00",
+      "message": "Delete docs/estudos/git-github/git-github directory"
+    },
+    {
+      "hash": "fae190a0364406aaa404f8308ccb231821719012",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:56:10-03:00",
+      "message": "Delete docs/estudos/git-github/.gitkeep"
+    },
+    {
+      "hash": "b3d4b3bbcbda4e06db3db00365a264872139009c",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:55:56-03:00",
+      "message": "Create resumo.md"
+    },
+    {
+      "hash": "3f30b93a90ad3b46d3a3b74a34cc1b8fb7cfd92d",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:54:24-03:00",
+      "message": "Create .gitkeep"
+    },
+    {
+      "hash": "97ab062cde26685c55bd4eb0a78d4f547797a096",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:53:17-03:00",
+      "message": "Delete docs/estudos/git-github directory"
+    },
+    {
+      "hash": "244faeb7f7b2915656372a040d34aa8ba19bcf43",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:51:52-03:00",
+      "message": "Add README.md for Git and GitHub documentation"
+    },
+    {
+      "hash": "1eb0cbbc60b852658eeada3c72dcd2aaa9a6a745",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:49:01-03:00",
+      "message": "Delete Git-Github.txt"
+    },
+    {
+      "hash": "73f6c5883f0f19b5e87ce375e3ea1ddb1ce43b44",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:48:46-03:00",
+      "message": "Create Git-Github.txt"
+    },
+    {
+      "hash": "b5ff44954eedfc6c5d471f16faa8cf8a31fc041c",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:46:45-03:00",
+      "message": "Delete docs/estudos/Git-Github"
+    },
+    {
+      "hash": "a4654f2aa489fd3b3480a45d497cba421ae57568",
+      "author": "arthurpalhares1",
+      "email": "arthur.palhares05@gmail.com",
+      "date": "2026-04-07T14:46:21-03:00",
+      "message": "Add Git and GitHub study documentation"
+    },
+    {
+      "hash": "d18c0f8c9f6a8b592cf10c9db7cb9b4a11770a02",
+      "author": "thatsrenan",
+      "email": "bambam.ccastro@gmail.com",
+      "date": "2026-04-06T21:14:09-03:00",
+      "message": "Adição de arquivos de estudo de Arquitetura"
+    },
+    {
+      "hash": "4ae1fa2dc19c0a1887230920dd5d6267267b2953",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-06T21:07:59-03:00",
+      "message": "Criado documentação de projeto para monitoramento legislativo"
+    },
+    {
+      "hash": "595c1b3ff52a128fa97b3b24df1b0370c8e928dd",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-06T21:01:43-03:00",
+      "message": "Criação da pasta de Métodos Ágeis para organização"
+    },
+    {
+      "hash": "b302e1e3e70e7fe599426e1ebd5b4208f7d7fc18",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-04-06T20:43:31-03:00",
+      "message": "Criado métodos-ágeis.md com anotações de estudo e recursos"
+    },
+    {
+      "hash": "7a49c3b80308b0d835bcf20dd6294f2c7c389793",
+      "author": "Carla Rocha",
+      "email": "rocha.carla@gmail.com",
+      "date": "2026-03-18T15:28:33-03:00",
+      "message": "Initial commit"
+    }
+  ],
+  "issues": []
+}

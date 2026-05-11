@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Desempenho — unb-mds/2026-1-Squad08</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f5f5f5; color: #222; padding: 2rem; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+    .meta { color: #666; font-size: 0.85rem; margin-bottom: 2rem; }
+    .meta a { color: #0969da; }
+    .section { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+    h2 { font-size: 1.1rem; margin-bottom: 1rem; color: #333; }
+    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 700px) { .charts { grid-template-columns: 1fr; } }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { background: #f0f0f0; text-align: left; padding: 0.5rem 0.75rem; border-bottom: 2px solid #ddd; }
+    td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee; }
+    tr:hover td { background: #fafafa; }
+    .no-data { color: #888; font-style: italic; text-align: center; padding: 1rem; }
+    footer { text-align: center; font-size: 0.78rem; color: #999; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>Relatório de Desempenho — unb-mds/2026-1-Squad08</h1>
+  <p class="meta">
+    Gerado em: <strong>2026-05-11T17:33:28Z</strong> &nbsp;|&nbsp;
+    <a href="metrics.json">metrics.json</a>
+  </p>
+
+  <div class="section">
+    <h2>Resumo por Aluno</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Aluno</th>
+          <th>GitHub</th>
+          <th>Commits</th>
+          <th>Issues</th>
+          <th>Caracteres (total)</th>
+          <th>Caracteres (média)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Arthur Palhares</td><td><a href='https://github.com/arthurpalhares1' target='_blank'>@arthurpalhares1</a></td><td>47</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Caio Bechepeche Mota</td><td><a href='https://github.com/CaioMota16' target='_blank'>@CaioMota16</a></td><td>24</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Carla Rocha</td><td><a href='https://github.com/carlarodrigs' target='_blank'>@carlarodrigs</a></td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Ítalo Lacerda</td><td><a href='https://github.com/italo-lm' target='_blank'>@italo-lm</a></td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Luís Henrique Arruda</td><td><a href='https://github.com/Donnk61' target='_blank'>@Donnk61</a></td><td>21</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Renan Curione de Castro</td><td><a href='https://github.com/thatsrenan' target='_blank'>@thatsrenan</a></td><td>46</td><td>0</td><td>0</td><td>0</td></tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Gráficos</h2>
+    <div class="charts">
+      <div>
+        <h2>Commits por Aluno</h2>
+        <canvas id="commitsChart"></canvas>
+        <p class="no-data" id="commitsNoData" style="display:none">Nenhum commit registrado.</p>
+      </div>
+      <div>
+        <h2>Issues por Aluno</h2>
+        <canvas id="issuesChart"></canvas>
+        <p class="no-data" id="issuesNoData" style="display:none">Nenhuma issue registrada.</p>
+      </div>
+      <div>
+        <h2>Total de Caracteres em Issues</h2>
+        <canvas id="charsTotalChart"></canvas>
+        <p class="no-data" id="charsTotalNoData" style="display:none">Nenhuma issue registrada.</p>
+      </div>
+      <div>
+        <h2>Média de Caracteres por Issue</h2>
+        <canvas id="charsAvgChart"></canvas>
+        <p class="no-data" id="charsAvgNoData" style="display:none">Nenhuma issue registrada.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Dados extraídos do repositório <strong>unb-mds/2026-1-Squad08</strong> via GitHub Actions.
+    Este relatório é um indicador auxiliar de participação, não uma avaliação oficial.
+  </footer>
+
+  <script>
+    const NAMES = ["Arthur Palhares", "Caio Bechepeche Mota", "Carla Rocha", "Ítalo Lacerda", "Luís Henrique Arruda", "Renan Curione de Castro"];
+    const COMMITS = [47, 24, 1, 1, 21, 46];
+    const ISSUES = [0, 0, 0, 0, 0, 0];
+    const CHARS_TOTAL = [0, 0, 0, 0, 0, 0];
+    const CHARS_AVG = [0, 0, 0, 0, 0, 0];
+
+    const PALETTE = [
+      '#4e79a7','#f28e2b','#e15759','#76b7b2',
+      '#59a14f','#edc948','#b07aa1','#ff9da7',
+    ];
+
+    function makeChart(id, noDataId, labels, values, label, color) {
+      const allZero = values.every(v => v === 0);
+      if (allZero) {
+        document.getElementById(id).style.display = 'none';
+        document.getElementById(noDataId).style.display = '';
+        return;
+      }
+      new Chart(document.getElementById(id), {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{ label, data: values, backgroundColor: PALETTE.slice(0, labels.length) }],
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
+        },
+      });
+    }
+
+    makeChart('commitsChart', 'commitsNoData', NAMES, COMMITS, 'Commits', '#4e79a7');
+    makeChart('issuesChart', 'issuesNoData', NAMES, ISSUES, 'Issues', '#f28e2b');
+    makeChart('charsTotalChart', 'charsTotalNoData', NAMES, CHARS_TOTAL, 'Caracteres totais', '#e15759');
+    makeChart('charsAvgChart', 'charsAvgNoData', NAMES, CHARS_AVG, 'Média de caracteres', '#76b7b2');
+  </script>
+</body>
+</html>
