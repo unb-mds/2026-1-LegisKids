@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-11T17:33:28Z",
+  "generated_at": "2026-05-11T16:49:26Z",
   "repository": "unb-mds/2026-1-Squad08",
   "students": [
     {
@@ -8,15 +8,18 @@
       "emails": [
         "arthur.palhares05@gmail.com"
       ],
-      "commits_count": 47,
-      "issues_count": 0,
-      "issue_characters_total": 0,
-      "issue_characters_average": 0,
+      "commits_count": 46,
+      "issues_count": 5,
+      "issue_characters_total": 6302,
+      "issue_characters_average": 1260.4,
       "commit_timeline": {
         "2026-05": 3,
-        "2026-04": 44
+        "2026-04": 43
       },
-      "issue_timeline": {}
+      "issue_timeline": {
+        "2026-04": 4,
+        "2026-03": 1
+      }
     },
     {
       "name": "Caio Bechepeche Mota",
@@ -26,14 +29,18 @@
         "160689206+CaioMota16@users.noreply.github.com"
       ],
       "commits_count": 24,
-      "issues_count": 0,
-      "issue_characters_total": 0,
-      "issue_characters_average": 0,
+      "issues_count": 11,
+      "issue_characters_total": 7448,
+      "issue_characters_average": 677.09,
       "commit_timeline": {
         "2026-05": 8,
         "2026-04": 16
       },
-      "issue_timeline": {}
+      "issue_timeline": {
+        "2026-05": 8,
+        "2026-04": 2,
+        "2026-03": 1
+      }
     },
     {
       "name": "Carla Rocha",
@@ -57,13 +64,16 @@
         "italo.lacerda.m2.0@gmail.com"
       ],
       "commits_count": 1,
-      "issues_count": 0,
-      "issue_characters_total": 0,
-      "issue_characters_average": 0,
+      "issues_count": 3,
+      "issue_characters_total": 2495,
+      "issue_characters_average": 831.67,
       "commit_timeline": {
         "2026-04": 1
       },
-      "issue_timeline": {}
+      "issue_timeline": {
+        "2026-04": 2,
+        "2026-03": 1
+      }
     },
     {
       "name": "Luís Henrique Arruda",
@@ -73,14 +83,18 @@
         "luishen.arruda@gmail.com"
       ],
       "commits_count": 21,
-      "issues_count": 0,
-      "issue_characters_total": 0,
-      "issue_characters_average": 0,
+      "issues_count": 11,
+      "issue_characters_total": 11393,
+      "issue_characters_average": 1035.73,
       "commit_timeline": {
-        "2026-05": 6,
-        "2026-04": 15
+        "2026-05": 7,
+        "2026-04": 14
       },
-      "issue_timeline": {}
+      "issue_timeline": {
+        "2026-05": 1,
+        "2026-04": 7,
+        "2026-03": 3
+      }
     },
     {
       "name": "Renan Curione de Castro",
@@ -89,18 +103,29 @@
         "bambam.ccastro@gmail.com",
         "161871698+thatsrenan@users.noreply.github.com"
       ],
-      "commits_count": 46,
-      "issues_count": 0,
-      "issue_characters_total": 0,
-      "issue_characters_average": 0,
+      "commits_count": 47,
+      "issues_count": 32,
+      "issue_characters_total": 28481,
+      "issue_characters_average": 890.03,
       "commit_timeline": {
-        "2026-05": 15,
+        "2026-05": 16,
         "2026-04": 31
       },
-      "issue_timeline": {}
+      "issue_timeline": {
+        "2026-05": 12,
+        "2026-04": 18,
+        "2026-03": 2
+      }
     }
   ],
   "commits": [
+    {
+      "hash": "2e78a8025007869119aed3fe449ee29abfe076eb",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-05-11T13:35:40-04:00",
+      "message": "feat: add performance report workflow"
+    },
     {
       "hash": "54d3a9077f077bf1fbc955a7577bc12e181c126a",
       "author": "Donnk61",
@@ -109,11 +134,18 @@
       "message": "chore: setup OpenSpec Claude Code integration"
     },
     {
-      "hash": "62b71481f89258abb9ba902d305604008cf16d8a",
-      "author": "Donnk61",
-      "email": "luis.arruda@gmail.com",
-      "date": "2026-05-11T12:57:00-04:00",
-      "message": "chore: initialize OpenSpec"
+      "hash": "47cc42df552754b6524996ec4b026000c1fb7d17",
+      "author": "Luís Henrique",
+      "email": "luishen.arruda@gmail.com",
+      "date": "2026-05-11T13:46:36-03:00",
+      "message": "Merge pull request #93 from unb-mds/feat-sdd-implemetação-robô-de-produtividade-da-equipe"
+    },
+    {
+      "hash": "566ac546d9c028440aa48e5ac563b7a77d3ff43e",
+      "author": "Renan Curione de Castro",
+      "email": "161871698+thatsrenan@users.noreply.github.com",
+      "date": "2026-05-11T13:44:34-03:00",
+      "message": "Create perfomance-report.yml"
     },
     {
       "hash": "63de1d451a020ad6e7fbe77106d83c72c065c653",
@@ -704,13 +736,6 @@
       "message": "Update tecnologias-estrutura.md"
     },
     {
-      "hash": "3a7fdc698d59b61b2e563c782029c1b2fd728c97",
-      "author": "Donnk61",
-      "email": "luis.arruda@gmail.com",
-      "date": "2026-04-20T14:40:43-04:00",
-      "message": "teste de PR"
-    },
-    {
       "hash": "51130e9da5a283ff40e533576756f4d8f5164966",
       "author": "thatsrenan",
       "email": "bambam.ccastro@gmail.com",
@@ -725,18 +750,18 @@
       "message": "Merge pull request #26 from unb-mds/25-treste-branch"
     },
     {
+      "hash": "3a7fdc698d59b61b2e563c782029c1b2fd728c97",
+      "author": "Donnk61",
+      "email": "luis.arruda@gmail.com",
+      "date": "2026-04-20T14:40:43-04:00",
+      "message": "teste de PR"
+    },
+    {
       "hash": "2a4a1865778c8d4b16fa806c68b25ecf158c59ab",
       "author": "thatsrenan",
       "email": "bambam.ccastro@gmail.com",
       "date": "2026-04-19T15:23:59-03:00",
       "message": "Subindo .md Diagrama da Arquitetura do Projeto"
-    },
-    {
-      "hash": "bfba9787f95e5279308abd013df000fa09b8fca4",
-      "author": "Donnk61",
-      "email": "luis.arruda@gmail.com",
-      "date": "2026-04-18T15:30:26-04:00",
-      "message": "delete .venv  arquivo criado pelo meu computador"
     },
     {
       "hash": "8fe6e2218ad8f03a18dc9b9449894c793edc8675",
@@ -884,13 +909,6 @@
       "email": "arthur.palhares05@gmail.com",
       "date": "2026-04-08T20:51:27-03:00",
       "message": "Delete docs/estudos directory"
-    },
-    {
-      "hash": "b1225e33a564bf73fbf60be27d0fe11360978014",
-      "author": "arthurpalhares1",
-      "email": "arthur.palhares05@gmail.com",
-      "date": "2026-04-08T20:50:17-03:00",
-      "message": "Delete docs/ideia-escolhida-projeto.md"
     },
     {
       "hash": "b571bcda46725c8c4d5fc3b9480f1acf4a0a7402",
@@ -1082,5 +1100,447 @@
       "message": "Initial commit"
     }
   ],
-  "issues": []
+  "issues": [
+    {
+      "number": 92,
+      "title": "Fat: SDD implemetação robô de produtividade da equipe",
+      "login": "Donnk61",
+      "created_at": "2026-05-11T16:02:37Z",
+      "characters": 53
+    },
+    {
+      "number": 83,
+      "title": "Criar README do projeto",
+      "login": "CaioMota16",
+      "created_at": "2026-05-05T04:47:15Z",
+      "characters": 970
+    },
+    {
+      "number": 82,
+      "title": "Exibição dos dados na interface",
+      "login": "CaioMota16",
+      "created_at": "2026-05-05T04:39:36Z",
+      "characters": 234
+    },
+    {
+      "number": 81,
+      "title": "Integração com função de consumo de API",
+      "login": "CaioMota16",
+      "created_at": "2026-05-05T04:39:03Z",
+      "characters": 293
+    },
+    {
+      "number": 80,
+      "title": "Implementação da Fetch API",
+      "login": "CaioMota16",
+      "created_at": "2026-05-05T04:37:50Z",
+      "characters": 245
+    },
+    {
+      "number": 79,
+      "title": "Integração com JavaScript",
+      "login": "CaioMota16",
+      "created_at": "2026-05-05T04:37:27Z",
+      "characters": 251
+    },
+    {
+      "number": 78,
+      "title": "Estrutura base do Front-End",
+      "login": "CaioMota16",
+      "created_at": "2026-05-05T04:36:57Z",
+      "characters": 245
+    },
+    {
+      "number": 77,
+      "title": "Implementação do Front-End básico integrado ao Controller",
+      "login": "CaioMota16",
+      "created_at": "2026-05-05T04:35:38Z",
+      "characters": 622
+    },
+    {
+      "number": 76,
+      "title": "Definir tratamento e validação dos dados antes da persistência",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:53:09Z",
+      "characters": 917
+    },
+    {
+      "number": 75,
+      "title": "Definir campos das tabelas (usuário, favoritos, histórico, requisições)",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:50:44Z",
+      "characters": 447
+    },
+    {
+      "number": 74,
+      "title": "Planejar estrutura das tabelas relacionais",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:49:20Z",
+      "characters": 421
+    },
+    {
+      "number": 73,
+      "title": "Definir dados a serem armazenados",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:45:34Z",
+      "characters": 371
+    },
+    {
+      "number": 72,
+      "title": "Definir dashboards do sistema",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:44:12Z",
+      "characters": 407
+    },
+    {
+      "number": 71,
+      "title": "Definir hospedagem do banco de dados (local vs nuvem)",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:42:42Z",
+      "characters": 416
+    },
+    {
+      "number": 70,
+      "title": "Planejamento e Arquitetura do Banco de Dados",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:41:31Z",
+      "characters": 638
+    },
+    {
+      "number": 69,
+      "title": "Criar arquivos index.md para cada pasta (MK Docs)",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:36:05Z",
+      "characters": 435
+    },
+    {
+      "number": 68,
+      "title": "Reorganizar caminhos e links internos",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:35:10Z",
+      "characters": 388
+    },
+    {
+      "number": 67,
+      "title": "Corrigir arquivos da documentação (MK Docs)",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:33:31Z",
+      "characters": 392
+    },
+    {
+      "number": 66,
+      "title": "Criar pasta docs/assets para imagens (MK Docs)",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:31:19Z",
+      "characters": 414
+    },
+    {
+      "number": 65,
+      "title": "Organização Geral da Documentação (MK Docs)",
+      "login": "thatsrenan",
+      "created_at": "2026-05-05T00:29:37Z",
+      "characters": 705
+    },
+    {
+      "number": 61,
+      "title": "Revisão de requisitos, atualização do Story Map e revisão do protótipo",
+      "login": "CaioMota16",
+      "created_at": "2026-05-01T05:26:51Z",
+      "characters": 1148
+    },
+    {
+      "number": 58,
+      "title": "Melhorar filtros da API da Câmara para monitoramento legislativo sobre proteção de crianças na internet",
+      "login": "Donnk61",
+      "created_at": "2026-04-30T18:36:45Z",
+      "characters": 2488
+    },
+    {
+      "number": 57,
+      "title": "Estudo sobre Login",
+      "login": "thatsrenan",
+      "created_at": "2026-04-30T13:36:51Z",
+      "characters": 1082
+    },
+    {
+      "number": 56,
+      "title": "Estudo sobre Fluxo de Dados",
+      "login": "thatsrenan",
+      "created_at": "2026-04-30T13:31:30Z",
+      "characters": 1091
+    },
+    {
+      "number": 55,
+      "title": "Estudo sobre Fluxo do Sistema",
+      "login": "thatsrenan",
+      "created_at": "2026-04-30T13:27:43Z",
+      "characters": 1060
+    },
+    {
+      "number": 50,
+      "title": "Criar GitHub Pages com MkDocs e revisar todas as documentações",
+      "login": "thatsrenan",
+      "created_at": "2026-04-29T17:45:43Z",
+      "characters": 890
+    },
+    {
+      "number": 49,
+      "title": "Configurar novo fluxo de Kanban",
+      "login": "thatsrenan",
+      "created_at": "2026-04-29T17:42:01Z",
+      "characters": 857
+    },
+    {
+      "number": 46,
+      "title": "Estudo de IA",
+      "login": "arthurpalhares1",
+      "created_at": "2026-04-28T00:54:51Z",
+      "characters": 1110
+    },
+    {
+      "number": 45,
+      "title": "Revisar arquitetura e ajustá-la à nova visão do projeto",
+      "login": "thatsrenan",
+      "created_at": "2026-04-27T22:06:46Z",
+      "characters": 1204
+    },
+    {
+      "number": 44,
+      "title": "Corrigir erros da nova implementação da API",
+      "login": "thatsrenan",
+      "created_at": "2026-04-27T22:02:49Z",
+      "characters": 878
+    },
+    {
+      "number": 37,
+      "title": "Criar um Protótipo Interativo do site",
+      "login": "CaioMota16",
+      "created_at": "2026-04-23T03:17:43Z",
+      "characters": 1080
+    },
+    {
+      "number": 36,
+      "title": "Padronização de Nome de Arquivos",
+      "login": "arthurpalhares1",
+      "created_at": "2026-04-22T22:20:48Z",
+      "characters": 1203
+    },
+    {
+      "number": 33,
+      "title": "Aprimorar consumo da API da Câmara dos Deputados",
+      "login": "Donnk61",
+      "created_at": "2026-04-21T13:33:57Z",
+      "characters": 1379
+    },
+    {
+      "number": 32,
+      "title": "Criar material para os membros de como fazer um Pull Request (PR)",
+      "login": "Donnk61",
+      "created_at": "2026-04-21T13:28:51Z",
+      "characters": 1023
+    },
+    {
+      "number": 31,
+      "title": "Implementar banco de dados",
+      "login": "thatsrenan",
+      "created_at": "2026-04-21T00:17:54Z",
+      "characters": 757
+    },
+    {
+      "number": 30,
+      "title": "Implementar estrutura inicial de pastas do projeto",
+      "login": "thatsrenan",
+      "created_at": "2026-04-21T00:15:55Z",
+      "characters": 1125
+    },
+    {
+      "number": 29,
+      "title": "Padronização de Commits",
+      "login": "thatsrenan",
+      "created_at": "2026-04-21T00:12:39Z",
+      "characters": 1379
+    },
+    {
+      "number": 28,
+      "title": "Definir Banco de Dados",
+      "login": "thatsrenan",
+      "created_at": "2026-04-21T00:08:43Z",
+      "characters": 2093
+    },
+    {
+      "number": 27,
+      "title": "Criar labels de tamanho (XS, S, M, L, XL)",
+      "login": "thatsrenan",
+      "created_at": "2026-04-21T00:06:36Z",
+      "characters": 1427
+    },
+    {
+      "number": 25,
+      "title": "treste branch",
+      "login": "Donnk61",
+      "created_at": "2026-04-20T17:41:03Z",
+      "characters": 13
+    },
+    {
+      "number": 23,
+      "title": "Definir Front-End e integração com o Back-End",
+      "login": "arthurpalhares1",
+      "created_at": "2026-04-14T20:22:16Z",
+      "characters": 1054
+    },
+    {
+      "number": 22,
+      "title": "Estudo/Implementar API da câmara dos deputados",
+      "login": "Donnk61",
+      "created_at": "2026-04-14T11:05:47Z",
+      "characters": 1076
+    },
+    {
+      "number": 21,
+      "title": "Documentação das Dailies e Reuniões feitas até o fim da Sprint 2",
+      "login": "thatsrenan",
+      "created_at": "2026-04-13T18:36:18Z",
+      "characters": 1164
+    },
+    {
+      "number": 20,
+      "title": "Criar Ideias para a Identidade Visual do Projeto",
+      "login": "thatsrenan",
+      "created_at": "2026-04-13T18:26:36Z",
+      "characters": 1161
+    },
+    {
+      "number": 19,
+      "title": "Estudar Banco de Dados",
+      "login": "thatsrenan",
+      "created_at": "2026-04-13T18:10:29Z",
+      "characters": 1008
+    },
+    {
+      "number": 18,
+      "title": "Checar compatibilidade entre tecnologias escolhidas para o projeto",
+      "login": "thatsrenan",
+      "created_at": "2026-04-13T18:07:18Z",
+      "characters": 1325
+    },
+    {
+      "number": 17,
+      "title": "Estudo da stack backend definida",
+      "login": "italo-lm",
+      "created_at": "2026-04-13T18:02:11Z",
+      "characters": 664
+    },
+    {
+      "number": 16,
+      "title": "Fazer o diagrama da arquitetura do sistema",
+      "login": "thatsrenan",
+      "created_at": "2026-04-13T18:01:10Z",
+      "characters": 1399
+    },
+    {
+      "number": 15,
+      "title": "Organizar estudos no repositório",
+      "login": "arthurpalhares1",
+      "created_at": "2026-04-07T19:19:13Z",
+      "characters": 1204
+    },
+    {
+      "number": 14,
+      "title": "Avaliação de Stack Backend",
+      "login": "italo-lm",
+      "created_at": "2026-04-07T16:56:27Z",
+      "characters": 610
+    },
+    {
+      "number": 13,
+      "title": "Estudar APIs governamentais para o Monitoramento Legislativo",
+      "login": "Donnk61",
+      "created_at": "2026-04-07T00:03:52Z",
+      "characters": 1313
+    },
+    {
+      "number": 12,
+      "title": "Criar primeiras pastas para organizar o projeto e facilitar os commits",
+      "login": "Donnk61",
+      "created_at": "2026-04-06T23:18:59Z",
+      "characters": 1078
+    },
+    {
+      "number": 11,
+      "title": "Organizar cerimônias Scrum",
+      "login": "thatsrenan",
+      "created_at": "2026-04-06T21:21:02Z",
+      "characters": 695
+    },
+    {
+      "number": 10,
+      "title": "Aplicação dos Requisitos no Projeto",
+      "login": "CaioMota16",
+      "created_at": "2026-04-01T03:05:43Z",
+      "characters": 942
+    },
+    {
+      "number": 9,
+      "title": "[Brainstorming] Sugestões de Ideias para o Projeto",
+      "login": "Donnk61",
+      "created_at": "2026-03-31T22:22:22Z",
+      "characters": 608
+    },
+    {
+      "number": 8,
+      "title": "Criar Projects do projeto",
+      "login": "Donnk61",
+      "created_at": "2026-03-31T00:38:39Z",
+      "characters": 1233
+    },
+    {
+      "number": 7,
+      "title": "Definir arquitetura do sistema",
+      "login": "thatsrenan",
+      "created_at": "2026-03-30T18:12:02Z",
+      "characters": 654
+    },
+    {
+      "number": 6,
+      "title": "Estudo Requisitos de Software",
+      "login": "CaioMota16",
+      "created_at": "2026-03-26T23:42:18Z",
+      "characters": 1418
+    },
+    {
+      "number": 5,
+      "title": "Estudo Git/GitHub",
+      "login": "arthurpalhares1",
+      "created_at": "2026-03-26T13:17:00Z",
+      "characters": 1731
+    },
+    {
+      "number": 4,
+      "title": "Estudo Tecnologias Back-end",
+      "login": "italo-lm",
+      "created_at": "2026-03-24T00:27:05Z",
+      "characters": 1221
+    },
+    {
+      "number": 3,
+      "title": "Estudo de Front-End",
+      "login": "galdinow",
+      "created_at": "2026-03-23T23:42:23Z",
+      "characters": 1317
+    },
+    {
+      "number": 2,
+      "title": "Estudo Métodos Ágeis",
+      "login": "Donnk61",
+      "created_at": "2026-03-23T23:26:14Z",
+      "characters": 1129
+    },
+    {
+      "number": 1,
+      "title": "Estudo Arquitetura de Software",
+      "login": "thatsrenan",
+      "created_at": "2026-03-23T23:19:42Z",
+      "characters": 1281
+    }
+  ]
 }
