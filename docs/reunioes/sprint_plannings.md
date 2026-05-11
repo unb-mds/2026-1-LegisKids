@@ -128,3 +128,10 @@ Anotações:
 - Review dos Requisitos - Luís hoje 
 - CUIDADO COM O QUE USAR NO GOOGLE OAUTH (USAR APENAS O QUE É GRÁTIS) 
 - Revisar os Pull Requests, visando melhora da entrega 
+
+# Sprint Planning da Sprint 7
+
+1 - Estudar Specs e integrações com Github Action.
+2 - Acabar Planejamento do Banco de Dados.
+3 - Acabar organização do MK Docs.
+4 - Passar os Requisitos pro Figma e Github Project.

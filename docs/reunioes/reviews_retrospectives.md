@@ -43,7 +43,7 @@ Implementar banco de dados -> levado para a Sprint 5, pois não houve tempo para
 Ninguém enfrentou um problema grande. As mudanças nas cerimônias Scrum surtiram efeito positivo. 
 
 # 04/05
-# Review e Retrospectiva da Sprint 4
+# Review e Retrospectiva da Sprint 5
 
 Presentes: Arthur, Caio, Luís e Renan
 
@@ -56,3 +56,18 @@ Luís: não acabou sua issue, mas deverá acabar até terça à noite.
 Renan: entregou a issue de fix de pastas, MK Docs, e revisão de Arqutitetura (com 3 sub-issues). 
 
 Entregamos muito pouco nessa Sprint, e devemos prestar mais atenção para as Reviews em PR’s, para ajudar numa entrega de alto nível. 
+
+# 11/05
+# Review e Retrospectiva da Sprint 6
+
+Presentes: Arthur, Caio, Luís e Renan
+
+Arthur: entregou estrutura base do Front-end.
+
+Caio: entregou estrutura base do Front-End, e revisou os Requisitos do projeto.
+
+Luís: entregou melhores filtros da API da câmara.
+
+Renan: evoluiu nos estudos do Banco de Dados, mas concluiu 2 das 6 issues.
+
+Precisamos melhorar na divisão de tarefas, para aumentar nossa produtividade.
