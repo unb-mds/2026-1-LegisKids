@@ -1,19 +1,32 @@
 # Definição de Dashboards do Sistema
+O sistema irá consumir dados da API pública da Câmara dos Deputados.
 
-O sistema irá consumir dados da API pública da Câmara dos Deputados com o objetivo de coletar e analisar projetos de lei relacionados à segurança da criança na internet, permitindo visualização acadêmica de tendências legislativas, atuação política, tramitação dos projetos e temas mais discutidos.
+O objetivo do sistema é coletar e analisar projetos de lei relacionados à **segurança da criança na internet**, permitindo visualização acadêmica de:
 
-O sistema armazenará no máximo 200 MB de dados, utilizando PostgreSQL e um conjunto reduzido de tabelas relacionais. Por isso, os dashboards precisam ser relevantes para análise acadêmica, simples de implementar, compatíveis com os dados da API e leves em armazenamento e processamento.
+- tendências legislativas;
+- atuação política;
+- tramitação dos projetos;
+- temas mais discutidos.
 
-Cada dashboard é classificado pelo método MoSCoW:
+O sistema armazenará no máximo **200 MB de dados**, utilizando PostgreSQL e um conjunto reduzido de tabelas relacionais.
 
-- **Must** — deverá estar no projeto
-- **Should** — poderá estar no projeto, com menor prioridade
-- **Could** — será aplicado se houver tempo
-- **Wish** — num cenário ideal, seria implementado
+Por isso, os dashboards precisam ser:
 
----
+- relevantes para análise acadêmica;
+- simples de implementar;
+- compatíveis com os dados da API;
+- leves em armazenamento e processamento.
 
-## Dashboards selecionados
+Cada dashboard será sinalizado usando o método MoSCoW (Must, Should, Could, Wish), e:
+
+- Must: deverá estar no projeto.
+- Should: estará no projeto, mas será dada menor prioridade.
+- Could: se tivermos tempo, podemos aplicar.
+- Wish: num mundo hipotético, usaríamos.
+
+# Dashboards Selecionados
+
+Após análise do escopo do projeto, os dashboards mais relevantes são:
 
 | Dashboard | Objetivo |
 | --- | --- |
@@ -25,80 +38,215 @@ Cada dashboard é classificado pelo método MoSCoW:
 
 Esses cinco dashboards cobrem praticamente todos os objetivos analíticos do sistema sem adicionar complexidade desnecessária.
 
----
+# Dashboard 1 — Panorama Geral
 
-## Dashboard 1 — Panorama Geral (Must)
+## Objetivo
 
-Visão rápida do cenário legislativo relacionado ao tema. Será o dashboard inicial do sistema.
+Apresentar uma visão rápida do cenário legislativo relacionado à segurança da criança na internet.
 
-### Dados utilizados
+Esse será o dashboard inicial do sistema.
 
-Endpoint: `/proposicoes`
+## Dados Utilizados
 
-Campos: `id`, `siglaTipo`, `numero`, `ano`, `ementa`, `dataApresentacao`, `statusProposicao.descricaoSituacao`
+Endpoint:
 
-### Componentes
+- `/proposicoes`
 
-**Cards informativos** — total de projetos armazenados, projetos em tramitação, projetos arquivados e projetos aprovados.
+Campos:
 
-**Projetos por ano** — gráfico de linha para visualizar o crescimento do tema ao longo do tempo.
+- `id`
+- `siglaTipo`
+- `numero`
+- `ano`
+- `ementa`
+- `dataApresentacao`
+- `statusProposicao.descricaoSituacao`
 
-**Distribuição por status** — gráfico donut com categorias: em tramitação, arquivado, aprovado e outros.
+## Componentes
 
-**Últimos projetos adicionados** — tabela com número, ano, ementa, autor, status e data de apresentação.
+### Total de Projetos (Must)
 
----
+Quantidade total de projetos armazenados.
 
-## Dashboard 2 — Evolução Temporal (Must)
+### Projetos em Tramitação (Must)
+
+Projetos com situação ativa.
+
+### Projetos Arquivados (Should)
+
+Projetos encerrados ou arquivados.
+
+### Projetos Aprovados (Should)
+
+Projetos aprovados pela Câmara.
+
+### Projetos por Ano (Must)
+
+Tipo:
+
+- gráfico de linha.
+
+Objetivo:
+
+- visualizar crescimento do tema ao longo do tempo.
+
+### Distribuição por Status (Should)
+
+Tipo:
+
+- gráfico donut.
+
+Categorias:
+
+- em tramitação;
+- arquivado;
+- aprovado;
+- outros.
+
+Objetivo:
+
+- apresentar situação geral das proposições.
+
+### Últimos Projetos Adicionados (Should)
+
+Tipo:
+
+- tabela.
+
+Colunas:
+
+- número;
+- ano;
+- ementa;
+- status;
+- data de apresentação.
+
+Objetivo:
+
+- acompanhar proposições recentes.
+
+# Dashboard 2 — Evolução Temporal (Must)
+
+## Objetivo
 
 Identificar tendências legislativas relacionadas ao tema.
 
-### Dados utilizados
+## Dados Utilizados
 
-Endpoint: `/proposicoes`
+Endpoint:
 
-Campos: `dataApresentacao`, `ano`
+- `/proposicoes`
 
-### Componentes
+Campos:
 
-**Projetos por mês** — gráfico de linha temporal para detectar períodos de maior atividade legislativa.
+- `dataApresentacao`
+- `ano`
 
-**Crescimento anual** — gráfico de barras para comparar quantidade de projetos entre anos.
+## Componentes
 
-**Média mensal de proposições** — KPI numérico para medir frequência média de criação de projetos.
+### Projetos por Mês (Must)
 
-**Heatmap de atividade legislativa** — mapa de calor para identificar meses e anos com maior atividade.
+Tipo:
 
----
+- gráfico de linha temporal.
 
-## Dashboard 3 — Análise Política (Must)
+Objetivo:
+
+- detectar períodos de maior atividade legislativa.
+
+### Crescimento Anual (Should)
+
+Tipo:
+
+- gráfico de barras.
+
+Objetivo:
+
+- comparar quantidade de projetos entre anos.
+
+### Média Mensal de Proposições (Could)
+
+Tipo:
+
+- KPI numérico.
+
+Objetivo:
+
+- medir frequência média de criação de projetos.
+
+### Heatmap de Atividade Legislativa (Could)
+
+Tipo:
+
+- mapa de calor.
+
+Objetivo:
+
+- identificar meses e anos com maior atividade.
+
+# Dashboard 3 — Análise Política (Must)
+
+## Objetivo
 
 Identificar quais grupos políticos mais atuam no tema.
 
-### Dados utilizados
+## Dados Utilizados
 
-Endpoints: `/proposicoes`, `/deputados`, `/partidos`
+Endpoints:
 
-Campos: autor, partido, UF
+- `/proposicoes`
+- `/partidos`
 
-### Componentes
+Campos:
 
-**Projetos por partido** — gráfico de barras horizontais para identificar protagonismo partidário.
+- proposicao;
+- partido;
 
-**Projetos por estado** — mapa do Brasil ou gráfico de barras para visualizar distribuição regional.
+## Componentes
 
-**Ranking de deputados** — tabela ordenada com deputado, partido, UF e quantidade de projetos.
+### Projetos por Partido (Should)
 
-**Comparação partido × status** — barras empilhadas para comparar efetividade legislativa entre partidos.
+Tipo:
 
----
+- gráfico de barras horizontais.
 
-## Considerações técnicas
+Objetivo:
 
-Os dashboards foram escolhidos para utilizar poucos dados, evitar processamento pesado, funcionar com baixo custo computacional e facilitar o desenvolvimento acadêmico. O sistema não necessitará de Big Data, processamento distribuído ou infraestrutura complexa.
+- identificar protagonismo partidário.
 
----
+### Comparação Partido × Status (Could)
 
-## Conclusão
+Tipo:
 
-Os dashboards selecionados são suficientes para atender os objetivos acadêmicos do projeto sem adicionar complexidade excessiva, permitindo monitorar atividade legislativa, identificar tendências, analisar atuação política, acompanhar tramitação e explorar os temas discutidos nos projetos.
+- barras empilhadas.
+
+Objetivo:
+
+- comparar efetividade legislativa entre partidos.
+
+# Considerações Técnicas
+
+Os dashboards foram escolhidos para:
+
+- utilizar poucos dados;
+- evitar processamento pesado;
+- evitar relações muito complicadas;
+- funcionar com baixo custo computacional;
+- aproveitar diretamente os dados da API da Câmara;
+- facilitar desenvolvimento acadêmico.
+
+O sistema não necessitará de Big Data, processamento distribuído ou infraestrutura complexa.
+
+# Conclusão
+
+Os dashboards selecionados são suficientes para atender os objetivos acadêmicos do projeto sem adicionar complexidade excessiva.
+
+Eles permitem:
+
+- monitorar atividade legislativa;
+- identificar tendências;
+- analisar atuação política;
+- acompanhar tramitação;
+- explorar os temas discutidos nos projetos.
+
+Além disso, os dashboards foram escolhidos considerando simplicidade de implementação, desempenho e limitação de armazenamento.
