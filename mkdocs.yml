@@ -9,69 +9,29 @@ nav:
 
 - Home: index.md
 
-- Projeto:
+- Projeto: projeto/index.md
 
-  - Ideia: ideia_escolhida_projeto.md
+- Arquitetura: estudos/arquitetura/index.md
 
-- Arquitetura:
+- Backend / API: estudos/API/index.md
 
-  - Escolha da Arquitetura: estudos/arquitetura/escolha_arquitetura.md
-  - Tecnologias: estudos/arquitetura/checando_tecnologias.md
-  - Diagrama V1: estudos/arquitetura/diagrama_arquitetura_v1.md
-  - Diagrama V2: estudos/arquitetura/diagrama_arquitetura_v2.md
-  - Fluxo de Dados: estudos/arquitetura/estudo_fluxo_de_dados.md
-  - Login: estudos/arquitetura/estudo_login.md
-  - Estudo Inicial: estudos/arquitetura/estudo_arquiteturas.md
+- Banco de Dados: estudos/banco_de_dados/index.md
 
-- Backend:
+- Frontend: estudos/frontend/index.md
 
-  - API: estudos/API/levantamento_api.md
+- Design: estudos/design/index.md
 
-- Banco de Dados:
+- Git & Organização: estudos/git_github/index.md
 
-  - Definição: estudos/banco_de_dados/definicao_banco_de_dados.md
-  - Estudo: estudos/banco_de_dados/estudo_banco_de_dados.md
-  - Hospedagem: estudos/banco_de_dados/hospedagem_banco_de_dados.md
+- Metodologia: estudos/metodos_ageis/index.md
 
-- Frontend:
+- Gestão: reunioes/index.md
 
-  - Tecnologias e Estrutura: estudos/frontend/tecnologias_estrutura.md
+- Padrões: padrao_organizacao/index.md
 
-- Design:
+- Requisitos: estudos/requisitos/index.md
 
-  - Protótipo Interativo: estudos/design/prototipo_interativo.md
-  - Identidade Visual: estudos/design/identidade_visual.md
-  - Dashboards escolhidos: estudos/design/definicao_dashboards.md
-
-- Git & Organização:
-
-  - GitHub: estudos/git_github/estudo_github.md
-  - Labels de Issue: estudos/git_github/labels_tamanho_issue.md
-  - Nome de Arquivos: padrao_organizacao/padrao_nomes_arquivos.md
-  - Organização Geral: padrao_organizacao/organizacao_geral.md
-
-- Metodologia:
-
-  - Métodos Ágeis: estudos/metodos_ageis/metodos_ageis.md
-
-- Gestão:
-
-  - Requisitos: estudos/requisitos/requisitos_de_software.md
-  - Documento Complementar: estudos/requisitos/estudo_requisitos_software.md
-  - Dailies: reunioes/dailies.md
-  - Horários: reunioes/horarios.md
-  - Reviews e Retrospectivas: reunioes/reviews_retrospectives.md
-  - Sprint Planning: reunioes/sprint_plannings.md
-  - Kanban: padrao_organizacao/padrao_kanban.md
-
-- Padrões:
-
-  - Commits: padrao_organizacao/padrao_commits.md
-  - Pull Requests: padrao_organizacao/padrao_PR.md
-
-- Requisitos:
-    - Documento: estudos/requisitos/requisitos_de_software.md
+- Inteligência Artificial: estudos/inteligencia_artificial/index.md
 
 plugins:
-
-- search
+  - search
