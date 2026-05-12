@@ -1,47 +1,51 @@
 # Backlog de Produto — Sistema de Proposições Legislativas
-### Versão 5.0 — Final
+
+**Versão 5.0 — Final**
+
+Incorpora: revisão de qualidade (v2) · Estudo de Fluxo de Dados (v3) · Estudo de Login (v4) · Diagrama de Arquitetura v2 (v5)
+
+Decisão registrada: escopo limitado à Câmara dos Deputados — Senado removido em 03/05/2026
+
+Total: 10 épicos · 34 user stories · 95+ critérios de aceitação
 
 ---
 
 ## Legenda
 
-- Critérios **sem marcação** → originais do backlog
-- Critérios marcados com `[NOVO]` → adicionados na revisão de qualidade (v2)
-- Critérios marcados com `[CORREÇÃO]` → corrigidos após conformidade com o Estudo de Fluxo de Dados (v3)
-- Critérios marcados com `[CORREÇÃO-LOGIN]` → corrigidos após conformidade com o Estudo de Login — decisão: Google OAuth 2.0 (v4)
-- Critérios marcados com `[CORREÇÃO-ARQ]` → corrigidos após conformidade com o Diagrama de Arquitetura v2 (v5)
-- User stories marcadas com `[NOVA US]` → criadas após relatórios de conformidade
+- Critérios **sem marcação** — originais do backlog
+- Critérios `[NOVO]` — adicionados na revisão de qualidade (v2)
+- Critérios `[CORREÇÃO]` — corrigidos após conformidade com o Estudo de Fluxo de Dados (v3)
+- Critérios `[CORREÇÃO-LOGIN]` — corrigidos após conformidade com o Estudo de Login — decisão: Google OAuth 2.0 (v4)
+- Critérios `[CORREÇÃO-ARQ]` — corrigidos após conformidade com o Diagrama de Arquitetura v2 (v5)
+- User stories `[NOVA US]` — criadas após relatórios de conformidade
 
 ---
 
 ## Decisões de arquitetura consolidadas
 
-> **Stack definida (Arquitetura v2):**
-> - Frontend: HTML + CSS + JavaScript + Fetch
-> - Backend: Python + Flask
-> - Autenticação: Google OAuth 2.0
-> - IA: spaCy / transformers (decisão pendente)
-> - Banco: PostgreSQL + SQLAlchemy + psycopg
->
-> **Escopo de dados:** apenas proposições da **Câmara dos Deputados do Brasil**.
-> O Senado Federal foi removido do escopo desta versão — decisão registrada em 03/05/2026.
->
-> **Princípio central:** o frontend nunca acessa a API externa diretamente.
-> Todos os dados são preparados pelo backend antes de serem entregues ao cliente.
+**Stack definida (Arquitetura v2):**
+
+- Frontend: HTML + CSS + JavaScript + Fetch
+- Backend: Python + Flask
+- Autenticação: Google OAuth 2.0
+- IA: spaCy / transformers (decisão pendente)
+- Banco: PostgreSQL + SQLAlchemy + psycopg
+
+**Escopo de dados:** apenas proposições da Câmara dos Deputados do Brasil. O Senado Federal foi removido do escopo desta versão — decisão registrada em 03/05/2026.
+
+**Princípio central:** o frontend nunca acessa a API externa diretamente. Todos os dados são preparados pelo backend antes de serem entregues ao cliente.
 
 ---
 
-## ÉPICO 1 — Coleta de Dados Legislativos
+## Épico 1 — Coleta de Dados Legislativos
 
 ### US01 — Coleta automática de proposições
 
-**Como** analista,
-**Quero** que o sistema colete proposições legislativas de fontes oficiais,
-**Para que** eu tenha dados atualizados automaticamente.
+**Como** analista, **quero** que o sistema colete proposições legislativas de fontes oficiais, **para que** eu tenha dados atualizados automaticamente.
 
 **Critérios de aceitação:**
 
-- `[CORREÇÃO-ARQ]` Deve coletar dados exclusivamente da API da Câmara dos Deputados (escopo desta versão)
+- `[CORREÇÃO-ARQ]` Deve coletar dados exclusivamente da API da Câmara dos Deputados
 - Deve evitar duplicação de dados por identificador único
 - Deve registrar data e hora da coleta
 - `[NOVO]` Deve validar a estrutura dos dados antes de armazenar
@@ -52,58 +56,52 @@
 
 ### US02 — Integração com a API da Câmara dos Deputados
 
-**Como** sistema,
-**Quero** integrar a API oficial da Câmara dos Deputados,
-**Para que** os dados coletados sejam confiáveis e atualizados.
+**Como** sistema, **quero** integrar a API oficial da Câmara dos Deputados, **para que** os dados coletados sejam confiáveis e atualizados.
 
 **Critérios de aceitação:**
 
-- `[CORREÇÃO-ARQ]` Integração exclusiva com a API de Dados Abertos da Câmara dos Deputados (api.camara.leg.br)
+- `[CORREÇÃO-ARQ]` Integração exclusiva com a API de Dados Abertos da Câmara (api.camara.leg.br)
 - Tratamento de falhas de conexão com retry automático (mínimo 3 tentativas)
 - Logs de erro com timestamp e código HTTP da falha
 - `[NOVO]` Autenticação via token deve ser renovada automaticamente quando expirada
 - `[NOVO]` Tempo máximo de resposta tolerado: 10s por requisição
 - `[NOVO]` Versão da API consumida deve ser registrada no log de cada coleta
-- `[NOVO]` O frontend nunca deve consumir a API externa diretamente — todo acesso à API ocorre exclusivamente no backend
+- `[NOVO]` O frontend nunca deve consumir a API externa diretamente — todo acesso ocorre exclusivamente no backend
 
 ---
 
 ### US03 — Armazenamento estruturado de proposições
 
-**Como** sistema,
-**Quero** armazenar proposições em banco de dados relacional,
-**Para que** elas possam ser consultadas com alta performance.
+**Como** sistema, **quero** armazenar proposições em banco de dados relacional, **para que** elas possam ser consultadas com alta performance.
 
 **Critérios de aceitação:**
 
 - Persistência confiável com integridade referencial
 - Campos obrigatórios: título, autor, data, número, situação e casa legislativa
 - Suporte a crescimento de dados sem degradação de performance
-- `[CORREÇÃO]` Proposições devem ser armazenadas em banco PostgreSQL com schema relacional definido; armazenamento como documento JSON bruto não é permitido
+- `[CORREÇÃO]` Proposições devem ser armazenadas em PostgreSQL com schema relacional; armazenamento como JSON bruto não é permitido
 - `[CORREÇÃO-ARQ]` O acesso ao banco deve ocorrer exclusivamente pela camada Repositories — nenhuma rota ou controller deve executar queries diretamente
 - `[NOVO]` Deve implementar soft delete (exclusão lógica, não física)
-- `[NOVO]` Deve manter histórico de versões de uma proposição alterada
+- `[NOVO]` Deve manter histórico de versões de proposições alteradas
 - `[NOVO]` Backups automáticos diários com retenção mínima de 30 dias
 
 ---
 
 ### US-ETL — Pipeline de tratamento e normalização de dados `[NOVA US]`
 
-**Como** sistema,
-**Quero** tratar e normalizar os dados brutos recebidos da API antes de armazená-los,
-**Para que** as proposições sejam persistidas com consistência, qualidade e prontidão para análise e dashboards.
+**Como** sistema, **quero** tratar e normalizar os dados brutos recebidos da API antes de armazená-los, **para que** as proposições sejam persistidas com consistência, qualidade e prontidão para análise e dashboards.
 
-> **Contexto arquitetural:** esta US cobre a camada Services do backend — onde ficam as regras de negócio e o processamento dos dados, conforme definido na Arquitetura v2.
+Esta US cobre a camada Services do backend — onde ficam as regras de negócio e o processamento dos dados, conforme definido na Arquitetura v2.
 
 **Critérios de aceitação:**
 
 - `[NOVO]` Dados brutos da API devem passar por etapa de limpeza antes de serem persistidos
 - `[NOVO]` Campos nulos ou inconsistentes devem ser tratados com valores padrão ou descartados com log
-- `[NOVO]` Datas devem ser normalizadas para um único formato (ISO 8601)
-- `[NOVO]` Campos relevantes devem ser extraídos e mapeados para o schema relacional definido (tipo, número, ementa, autor, partido, data, situação, casa legislativa)
-- `[NOVO]` Proposições duplicadas (mesmo ID) devem ser identificadas e não reinseridas — apenas atualizadas se houver mudança
-- `[NOVO]` Registros que não atendam ao schema mínimo obrigatório devem ser rejeitados e registrados em log de erros com motivo
-- `[NOVO]` O pipeline deve ser executado de forma assíncrona, sem bloquear outras operações do sistema
+- `[NOVO]` Datas devem ser normalizadas para o formato ISO 8601
+- `[NOVO]` Campos relevantes devem ser mapeados para o schema relacional: tipo, número, ementa, autor, partido, data, situação, casa legislativa
+- `[NOVO]` Proposições duplicadas (mesmo ID) devem ser identificadas e apenas atualizadas se houver mudança
+- `[NOVO]` Registros que não atendam ao schema mínimo devem ser rejeitados e registrados em log com motivo
+- `[NOVO]` O pipeline deve ser executado de forma assíncrona, sem bloquear outras operações
 - `[NOVO]` Deve ser possível reprocessar um lote de dados brutos manualmente sem afetar dados já validados
 - `[CORREÇÃO-ARQ]` O pipeline ETL deve residir na camada Services — não em routes nem em controllers
 
@@ -111,16 +109,14 @@
 
 ### US-AUDIT — Armazenamento do payload original da API `[NOVA US]`
 
-**Como** administrador,
-**Quero** que o JSON original retornado pela API seja armazenado junto à proposição tratada,
-**Para que** seja possível auditar os dados de origem e reprocessar proposições no futuro sem depender da API.
+**Como** administrador, **quero** que o JSON original retornado pela API seja armazenado junto à proposição tratada, **para que** seja possível auditar os dados de origem e reprocessar proposições no futuro sem depender da API.
 
 **Critérios de aceitação:**
 
-- `[NOVO]` O payload JSON original de cada proposição deve ser armazenado de forma imutável no momento da coleta
+- `[NOVO]` O payload JSON original deve ser armazenado de forma imutável no momento da coleta
 - `[NOVO]` O JSON original deve estar associado à proposição tratada por chave estrangeira (proposicao_id)
 - `[NOVO]` Não deve ser possível editar ou excluir o JSON original via interface — apenas leitura e reprocessamento
-- `[NOVO]` Deve ser possível acionar o reprocessamento de uma proposição a partir do JSON original armazenado, sem nova chamada à API
+- `[NOVO]` Deve ser possível acionar o reprocessamento de uma proposição a partir do JSON original sem nova chamada à API
 - `[NOVO]` O administrador deve visualizar o JSON original na tela de detalhes administrativos da proposição
 - `[NOVO]` Retenção mínima do payload original: 1 ano a partir da data de coleta
 - `[NOVO]` O armazenamento do JSON original não deve impactar a performance das consultas sobre dados tratados (deve estar em tabela ou storage separado)
@@ -129,71 +125,59 @@
 
 ### US-TRAM — Atualização incremental de proposições via tramitação `[NOVA US]`
 
-**Como** sistema,
-**Quero** identificar proposições atualizadas usando o endpoint de tramitações no período,
-**Para que** a coleta diária seja eficiente — atualizando apenas o que mudou, sem reprocessar toda a base.
+**Como** sistema, **quero** identificar proposições atualizadas usando o endpoint de tramitações no período, **para que** a coleta diária seja eficiente — atualizando apenas o que mudou, sem reprocessar toda a base.
 
-> **Contexto arquitetural:** a API da Câmara não fornece campo de atualização global. A tramitação é usada como proxy de mudança — pequenas inconsistências são aceitas, pois o sistema serve análise política, não auditoria jurídica.
+A API da Câmara não fornece campo de atualização global. A tramitação é usada como proxy de mudança — pequenas inconsistências são aceitas, pois o sistema serve análise política, não auditoria jurídica.
 
 **Critérios de aceitação:**
 
-- `[NOVO]` O job de atualização diária deve consultar o endpoint `listarProposicoesTramitadasNoPeriodo` com o intervalo desde a última execução bem-sucedida
+- `[NOVO]` O job diário deve consultar `listarProposicoesTramitadasNoPeriodo` com o intervalo desde a última execução bem-sucedida
 - `[NOVO]` O sistema deve persistir o timestamp da última verificação bem-sucedida
-- `[NOVO]` Para cada ID retornado pela tramitação, o sistema deve chamar `ObterProposicaoPorID` e atualizar os dados no banco
+- `[NOVO]` Para cada ID retornado, o sistema deve chamar `ObterProposicaoPorID` e atualizar os dados no banco
 - `[NOVO]` Proposições não retornadas na tramitação do período não devem ser reprocessadas
-- `[NOVO]` O job deve registrar: quantidade de proposições verificadas, atualizadas, com erro, e os timestamps de início e fim da execução
+- `[NOVO]` O job deve registrar: quantidade de proposições verificadas, atualizadas, com erro, e os timestamps de início e fim
 - `[NOVO]` Em caso de falha parcial, o job deve continuar processando os demais IDs e registrar os erros individualmente
-- `[NOVO]` A interface deve exibir aviso informando que as atualizações são baseadas em tramitações, podendo não capturar alterações editoriais sem movimentação processual
-- `[NOVO]` Deve ser possível forçar a recoleta completa de um ID específico manualmente pelo administrador, ignorando a lógica de tramitação
+- `[NOVO]` A interface deve exibir aviso informando que as atualizações são baseadas em tramitações e podem não capturar alterações editoriais sem movimentação processual
+- `[NOVO]` Deve ser possível forçar a recoleta completa de um ID específico manualmente pelo administrador
 
 ---
 
 ### US-LAYERS — Separação de camadas no backend `[NOVA US]`
 
-**Como** desenvolvedor,
-**Quero** que o backend siga rigorosamente a separação routes → controllers → services → repositories definida na arquitetura,
-**Para que** o código seja testável, manutenível e consistente com a estrutura do projeto.
-
-> **Contexto arquitetural:** a Arquitetura v2 define 5 camadas com responsabilidades distintas. Esta US garante que nenhuma implementação viole essa separação.
+**Como** desenvolvedor, **quero** que o backend siga rigorosamente a separação routes → controllers → services → repositories, **para que** o código seja testável, manutenível e consistente com a estrutura do projeto.
 
 **Critérios de aceitação:**
 
 - `[NOVO]` Nenhuma rota Flask deve conter lógica de negócio — rotas apenas recebem a requisição e delegam ao controller
-- `[NOVO]` Controllers são responsáveis pelo fluxo da requisição (validar entrada, chamar service, retornar resposta) — não devem acessar o banco diretamente
-- `[NOVO]` Services contêm todas as regras de negócio e processamento — não devem conhecer detalhes de HTTP (request/response)
+- `[NOVO]` Controllers validam a entrada, chamam o service e retornam a resposta — não devem acessar o banco diretamente
+- `[NOVO]` Services contêm todas as regras de negócio — não devem conhecer detalhes de HTTP (request/response)
 - `[NOVO]` Repositories são os únicos responsáveis pelo acesso ao banco via SQLAlchemy — nenhuma query deve existir fora dessa camada
 - `[NOVO]` O módulo de IA (`backend/ai/`) deve ser chamado exclusivamente pela camada Services
-- `[NOVO]` A estrutura de pastas do projeto deve seguir: `backend/auth/`, `routes/`, `controllers/`, `services/`, `repositories/`, `ai/`, `models/`, `config/`
+- `[NOVO]` A estrutura de pastas deve seguir: `backend/auth/`, `routes/`, `controllers/`, `services/`, `repositories/`, `ai/`, `models/`, `config/`
 
 ---
 
 ### US-AI-RESILIÊNCIA — Tolerância a falhas no módulo de IA `[NOVA US]`
 
-**Como** sistema,
-**Quero** que uma falha no módulo de classificação por IA não bloqueie o pipeline ETL,
-**Para que** proposições continuem sendo coletadas e armazenadas mesmo quando a IA estiver indisponível.
-
-> **Contexto arquitetural:** a IA (spaCy/transformers) está no caminho crítico do ETL. Uma falha nessa etapa não deve interromper a ingestão de dados.
+**Como** sistema, **quero** que uma falha no módulo de classificação por IA não bloqueie o pipeline ETL, **para que** proposições continuem sendo coletadas e armazenadas mesmo quando a IA estiver indisponível.
 
 **Critérios de aceitação:**
 
 - `[NOVO]` Proposições que não puderam ser classificadas devem ser salvas com status `pendente_classificacao`
 - `[NOVO]` Um job de reclassificação deve processar periodicamente as proposições com status `pendente_classificacao`
 - `[NOVO]` Falhas isoladas no módulo de IA devem gerar log e alerta ao administrador, sem interromper o processamento dos demais itens do lote
-- `[NOVO]` O tempo máximo de espera pela classificação por proposição é de 10s — após esse limite, a proposição deve ser salva como pendente
+- `[NOVO]` Tempo máximo de espera pela classificação por proposição: 10s — após esse limite, salvar como pendente
 - `[NOVO]` A interface deve exibir indicação visual quando uma proposição ainda não foi classificada
 
 ---
 
 ### US-README — Documentação de setup para desenvolvedores `[NOVA US]`
 
-**Como** desenvolvedor novo no projeto,
-**Quero** um README com instruções claras de instalação e configuração,
-**Para que** eu consiga rodar o projeto localmente sem depender de outra pessoa.
+**Como** desenvolvedor novo no projeto, **quero** um README com instruções claras de instalação e configuração, **para que** eu consiga rodar o projeto localmente sem depender de outra pessoa.
 
 **Critérios de aceitação:**
 
-- `[NOVO]` Documentar todas as dependências necessárias: Python (versão mínima), Flask, PostgreSQL, psycopg, SQLAlchemy
+- `[NOVO]` Documentar todas as dependências: Python (versão mínima), Flask, PostgreSQL, psycopg, SQLAlchemy
 - `[NOVO]` Listar todas as variáveis de ambiente obrigatórias com descrição e exemplo de valor
 - `[NOVO]` Incluir passo a passo para criação e migração do banco de dados local
 - `[NOVO]` Documentar como configurar as credenciais do Google OAuth para ambiente de desenvolvimento
@@ -202,17 +186,15 @@
 
 ---
 
-## ÉPICO 2 — Classificação de Proposições
+## Épico 2 — Classificação de Proposições
 
 ### US05 — Classificação automática por subtema
 
-**Como** analista,
-**Quero** que o sistema classifique proposições automaticamente,
-**Para que** eu possa analisar rapidamente grandes volumes.
+**Como** analista, **quero** que o sistema classifique proposições automaticamente, **para que** eu possa analisar rapidamente grandes volumes.
 
 **Critérios de aceitação:**
 
-- Uso de modelo de NLP (spaCy ou transformers — conforme decisão técnica pendente) treinado na base legislativa
+- Uso de modelo de NLP (spaCy ou transformers — decisão técnica pendente) treinado na base legislativa
 - Classificação em pelo menos um subtema por proposição
 - Suporte a múltiplos subtemas simultaneamente
 - `[NOVO]` Exibir score de confiança da classificação
@@ -223,12 +205,9 @@
 
 ---
 
-
 ### US06 — Múltiplos subtemas por proposição
 
-**Como** analista,
-**Quero** associar múltiplos subtemas a uma proposição,
-**Para que** a classificação seja mais fiel ao conteúdo.
+**Como** analista, **quero** associar múltiplos subtemas a uma proposição, **para que** a classificação seja mais fiel ao conteúdo.
 
 **Critérios de aceitação:**
 
@@ -240,13 +219,11 @@
 
 ---
 
-## ÉPICO 3 — Busca e Filtros
+## Épico 3 — Busca e Filtros
 
 ### US08 — Busca por palavra-chave
 
-**Como** usuário,
-**Quero** buscar proposições por palavra-chave,
-**Para que** eu encontre conteúdos relevantes rapidamente.
+**Como** usuário, **quero** buscar proposições por palavra-chave, **para que** eu encontre conteúdos relevantes rapidamente.
 
 **Critérios de aceitação:**
 
@@ -262,9 +239,7 @@
 
 ### US09 — Filtros avançados
 
-**Como** usuário,
-**Quero** filtrar por parlamentar, partido, data e subtema,
-**Para que** eu refine minha busca com precisão.
+**Como** usuário, **quero** filtrar por parlamentar, partido, data e subtema, **para que** eu refine minha busca com precisão.
 
 **Critérios de aceitação:**
 
@@ -274,15 +249,13 @@
 - `[NOVO]` Filtros aplicados devem ser exibidos como tags removíveis individualmente
 - `[NOVO]` Deve haver opção de limpar todos os filtros com um único clique
 - `[NOVO]` Estado dos filtros deve ser preservado ao navegar entre páginas
-- `[NOVO]` Deve ser possível salvar combinações de filtros como favoritos (Opcional)
+- `[NOVO]` Deve ser possível salvar combinações de filtros como favoritos (opcional)
 
 ---
 
 ### US10 — Paginação dos resultados
 
-**Como** usuário,
-**Quero** ver resultados paginados,
-**Para que** a navegação seja organizada.
+**Como** usuário, **quero** ver resultados paginados, **para que** a navegação seja organizada.
 
 **Critérios de aceitação:**
 
@@ -293,13 +266,11 @@
 
 ---
 
-## ÉPICO 4 — Indicadores e Análises
+## Épico 4 — Indicadores e Análises
 
 ### US11 — Visualização de indicadores
 
-**Como** analista,
-**Quero** ver gráficos sobre as proposições,
-**Para que** eu identifique padrões e tendências.
+**Como** analista, **quero** ver gráficos sobre as proposições, **para que** eu identifique padrões e tendências.
 
 **Critérios de aceitação:**
 
@@ -315,9 +286,7 @@
 
 ### US12 — Identificação de novos temas emergentes
 
-**Como** analista,
-**Quero** identificar novos temas emergentes,
-**Para que** eu acompanhe tendências legislativas.
+**Como** analista, **quero** identificar novos temas emergentes, **para que** eu acompanhe tendências legislativas.
 
 **Critérios de aceitação:**
 
@@ -331,9 +300,7 @@
 
 ### US13 — Estatísticas automáticas resumidas
 
-**Como** usuário,
-**Quero** ver estatísticas resumidas,
-**Para que** eu entenda rapidamente o panorama dos dados.
+**Como** usuário, **quero** ver estatísticas resumidas, **para que** eu entenda rapidamente o panorama dos dados.
 
 **Critérios de aceitação:**
 
@@ -346,13 +313,11 @@
 
 ---
 
-## ÉPICO 5 — Visualização de Dados
+## Épico 5 — Visualização de Dados
 
 ### US14 — Dashboard interativo
 
-**Como** usuário,
-**Quero** acessar dashboards interativos,
-**Para que** eu explore os dados facilmente.
+**Como** usuário, **quero** acessar dashboards interativos, **para que** eu explore os dados facilmente.
 
 **Critérios de aceitação:**
 
@@ -365,13 +330,11 @@
 
 ---
 
-## ÉPICO 6 — Detalhamento das Proposições
+## Épico 6 — Detalhamento das Proposições
 
 ### US15 — Visualizar detalhes de uma proposição
 
-**Como** usuário,
-**Quero** ver os detalhes completos de uma proposição,
-**Para que** eu entenda seu conteúdo e situação.
+**Como** usuário, **quero** ver os detalhes completos de uma proposição, **para que** eu entenda seu conteúdo e situação.
 
 **Critérios de aceitação:**
 
@@ -385,13 +348,11 @@
 
 ---
 
-## ÉPICO 7 — Alertas e Monitoramento
+## Épico 7 — Alertas e Monitoramento
 
 ### US16 — Histórico de mudanças em proposições
 
-**Como** administrador,
-**Quero** visualizar mudanças ocorridas nas proposições,
-**Para que** eu acompanhe alterações e garanta rastreabilidade.
+**Como** administrador, **quero** visualizar mudanças ocorridas nas proposições, **para que** eu acompanhe alterações e garanta rastreabilidade.
 
 **Critérios de aceitação:**
 
@@ -402,13 +363,11 @@
 
 ---
 
-## ÉPICO 9 — Usabilidade e Performance
+## Épico 9 — Usabilidade e Performance
 
 ### US17 — Interface responsiva
 
-**Como** usuário,
-**Quero** acessar o sistema em qualquer dispositivo,
-**Para que** eu tenha uma boa experiência independentemente da tela.
+**Como** usuário, **quero** acessar o sistema em qualquer dispositivo, **para que** eu tenha uma boa experiência independentemente da tela.
 
 **Critérios de aceitação:**
 
@@ -421,9 +380,7 @@
 
 ### US18 — Performance do sistema
 
-**Como** usuário,
-**Quero** respostas rápidas do sistema,
-**Para que** o uso seja eficiente.
+**Como** usuário, **quero** respostas rápidas do sistema, **para que** o uso seja eficiente.
 
 **Critérios de aceitação:**
 
@@ -436,20 +393,17 @@
 
 ---
 
-## ÉPICO 10 — Autenticação e Conta
+## Épico 10 — Autenticação e Conta
 
-> **Decisão de arquitetura (Estudo de Login + Arquitetura v2):**
-> O sistema adota **Google OAuth 2.0** como único método de autenticação.
-> O login serve para personalização (favoritos, histórico, notificações) — não há dados sensíveis envolvidos.
-> Fluxo: Frontend → Login Google → Backend recebe token → valida → busca ou cria usuário → cria sessão → usuário autenticado.
+O sistema adota Google OAuth 2.0 como único método de autenticação. O login serve para personalização (favoritos, histórico, notificações) — não há dados sensíveis envolvidos.
+
+Fluxo: Frontend → Login Google → Backend recebe token → valida → busca ou cria usuário → cria sessão → usuário autenticado.
 
 ---
 
 ### US19 — Login com conta Google
 
-**Como** usuário,
-**Quero** fazer login no sistema utilizando minha conta Google,
-**Para que** eu acesse funcionalidades personalizadas (favoritos, histórico, notificações) de forma simples e rápida.
+**Como** usuário, **quero** fazer login com minha conta Google, **para que** eu acesse funcionalidades personalizadas de forma simples e rápida.
 
 **Critérios de aceitação:**
 
@@ -457,7 +411,7 @@
 - `[CORREÇÃO-LOGIN]` O sistema não deve armazenar senha — apenas o token de acesso e o identificador Google do usuário
 - `[CORREÇÃO-LOGIN]` O token de acesso deve ser armazenado em httpOnly cookie para evitar exposição via JavaScript
 - `[NOVO]` Exibir mensagem de erro amigável caso o login falhe ou seja cancelado pelo usuário
-- `[NOVO]` Botão de login deve estar visível e acessível na página inicial sem necessidade de navegação adicional
+- `[NOVO]` Botão de login deve estar visível e acessível na página inicial sem navegação adicional
 - `[NOVO]` O sistema deve solicitar apenas os escopos mínimos necessários ao Google (email e nome de perfil)
 - `[CORREÇÃO-ARQ]` No primeiro login, o backend deve criar automaticamente um registro na tabela `users` com e-mail, nome e foto do perfil Google, atribuindo perfil padrão `cidadão`; em logins subsequentes, atualizar os dados se tiverem mudado
 
@@ -465,9 +419,7 @@
 
 ### US20 — Redirecionamento seguro pós-login
 
-**Como** usuário,
-**Quero** ser redirecionado de forma segura de volta ao sistema após o login com Google,
-**Para que** minha sessão seja corretamente iniciada e eu continue de onde estava.
+**Como** usuário, **quero** ser redirecionado de forma segura de volta ao sistema após o login com Google, **para que** minha sessão seja corretamente iniciada e eu continue de onde estava.
 
 **Critérios de aceitação:**
 
@@ -480,9 +432,7 @@
 
 ### US21 — Persistência de sessão após login
 
-**Como** usuário autenticado,
-**Quero** permanecer logado mesmo após fechar o aplicativo,
-**Para que** eu não precise fazer login com frequência.
+**Como** usuário autenticado, **quero** permanecer logado mesmo após fechar o aplicativo, **para que** eu não precise fazer login com frequência.
 
 **Critérios de aceitação:**
 
@@ -493,29 +443,20 @@
 
 ---
 
-### US-HIST — Registro estruturado do histórico de interações do usuário `[NOVA US]`
+### US-HIST — Registro estruturado do histórico de interações `[NOVA US]`
 
-**Como** sistema,
-**Quero** registrar em banco de dados relacional as interações dos usuários com as proposições,
-**Para que** seja possível exibir histórico de navegação e auditar o uso da plataforma.
+**Como** sistema, **quero** registrar em banco de dados relacional as interações dos usuários com as proposições, **para que** seja possível exibir histórico de navegação e auditar o uso da plataforma.
 
-> **Contexto arquitetural:** utiliza a tabela `historico` com campos `user_id`, `proposicao_id`, `tipo_acao` (visualizacao, busca, favorito) e `timestamp`. O registro é feito exclusivamente pelo backend.
+Utiliza a tabela `historico` com campos `user_id`, `proposicao_id`, `tipo_acao` (visualizacao, busca, favorito) e `timestamp`. O registro é feito exclusivamente pelo backend.
 
 **Critérios de aceitação:**
 
 - `[NOVO]` Toda visualização de detalhe de proposição deve gerar um registro na tabela `historico`
 - `[NOVO]` Toda busca realizada deve ser registrada com o termo buscado e os filtros aplicados
-- `[NOVO]` O usuário deve conseguir visualizar seu próprio histórico de navegação (últimas 30 interações)
+- `[NOVO]` O usuário deve conseguir visualizar seu próprio histórico (últimas 30 interações)
 - `[NOVO]` O usuário deve poder limpar seu histórico a qualquer momento
-- `[NOVO]` Administradores devem conseguir consultar o histórico agregado (quantidade de acessos por proposição e por período) para fins analíticos
+- `[NOVO]` Administradores devem conseguir consultar o histórico agregado (acessos por proposição e por período)
 - `[NOVO]` Dados de histórico não devem ser compartilhados entre usuários
 - `[NOVO]` O registro de histórico deve ser assíncrono e não deve impactar o tempo de resposta da interface
 - `[NOVO]` Em conformidade com a LGPD, o usuário deve ser informado sobre o que é registrado e ter opção de desativar o rastreamento
 - `[CORREÇÃO-ARQ]` O registro na tabela `historico` deve ser feito exclusivamente pelo backend — o frontend apenas envia o evento via Fetch API
-
----
-
-*Backlog consolidado — versão 5.0*
-*Incorpora: revisão de qualidade (v2) · Estudo de Fluxo de Dados (v3) · Estudo de Login (v4) · Diagrama de Arquitetura v2 (v5)*
-*Decisão registrada: escopo limitado à Câmara dos Deputados — Senado removido em 03/05/2026*
-*Total: 10 épicos · 34 user stories · 95+ critérios de aceitação*

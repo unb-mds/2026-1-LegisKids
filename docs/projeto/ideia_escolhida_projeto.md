@@ -1,225 +1,210 @@
-# Documentação de Visão
+# Visão do Produto
 
-## Nome da Iniciativa
-**Monitoramento Legislativo – Proteção de Crianças na Internet**
+## Visão geral
 
----
+A iniciativa Monitoramento Legislativo – Proteção de Crianças na Internet é um sistema digital voltado ao acompanhamento, classificação e análise de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.
 
-## 1. Visão Geral do Produto
+O sistema permite monitorar projetos de lei, emendas, pareceres e tramitações que tratem de temas como:
 
-A plataforma **Monitoramento Legislativo – Proteção de Crianças na Internet** é um sistema digital voltado ao acompanhamento, classificação e análise de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.
+- Cyberbullying  
+- Exploração sexual online  
+- Proteção de dados de menores  
+- Regulação de plataformas digitais  
+- Exposição a conteúdo nocivo  
 
-O sistema permitirá monitorar projetos de lei, emendas, pareceres e tramitações que tratem de temas como:
-
-- Cyberbullying
-- Exploração sexual online
-- Proteção de dados de menores
-- Regulação de plataformas digitais
-- Exposição a conteúdo nocivo
-
-A plataforma será orientada por dados públicos oficiais provenientes de casas legislativas como a Câmara dos Deputados e o Senado Federal, com categorização temática automatizada e geração de análises estratégicas.
+A plataforma é orientada por dados públicos oficiais provenientes de casas legislativas como a Câmara dos Deputados e o Senado Federal, com categorização temática automatizada e geração de análises estratégicas.
 
 ---
 
-## 2. Problema / Oportunidade
+## Objetivo
+
+Criar uma plataforma centralizada que:
+
+- Consolide proposições legislativas relevantes  
+- Classifique automaticamente por tema  
+- Permita análise temporal e comparativa  
+- Apoie pesquisadores, ONGs, instituições educacionais e formuladores de políticas públicas  
+
+---
+
+## Conteúdo principal
 
 ### Problema
 
 Atualmente:
 
-- Projetos legislativos são dispersos em diferentes portais públicos
-- Não há categorização temática focada especificamente na proteção digital de crianças
-- Organizações da sociedade civil têm dificuldade em acompanhar tramitações relevantes
-- Falta análise consolidada de tendências legislativas
+- Projetos legislativos estão dispersos em diferentes portais públicos  
+- Não há categorização temática específica para proteção digital de crianças  
+- Organizações da sociedade civil têm dificuldade em acompanhar tramitações relevantes  
+- Falta análise consolidada de tendências legislativas  
 
-Isso gera:
+Isso resulta em:
 
-- Baixa capacidade de advocacy estruturado
-- Reação tardia a propostas com impacto social relevante
-- Dificuldade de articulação institucional
-
----
-
-## 3. Objetivo Estratégico
-
-Criar uma plataforma centralizada que:
-
-- Consolide proposições legislativas relevantes
-- Classifique automaticamente por tema
-- Permita análise temporal e comparativa
-- Apoie pesquisadores, ONGs, escolas e formuladores de políticas públicas
+- Baixa capacidade de advocacy estruturado  
+- Reação tardia a propostas com impacto social relevante  
+- Dificuldade de articulação institucional  
 
 ---
 
-## 4. Público-Alvo
+### Público-alvo
 
-### Primário
+**Primário:**
 
-- ONGs de proteção à infância
-- Pesquisadores em direito digital
-- Instituições educacionais
-- Organizações de advocacy
+- ONGs de proteção à infância  
+- Pesquisadores em direito digital  
+- Instituições educacionais  
+- Organizações de advocacy  
 
-### Secundário
+**Secundário:**
 
-- Jornalistas
-- Assessores parlamentares
-- Órgãos públicos
-- Estudantes de Direito e Políticas Públicas
+- Jornalistas  
+- Assessores parlamentares  
+- Órgãos públicos  
+- Estudantes de Direito e Políticas Públicas  
 
 ---
 
-## 5. Escopo do Produto
+### Escopo do produto
 
-### 5.1 Monitoramento Automatizado
+#### Monitoramento automatizado
 
-- Coleta automática via API ou scraping autorizado
-- Atualização periódica de novas proposições
-- Identificação de tramitações relevantes
+- Coleta automática via API ou scraping autorizado  
+- Atualização periódica de proposições  
+- Identificação de tramitações relevantes  
 
-### 5.2 Classificação Temática Inteligente
+#### Classificação temática
 
 Classificação baseada em IA/NLP nas seguintes categorias:
 
-- Cyberbullying
-- Exploração sexual infantil online
-- Proteção de dados de menores (conectado à Lei Geral de Proteção de Dados)
-- Responsabilidade de plataformas (relacionado ao Marco Civil da Internet)
-- Direitos previstos no Estatuto da Criança e do Adolescente
+- Cyberbullying  
+- Exploração sexual infantil online  
+- Proteção de dados de menores  
+- Responsabilidade de plataformas digitais  
+- Direitos do Estatuto da Criança e do Adolescente  
 
-**Critérios:**
+Critérios:
 
-- Classificação automática
-- Revisão manual opcional
-- Marcação por múltiplos temas
+- Classificação automática  
+- Revisão manual opcional  
+- Marcação por múltiplos temas  
 
-### 5.3 Análise e Visualização
+#### Análise e visualização
 
-**Dashboard com:**
+Dashboard com:
 
-- Quantidade de PLs por tema
-- Evolução temporal
-- Status de tramitação
-- Parlamentares mais atuantes
+- Quantidade de proposições por tema  
+- Evolução temporal  
+- Status de tramitação  
+- Parlamentares mais atuantes  
 
-**Filtros por:**
+Filtros por:
 
-- Ano
-- Casa legislativa
-- Autor
-- Comissão
+- Ano  
+- Casa legislativa  
+- Autor  
+- Comissão  
 
-### 5.4 Alertas Inteligentes
+#### Alertas
 
-- Alertas por e-mail ou notificação para:
-  - Novo projeto relacionado
-  - Mudança de status
-  - Aprovação em comissão
+- Novos projetos relacionados  
+- Mudança de status  
+- Aprovação em comissão  
 
-### 5.5 Relatórios Estratégicos
+#### Relatórios
 
-- Exportação em PDF
-- Relatórios periódicos:
-  - Tendências legislativas
-  - Temas emergentes
-  - Comparação entre legislaturas
+- Exportação em PDF  
+- Tendências legislativas  
+- Temas emergentes  
+- Comparação entre legislaturas  
 
 ---
 
-## 6. Diferenciais do Produto
+### Diferenciais
 
-- Foco exclusivo na proteção digital de crianças
-- Classificação temática especializada
-- Análise estratégica além da simples listagem de projetos
-- Visualização consolidada em uma única plataforma
-
----
-
-## 7. Arquitetura Conceitual
-
-### 7.1 Camadas do Sistema
-
-#### Camada de Coleta
-
-- Integração com APIs públicas
-- Processamento e normalização de dados
-
-#### Camada de Inteligência
-
-- NLP para classificação temática
-- Sistema de palavras-chave e embeddings
-- Motor de análise comparativa
-
-#### Camada de Apresentação
-
-- Dashboard web responsivo
-- Painel administrativo
-- Sistema de alertas
+- Foco exclusivo na proteção digital de crianças  
+- Classificação temática especializada  
+- Análises além da simples listagem de projetos  
+- Centralização de informações em uma única plataforma  
 
 ---
 
-## 8. Riscos e Premissas
+### Arquitetura conceitual
 
-### Riscos
+#### Coleta de dados
 
-- Mudanças nas APIs legislativas
-- Inconsistências nos dados públicos
-- Classificação incorreta por IA
-- Alto volume de dados históricos
+- Integração com APIs públicas  
+- Normalização de dados  
 
-### Mitigações
+#### Inteligência
 
-- Versionamento de dados
-- Validação manual amostral
-- Atualização periódica do modelo
-- Logs de auditoria
+- NLP para classificação temática  
+- Palavras-chave e embeddings  
+- Motor de análise comparativa  
 
----
+#### Apresentação
 
-## 9. Métricas de Sucesso (KPIs)
-
-- Número de proposições monitoradas
-- Taxa de classificação correta
-- Número de usuários ativos
-- Downloads de relatórios
-- Tempo médio de atualização após nova tramitação
+- Dashboard web responsivo  
+- Painel administrativo  
+- Sistema de alertas  
 
 ---
 
-## 10. Roadmap Inicial
+### Riscos e premissas
 
-### Fase 1 – MVP
+**Riscos:**
 
-- Monitoramento da Câmara dos Deputados
-- Classificação básica por palavras-chave
-- Dashboard simples com filtros
+- Mudanças em APIs legislativas  
+- Inconsistências em dados públicos  
+- Classificação incorreta por modelos  
+- Volume elevado de dados históricos  
 
-### Fase 2 – Expansão
+**Mitigações:**
 
-- Inclusão do Senado Federal
-- Classificação com IA avançada
-- Sistema de alertas personalizados
-
-### Fase 3 – Inteligência Estratégica
-
-- Análise de tendências legislativas
-- Relatórios automatizados
-- API pública da plataforma
+- Versionamento de dados  
+- Validação manual amostral  
+- Atualização contínua de modelos  
+- Logs de auditoria  
 
 ---
 
-## 11. Impacto Esperado
+### Métricas de sucesso
 
-A plataforma permitirá:
-
-- Maior transparência legislativa
-- Fortalecimento do controle social
-- Atuação estratégica de ONGs
-- Produção de dados qualificados para políticas públicas
-- Antecipação de mudanças regulatórias relevantes
+- Número de proposições monitoradas  
+- Taxa de classificação correta  
+- Número de usuários ativos  
+- Downloads de relatórios  
+- Tempo de atualização de novas proposições  
 
 ---
 
-## 12. Declaração Final de Visão
+### Roadmap
 
-> Transformar dados legislativos dispersos em inteligência estratégica para proteger crianças e adolescentes no ambiente digital, fortalecendo a transparência, a responsabilidade institucional e o controle social.
+#### Fase 1 – MVP
+
+- Monitoramento da Câmara dos Deputados  
+- Classificação por palavras-chave  
+- Dashboard básico  
+
+#### Fase 2 – Expansão
+
+- Inclusão do Senado Federal  
+- Classificação com IA  
+- Sistema de alertas  
+
+#### Fase 3 – Inteligência estratégica
+
+- Análise de tendências  
+- Relatórios automatizados  
+- API pública  
+
+---
+
+## Referências
+
+*(não aplicável neste documento)*
+
+---
+
+## Visão final
+
+Transformar dados legislativos dispersos em inteligência estratégica para proteger crianças e adolescentes no ambiente digital, fortalecendo transparência, responsabilidade institucional e controle social.

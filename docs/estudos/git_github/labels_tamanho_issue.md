@@ -1,4 +1,5 @@
 # Labels de Tamanho das Issues
+
 ## Objetivo
 
 Definir um padrão de classificação das Issues do projeto utilizando labels de tamanho para facilitar:
@@ -9,7 +10,9 @@ Definir um padrão de classificação das Issues do projeto utilizando labels de
 - previsibilidade de entrega
 - divisão de tarefas grandes em subtarefas menores
 
-## Padrão de Tamanhos
+---
+
+## Padrão de tamanhos
 
 Cada Issue deverá receber uma label de tamanho:
 
@@ -21,79 +24,67 @@ Cada Issue deverá receber uma label de tamanho:
 | L | Alto | 1 a 2 dias | complexa |
 | XL | Muito alto | acima de 2 dias | muito complexa |
 
-## Critérios para Classificação
+---
+
+## Critérios para classificação
 
 ### XS
 
-Utilizar quando:
+Ajuste simples, correção visual pequena, alteração pontual ou documentação curta.
 
-- ajuste simples
-- correção visual pequena
-- alteração pontual
-- documentação curta
+Exemplo: corrigir texto, alterar cor de botão, ajustar label.
 
-**Exemplo:** corrigir texto, alterar cor de botão, ajustar label.
+---
 
 ### S
 
-Utilizar quando:
+Pequena implementação, bug simples ou pequena melhoria.
 
-- pequena implementação
-- bug simples
-- pequena melhoria
+Exemplo: criar endpoint simples, ajustar validação.
 
-**Exemplo:** criar endpoint simples, ajustar validação.
+---
 
 ### M
 
-Utilizar quando:
+Funcionalidade média, integração simples ou alteração em múltiplos arquivos.
 
-- funcionalidade média
-- integração simples
-- alteração em múltiplos arquivos
+Exemplo: criar formulário completo com validação.
 
-**Exemplo:** criar formulário completo com validação.
+---
 
 ### L
 
-Utilizar quando:
+Funcionalidade importante, integração com banco ou API, impacto em várias partes do sistema.
 
-- funcionalidade importante
-- integração com banco/API
-- impacto em várias partes do sistema
+Exemplo: implementar autenticação.
 
-**Exemplo:** implementar autenticação.
+---
 
 ### XL
 
-Utilizar quando:
+Tarefa muito grande, alto risco técnico ou necessidade de divisão.
 
-- tarefa muito grande
-- alto risco técnico
-- necessidade de divisão
+Exemplo: módulo completo novo.
 
-**Exemplo:** módulo completo novo.
+Sempre que possível, uma Issue XL deve ser dividida em Issues menores ou designada para mais de um integrante.
 
-> Sempre que possível, uma Issue XL deve ser dividida em Issues menores, ou designada para mais de um integrante.
-> 
+---
 
 ## Cores
 
-- XS: Verde claro
-- S: Verde
-- M: Amarelo
-- L: Laranja
-- XL: Vermelho
+As cores seguem uma lógica visual de esforço crescente:
 
-### Lógica visual
+- **XS** — verde claro
+- **S** — verde
+- **M** — amarelo
+- **L** — laranja
+- **XL** — vermelho
 
-- verde = menor esforço
-- amarelo = médio
-- vermelho = maior esforço
+Verde representa menor esforço, amarelo o médio e vermelho o maior, facilitando a leitura rápida do backlog.
 
-Isso facilita a leitura rápida do backlog.
+---
 
-## Processo de Uso
+## Processo de uso
 
 Ao criar uma nova Issue:
 
@@ -103,10 +94,8 @@ Ao criar uma nova Issue:
 4. Validar com a equipe se necessário
 5. Se for XL, considerar quebrar em subtarefas ou designar mais integrantes
 
-## Definição da Label
+---
 
-A definição da label será feita por:
+## Definição da label
 
-- autor da Issue inicialmente
-- revisada durante planning
-- validada pela equipe na mesma cerimônia
+A label será definida pelo autor da Issue inicialmente, revisada durante o planning e validada pela equipe na mesma cerimônia.

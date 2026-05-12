@@ -1,51 +1,99 @@
 # Diagrama da Arquitetura do Projeto v2
-LINK DO FIGMA: https://www.figma.com/board/5qqctfNDqw7eqWz6PsKYfS/arquitetura_diagrama_v2?node-id=0-1&t=tOb76BxZKqqiHhOT-1
 
-Esse diagrama será feito com base na estrutura base do Projeto, para facilitar o entediimento e desenvolvimento. Com o decorrer das Sprints, vamos atualizando o diagrama de acordo com as necessidades que vermos.
+Link do Figma: https://www.figma.com/board/5qqctfNDqw7eqWz6PsKYfS/arquitetura_diagrama_v2?node-id=0-1&t=tOb76BxZKqqiHhOT-1
 
-Com as Tecnologias de base definidas:
+Este diagrama será construído com base na estrutura do projeto, para facilitar o entendimento e desenvolvimento. Com o decorrer das Sprints, vamos atualizando o diagrama de acordo com as necessidades identificadas.
 
-- Frontend: HTML + CSS + JavaScript + Fetch
-- Backend: Python + Flask
-- Autentificação: OAuth 2.0 (Google)
+O sistema tem como objetivo principal consumir dados públicos da Câmara dos Deputados do Brasil, tratá-los e disponibilizá-los de forma eficiente ao usuário, permitindo também personalização via favoritos, histórico e notificações.
 
-IA: spaCy / transformers (ainda falta estudo e decisão)
+O objetivo é estabelecer um fluxo simples, performático e escalável o suficiente, garantindo boa experiência para o usuário e facilidade de manutenção.
 
-Banco: PostgreSQL (ainda decidindo) + SQLAlchemy + psycopg 
+---
 
-Com o Fluxo de Dados e sistema de Login decididos, conseguimos montar melhor o fluxo geral do sistema, e os fluxos individuais, posteriormente.
+## Tecnologias definidas
 
-O sistema tem como objetivo principal consumir dados públicos da Câmara dos Deputados do Brasil, tratá-los e disponibilizá-los de forma eficiente ao usuário, permitindo também personalização (favoritos, histórico e notificações).
+### Frontend
 
-O objetivo é estabelecer um fluxo **simples, performático e escalável o suficiente**, garantindo boa experiência para o usuário e facilidade de manutenção.
+- HTML
+- CSS
+- JavaScript
+- Fetch API
 
-# Arquitetura do Sistema
+### Backend
 
-A arquitetura será baseada em camadas, com separação clara de responsabilidades:
+- Python
+- Flask
 
-### Camadas
+### Autenticação
 
-1. **Frontend (Interface)**
-    - Dashboards
-    - Filtros
-    - Visualização
-2. **Backend (Aplicação)**
-    - Rotas
-    - Controllers
-    - Controle do fluxo
-3. **Camada de Negócio (Services)**
-    - Regras de negócio
-    - Processamento dos dados
-    - Integração com IA
-4. **Camada de Dados (Repositories)**
-    - Acesso ao banco de dados
-    - Consumo da API externa
-5. **Infraestrutura**
-    - Banco de dados
-    - Configurações
-    - Autenticação
+- OAuth 2.0 (Google)
 
-# Fluxo Principal do Sistema
+### IA
+
+- spaCy / transformers *(ainda em estudo para definição final)*
+
+### Banco de Dados
+
+- PostgreSQL *(em validação final)*
+- SQLAlchemy
+- psycopg
+
+---
+
+## Arquitetura do sistema
+
+A arquitetura será baseada em camadas, com separação clara de responsabilidades.
+
+### 1. Frontend (Interface)
+
+Responsável por:
+
+- dashboards
+- filtros
+- visualização
+
+---
+
+### 2. Backend (Aplicação)
+
+Responsável por:
+
+- rotas
+- controllers
+- controle do fluxo
+
+---
+
+### 3. Negócio (Services)
+
+Responsável por:
+
+- regras de negócio
+- processamento dos dados
+- integração com IA
+
+---
+
+### 4. Dados (Repositories)
+
+Responsável por:
+
+- acesso ao banco de dados
+- consumo da API externa
+
+---
+
+### 5. Infraestrutura
+
+Responsável por:
+
+- banco de dados
+- configurações
+- autenticação
+
+---
+
+## Fluxo principal do sistema
 
 O fluxo padrão de requisição será:
 
@@ -73,11 +121,13 @@ Resposta JSON
 Frontend
 ```
 
-O frontend **nunca acessa a API externa diretamente**.
+O frontend nunca acessa a API externa diretamente.
 
-# Fluxo do Usuário
+---
 
-## Login
+## Fluxos do usuário
+
+### Login
 
 O login será feito via Google utilizando OAuth 2.0:
 
@@ -89,8 +139,7 @@ Frontend
 Login com Google
 ↓
 Backend recebe token
-↓↓
-
+↓
 Valida token
 ↓
 Busca ou cria usuário
@@ -100,7 +149,9 @@ Cria sessão
 Usuário autenticado
 ```
 
-## Navegação
+---
+
+### Navegação
 
 ```
 Usuário acessa dashboard
@@ -114,7 +165,9 @@ Banco retorna dados já tratados
 Frontend renderiza
 ```
 
-## Favoritos
+---
+
+### Favoritos
 
 ```
 Usuário favorita proposição
@@ -124,7 +177,7 @@ Backend registra em favoritos (user_id, proposicao_id)
 
 ---
 
-## Histórico
+### Histórico
 
 ```
 Usuário interage
@@ -132,7 +185,9 @@ Usuário interage
 Backend registra evento no historico
 ```
 
-## Notificações
+---
+
+### Notificações
 
 ```
 Proposição é atualizada
@@ -144,7 +199,9 @@ Cria notificações
 Usuário visualiza no sistema
 ```
 
-# Fluxo de Dados (ETL)
+---
+
+## Fluxo de dados (ETL)
 
 A atualização dos dados é feita de forma assíncrona:
 
@@ -168,37 +225,32 @@ Para cada proposição:
     Atualiza banco
 ```
 
-Estratégia:
+A estratégia adotada é buscar o que mudou recentemente via tramitações.
 
-> Buscar o que mudou recentemente (tramitações)
-> 
+### Observação importante
 
-## Observação importante
-
-A API não fornece atualização global.
-
-Portanto:
+A API não fornece atualização global. Portanto:
 
 - usamos tramitação como proxy de mudança
 - aceitamos pequenas inconsistências pontuais
 
 Isso é suficiente para dashboards e análise.
 
-# Integração dos Fluxos
+---
+
+## Integração dos fluxos
 
 O sistema possui dois fluxos principais:
 
-### 🔹 Assíncrono (dados)
+**Assíncrono (dados):** API → processamento → banco
 
-- API → processamento → banco
-
-### 🔹 Síncrono (usuário)
-
-- login → navegação → interação
+**Síncrono (usuário):** login → navegação → interação
 
 Ambos convergem no banco de dados estruturado.
 
-# Estrutura do Sistema
+---
+
+## Estrutura do projeto
 
 ```
 project/
@@ -217,23 +269,21 @@ project/
 
 ---
 
-# Estrutura de Dados
+## Estrutura de dados
 
-- `proposicoes` → dados tratados das proposições
-- `users` → usuários
-- `favoritos` → relação usuário ↔ proposição
-- `historico` → interações
-- `notificacoes` → eventos
+- `proposicoes` — dados tratados das proposições
+- `users` — usuários
+- `favoritos` — relação usuário e proposição
+- `historico` — interações
+- `notificacoes` — eventos
 
-Todas as relações feitas via `user_id` e `proposicao_id`.
+Todas as relações são feitas via `user_id` e `proposicao_id`.
 
-# Síntese
+---
 
-O sistema não consome dados em tempo real para o usuário
+## Síntese
 
-Ele **prepara os dados antes** e entrega pronto
-
-Resultado:
+O sistema não consome dados em tempo real para o usuário. Os dados são preparados previamente e entregues prontos, resultando em:
 
 - alta performance
 - boa experiência

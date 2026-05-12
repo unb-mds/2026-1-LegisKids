@@ -1,59 +1,99 @@
 # Estudo Git / GitHub
 
+---
+
 ## Conceito geral
 
-Git é um sistema de controle de versão que registra as alterações feitas no código ao longo do tempo. Isso significa que, em vez de trabalhar apenas com a versão mais recente de um projeto, é possível acompanhar toda a sua evolução, entender o que foi modificado, quando foi modificado e por quem. Esse tipo de controle é essencial no desenvolvimento de software, porque erros acontecem e mudanças são constantes.
+Git é um sistema de controle de versão que registra alterações feitas no código ao longo do tempo. Ele permite acompanhar a evolução do projeto, identificar mudanças, autores e momentos em que cada modificação foi realizada.
 
-O GitHub entra como uma extensão desse processo. Enquanto o Git funciona localmente, no computador do desenvolvedor, o GitHub permite armazenar esse repositório na internet. Isso facilita o compartilhamento, o trabalho em equipe e também funciona como uma forma de backup do projeto.
+O GitHub complementa o Git ao funcionar como uma plataforma remota para armazenamento de repositórios, facilitando o trabalho em equipe, o compartilhamento de código e o versionamento centralizado.
 
-## Como o Git funciona na prática
+---
 
-O funcionamento do Git gira em torno do registro de mudanças. Durante o desenvolvimento, arquivos são alterados constantemente, mas nem toda alteração precisa ser salva imediatamente. O Git permite selecionar exatamente quais mudanças devem ser registradas.
+## Funcionamento do Git na prática
 
-Quando essas mudanças são salvas, cria-se um commit. O commit representa um ponto específico na evolução do projeto, como se fosse um marco. Ao longo do tempo, vários commits formam uma linha de histórico que mostra toda a construção do código.
+Durante o desenvolvimento, alterações são feitas continuamente no código, mas nem todas precisam ser salvas imediatamente.
 
-Esse modelo é importante porque permite voltar no tempo se algo der errado, comparar versões diferentes e entender a lógica por trás das alterações feitas.
+O Git permite selecionar exatamente quais mudanças serão registradas por meio de commits.
 
-## Estrutura e histórico do projeto
+Cada commit representa um estado do projeto em um determinado momento, formando um histórico completo de evolução do código.
 
-Diferente de um simples “salvar arquivo”, o Git organiza o projeto como uma sequência de versões conectadas. Cada commit guarda o estado do projeto naquele momento, o que garante mais segurança durante o desenvolvimento.
+Esse histórico permite:
 
-Isso significa que o desenvolvedor pode testar ideias, fazer mudanças mais arriscadas e, se necessário, voltar para uma versão anterior sem grandes problemas. Esse controle reduz bastante o risco de perda de trabalho e facilita a manutenção do código.
+- Voltar versões anteriores
+- Comparar mudanças
+- Entender a evolução do sistema
+- Reduzir riscos de perda de código
+
+---
+
+## Estrutura do histórico
+
+O Git organiza o projeto como uma sequência de versões encadeadas.
+
+Cada commit armazena o estado do projeto naquele instante, permitindo controle total sobre o desenvolvimento.
+
+Isso possibilita testar alterações com segurança, sabendo que é possível reverter mudanças quando necessário.
+
+---
 
 ## Organização com branches
 
-Uma das ideias mais importantes do Git é a possibilidade de trabalhar com branches. Em vez de todo mundo alterar o mesmo código diretamente, é possível criar ramificações para desenvolver partes específicas do projeto.
+Branches permitem criar linhas paralelas de desenvolvimento.
 
-A branch principal (geralmente chamada de main) representa a versão mais estável. A partir dela, novas branches podem ser criadas para implementar funcionalidades, corrigir erros ou testar mudanças. Isso permite que o desenvolvimento aconteça de forma mais organizada, sem comprometer o funcionamento do projeto principal.
+A branch principal (main) representa a versão estável do projeto, enquanto outras branches são usadas para:
 
-Depois que o trabalho em uma branch é concluído, essas alterações podem ser integradas novamente ao projeto principal.
+- Desenvolvimento de novas funcionalidades
+- Correção de bugs
+- Testes experimentais
+
+Após finalização, as alterações são integradas à branch principal.
+
+---
 
 ## Integração e conflitos
 
-A integração entre diferentes partes do código acontece por meio do merge. Esse processo junta alterações feitas em diferentes branches.
+A integração entre branches ocorre por meio de merge.
 
-Na maioria dos casos, o Git consegue fazer essa junção automaticamente. No entanto, quando duas alterações afetam o mesmo trecho do código, ocorre um conflito. Nesses casos, o desenvolvedor precisa analisar a situação e decidir qual versão deve permanecer.
+Em alguns casos, podem ocorrer conflitos quando duas alterações afetam a mesma parte do código. Nesses casos, o desenvolvedor precisa decidir qual versão manter.
 
-Esse tipo de situação é comum em projetos com várias pessoas trabalhando ao mesmo tempo, e saber lidar com conflitos é parte importante do uso do Git.
+Esse processo é comum em equipes e faz parte do fluxo de desenvolvimento colaborativo.
+
+---
 
 ## Papel do GitHub
 
-O GitHub amplia o uso do Git ao permitir que o projeto seja acessado remotamente. Ele centraliza o código, o histórico de alterações e facilita a colaboração entre desenvolvedores.
+O GitHub fornece uma interface remota para o Git, permitindo:
 
-Além disso, o GitHub organiza o fluxo de trabalho por meio de funcionalidades como Pull Requests, que permitem revisar alterações antes de integrá-las ao projeto principal. Isso cria um processo mais estruturado, onde o código pode ser analisado, discutido e melhorado antes de ser incorporado.
+- Armazenamento centralizado do código
+- Colaboração entre desenvolvedores
+- Revisão de código por meio de Pull Requests
+- Controle de versões acessível online
 
-## Fluxo de trabalho no dia a dia
+---
 
-No uso prático, o desenvolvimento com Git e GitHub segue um padrão relativamente claro. Primeiro, cria-se uma branch para trabalhar em uma tarefa específica. Em seguida, o desenvolvedor realiza alterações no código e registra essas mudanças por meio de commits.
+## Fluxo de trabalho
 
-Depois disso, as alterações são enviadas para o repositório remoto. Antes de serem incorporadas ao projeto principal, passam por revisão, o que ajuda a garantir qualidade e evitar erros. Só então essas mudanças são integradas ao código principal.
+O fluxo básico de desenvolvimento com Git e GitHub segue as etapas:
 
-Esse fluxo organiza o trabalho e permite que várias pessoas contribuam ao mesmo tempo sem gerar desordem.
+1. Criação de uma branch para uma tarefa
+2. Implementação das alterações
+3. Registro das mudanças por commits
+4. Envio para o repositório remoto
+5. Abertura de Pull Request
+6. Revisão de código
+7. Merge para a branch principal
+
+---
 
 ## Síntese
 
-No fundo, o Git não é apenas uma ferramenta de comandos, mas um sistema para controlar e organizar mudanças no desenvolvimento de software. Ele permite manter um histórico confiável, trabalhar com mais segurança e facilitar a colaboração entre desenvolvedores. O GitHub complementa esse processo ao oferecer um ambiente onde esse trabalho pode ser compartilhado, revisado e integrado de forma estruturada.
+O Git é uma ferramenta de controle de versão que garante organização, segurança e rastreabilidade no desenvolvimento de software.
 
-## Referência:
+O GitHub complementa esse processo ao permitir colaboração, revisão e centralização do código em um ambiente remoto.
+
+---
+
+## Referência
 
 https://git-scm.com/book/pt-br/v2

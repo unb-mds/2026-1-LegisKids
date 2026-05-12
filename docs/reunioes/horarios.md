@@ -1,12 +1,28 @@
-# **Cerimônias Scrum**
+# Cerimônias Scrum
 
-# Sprint Review, Sprint Retrospective e Sprint Planning:
+## Visão geral
 
-Logo após a aula de MDS, na Segunda-Feira.
+Este documento descreve as cerimônias do Scrum utilizadas no projeto, incluindo Sprint Planning, Sprint Review, Sprint Retrospective e Daily Scrum, com seus respectivos horários e organização.
 
-Time-box: 1 hora.
+---
 
-# Daily Scrum:
+## Conteúdo principal
 
-Quarta-feira após a aula de MDS.
-Sexta-feria às 13 horas.
+### Sprint Planning, Sprint Review e Sprint Retrospective
+
+Realizadas logo após a aula de MDS na segunda-feira.
+
+- Time-box: 1 hora
+
+---
+
+### Daily Scrum
+
+- Quarta-feira após a aula de MDS  
+- Sexta-feira às 13 horas  
+
+---
+
+## Objetivo
+
+Padronizar a execução das cerimônias Scrum, garantindo organização, previsibilidade e alinhamento do time ao longo das sprints.
