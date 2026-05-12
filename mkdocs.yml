@@ -7,31 +7,31 @@ theme:
 
 nav:
 
-- Home: index.md
+  - Home: index.md
 
-- Projeto: projeto/index.md
+  - Projeto: projeto/index.md
 
-- Arquitetura: estudos/arquitetura/index.md
+  - Arquitetura: estudos/arquitetura/index.md
 
-- Backend / API: estudos/API/index.md
+  - Backend / API: estudos/API/index.md
 
-- Banco de Dados: estudos/banco_de_dados/index.md
+  - Banco de Dados: estudos/banco_de_dados/index.md
 
-- Frontend: estudos/frontend/index.md
+  - Frontend: estudos/frontend/index.md
 
-- Design: estudos/design/index.md
+  - Design: estudos/design/index.md
 
-- Git & Organização: estudos/git_github/index.md
+  - Git & Organização: estudos/git_github/index.md
 
-- Metodologia: estudos/metodos_ageis/index.md
+  - Metodologia: estudos/metodos_ageis/index.md
 
-- Gestão: reunioes/index.md
+  - Gestão: reunioes/index.md
 
-- Padrões: padrao_organizacao/index.md
+  - Padrões: padrao_organizacao/index.md
 
-- Requisitos: estudos/requisitos/index.md
+  - Requisitos: estudos/requisitos/index.md
 
-- Inteligência Artificial: estudos/inteligencia_artificial/index.md
+  - Inteligência Artificial: estudos/inteligencia_artificial/index.md
 
 plugins:
   - search
