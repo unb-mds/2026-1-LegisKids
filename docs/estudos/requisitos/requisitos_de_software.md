@@ -402,7 +402,7 @@
 
 ---
 
-## ÉPICO 9 — Usabilidade e Performance
+## ÉPICO 8 — Usabilidade e Performance
 
 ### US17 — Interface responsiva
 
@@ -436,7 +436,7 @@
 
 ---
 
-## ÉPICO 10 — Autenticação e Conta
+## ÉPICO 9 — Autenticação e Conta
 
 > **Decisão de arquitetura (Estudo de Login + Arquitetura v2):**
 > O sistema adota **Google OAuth 2.0** como único método de autenticação.
