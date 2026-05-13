@@ -18,7 +18,6 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from string import Template
 
 
 DATE_ONLY_LENGTH = 10
@@ -498,12 +497,12 @@ def render_html(data: dict) -> str:
     generated_at = data.get("generated_at", "")
     repository = data.get("repository", "")
 
-    template = Template("""<!DOCTYPE html>
+    html = """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produtividade GitHub - $repository</title>
+  <title>Produtividade GitHub - __REPOSITORY__</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
@@ -629,8 +628,8 @@ def render_html(data: dict) -> str:
 </head>
 <body>
   <header>
-    <h1>Produtividade GitHub - $repository</h1>
-    <p>Gerado em <strong>$generated_at</strong>. Indicadores auxiliares para acompanhamento do squad.</p>
+    <h1>Produtividade GitHub - __REPOSITORY__</h1>
+    <p>Gerado em <strong>__GENERATED_AT__</strong>. Indicadores auxiliares para acompanhamento do squad.</p>
   </header>
 
   <main>
@@ -716,7 +715,7 @@ def render_html(data: dict) -> str:
     <a href="metrics.json">Abrir metrics.json</a>
   </footer>
 
-  <script id="metrics-data" type="application/json">$data_json</script>
+  <script id="metrics-data" type="application/json">__DATA_JSON__</script>
   <script>
     const DATA = JSON.parse(document.getElementById('metrics-data').textContent);
     const PALETTE = ['#2563eb', '#0f766e', '#b45309', '#7c3aed', '#dc2626', '#0891b2', '#4d7c0f', '#be185d'];
@@ -1049,11 +1048,12 @@ def render_html(data: dict) -> str:
   </script>
 </body>
 </html>
-""")
-    return template.safe_substitute(
-        repository=repository,
-        generated_at=generated_at,
-        data_json=data_json,
+"""
+    return (
+        html
+        .replace("__REPOSITORY__", repository)
+        .replace("__GENERATED_AT__", generated_at)
+        .replace("__DATA_JSON__", data_json)
     )
 
 
