@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/*Personalização NavBar */
+.navbar{
+    background-color: #1E40AF;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+}
+
+.nav-links{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,50 @@
+name: Performance Report
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  generate-performance-report:
+    name: Generate performance report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate performance report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python scripts/generate_performance_report.py
+
+      - name: Check generated files
+        run: |
+          test -f docs/performance/metrics.json
+          test -f docs/performance/index.html
+
+      - name: Commit generated report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add docs/performance/metrics.json docs/performance/index.html
+
+          if git diff --cached --quiet; then
+            echo "No performance report changes to commit."
+          else
+            git commit -m "chore: update performance report"
+            git push
+          fi

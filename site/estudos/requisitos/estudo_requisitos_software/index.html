@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Documento Complementar - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../arquitetura/escolha_arquitetura/" class="dropdown-item">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/checando_tecnologias/" class="dropdown-item">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="../../arquitetura/estudo_arquiteturas/" class="dropdown-item">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../API/levantamento_api/" class="dropdown-item">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/dailies/" class="dropdown-item">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="../../../reunioes/sprint_plannings/" class="dropdown-item">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../requisitos_de_software/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../../reunioes/dailies/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#requisitos-de-software-anotacao" class="nav-link">Requisitos de Software (Anotação)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1-conceito-de-requisito" class="nav-link">1. Conceito de requisito</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#o-que-e-um-stakeholder" class="nav-link">O que é um stakeholder?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2-processo-de-engenharia-de-requisitos" class="nav-link">2. Processo de Engenharia de Requisitos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#elicitacao-de-requisitos" class="nav-link">Elicitação de requisitos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#validacao" class="nav-link">Validação</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#gerenciamento-de-requisitos" class="nav-link">Gerenciamento de requisitos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#3-documentacao" class="nav-link">3. Documentação</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#documento-de-visao" class="nav-link">Documento de Visão</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#srs" class="nav-link">SRS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#documento-de-requisitos-padrao-ieee-830-isoiecieee-29148" class="nav-link">Documento de Requisitos — Padrão IEEE 830 - ISO/IEC/IEEE 29148</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#backlog-do-produto" class="nav-link">Backlog do Produto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#4-modelagem-de-requisitos" class="nav-link">4. Modelagem de Requisitos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#caso-de-usos" class="nav-link">Caso de Usos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#uml" class="nav-link">UML</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#bpmn" class="nav-link">BPMN</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#user-stories" class="nav-link">User Stories</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#5-validacao-e-verificacao" class="nav-link">5. Validação e Verificação</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#6-gerenciamento-de-requisitos" class="nav-link">6. Gerenciamento de Requisitos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#gerenciamento-de-mudancas" class="nav-link">Gerenciamento de mudanças</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#versionamento" class="nav-link">Versionamento</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#matriz-de-rastreabilidade-de-requisitos" class="nav-link">Matriz de Rastreabilidade de Requisitos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#mvp" class="nav-link">MVP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="requisitos-de-software-anotacao">Requisitos de Software (Anotação)</h1>
+<h1 id="1-conceito-de-requisito">1. Conceito de requisito</h1>
+<p>Requisitos de Software são descrições do comportamento do software, indicando o que o sistema/software deve fazer, serviços que ele oferece e restrições sobre o seu funcionamento. Refletindo a necessidade do cliente em um determinado pedido.</p>
+<h4 id="sao-divididos-em">São divididos em:</h4>
+<ul>
+<li><strong>Requisitos Funcionais:</strong> É aquilo que o cliente pede para que o software faça, como "o sistema deve emitir relatórios de vendas" ou "o usuário deve conseguir redefinir sua senha".</li>
+<li><strong>Requisitos Não-Funcionais:</strong> Definem propriedades de qualidade e restrições, como desempenho (tempo de resposta), segurança (criptografia), usabilidade (intuitividade), disponibilidade e portabilidade.</li>
+<li><strong>Requisito de domínio:</strong> É aquele que surge das regras, leis, padrões e características específicas da área de aplicação do sistema. Conectando o sistema ao mundo real, como por exemplo: A média final deve ser calculada conforme o regulamento institucional (ex: média ≥ 6 para aprovação).</li>
+</ul>
+<p>Alguns estudos também classificam alguns requisitos como:</p>
+<ul>
+<li><strong>Requisitos de Usuário</strong>: Alto nível, escrito em língua natural, explicando quais serviços o sistema deve fornecer ao usuário e o que o sistema não pode fazer.</li>
+<li><strong>Requisitos de Sistema</strong>: Deve definir exatamente o que o software deve fazer, podendo ser chamado também de “especificações de requisito”.</li>
+</ul>
+<p>Portanto, requisitos de usuário estão mais próximos do problema, enquanto que requisitos de sistema estão mais próximos da solução.</p>
+<p>Links sobre Requisitos Funcionais/Não-Funcionais: </p>
+<p>https://youtu.be/YLd6AWKVyas?si=00U5Eq-sF_Hz5C5_</p>
+<p>https://youtu.be/ptreLvwOXyw?si=DsCG2BoFbvkvgI9v</p>
+<h2 id="o-que-e-um-stakeholder"><strong>O que é um stakeholder?</strong></h2>
+<p>Um <strong>stakeholder</strong> é um indivíduo ou grupo que tem interesse em uma empresa, podendo impactar ou ser impactado pelo negócio. Investidores, clientes, funcionários e fornecedores. Entender quais são os seus <strong>stakeholders</strong> é importante porque são eles que legitimam as iniciativas de um negócio, influenciando seus resultados.</p>
+<h4 id="engenharia-de-requisitos">Engenharia de Requisitos:</h4>
+<p>A Engenharia de Requisitos é a base da Engenharia de Software. Ela alimenta todas as fases subsequentes – design, codificação, testes e manutenção. Erros nessa etapa são os mais caros e frequentes, respondendo por 50% a 80% dos defeitos em projetos. Negligenciar requisitos é garantir atrasos, estouro de orçamento e entregas que não atendem às necessidades reais.</p>
+<h4 id="ciclo-de-vida-dos-requisitos">Ciclo de vida dos requisitos</h4>
+<p>De acordo com a NBR ISO/IEC 12207:1998, o ciclo de vida é a “<strong>Estrutura contendo processos, atividades e tarefas envolvidas no desenvolvimento, operação e manutenção de um produto de software, abrangendo a vida do sistema, desde a definição de seus requisitos até o término de seu uso.</strong>”</p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Principais Características</th>
+<th>Vantagens</th>
+<th>Problemas / Riscos</th>
+<th>Indicado Para</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cascata</strong></td>
+<td>Sequencial e linear; fases bem definidas; forte documentação; planejamento inicial detalhado</td>
+<td>Simples; fácil estimar custo e prazo</td>
+<td>Rígido; cliente só vê o produto no final; difícil lidar com mudanças</td>
+<td>Projetos com requisitos estáveis</td>
+</tr>
+<tr>
+<td><strong>Modelo em V</strong></td>
+<td>Evolução do cascata; cada fase de desenvolvimento tem fase correspondente de teste; foco forte em validação</td>
+<td>Maior garantia de qualidade; testes planejados desde o início</td>
+<td>Ainda é rígido; mudanças geram alto custo</td>
+<td>Sistemas críticos (ex: embarcados, regulados)</td>
+</tr>
+<tr>
+<td><strong>Incremental</strong></td>
+<td>Sistema construído em partes (incrementos); cada entrega adiciona funcionalidades</td>
+<td>Entrega valor cedo; maior flexibilidade que cascata</td>
+<td>Requer boa arquitetura; risco de integração complexa</td>
+<td>Projetos que podem ser divididos em módulos</td>
+</tr>
+<tr>
+<td><strong>Evolutivo</strong></td>
+<td>Versões sucessivas refinadas com feedback do cliente; requisitos evoluem</td>
+<td>Reduz risco de má interpretação; adaptação constante</td>
+<td>Escopo pode crescer demais; exige forte gestão</td>
+<td>Requisitos pouco definidos</td>
+</tr>
+<tr>
+<td><strong>RAD</strong></td>
+<td>Desenvolvimento rápido; atividades paralelas; uso intenso de ferramentas e reutilização</td>
+<td>Alta velocidade de entrega</td>
+<td>Pode perder qualidade e desempenho</td>
+<td>Projetos pequenos/médios com prazo curto</td>
+</tr>
+<tr>
+<td><strong>Prototipagem</strong></td>
+<td>Criação de protótipos para entender requisitos; forte interação com cliente</td>
+<td>Esclarece requisitos confusos</td>
+<td>Protótipo pode virar produto mal estruturado</td>
+<td>Sistemas inovadores ou pouco claros</td>
+</tr>
+<tr>
+<td><strong>Espiral</strong></td>
+<td>Iterativo e guiado por riscos; cada ciclo inclui análise de riscos</td>
+<td>Excelente para projetos complexos e críticos</td>
+<td>Alto custo; difícil previsão de prazo</td>
+<td>Grandes sistemas com alto risco</td>
+</tr>
+<tr>
+<td><strong>RUP</strong></td>
+<td>Iterativo e incremental; 4 fases (Concepção, Elaboração, Construção, Transição); orientado a casos de uso</td>
+<td>Processo organizado; controle de riscos</td>
+<td>Pode ser burocrático; exige maturidade</td>
+<td>Projetos médios/grandes em empresas estruturadas</td>
+</tr>
+</tbody>
+</table>
+<h1 id="2-processo-de-engenharia-de-requisitos">2. Processo de Engenharia de Requisitos</h1>
+<h2 id="elicitacao-de-requisitos">Elicitação de requisitos</h2>
+<p>São atividades relacionadas com a descoberta e entendimento dos requisitos de um sistema. Sendo interações dos desenvolvedores de um sistema com os seus stakeholders, com o objetivo de descobrir e entender os principais requisitos do sistema que se pretende construir.
+Para a realização das elicitações são utilizadas várias técnicas, entre elas:</p>
+<ul>
+<li>Entrevistas com stakeholders</li>
+<li>Aplicação de questionários</li>
+<li>Leitura de documentos e formulários da organização que está contratando o sistema</li>
+<li>Realização de workshops com os usuários</li>
+<li>Implementação de protótipos</li>
+<li>Análise de cenários de uso</li>
+</ul>
+<p>Entendemos que, <strong>para produtos inovadores, é impossível descobrir todos os requisitos no início do desenvolvimento</strong>.</p>
+<p>Por esse motivo, a construção dos requisitos precisa ser colaborativa. A configuração varia muito, mas podemos ter:</p>
+<ul>
+<li><strong>Product Manager (PM)</strong> atuando em nível de negócio, definindo visão de produto, métricas e objetivos;</li>
+<li><strong>Product Owner (PO)</strong>, em contato direto com o time, facilitando o processo de transformar os grandes objetivos em <strong>histórias de usuário</strong>;</li>
+<li><strong>Time de desenvolvimento</strong>, que participa desse refinamento, executa testes e análises para identificar feedbacks que contribuem para a melhoria contínua do produto; entre outros envolvidos.</li>
+</ul>
+<h2 id="validacao">Validação</h2>
+<p>A validação de requisitos de software envolve a confirmação de que as especificações documentadas estão corretas, completas e compreendidas por todos os envolvidos.</p>
+<p>As técnicas que podem ser usadas para essa validação são:</p>
+<ul>
+<li><strong>Revisões</strong>: envolvem a análise dos requisitos por uma equipe de stakeholders e especialistas, por exemplo, os Tech Leads, garantindo que todos os aspectos sejam confirmados e aceitos;</li>
+<li><strong>Prototipagem</strong>: consiste em criar modelos simplificados do sistema, que permitem aos usuários interagir e fornecer feedback antes da construção completa do produto. Figma e Adobe XD são ferramentas bastante usadas para isso;</li>
+<li><strong>Simulações</strong>: utilizam representações virtuais do sistema para prever como ele se comporta em diferentes cenários.</li>
+</ul>
+<h2 id="gerenciamento-de-requisitos"><strong>Gerenciamento de requisitos</strong></h2>
+<p>Fazer um bom gerenciamento de requisitos de software inclui o controle das mudanças, onde <strong>qualquer alteração é registrada, avaliada e aprovada antes de ser adotada</strong>. Para facilitar esse processo, podem ser utilizadas ferramentas de gerenciamento como Jira, IBM DOORS e Trello.</p>
+<h1 id="3-documentacao">3. Documentação</h1>
+<h2 id="documento-de-visao"><strong>Documento de Visão</strong></h2>
+<p><strong>Definição:</strong> Documento de alto nível que descreve o propósito, objetivos, stakeholders e funcionalidades principais do produto, ajudando a visualizar os requisitos e suas interações de forma gráfica, o que facilita o entendimento e a comunicação.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Item</strong></th>
+<th><strong>Descrição</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Problema</td>
+<td>O problema que o sistema resolve</td>
+</tr>
+<tr>
+<td>Objetivos</td>
+<td>O que se espera alcançar</td>
+</tr>
+<tr>
+<td>Stakeholders</td>
+<td>Quem são os envolvidos</td>
+</tr>
+<tr>
+<td>Usuários-alvo</td>
+<td>Perfis de usuário</td>
+</tr>
+<tr>
+<td>Visão geral do produto</td>
+<td>Descrição sucinta do que será entregue</td>
+</tr>
+<tr>
+<td>Principais funcionalidades</td>
+<td>Lista de alto nível</td>
+</tr>
+<tr>
+<td>Restrições</td>
+<td>Orçamento, prazo, tecnologia, regulatórias</td>
+</tr>
+</tbody>
+</table>
+<h2 id="srs">SRS</h2>
+<p>Pense em um <strong>SRS (Software Requirements Specification)</strong> como um <strong>plano ou roteiro</strong> para o software que será construído. Os elementos que o compõem incluem:</p>
+<ul>
+<li><strong>Propósito (Purpose):</strong> Por que o software está sendo desenvolvido.</li>
+<li><strong>Descrição (Description):</strong> O que o software fará.</li>
+<li><strong>Requisitos (Requirements):</strong> Funcionalidades específicas e restrições.</li>
+<li><strong>Links:</strong> Conexão entre histórias de usuário e requisitos específicos.</li>
+<li><strong>Processo de Aprovação (Approval Process):</strong> Garantia de que todas as partes interessadas estejam alinhadas.</li>
+</ul>
+<hr />
+<p>Veja como cada papel da equipe participa na produção e uso do SRS:</p>
+<ul>
+<li><strong>Product Owners e Analistas de Negócio:</strong> Definem os requisitos.</li>
+<li><strong>Desenvolvedores:</strong> Entendem o que deve ser construído.</li>
+<li><strong>Testadores:</strong> Criam casos de teste e garantem a validação.</li>
+<li><strong>Gerentes de Projeto:</strong> Acompanham escopo e progresso.</li>
+<li><strong>Clientes e Stakeholders:</strong> Aprovam funcionalidades e expectativas.</li>
+</ul>
+<h2 id="documento-de-requisitos-padrao-ieee-830-isoiecieee-29148">Documento de Requisitos — Padrão IEEE 830 - <strong>ISO/IEC/IEEE 29148</strong></h2>
+<p>Após a especificação, os requisitos devem ser <strong>verificados e validados</strong> para garantir qualidade. Segundo o padrão IEEE 830, eles precisam ser:</p>
+<ul>
+<li><strong>Corretos</strong>: refletir exatamente o que o sistema deve fazer.</li>
+<li><strong>Precisos (não ambíguos)</strong>: não permitir múltiplas interpretações.</li>
+<li><strong>Completos</strong>: conter todas as informações necessárias.</li>
+<li><strong>Consistentes</strong>: não apresentar conflitos entre si.</li>
+<li><strong>Verificáveis</strong>: ser testáveis, permitindo comprovar seu atendimento.</li>
+</ul>
+<p>O objetivo é garantir clareza, confiabilidade e possibilidade de teste dos requisitos.</p>
+<p>A norma <strong>ISO/IEC/IEEE 29148é um padrão internacional que define os processos, produtos e diretrizes para a engenharia de requisitos em sistemas, softwares e serviços</strong>. Ela estabelece boas práticas para definir, documentar, analisar e gerenciar requisitos ao longo de todo o ciclo de vida, garantindo qualidade, rastreabilidade e consistência.</p>
+<p><strong>Principais aspectos da ISO/IEC/IEEE 29148:</strong></p>
+<ul>
+<li><strong>Foco no Requisito:</strong> Define o que constitui um "bom" requisito (ex: claro, consistente, verificável) e como estruturar documentos de requisitos (especificações).</li>
+<li><strong>Ciclo de Vida:</strong> Aplica-se de forma iterativa e recursiva desde a concepção até a inativação do sistema.</li>
+<li><strong>Hierarquia de Requisitos:</strong> Aborda requisitos de negócio (necessidades da organização), requisitos de partes interessadas (visão do usuário) e requisitos de sistema (técnicos).</li>
+<li><strong>Conexão com outras normas:</strong> Oferece diretrizes adicionais para os processos de engenharia de requisitos definidos nas normas <strong>ISO/IEC 12207:2008</strong> e ISO/IEC 15288:2008.</li>
+<li><strong>Conteúdo dos documentos:</strong> Define o conteúdo normativo para especificações, incluindo o propósito, escopo, regras de negócio e restrições.</li>
+</ul>
+<h2 id="backlog-do-produto">Backlog do Produto</h2>
+<p>O <strong>Backlog do Produto</strong> é a lista ordenada de todos os requisitos e funcionalidades do produto, gerenciada exclusivamente pelo <strong>Product Owner</strong>. Ele representa a fonte única de mudanças e é refinado continuamente, servindo como principal entrada para cada Sprint.</p>
+<p>Os itens no topo são mais detalhados, refinados e prontos para desenvolvimento, enquanto os itens da base são mais amplos e menos detalhados. O Backlog é dinâmico e evolui conforme o produto, o mercado e o entendimento das partes interessadas mudam.</p>
+<h1 id="4-modelagem-de-requisitos">4. Modelagem de Requisitos</h1>
+<h2 id="caso-de-usos">Caso de Usos</h2>
+<p>Um caso de uso descreve uma função que um sistema desempenha para alcançar a meta do usuário. Um caso de uso deve produzir um resultado observável que seja valioso para o usuário do sistema. Os casos de uso contêm informações detalhadas sobre o sistema, os usuários do sistema, os relacionamentos entre o sistema e os usuários e o comportamento requerido do sistema. Os casos de uso não descrevem os detalhes de como o sistema é executado.</p>
+<p>É possível utilizar casos de uso para os seguintes objetivos:</p>
+<ul>
+<li>Determinar os requisitos do sistema</li>
+<li>Descrever o que o sistema deve fazer</li>
+<li>Fornecer uma base para teste, para assegurar que o sistema funcione conforme pretendido</li>
+</ul>
+<p>Visualmente falando os Diagramas de Caso de Uso é um índice gráfico de casos de uso. Ele representa os atores de um sistema (como pequenos bonecos) e os casos de uso (como elipses). Mostram-se também dois tipos de relacionamento: (1) ligando ator com caso de uso, que indicam que um ator participa de um determinado caso de uso; (2) ligando dois casos de uso, que indicam que um caso de uso inclui ou estende outro caso de uso.</p>
+<p><img alt="image.png" src="image.png" /></p>
+<h2 id="uml">UML</h2>
+<p>O Diagrama UML é uma maneira de visualizar sistemas e software usando a Linguagem de Modelagem Unificada (UML). Engenheiros de software <strong>criam diagramas UML</strong> para entender os designs, a arquitetura do código e a implementação proposta de sistemas de software complexos. Os diagramas UML também são usados para modelar fluxos de trabalho e processos de negócios. A codificação pode ser um processo complicado com muitos elementos inter-relacionados. Muitas vezes, há milhares de linhas de linguagem de programação que podem ser difíceis de entender à primeira vista. Um diagrama UML simplifica essas informações em uma referência visual mais fácil de digerir. Ele usa um método padronizado para escrever um modelo de sistema e capturar ideias conceituais.</p>
+<p>Exemplo de Diagrama UML</p>
+<p><img alt="image.png" src="image%201.png" /></p>
+<h2 id="bpmn">BPMN</h2>
+<p>O <strong>BPMN (Business Process Model and Notation)</strong> é uma notação gráfica padronizada para modelar e documentar processos de negócio, representando visualmente atividades e fluxos de informação.</p>
+<ul>
+<li>
+<p><strong>Elementos gráficos encontrados em um BPMN</strong></p>
+<p><strong>Eventos</strong>: círculos que representam algo que acontece. Dentro do círculo, muitas vezes há ícones que indicam o tipo de evento.</p>
+<p><img alt="image.png" src="image%202.png" /></p>
+<p><strong>Atividades</strong>: processos de negócios que são executados, como “gerar um relatório”.</p>
+<p><img alt="image.png" src="image%203.png" /></p>
+<p><strong>Portas de entrada</strong>: se uma atividade precisa passar por diferentes fluxos de processos de negócios, é necessário desenhar uma porta de entrada em forma de diamante.</p>
+<p><img alt="image.png" src="image%204.png" /></p>
+<ul>
+<li>
+<p><strong>Fluxo de sequência</strong>: uma linha e ponta de seta sólida mostrando a ordem em que são realizadas as atividades.</p>
+<p><img alt="Fluxo de Sequência" src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/seo/bpmn/sequence-flow.svg" /></p>
+</li>
+<li>
+<p><strong>Fluxo de mensagens</strong>: exibido como uma linha tracejada com um círculo aberto no início da linha e ponta de seta aberta onde termina a linha. Representa quais mensagens fluem através dos limites organizacionais.</p>
+<p><img alt="Fluxo de Mensagens" src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/seo/bpmn/message-flow.svg" /></p>
+</li>
+<li>
+<p><strong>Associação</strong>: uma linha pontilhada que mostra as relações entre texto e artefatos; dados e objetos de fluxo.</p>
+<p><img alt="Associação" src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/seo/bpmn/association.svg" /></p>
+</li>
+</ul>
+<p><strong>Raias/piscina</strong>: organizam os diferentes aspectos de um processo de negócios em um fluxograma multifuncional. Aparecem como retângulos largos.</p>
+<p><img alt="Raias" src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/seo/bpmn/swimlanes.svg" /></p>
+<p><strong>Artefatos</strong>: categorizam atividades e podem ser usados para incluir mais informações sobre um processo na BPMN.</p>
+<ul>
+<li><strong>Objeto de dados</strong>: os dados necessários para um processo. Parece um pedaço de papel com o canto superior direito dobrado para baixo.</li>
+<li><strong>Grupo</strong>: retângulo com cantos arredondados e com linhas tracejadas, ele agrupa diferentes atividades.</li>
+<li><strong>Anotação de texto</strong>: texto que fornece maiores informações.</li>
+</ul>
+<p><img alt="Artefatos" src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/seo/bpmn/artifacts.svg" /></p>
+</li>
+</ul>
+<h2 id="user-stories"><strong>User Stories</strong></h2>
+<p><strong>User Stories (Histórias de Usuário)</strong> são documentos usados em metodologias ágeis para descrever funcionalidades de uma solução. Seu principal objetivo pode ser resumido em uma palavra: <strong>comunicar</strong> — isto é, transmitir claramente a visão do cliente e orientar o time de desenvolvimento sobre o que deve ser construído.</p>
+<p>A linguagem, o formato e o nível de detalhamento das User Stories devem considerar o público-alvo, geralmente composto pelo cliente e pelo time de desenvolvimento (incluindo análise, design, programação e qualidade). Como cada empresa, time e cliente possuem características próprias, não existe uma fórmula única ou regra absoluta para escrever boas histórias.</p>
+<p>Apesar disso, há <strong>boas práticas</strong> que ajudam a tornar as User Stories mais claras, alinhadas e eficazes, contribuindo para a criação de soluções que realmente entreguem valor.</p>
+<p>As boas práticas indicam que uma <strong>User Story</strong> deve conter dois elementos principais: <strong>Descrição</strong> e <strong>Critérios de Aceitação</strong>.</p>
+<h4 id="1-descricao">1️⃣ Descrição</h4>
+<p>A descrição segue o modelo <strong>“quem – o quê – por quê”</strong> (role–feature–benefit), identificando:</p>
+<ul>
+<li><strong>Persona (quem?)</strong></li>
+<li><strong>Funcionalidade (o quê?)</strong></li>
+<li><strong>Objetivo ou benefício (por quê?)</strong></li>
+</ul>
+<p>Exemplo:</p>
+<p>“Como analista de crédito, quero visualizar as informações de risco do cliente, para ter assertividade na aprovação de crédito.”</p>
+<p>Uma boa história precisa deixar clara a persona e a necessidade atendida; caso contrário, não deve ser priorizada.</p>
+<p>Além disso, recomenda-se incluir:</p>
+<ul>
+<li><strong>Contextualização</strong>: explica onde a história se encaixa no produto, ajudando todo o time a entender o cenário e a prioridade.</li>
+<li><strong>Protótipos</strong>: auxiliam na visualização da solução e servem de apoio aos critérios de aceitação. Podem ser anexados ou referenciados por link.</li>
+</ul>
+<p>Assim, a estrutura sugerida para a Descrição é:</p>
+<p><strong>Contextualização + (quem, o quê, por quê) + Protótipos.</strong></p>
+<hr />
+<h4 id="2-criterios-de-aceitacao">2️⃣ Critérios de Aceitação</h4>
+<p>São as <strong>condições que precisam ser atendidas para que a funcionalidade seja considerada pronta e aceita pelo usuário</strong>.</p>
+<p>Eles se baseiam em:</p>
+<ul>
+<li>Regras de negócio</li>
+<li>UX</li>
+<li>Acessibilidade</li>
+<li>Segurança</li>
+<li>Permissões</li>
+<li>Outros aspectos relevantes para o desenvolvimento</li>
+</ul>
+<p>Não há formato obrigatório, mas um dos mais utilizados é o modelo <strong>orientado a cenário (Given/When/Then – Dado/Quando/Então)</strong>, herdado do BDD, que descreve:</p>
+<ul>
+<li>O contexto,</li>
+<li>A ação do usuário,</li>
+<li>O resultado esperado.</li>
+</ul>
+<p>Em resumo, uma boa User Story comunica claramente o valor da funcionalidade e define critérios objetivos para garantir que ela atenda às expectativas do usuário.</p>
+<h1 id="5-validacao-e-verificacao">5. Validação e Verificação</h1>
+<p>Os conceitos de <em>Verificação</em> e <em>Validação</em> (V&amp;V) são fundamentais para garantir a qualidade de um software. Embora sejam frequentemente confundidos, cada um tem um propósito distinto dentro do ciclo de desenvolvimento.</p>
+<p><strong>Verificação</strong> refere-se ao processo de garantir que o software foi desenvolvido corretamente em conformidade com as especificações e requisitos definidos. Essa etapa envolve atividades como revisões de código, inspeções de documentos, análise estática e testes unitários. A principal pergunta da verificação é: <em>“Estamos construindo o produto certo?”</em>.</p>
+<p><strong>Validação</strong>, por outro lado, garante que o produto final atenda às expectativas e necessidades do cliente. Nessa fase, são realizados testes funcionais, testes de aceitação e simulações em ambiente real. A pergunta central da validação é: <em>“Estamos construindo o produto certo para o usuário?”</em>.</p>
+<p>Esse processo comumente é dividido em:</p>
+<h4 id="revisoes"><strong>Revisões:</strong></h4>
+<p>Buscam encontrar erros, anomalias, omissões decorrentes de todo o processo, aparecendo em qualquer estágio, podendo analisar e verificar qualquer produto decorrente do desenvolvimento do software </p>
+<h4 id="prototipacao"><strong>Prototipação</strong>:</h4>
+<p>Criação de versões iniciais e simplificadas de um sistema antes da implementação. O seu principal objetivo é oferecer uma representação visual e interativa do que está por vir. Os protótipos representam o produto final e permitem que o cliente visualize e interaja com suas principais funcionalidades já nas fases iniciais do projeto.</p>
+<h4 id="teste-baseado-em-requisitos-e-rastreabilidade"><strong>Teste Baseado em Requisitos e Rastreabilidade:</strong></h4>
+<p>Testes baseados em requisitos (RBT) validam o software contra especificações funcionais, garantindo que cada requisito seja testado. A rastreabilidade, frequentemente usando uma <strong>Matriz de Rastreabilidade de Requisitos (RTM)</strong>, vincula requisitos a casos de teste, facilitando a cobertura total, detecção precoce de erros e gestão de mudanças, assegurando que o produto final atenda às expectativas.</p>
+<p><a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACYElEQVQ4jaWTz0sUcQDFP99xZsd11d3UrDXatkz6peyaHUqkQxhBRAfRIAgSEsVLUOg/YpeUrFPgQUOLMOkUdA3pB1JSax0KzVqLWtvZnZnXqS4dOviOD96Hd3gPtijTcHrUbBWy5Qa1/5gGIraN41RQG6skWR9nR10Nq/nvrK1v8mJ6HPnvSew/hWk4Pfr9T9AyBssyGMAPQvwwJAhCiiWfUtHDdmwcx+F4poUDe3bw5NlrbMsytWEoMBbFcplisYQfhlS5EeI1VWxPxGht2c3xzAESMZe19a+caK6hgoDLZzLYPwqeYtEIQekXh9M7yR5Mc6R5F9mDe0kmXFLJBj7k3vH40UM+/vzB1Wuj9PX28mhhgfptCbi78Ewnz/YK0O3bdyRJn1c/6dLFC2pp3qf5+XlNTU0pk8kqHo/rxcuXkqRC4acmbt0SknT+/DkBmpyclCTlVt7r5vi42tvbNTZ2Q0EQaG5uTtFoVE7E1aEjbbo+MiJJsgX4gQCIRCKUSiWqopVUx2JsbGyQTO5kYmKC4eFhuru7OdZ2mLXVNbL7UnzcLGMbUE11NQBNTU0sLy/jeR4DAwMUi0Xy+TxDQ0Nc6OsjUV/P02+i0jEsb3icuv8GGzCDg4N0dXXh+z4zMzP09/fT2tpKKpWio6MDYwx1ddvwQnHlwXPe5jexjCG0bYykvzuYnZ2lsbGRzs5OPM/DdV0AQgkLKIdw9N4Sr9YLOE4FgcAGdi8uLpLL5ejp6cEYgyRc12VlZQVjDOl0GhAYsDAY2/oL3voXJP33jQIMUA5FdnqJpS8FLNsiFPwGONkPGCBvqKsAAAAASUVORK5CYII=">Universidade Federal do Espírito Santo</a></p>
+<p><strong>O que são Testes Baseados em Requisitos (RBT)?</strong></p>
+<ul>
+<li><strong>Foco na Qualidade:</strong> A metodologia foca em identificar e corrigir falhas de requisitos no início, antes que se tornem caros de consertar</li>
+<li><strong>Níveis de Teste:</strong> É ideal para testes de sistema e aceitação, garantindo que o software funcione conforme o esperado.</li>
+<li><strong>Cobertura:</strong> Garante que todos os requisitos funcionais tenham casos de teste correspondentes.</li>
+</ul>
+<p><a href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc1Nzc3Nzc3Nzc3NzctLTc3Nzc1NTU3NzctNzUrNys1NzUuNTc3LTcyNTUrNy03Nf/AABEIACAAIAMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAFBgcEA//EACsQAAEDAwMCBQQDAAAAAAAAAAECAwQABRESITFBYQYiUXGBFDKR4QcVFv/EABgBAAIDAAAAAAAAAAAAAAAAAAEEAAID/8QAGhEBAAMBAQEAAAAAAAAAAAAAAQACESEDEv/aAAwDAQACEQMRAD8A90oKxtU+0xLvniqRaw8uLDj41raHmUogHn5P4q1jxwgYCcnt0qfbtsT+4kR7kVgOqDpWleknpk47Ck1wjnmFrdjP+WVZ0Nyo1zkymSoJcZk6TgHYEEAcHFJNsBOVYGduKOtEWI7DC4v1jJjrUhLanyULST1GohXYn07U43HV5cZxUqqdlfapW2Eye+fyDMLq27MymOhOQH3RqWe4TwPnNFwrjcZSEXAyVuy9ZClObgnP244G2Nhjmj7vbZVrlfS3KO5HdUNSQ4OfY8H4rnt8qRDLojS3I+tIJ0HZX7HQ8itWonJKvyy4meMrlbJbMZlEPUwlAkAJKk6lcpyT02G2Nz2q38IeLod+ywUCNMSMlkqCgseqT19qwh58jJJJ1Dck980lYrk9EmMy2VaXG1hYPtRKGZBdbOs//9k="></a></p>
+<p><a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcElEQVR4AWP4//8/RZh6BgCZAkDsAMUNWDFCXgDFACCV8J/B+D8pGKwHRAKRAUyQDEMMQAYEUGBAAsiABpwKHjz4/9/BAZ8BDXgNgIMNGyg04MABkg1AeCEgAK8XKA5EiqORooSELykXEJuUBz43AgAIA1ZhBoG9vwAAAABJRU5ErkJggg=="></a></p>
+<p><strong>Rastreabilidade de Requisitos (O "Como")</strong></p>
+<ul>
+<li><strong>Mapeamento Bidirecional:</strong> A rastreabilidade conecta requisitos à sua implementação e verificação (casos de teste) ao longo de todo o ciclo de vida.</li>
+<li><strong>Matriz de Rastreabilidade (RTM):</strong> Documento que cruza os Requisitos com os Casos de Teste (e bugs), facilitando a identificação de lacunas de teste (cobertura) e o impacto de mudanças.</li>
+<li><strong>Benefícios:</strong><ul>
+<li><strong>Cobertura:</strong> Garante que 100% dos requisitos sejam testados.</li>
+<li><strong>Análise de Impacto:</strong> Facilita a identificação de quais testes precisam ser reexecutados quando um requisito muda.</li>
+<li>
+<p><strong>Gestão de Mudanças:</strong> Permite rastrear a origem e a evolução de cada requisito.</p>
+<p><a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAC4klEQVRIia1VS08TURT+7m2nNH0MoQUfsRKwIYRuQBHYQKMGH4EYtKRudGV0Y2L8IcYf4SskaFDDI5oYF4gbXegGMSGNDSSNxsxgy0wZUuYeF7XDTDu1BPySSc7ce+6553zn3HOgKMoUEWn0/6EpijLFiEgDEIQdQhA4Z/uSndAZEZHLxv7gchF3bB5Udoli9wL7JucMpRKRphFMEw11qqOwgZFpCsdBIYiKRajTz7C19AH+wQG0pNPwRCMOnVIuB/XhY5QyGcjpScijo4AkOXTAOYOVc9MUFXFz8b3IxLvLX/sJoU5PC/s+maZQHj4SGV+zyMS7xffkGaF//CTIBbUU2UJkh9vAWqPQns+glMs5mSgWgSNR8GNHIdQN5F++gkWXzQav4Y1z1tTZAV9yGDC2wUJBlL6uID83D5RKVjID/f3g8U7Qzg6YHIbx+g22Vr7V5IrXJA+AFIsxOT25myg5DH12DsbqqrUW6OtF6FoaVNgEAFC+AGEYqIZ7mQIIj4zAf+kiSNPBvF6Ya+vIv7DRIEkslByBlOgB/fwFX3IYTZ0dqLbH69UwCwTQfGUCLBS0aCguLED//MXS8ScSLDg+Bqz/gJyehBSLOcsYAHdLbqXEAn29CFweBxU2wbxewNhGYWYGpqJaut62Vvjv3ERwcKjGeydF1Y9ICIIkMXlsDJ724+UoQkFsLy4hPz8P0jQyFZWM5WXIqZTzndhslXtR/WYFCEHqk6f4ff8BeKTFWvadOgmRL0CKx3Ho3l2wUIi5NUBnFdXpL+FzZ+EbOA3SdMDjAQAYb99hJ5tF89WJsnE3FhwU1VGAEOQoW1tvCt+4Dn9XlyPaarlxN/2bj+DgEJqSwxDZNYjsGqRED+QL5539x8VB7z+9t/17ohFEbt+ijUAQVNQhp1LlsmwwhJzddA8Tq/LQLN4b4OATrXJ5HYcOPtEqRutQ7D709xtFLXSuquosAN310F7lOsZVVZ39A3SzQmA54Uy3AAAAAElFTkSuQmCC">Visure Solutions</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Principais Vantagens:</strong></p>
+<ol>
+<li><strong>Aumento da Confiança:</strong> Melhora a qualidade do produto ao garantir cobertura total dos requisitos.</li>
+<li><strong>Redução de Custos:</strong> Detecta defeitos de requisitos no início.</li>
+<li><strong>Auditoria:</strong> Facilita auditorias e conformidade, pois prova que o software atende ao que foi solicitado.</li>
+</ol>
+<h1 id="6-gerenciamento-de-requisitos">6. Gerenciamento de Requisitos</h1>
+<h2 id="gerenciamento-de-mudancas">Gerenciamento de mudanças</h2>
+<p><strong>Gerenciamento de mudanças:</strong> é essencial porque alterações nas especificações são naturais ao longo do projeto. Para controlá-las, utiliza-se a <strong>matriz de rastreabilidade</strong> e um processo formal de avaliação e aprovação.</p>
+<p>Toda solicitação de mudança deve ser documentada e incluir:</p>
+<ul>
+<li>Descrição da mudança</li>
+<li>Tipo (corretiva, preventiva, reparo de defeito etc.)</li>
+<li>Justificativa</li>
+<li>Impactos e benefícios esperados</li>
+<li>Alternativas caso não seja implementada</li>
+</ul>
+<p>A análise pode ser feita por um comitê com stakeholders ou pelo gerente de projetos, dependendo do impacto da alteração. Mudanças desnecessárias devem ser descartadas ou transformadas em novos projetos, pois aumentam incertezas e riscos.</p>
+<p>Independentemente de serem aprovadas ou não, todas as solicitações devem ser registradas e comunicadas às partes interessadas.</p>
+<p>Quanto ao acompanhamento do projeto, planilhas podem funcionar em projetos pequenos. Porém, em projetos maiores, tornam-se inviáveis e propensas a erros, sendo recomendável o uso de ferramentas mais robustas de gestão.</p>
+<h2 id="versionamento">Versionamento</h2>
+<h4 id="nocoes-basicas-de-controle-de-versao">Noções básicas de Controle de Versão</h4>
+<p>O <strong>controle de versão (VCS)</strong> é um sistema que rastreia todas as alterações feitas no código-fonte, permitindo consultar históricos, comparar versões e reverter mudanças quando necessário. Ele funciona como uma “rede de segurança”, possibilitando que desenvolvedores experimentem sem comprometer o projeto e resolvam conflitos de forma organizada.</p>
+<p>Além disso, cria uma <strong>fonte única de verdade</strong>, facilitando colaboração, revisão de código e identificação de responsáveis por alterações.</p>
+<hr />
+<h3 id="tipos-de-sistemas-de-controle-de-versao">Tipos de sistemas de controle de versão</h3>
+<ul>
+<li><strong>Centralizado (CVCS):</strong>
+Um único repositório central. Todos os usuários trabalham nele.</li>
+<li><strong>Distribuído (DVCS):</strong>
+Cada desenvolvedor possui uma cópia completa do repositório, permitindo trabalho remoto e maior flexibilidade.</li>
+<li><strong>Baseado em bloqueio:</strong>
+Arquivos são bloqueados para evitar edições simultâneas conflitantes.</li>
+<li><strong>Otimista:</strong>
+Permite edições simultâneas e resolve conflitos no momento da integração.</li>
+</ul>
+<hr />
+<h3 id="beneficios-do-controle-de-versao">Benefícios do controle de versão</h3>
+<ul>
+<li><strong>Qualidade:</strong> incentiva revisão por pares, rastreamento detalhado e correção precoce de bugs.</li>
+<li><strong>Aceleração:</strong> permite trabalho paralelo (branching e merging) e rápida recuperação de versões anteriores.</li>
+<li><strong>Visibilidade:</strong> aumenta transparência e organização, integrando código com tarefas e marcos do projeto.</li>
+</ul>
+<hr />
+<h3 id="principais-sistemas-de-controle-de-versao">Principais sistemas de controle de versão</h3>
+<ul>
+<li><strong>Git:</strong> distribuído, open source e o mais popular atualmente.</li>
+<li><strong>Subversion (SVN):</strong> centralizado, simples e amplamente utilizado.</li>
+<li><strong>Mercurial:</strong> distribuído, com interface intuitiva e bom suporte a branching e merging.</li>
+</ul>
+<h2 id="matriz-de-rastreabilidade-de-requisitos">Matriz de Rastreabilidade de Requisitos</h2>
+<h3 id="o-que-e-matriz-de-rastreabilidade-de-requisitos-rtm">O que é Matriz de Rastreabilidade de Requisitos (RTM)?</h3>
+<p>A <strong>Matriz de Rastreabilidade de Requisitos (RTM)</strong> é um documento ou ferramenta estruturada usada para <strong>garantir que todos os requisitos de um projeto sejam rastreados e validados ao longo de todo o ciclo de vida do desenvolvimento</strong>. Ela liga cada requisito a artefatos relacionados — como especificações de design, tarefas de desenvolvimento, casos de teste e entregas — de forma organizada.</p>
+<hr />
+<h3 id="por-que-a-rtm-e-importante">Por que a RTM é importante?</h3>
+<p>A RTM:</p>
+<ul>
+<li><strong>Assegura que nenhum requisito seja negligenciado.</strong></li>
+<li><strong>Melhora a visibilidade e responsabilidade</strong> do projeto para todas as partes interessadas.</li>
+<li><strong>Facilita a análise de impacto de mudanças</strong>, ajudando a entender como alterações nos requisitos afetam outras partes do projeto.</li>
+<li><strong>Ajuda a garantir conformidade com padrões da indústria</strong>, especialmente em setores altamente regulamentados, como aeroespacial, saúde e automotivo.</li>
+<li><strong>Aprimora a verificação e validação do produto</strong>, porque relaciona requisitos a seus testes correspondentes.</li>
+</ul>
+<hr />
+<h3 id="como-a-rtm-funciona">Como a RTM funciona</h3>
+<p>A RTM <strong>mapeia relações entre requisitos e outros artefatos</strong> — por exemplo:</p>
+<ul>
+<li>Requisitos → casos de teste</li>
+<li>Requisitos → tarefas de desenvolvimento</li>
+<li>Requisitos → entregas finais</li>
+</ul>
+<p>Assim, ela atua como um repositório central que permite aos times monitorar o progresso, verificar se os requisitos estão sendo cumpridos e identificar lacunas ou inconsistências.</p>
+<hr />
+<h3 id="conceito-de-rastreabilidade-de-requisitos">Conceito de rastreabilidade de requisitos</h3>
+<p>Rastreabilidade de requisitos é o processo de <strong>vincular requisitos aos artefatos relacionados</strong>, assegurando que cada requisito seja acompanhado desde sua origem até sua implementação e teste. A RTM é a ferramenta que documenta e organiza esses vínculos.</p>
+<hr />
+<h3 id="tipos-de-rastreabilidade">Tipos de rastreabilidade</h3>
+<p>A RTM suporta vários tipos de rastreabilidade:</p>
+<ul>
+<li><strong>Rastreabilidade futura:</strong> liga requisitos aos seus elementos de design e testes.</li>
+<li><strong>Rastreabilidade reversa:</strong> liga elementos de projeto de volta aos requisitos originais.</li>
+<li><strong>Rastreabilidade bidirecional:</strong> combina rastreabilidade futura e reversa para máximo controle e cobertura.</li>
+</ul>
+<hr />
+<h3 id="beneficios-principais">Benefícios principais</h3>
+<p>Entre as vantagens de usar uma RTM eficaz estão:</p>
+<ul>
+<li><strong>Maior visibilidade e clareza</strong> sobre como os requisitos são tratados.</li>
+<li><strong>Gestão de mudanças mais eficiente.</strong></li>
+<li><strong>Melhor verificação e validação</strong>, garantindo que os requisitos realmente foram implementados e testados.</li>
+<li><strong>Apoio à conformidade e auditorias.</strong></li>
+</ul>
+<h1 id="mvp">MVP</h1>
+<p>O conceito de <strong>MVP (Produto Mínimo Viável)</strong> defende a eliminação de desperdícios. No desenvolvimento de software, o maior desperdício é investir anos em um sistema que não terá usuários. Por isso, é melhor testar rapidamente uma ideia do que gastar muitos recursos em algo incerto.</p>
+<p>O MVP consiste em desenvolver uma versão simples do produto, com requisitos mínimos suficientes para <strong>testar uma hipótese de negócio</strong>. Em vez de longos levantamentos de requisitos ou pesquisas de mercado pouco confiáveis, a proposta é validar a ideia na prática.</p>
+<p>O método Lean Startup segue o ciclo:</p>
+<p><strong>Construir → Medir → Aprender</strong></p>
+<ul>
+<li><strong>Construir:</strong> criar o MVP.</li>
+<li><strong>Medir:</strong> disponibilizá-lo para usuários reais e coletar dados.</li>
+<li><strong>Aprender:</strong> analisar métricas e gerar aprendizado validado.</li>
+</ul>
+<p>A partir desse aprendizado, três caminhos são possíveis:</p>
+<ol>
+<li><strong>Ajustar e repetir o ciclo</strong>, refinando o MVP.</li>
+<li><strong>Escalar o produto</strong>, caso haja adequação ao mercado (market fit).</li>
+<li><strong>Desistir ou pivotar</strong>, criando um novo MVP com base no aprendizado anterior.</li>
+</ol>
+<p>Um ponto crucial é evitar <strong>métricas de vaidade</strong> (ex.: número de visualizações), que não ajudam na tomada de decisão. O foco deve estar em <strong>métricas acionáveis</strong>, como taxa de conversão, valor médio de compra ou custo de aquisição de clientes.</p>
+<p>Para produtos digitais, utilizam-se também <strong>métricas de funil</strong>, como:</p>
+<ul>
+<li><strong>Aquisição</strong> (visitantes),</li>
+<li><strong>Ativação</strong> (cadastros),</li>
+<li><strong>Retenção</strong> (retorno de usuários),</li>
+<li><strong>Receita</strong> (compras),</li>
+<li><strong>Recomendação</strong> (indicações).</li>
+</ul>
+<p>Link de um capítulo de livro de onde veio a maior parte do estudo sobre requisitos:</p>
+<p>https://engsoftmoderna.info/cap3.html</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

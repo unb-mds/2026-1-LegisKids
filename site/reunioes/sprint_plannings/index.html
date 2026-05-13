@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Sprint Planning - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/arquitetura/escolha_arquitetura/" class="dropdown-item">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/checando_tecnologias/" class="dropdown-item">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/estudo_arquiteturas/" class="dropdown-item">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/API/levantamento_api/" class="dropdown-item">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/requisitos/estudo_requisitos_software/" class="dropdown-item">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="../dailies/" class="dropdown-item">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../reviews_retrospectives/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../padrao_organizacao/padrao_kanban/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2303" class="nav-link">23/03</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sprint-0" class="nav-link">Sprint 0</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#escolhemos-a-area-de-atuacao-de-cada-integrante-e-definimos-as-primeiras-issues" class="nav-link">Escolhemos a área de atuação de cada integrante e definimos as primeiras issues:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#definimos-um-horario-de-reuniao-semanal" class="nav-link">Definimos um horário de reunião semanal:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#repassamos-a-aula" class="nav-link">Repassamos a Aula:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#3003" class="nav-link">30/03</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sprint-planning-da-sprint-1" class="nav-link">Sprint Planning da Sprint 1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#0604" class="nav-link">06/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sprint-planning-da-sprint-2" class="nav-link">Sprint Planning da Sprint 2</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#urgente" class="nav-link">Urgente:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#issues" class="nav-link">Issues:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#projecao" class="nav-link">Projeção:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1304" class="nav-link">13/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sprint-planning-da-sprint-3" class="nav-link">Sprint Planning da Sprint 3</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2004" class="nav-link">20/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sprint-planning-da-sprint-4" class="nav-link">Sprint Planning da Sprint 4</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2704" class="nav-link">27/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sprint-planning-da-sprint-5" class="nav-link">Sprint Planning da Sprint 5</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="2303">23/03</h1>
+<h1 id="sprint-0">Sprint 0</h1>
+<h1 id="escolhemos-a-area-de-atuacao-de-cada-integrante-e-definimos-as-primeiras-issues">Escolhemos a área de atuação de cada integrante e definimos as primeiras issues:</h1>
+<ul>
+<li>Requisitos de Software: Caio  </li>
+<li>Arquitetura de Software: Renan  </li>
+<li>Tecnologias Front: Pedro  </li>
+<li>Tecnologias Back: Italo  </li>
+<li>Git/GitHub: Arthur  </li>
+<li>Metodologias Ágeis: Luis  </li>
+</ul>
+<blockquote>
+<p>Cada um ficou responsável por estudar sua própria competência.</p>
+</blockquote>
+<h1 id="definimos-um-horario-de-reuniao-semanal">Definimos um horário de reunião semanal:</h1>
+<p>Reunião depois da aula de Segunda, e, caso não haja tempo, terça-feira, às 8 da noite, remotamente.</p>
+<h1 id="repassamos-a-aula">Repassamos a Aula:</h1>
+<p>Criamos as primeiras Issues<br />
+Criamos nosso próprio Figma através do Template disponibilizado<br />
+Cheat Sheet, POC, MVP, Framework, anotações…  </p>
+<hr />
+<h1 id="3003">30/03</h1>
+<h1 id="sprint-planning-da-sprint-1">Sprint Planning da Sprint 1</h1>
+<p>Decidimos que todos deveriam criar uma Issue para aprofundar nos temas, já partindo pra qual seria
+a decisão ideal de seu tópico visando o nosso projeto.<br />
+Também criamos uma Issue de Brainstorming, para pensarmos melhor no conceito geral do projeto.<br />
+Decidimos já criar o GitHub Project, para organizarmos melhor tudo.</p>
+<hr />
+<h1 id="0604">06/04</h1>
+<h1 id="sprint-planning-da-sprint-2">Sprint Planning da Sprint 2</h1>
+<h2 id="urgente">Urgente:</h2>
+<ul>
+<li>Definir a ideia principal do projeto hoje: todos integrantes pensarem em alguma ideia e mostrá-las na reunião da noite.</li>
+</ul>
+<h2 id="issues">Issues:</h2>
+<ul>
+<li>A Issue de Brainstorming foi realocada para a Sprint 2 (essa semana), com intuito de ser finalizada no dia da Sprint Planning.</li>
+<li>A Aplicação de Requisitos foi realocada para a Sprint 2, e o Renan também foi designado para ajudar a cumprí-la.</li>
+<li>O Pedro precisa subir sua conclusão da Estudar Tecnologias Front-End, e deve criar uma Issue para filtrar as melhores tecnologias para usarmos no nosso projeto.</li>
+<li>Deverá ser criado uma Issue para avaliar a possibilidade de implementação de um Chat Bot de IA no projeto, e Ítalo  será alocado, pois é o responsável pelo Back-End.</li>
+<li>Iremos criar uma pasta no Repositório para subirmos todos documentos referente aos Estudos que fizemos e faremos, e, assim, não ficar apenas nos comentários das Issues.</li>
+<li>Scrum Master terá uma Issue para analisar a agenda de cada um do grupo, e definir horários fixos de reuniões.</li>
+</ul>
+<h2 id="projecao">Projeção:</h2>
+<ul>
+<li>Projetamos que, em no máximo 2 semanas, já deveremos estar com a ideia madura e começando a implementar o que planejamos.</li>
+</ul>
+<hr />
+<h1 id="1304">13/04</h1>
+<h1 id="sprint-planning-da-sprint-3">Sprint Planning da Sprint 3</h1>
+<p>Issue 1: fazer diagrama de Arquitetura, junto com decisão de tecnologias e frameworks - Renan</p>
+<p>Issue 2: Identidade Visual - Caio</p>
+<p>Issue 3: Definir Front-End, vendo a integração Front-Flask (estudo) - Arthur e Pedro</p>
+<p>issue 4: Aprofundar Back-End - Ítalo</p>
+<p>Issue 5: testando API’s - Luis</p>
+<p>Issue 6: commitar as Dailys já feitas Documentação- Caio e Renan</p>
+<p>Issue 7: Banco de Dados - Renan</p>
+<hr />
+<h1 id="2004">20/04</h1>
+<h1 id="sprint-planning-da-sprint-4">Sprint Planning da Sprint 4</h1>
+<p>Alocamos a Issue de Identidade Visual não resolvida na Sprint 3 para essa.</p>
+<p>Issues propostas:<br />
+1 - PROCESSO - Criar labels para taman" (nome da Issue ainda não claro)ho de cada Issue (XS, S, M, L, XL) - Renan (S)  </p>
+<p>2 - ESTUDO - Definir o Banco de Dados - Renan e Ítalo (S)  </p>
+<p>3 - PROCESSO - Padronização de Commits - Renan (S) -&gt; feature, fix, refactor, bug, doc, devops, infra, gestao, management  </p>
+<p>4 - PROCESSO - Padronização de Nome de Arquivos - Arthur (S)  </p>
+<p>5 - PROCESSO - Padronização de como fazer Pull-Request – Luis (S)  </p>
+<p>6 – DESIGN – Acabar Ideias de Identidade Visual do Projeto – Caio e Arthur (L)  </p>
+<p>7 – FEATURE – Implementar estrutura de pastas - Renan (S)  </p>
+<p>8 – FEATURE – Implementar Banco de Dados -  Renan, Ítalo e Luis (L)  </p>
+<p>9 – FEATURE – Classificar as proposições - Luis (L) </p>
+<h1 id="2704">27/04</h1>
+<h1 id="sprint-planning-da-sprint-5">Sprint Planning da Sprint 5</h1>
+<p>1- Concertar erros de diretórios na nova implementação da API – Renan (S)  </p>
+<p>2- Criar v2 diagrama da Arquitetura, com a nova visão do projeto (não guardaremos todas requisições, apenas usuário, histórico e PL favoritos) - Renan (M)  </p>
+<p>3- Revisão de User Stories e levá-los ao GH Project para começarmos a usá-los na próxima Sprint – Caio e Luís (M)  </p>
+<p>4- Acabar Protótipo Interativo do site: veio da Sprint 4 – Caio, Arthur (M)  </p>
+<p>5- Implementar banco de dados (base do DB)-&gt; veio da Sprint 4 – Renan e Ítalo (L)  </p>
+<p>6- Desenvolver um Front-End básico, mas funcional para fazer requisições  </p>
+<p>6.1 Front-end básico implementado (HTML, CSS, JS + FETCH API) - Renan e Caio (L)  </p>
+<p>6.2  Controller implementado – Renan e Caio (M)  </p>
+<ol>
+<li>
+<p>Melhorar filtros da API - Luís - (M)  </p>
+</li>
+<li>
+<p>Estudo de IA - Ítalo e Arthur (S-M)  </p>
+<ul>
+<li>Como vai ser a implementação no código </li>
+</ul>
+</li>
+</ol></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

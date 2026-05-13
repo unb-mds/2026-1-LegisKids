@@ -221,3 +221,16 @@ Ninguém lembrou da Daily.
 
 Presentes: Caio, Ítalo, Luís e Renan
 Todos mostraram o que estavam fazendo. Todos foram incluídos no Project.
+
+# Quarta 29/04
+
+Luis: fez nada por enquanto. Começará a trabalhar por volta de quinta-feira.
+Caio: entregará o protótipo hoje, e depois ficará disponível pro resto.
+Arthur: criou a issue e ajudou no protótipo, e começará estudo de IA.
+Ítalo: estudou banco de dados, mas mudamos a rota.
+Renan: fez nada por enquanto, começará tudo hoje.
+
+Decidimos criar novas issues:
+- Foco Fazer git page → MKdocs e revisao de TODAS documentações
+- Confirguar o nosso Kanban → Processo produtivo novo: (NoStatus, New, Backlog, Sprint Backlog, Em andamento, Em Revisão, Em Documentação, Pronto/Ready, Feito/Done)
+- Atualizar Storymap, Figma de MDS, publico alvo, etc…

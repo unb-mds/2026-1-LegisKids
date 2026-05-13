@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Dailies - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Projeto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../ideia_escolhida_projeto/" class="dropdown-item">Ideia</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Arquitetura</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/arquitetura/escolha_arquitetura/" class="dropdown-item">Escolha da Arquitetura</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/checando_tecnologias/" class="dropdown-item">Tecnologias</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/diagrama_arquitetura_v1/" class="dropdown-item">Diagrama V1</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/diagrama_arquitetura_v2/" class="dropdown-item">Diagrama V2</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/estudo_fluxo_de_dados/" class="dropdown-item">Fluxo de Dados</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/estudo_login/" class="dropdown-item">Login</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/arquitetura/estudo_arquiteturas/" class="dropdown-item">Estudo Inicial</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Backend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/API/levantamento_api/" class="dropdown-item">API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Banco de Dados</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/banco_de_dados/definicao_banco_de_dados/" class="dropdown-item">Definição</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/banco_de_dados/estudo_banco_de_dados/" class="dropdown-item">Estudo</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Frontend</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/frontend/tecnologias_estrutura/" class="dropdown-item">Tecnologias e Estrutura</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Design</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/design/identidade_visual/prototipo_interativo/" class="dropdown-item">Protótipo Interativo</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/design/identidade_visual/identidade_visual/" class="dropdown-item">Identidade Visual</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Git & Organização</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/git_github/estudo_github/" class="dropdown-item">GitHub</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/git_github/labels_tamanho_issue/" class="dropdown-item">Labels de Issue</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_nomes_arquivos/" class="dropdown-item">Nome de Arquivos</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/organizacao_geral/" class="dropdown-item">Organização Geral</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Metodologia</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/metodos_ageis/metodos_ageis/" class="dropdown-item">Métodos Ágeis</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gestão</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                    
+<li>
+    <a href="../../estudos/requisitos/estudo_requisitos_software/" class="dropdown-item">Documento Complementar</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Dailies</a>
+</li>
+                                    
+<li>
+    <a href="../horarios/" class="dropdown-item">Horários</a>
+</li>
+                                    
+<li>
+    <a href="../reviews_retrospectives/" class="dropdown-item">Reviews e Retrospectivas</a>
+</li>
+                                    
+<li>
+    <a href="../sprint_plannings/" class="dropdown-item">Sprint Planning</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_kanban/" class="dropdown-item">Kanban</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Padrões</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_commits/" class="dropdown-item">Commits</a>
+</li>
+                                    
+<li>
+    <a href="../../padrao_organizacao/padrao_PR/" class="dropdown-item">Pull Requests</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Requisitos</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../estudos/requisitos/requisitos_de_software/" class="dropdown-item">Requisitos</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../estudos/requisitos/estudo_requisitos_software/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../horarios/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#documentacao-das-dailies" class="nav-link">Documentação das Dailies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#terca-feira-0704" class="nav-link">Terça-feira 07/04</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#renan" class="nav-link">Renan</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#caio" class="nav-link">Caio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arthur" class="nav-link">Arthur</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pedro" class="nav-link">Pedro</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#luis" class="nav-link">Luis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#quarta-feira-0804" class="nav-link">Quarta-feira 08/04</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#luis_1" class="nav-link">Luis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#caio_1" class="nav-link">Caio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#renan_1" class="nav-link">Renan</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arthur_1" class="nav-link">Arthur</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pedro_1" class="nav-link">Pedro</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#quinta-feira-0904" class="nav-link">Quinta-feira 09/04</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#renan_2" class="nav-link">Renan</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#luis_2" class="nav-link">Luis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#caio_2" class="nav-link">Caio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arthur-e-pedro" class="nav-link">Arthur e Pedro</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sexta-feira-1004" class="nav-link">Sexta-feira 10/04</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#arthur_2" class="nav-link">Arthur</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#luis_3" class="nav-link">Luis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#italo" class="nav-link">Ítalo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pedro_2" class="nav-link">Pedro</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sabado-1104" class="nav-link">Sábado 11/04</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#luis_4" class="nav-link">Luis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#caio_3" class="nav-link">Caio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#arthur_3" class="nav-link">Arthur</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#renan_3" class="nav-link">Renan</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#domingo-1204" class="nav-link">Domingo 12/04</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#caio_4" class="nav-link">Caio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#terca-feira-0404" class="nav-link">Terça-feira 04/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#quinta-feira-1604" class="nav-link">Quinta-feira 16/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#sabado-1804" class="nav-link">Sábado 18/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#quarta-2204" class="nav-link">Quarta 22/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#quarta-2904" class="nav-link">Quarta 29/04</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="documentacao-das-dailies">Documentação das Dailies</h1>
+<p>Na primeira semana após a definição do Scrum Master(Sprint 1), decidimos testar fazer as dailies diariamente, mas por mensagem, para ver se conseguiriamos monitorar o andamento sem ter que nos reunir diretamente (fizemos assim durante a Sprint 2).</p>
+<p>Vendo que, apesar de ajudar a saber o que cada um está fazendo, não contribui em anda no andamento das Issues, e muitas vezes os integrantes simplesmente se esquecem de fazê-la.</p>
+<p>Com isso, foi definido que as Dailies serão feitas nas terças e quintas, às 20 horas de forma online, e, apenas aos sábados, por mensagem, para alguém reportar necessidade de adiar para a Sprint seguinte, ou se precisar de ajuda urgente.</p>
+<p>A partir da semana do dia 20/04, mudamos as dailies para quarta e sexta, com quarta, sendo logo após a aula, e sexta, em nosso Discord, às 13 horas.</p>
+<h1 id="terca-feira-0704">Terça-feira 07/04</h1>
+<h2 id="renan">Renan</h2>
+<p>O que fiz ontem: resolvi minha Issue de horários e datas pra cada cerimônia Scrum.</p>
+<p>O que farei hoje: vou revisar o slide da aula passada e me interar sobre a Issue de Requisitos.</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="caio">Caio</h2>
+<p>O que fiz ontem: Comecei a registrar algumas tarefas do Jira</p>
+<p>O que farei hoje: Começar a fazer os Sprint Backlogs e fazer o User Story</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="arthur">Arthur</h2>
+<p>O que fiz ontem: estudei sobre organização do GitHub e se é necessário criar uma branch.</p>
+<p>O que farei hoje: criar a issue, começar a resolvê-la e estudar os resumos do grupo.</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="pedro">Pedro</h2>
+<p>O que fiz ontem: comecei a me capacitar em react e na biblioteca recharts</p>
+<p>O que farei hoje: continuar estudando sobre a viabilidade da biblioteca</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="luis">Luis</h2>
+<p>O que fiz ontem: Conclui a criação das pastas e orientei a organização do GitHub</p>
+<p>O que farei hoje: Hoje não vou tocar no estudo da API, estou terminando outras demandas para voltar a pesquisar</p>
+<p>Problema encontrado: nenhum.</p>
+<h1 id="quarta-feira-0804">Quarta-feira 08/04</h1>
+<h2 id="luis_1">Luis</h2>
+<p>O que fiz ontem: nada, estive com outras demandas</p>
+<p>O que farei hoje: Começo da pesquisa sobre as API’s</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="caio_1">Caio</h2>
+<p>O que fiz ontem: postei o estudo no github, comecei a fazer o User Story e o Sprint Backlog</p>
+<p>O que farei hoje: Terminar o User Story e o Sprint Backlog e ajustar algumas anotações faltando no Jira</p>
+<p>Problema encontrado: Fiquei em dúvida de quais user Storys criar para os Épicos</p>
+<h2 id="renan_1">Renan</h2>
+<p>O que fiz ontem: estudei Requisitos e me interei sobre a Issue.</p>
+<p>O que farei hoje: hoje não conseguirei contribuir em nada por motivos pessoais.</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="arthur_1">Arthur</h2>
+<p>O que fiz ontem: criei minha issue e comecei a resolvê-la.</p>
+<p>O que farei hoje: tentar fechar minha issue, mas também estudar para uma prova importante que vou ter segunda.</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="pedro_1">Pedro</h2>
+<p>Não fez.</p>
+<h1 id="quinta-feira-0904">Quinta-feira 09/04</h1>
+<h2 id="renan_2">Renan</h2>
+<p>O que fiz ontem: nada.</p>
+<p>O que farei hoje: já fiz, que foi revisar os Épicos e User Stories, e estão ótimos, e decidi que vou reorganizar e aperfeiçoa-los até o fim da Sprint.</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="luis_2">Luis</h2>
+<p>O que fiz ontem: primeiro estudo da API, quais usar</p>
+<p>O que farei hoje: nada, estive em  compromissos</p>
+<p>Problema encontrado: entender como usá-la tá sendo o maior problema</p>
+<h2 id="caio_2">Caio</h2>
+<p>O que fiz ontem: nada.</p>
+<p>O que farei hoje:Terminei o primeiro protótipo do Backlog</p>
+<p>Problema encontrado: nenhum.</p>
+<h2 id="arthur-e-pedro">Arthur e Pedro</h2>
+<p>Não fizeram.</p>
+<h1 id="sexta-feira-1004">Sexta-feira 10/04</h1>
+<h2 id="arthur_2">Arthur</h2>
+<p>O que fiz ontem: Fechei minha issue</p>
+<p>O que farei hoje: Estudar para outra matéria e também terei compromissos</p>
+<p>Problema encontrado: nenhum</p>
+<h2 id="luis_3">Luis</h2>
+<p>O que fiz ontem: nada</p>
+<p>O que farei hoje: continuar os estudos de API, tentar concluir</p>
+<p>Problema encontrado: nenhum</p>
+<h2 id="italo">Ítalo</h2>
+<p>O que fiz ontem: nada</p>
+<p>O que farei hoje: estudar para provas da semana que vem</p>
+<p>Problema encontrado: nenhum</p>
+<h2 id="pedro_2">Pedro</h2>
+<p>O que fiz ontem: foquei em outras materias</p>
+<p>O que farei hoje: continuar os estudos de front- end</p>
+<p>Problema encontrado: nenhum</p>
+<h1 id="sabado-1104">Sábado 11/04</h1>
+<h2 id="luis_4">Luis</h2>
+<p>O que fiz ontem: estudei e documentei sobre a melhor API para a gente usar</p>
+<p>O que farei hoje: concluir a issue, anexando os estudos e concluindo os detalhes dele</p>
+<p>Problema encontrado: nenhum</p>
+<h2 id="caio_3">Caio</h2>
+<p>O que fiz ontem: Estava realizando uma mudança em casa e não pude fazer nada</p>
+<p>O que farei hoje:terminar a issue, 
+implementando os outros requisitos</p>
+<p>Problema encontrado: nenhum</p>
+<h2 id="arthur_3">Arthur</h2>
+<p>O que fiz ontem: estudei para a prova</p>
+<p>O que farei hoje: terei compromissos</p>
+<p>Problema encontrado: nenhum</p>
+<h2 id="renan_3">Renan</h2>
+<p>O que fiz ontem: fiz o último protótipo dos Requisitos, faltando apenas passar pro Figma.</p>
+<p>O que farei hoje: nada.</p>
+<p>Problema encontrado: nenhum.</p>
+<h1 id="domingo-1204">Domingo 12/04</h1>
+<h2 id="caio_4">Caio</h2>
+<p>O que fiz ontem: terminei de construir os Backlogs no Jira e Montei uma estratégia de Backlogs principais para um MVP inicial</p>
+<p>O que farei hoje: Procurar mais alguns User Storys para deixar o backlog mais completo e ajeitar o Figma</p>
+<p>Problema encontrado: nenhum.</p>
+<h1 id="terca-feira-0404">Terça-feira 04/04</h1>
+<p>Ningúem encontrou nenhum problema até o momento.
+Maioria ainda não começou a resolver suas Issues, mas já tinhamos previsto isso na Sprint Planning.
+Presentes: Arthur, Caio, Ítalo, Luis e Renan. Pedro ausente.</p>
+<h1 id="quinta-feira-1604">Quinta-feira 16/04</h1>
+<p>Presentes: Arthur, Caio e Renan.
+Arthur falou como foi que resolveu sua Issue de definição da tecnologia de Front-End.
+Caio falou como está indo o andamento, e projeta que terminará tudo ainda nessa Sprint.
+Renan falou que terminou a Issue de Estudo de Banco de Dados, e irá falar com o renponsável por determinar a tecnologia Back-End, porque é uma decisão importante pra terminar sua Issue de compatibilidade, e formar uma Arquitetura mais coesa e certeira.
+Nenhum presente está enfrentando alguma dificuldade.
+O Scrum Master irá falar com os ausentes pra saber como estão.</p>
+<h1 id="sabado-1804">Sábado 18/04</h1>
+<p>Ninguém lembrou da Daily.</p>
+<hr />
+<h1 id="quarta-2204">Quarta 22/04</h1>
+<p>Presentes: Caio, Ítalo, Luís e Renan
+Todos mostraram o que estavam fazendo. Todos foram incluídos no Project.</p>
+<h1 id="quarta-2904">Quarta 29/04</h1>
+<p>Luis: fez nada por enquanto. Começará a trabalhar por volta de quinta-feira.
+Caio: entregará o protótipo hoje, e depois ficará disponível pro resto.
+Arthur: criou a issue e ajudou no protótipo, e começará estudo de IA.
+Ítalo: estudou banco de dados, mas mudamos a rota.
+Renan: fez nada por enquanto, começará tudo hoje.</p>
+<p>Decidimos criar novas issues:
+- Foco Fazer git page → MKdocs e revisao de TODAS documentações
+- Confirguar o nosso Kanban → Processo produtivo novo: (NoStatus, New, Backlog, Sprint Backlog, Em andamento, Em Revisão, Em Documentação, Pronto/Ready, Feito/Done)
+- Atualizar Storymap, Figma de MDS, publico alvo, etc…</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
