@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Identificação e Documentação dos Dados do Sistema - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../projeto/" class="nav-link">Projeto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../arquitetura/" class="nav-link">Arquitetura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../API/" class="nav-link">Backend / API</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../" class="nav-link">Banco de Dados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../frontend/" class="nav-link">Frontend</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../design/" class="nav-link">Design</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../git_github/" class="nav-link">Git / GitHub</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../metodos_ageis/" class="nav-link">Metodologia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../reunioes/" class="nav-link">Gestão</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../padrao_organizacao/" class="nav-link">Padrão / Organização</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../requisitos/" class="nav-link">Requisitos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../inteligencia_artificial/" class="nav-link">Inteligência Artificial</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#identificacao-e-documentacao-dos-dados-do-sistema" class="nav-link">Identificação e Documentação dos Dados do Sistema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#objetivo" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#objetivos-do-armazenamento" class="nav-link">Objetivos do Armazenamento</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#dashboards-que-dependem-dos-dados" class="nav-link">Dashboards que Dependem dos Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#entidades-principais-do-sistema" class="nav-link">Entidades Principais do Sistema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#entidade-proposicao" class="nav-link">Entidade: Proposição</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_1" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#endpoint-utilizado" class="nav-link">Endpoint Utilizado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#campos-necessarios" class="nav-link">Campos Necessários</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#observacao" class="nav-link">Observação</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#entidade-partido" class="nav-link">Entidade: Partido</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_2" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#endpoint-utilizado_1" class="nav-link">Endpoint Utilizado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#campos-necessarios_1" class="nav-link">Campos Necessários</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#entidade-tramitacao" class="nav-link">Entidade: Tramitação</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_3" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#endpoint-utilizado_2" class="nav-link">Endpoint Utilizado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#campos-necessarios_2" class="nav-link">Campos Necessários</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estrategia-de-armazenamento" class="nav-link">Estratégia de Armazenamento</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#relacionamento-entre-entidades" class="nav-link">Relacionamento Entre Entidades</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#estrutura-relacional" class="nav-link">Estrutura Relacional</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#dados-derivados-calculados-pelo-sistema" class="nav-link">Dados Derivados Calculados pelo Sistema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estrategias-para-evitar-redundancia" class="nav-link">Estratégias para Evitar Redundância</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#justificativa-tecnica" class="nav-link">Justificativa Técnica</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#conclusao" class="nav-link">Conclusão</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="identificacao-e-documentacao-dos-dados-do-sistema">Identificação e Documentação dos Dados do Sistema</h1>
+<h1 id="objetivo">Objetivo</h1>
+<p>Este documento define todos os dados que deverão ser coletados, armazenados e utilizados pelo sistema de análise legislativa sobre segurança da criança na internet.</p>
+<p>O sistema utilizará a API pública da Câmara dos Deputados como fonte principal de dados.</p>
+<p>O objetivo é garantir:</p>
+<ul>
+<li>armazenamento eficiente;</li>
+<li>ausência de dados redundantes;</li>
+<li>compatibilidade com os dashboards definidos;</li>
+<li>baixo custo computacional;</li>
+<li>estrutura simples e relacional.</li>
+</ul>
+<h1 id="objetivos-do-armazenamento">Objetivos do Armazenamento</h1>
+<p>O banco de dados deverá permitir:</p>
+<ul>
+<li>monitoramento de projetos de lei;</li>
+<li>análise temporal;</li>
+<li>análise política;</li>
+<li>análise de tramitação;</li>
+<li>análise de conteúdo.</li>
+</ul>
+<p>Como o sistema terá limite aproximado de 200 MB, apenas dados realmente necessários serão persistidos.</p>
+<h1 id="dashboards-que-dependem-dos-dados">Dashboards que Dependem dos Dados</h1>
+<table>
+<thead>
+<tr>
+<th>Dashboard</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Panorama Geral</td>
+<td>visualização inicial</td>
+</tr>
+<tr>
+<td>Evolução Temporal</td>
+<td>análise temporal</td>
+</tr>
+<tr>
+<td>Análise Política</td>
+<td>análise partidária e regional</td>
+</tr>
+<tr>
+<td>Tramitação Legislativa</td>
+<td>acompanhamento legislativo</td>
+</tr>
+<tr>
+<td>Análise de Conteúdo</td>
+<td>análise textual simplificada</td>
+</tr>
+</tbody>
+</table>
+<p>Os dados armazenados foram definidos prioritariamente para suportar os dashboards classificados como Must, mantendo compatibilidade parcial com dashboards classificados como Should e Could.</p>
+<h1 id="entidades-principais-do-sistema">Entidades Principais do Sistema</h1>
+<p>Após análise dos dashboards e da API, foram definidas 4 entidades principais:</p>
+<table>
+<thead>
+<tr>
+<th>Entidade</th>
+<th>Finalidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proposição</td>
+<td>armazenar projetos de lei</td>
+</tr>
+<tr>
+<td>Autor</td>
+<td>armazenar deputados autores</td>
+</tr>
+<tr>
+<td>Partido</td>
+<td>armazenar partidos políticos</td>
+</tr>
+<tr>
+<td>Tramitação</td>
+<td>armazenar andamento legislativo</td>
+</tr>
+</tbody>
+</table>
+<h1 id="entidade-proposicao">Entidade: Proposição</h1>
+<h2 id="objetivo_1">Objetivo</h2>
+<p>Armazenar informações principais dos projetos de lei.</p>
+<h2 id="endpoint-utilizado">Endpoint Utilizado</h2>
+<pre><code>GET /proposicoes
+</code></pre>
+<h2 id="campos-necessarios">Campos Necessários</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>inteiro</td>
+<td>identificador único da proposição</td>
+</tr>
+<tr>
+<td>siglaTipo</td>
+<td>texto</td>
+<td>identificar tipo da proposição</td>
+</tr>
+<tr>
+<td>numero</td>
+<td>inteiro</td>
+<td>número oficial do projeto</td>
+</tr>
+<tr>
+<td>ano</td>
+<td>inteiro</td>
+<td>análises temporais</td>
+</tr>
+<tr>
+<td>ementa</td>
+<td>texto</td>
+<td>análise de conteúdo</td>
+</tr>
+<tr>
+<td>dataApresentacao</td>
+<td>data</td>
+<td>gráficos temporais</td>
+</tr>
+<tr>
+<td>descricaoSituacao</td>
+<td>texto</td>
+<td>status atual da proposição</td>
+</tr>
+<tr>
+<td>idAutor</td>
+<td>inteiro</td>
+<td>relacionamento com autor principal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="observacao">Observação</h2>
+<p>Embora uma proposição possa possuir múltiplos autores, o sistema armazenará apenas o autor principal da proposição para simplificar a modelagem relacional e reduzir complexidade.</p>
+<h1 id="entidade-partido">Entidade: Partido</h1>
+<h2 id="objetivo_2">Objetivo</h2>
+<p>Permitir agrupamentos e análises partidárias.</p>
+<h2 id="endpoint-utilizado_1">Endpoint Utilizado</h2>
+<pre><code>GET /partidos
+</code></pre>
+<h2 id="campos-necessarios_1">Campos Necessários</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>inteiro</td>
+<td>identificador do partido</td>
+</tr>
+<tr>
+<td>sigla</td>
+<td>texto</td>
+<td>exibição simplificada</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>texto</td>
+<td>exibição completa</td>
+</tr>
+</tbody>
+</table>
+<h1 id="entidade-tramitacao">Entidade: Tramitação</h1>
+<h2 id="objetivo_3">Objetivo</h2>
+<p>Armazenar andamento legislativo das proposições.</p>
+<h2 id="endpoint-utilizado_2">Endpoint Utilizado</h2>
+<pre><code>GET /proposicoes/{id}/tramitacoes
+</code></pre>
+<h2 id="campos-necessarios_2">Campos Necessários</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>idProposicao</td>
+<td>inteiro</td>
+<td>vínculo com proposição</td>
+</tr>
+<tr>
+<td>dataHora</td>
+<td>data/hora</td>
+<td>análise temporal</td>
+</tr>
+<tr>
+<td>descricaoSituacao</td>
+<td>texto</td>
+<td>situação legislativa</td>
+</tr>
+<tr>
+<td>descricaoTramitacao</td>
+<td>texto</td>
+<td>histórico simplificado</td>
+</tr>
+<tr>
+<td>siglaOrgao</td>
+<td>texto</td>
+<td>identificação de comissão ou órgão</td>
+</tr>
+</tbody>
+</table>
+<h1 id="estrategia-de-armazenamento">Estratégia de Armazenamento</h1>
+<p>Para evitar crescimento excessivo do banco:</p>
+<ul>
+<li>apenas tramitações relevantes serão persistidas;</li>
+<li>não serão armazenados documentos completos;</li>
+<li>não serão armazenadas mídias;</li>
+<li>não serão armazenadas votações detalhadas;</li>
+<li>não serão armazenados anexos;</li>
+<li>não serão armazenados textos integrais das proposições.</li>
+</ul>
+<h1 id="relacionamento-entre-entidades">Relacionamento Entre Entidades</h1>
+<h2 id="estrutura-relacional">Estrutura Relacional</h2>
+<h3 id="proposicao-partido">Proposição → Partido</h3>
+<p>Uma proposição está relacionada a um partido político.</p>
+<p>Relacionamento:</p>
+<ul>
+<li>muitos para um.</li>
+</ul>
+<h3 id="proposicao-tramitacao">Proposição → Tramitação</h3>
+<p>Uma proposição possui várias tramitações.</p>
+<p>Relacionamento:</p>
+<ul>
+<li>um para muitos.</li>
+</ul>
+<h1 id="dados-derivados-calculados-pelo-sistema">Dados Derivados Calculados pelo Sistema</h1>
+<p>Alguns dados poderão ser calculados internamente sem necessidade de armazenamento permanente.</p>
+<table>
+<thead>
+<tr>
+<th>Dado</th>
+<th>Origem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quantidade por ano</td>
+<td>dataApresentacao</td>
+</tr>
+<tr>
+<td>projetos ativos</td>
+<td>descricaoSituacao</td>
+</tr>
+<tr>
+<td>ranking de autores</td>
+<td>agregação</td>
+</tr>
+<tr>
+<td>projetos por partido</td>
+<td>agregação</td>
+</tr>
+<tr>
+<td>média mensal</td>
+<td>cálculo temporal</td>
+</tr>
+<tr>
+<td>distribuição por status</td>
+<td>agregação</td>
+</tr>
+<tr>
+<td>projetos por UF</td>
+<td>agregação</td>
+</tr>
+</tbody>
+</table>
+<p>Isso evita redundância e reduz espaço no banco.</p>
+<h1 id="estrategias-para-evitar-redundancia">Estratégias para Evitar Redundância</h1>
+<p>O sistema adotará as seguintes práticas:</p>
+<ul>
+<li>utilização de IDs relacionais entre entidades;</li>
+<li>evitar repetição de dados partidários;</li>
+<li>não duplicar informações retornadas pela API;</li>
+<li>calcular métricas dinamicamente;</li>
+<li>armazenar apenas informações utilizadas nos dashboards;</li>
+<li>evitar armazenamento de dados históricos desnecessários.</li>
+</ul>
+<h1 id="justificativa-tecnica">Justificativa Técnica</h1>
+<p>A estrutura proposta foi escolhida porque:</p>
+<ul>
+<li>atende todos os dashboards classificados como Must;</li>
+<li>mantém compatibilidade com dashboards Should e Could;</li>
+<li>utiliza poucos dados;</li>
+<li>reduz complexidade;</li>
+<li>facilita consultas SQL;</li>
+<li>mantém baixo consumo de armazenamento;</li>
+<li>é adequada para PostgreSQL;</li>
+<li>simplifica manutenção futura;</li>
+<li>permite expansão futura do sistema.</li>
+</ul>
+<p>O sistema não necessita de Big Data, processamento distribuído ou infraestrutura complexa, sendo suficiente uma arquitetura relacional simples.</p>
+<h1 id="conclusao">Conclusão</h1>
+<p>Os dados definidos neste documento são suficientes para suportar os dashboards acadêmicos do sistema sem desperdício de armazenamento ou complexidade desnecessária.</p>
+<p>As entidades escolhidas:</p>
+<ul>
+<li>Proposição;</li>
+<li>Partido;</li>
+<li>Tramitação;</li>
+</ul>
+<p>permitem:</p>
+<ul>
+<li>monitoramento legislativo;</li>
+<li>análise temporal;</li>
+<li>análise política;</li>
+<li>acompanhamento de tramitação;</li>
+<li>análise textual simplificada.</li>
+</ul>
+<p>A estrutura relacional proposta é simples, eficiente e adequada ao escopo acadêmico do projeto, respeitando o limite de armazenamento e evitando dados redundantes.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

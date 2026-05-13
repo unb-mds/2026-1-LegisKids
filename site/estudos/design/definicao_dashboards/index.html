@@ -8,7 +8,7 @@
         <meta name="author" content="Equipe do Projeto">
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>Banco de Dados - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <title>Definição de Dashboards do Sistema - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../../css/brands.min.css" rel="stylesheet">
@@ -47,13 +47,13 @@
                                 <a href="../../API/" class="nav-link">Backend / API</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../" class="nav-link">Banco de Dados</a>
+                                <a href="../../banco_de_dados/" class="nav-link">Banco de Dados</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../frontend/" class="nav-link">Frontend</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../design/" class="nav-link">Design</a>
+                                <a href="../" class="nav-link">Design</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../git_github/" class="nav-link">Git / GitHub</a>
@@ -99,48 +99,74 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#banco-de-dados" class="nav-link">Banco de Dados</a>
+            <li class="nav-item" data-bs-level="1"><a href="#definicao-de-dashboards-do-sistema" class="nav-link">Definição de Dashboards do Sistema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#dashboards-selecionados" class="nav-link">Dashboards Selecionados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#dashboard-1-panorama-geral" class="nav-link">Dashboard 1 — Panorama Geral</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#objetivo" class="nav-link">Objetivo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#o-que-e-um-banco-de-dados" class="nav-link">O que é um banco de dados</a>
+            <li class="nav-item" data-bs-level="2"><a href="#dados-utilizados" class="nav-link">Dados Utilizados</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#por-que-usar-banco-relacional-sql" class="nav-link">Por que usar banco relacional (SQL)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#componentes" class="nav-link">Componentes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tecnologias-avaliadas" class="nav-link">Tecnologias avaliadas</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#dashboard-2-evolucao-temporal-must" class="nav-link">Dashboard 2 — Evolução Temporal (Must)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_1" class="nav-link">Objetivo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#comparacao-tecnica" class="nav-link">Comparação técnica</a>
+            <li class="nav-item" data-bs-level="2"><a href="#dados-utilizados_1" class="nav-link">Dados Utilizados</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#compatibilidade-com-o-backend" class="nav-link">Compatibilidade com o backend</a>
+            <li class="nav-item" data-bs-level="2"><a href="#componentes_1" class="nav-link">Componentes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#compatibilidade-com-futura-integracao-com-ia" class="nav-link">Compatibilidade com futura integração com IA</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#dashboard-3-analise-politica-must" class="nav-link">Dashboard 3 — Análise Política (Must)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_2" class="nav-link">Objetivo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#banco-recomendado-postgresql" class="nav-link">Banco recomendado: PostgreSQL</a>
+            <li class="nav-item" data-bs-level="2"><a href="#dados-utilizados_2" class="nav-link">Dados Utilizados</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#proximos-estudos-necessarios" class="nav-link">Próximos estudos necessários</a>
+            <li class="nav-item" data-bs-level="2"><a href="#componentes_2" class="nav-link">Componentes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#conclusao" class="nav-link">Conclusão</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#consideracoes-tecnicas" class="nav-link">Considerações Técnicas</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#conclusao" class="nav-link">Conclusão</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -148,207 +174,238 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="banco-de-dados">Banco de Dados</h1>
-<h2 id="objetivo">Objetivo</h2>
-<p>Analisar as opções de banco de dados disponíveis para o projeto e definir a tecnologia mais adequada para a arquitetura escolhida, considerando compatibilidade com o backend em Python + Flask e as necessidades futuras do sistema.</p>
-<p>A escolha correta do banco de dados é importante para garantir:</p>
+<h1 id="definicao-de-dashboards-do-sistema">Definição de Dashboards do Sistema</h1>
+<p>O sistema irá consumir dados da API pública da Câmara dos Deputados.</p>
+<p>O objetivo do sistema é coletar e analisar projetos de lei relacionados à <strong>segurança da criança na internet</strong>, permitindo visualização acadêmica de:</p>
 <ul>
-<li>organização dos dados</li>
-<li>desempenho adequado</li>
-<li>facilidade de manutenção</li>
-<li>integração com novas funcionalidades</li>
-<li>escalabilidade futura</li>
-<li>suporte à futura camada de IA</li>
+<li>tendências legislativas;</li>
+<li>atuação política;</li>
+<li>tramitação dos projetos;</li>
+<li>temas mais discutidos.</li>
 </ul>
-<hr />
-<h2 id="o-que-e-um-banco-de-dados">O que é um banco de dados</h2>
-<p>Um banco de dados é uma coleção organizada de informações armazenadas eletronicamente, gerenciada por um SGBD (Sistema de Gerenciamento de Banco de Dados). Exemplos: PostgreSQL, MySQL, SQLite.</p>
-<p>Um banco de dados bem definido permite:</p>
+<p>O sistema armazenará no máximo <strong>200 MB de dados</strong>, utilizando PostgreSQL e um conjunto reduzido de tabelas relacionais.</p>
+<p>Por isso, os dashboards precisam ser:</p>
 <ul>
-<li>armazenar informações de forma segura</li>
-<li>recuperar dados rapidamente</li>
-<li>atualizar informações sem perda de consistência</li>
-<li>evitar duplicidade</li>
-<li>organizar grandes volumes de dados</li>
-<li>realizar consultas complexas</li>
-<li>sustentar o crescimento do sistema</li>
+<li>relevantes para análise acadêmica;</li>
+<li>simples de implementar;</li>
+<li>compatíveis com os dados da API;</li>
+<li>leves em armazenamento e processamento.</li>
 </ul>
-<p>Sem um banco bem definido, o sistema pode sofrer com lentidão, inconsistência de dados, retrabalho futuro e limitações técnicas.</p>
-<hr />
-<h2 id="por-que-usar-banco-relacional-sql">Por que usar banco relacional (SQL)</h2>
-<p>Como já definido no estudo anterior, o ideal para o projeto é um banco relacional. Os dados do sistema serão estruturados, relacionais, consistentes e conectados entre si:</p>
+<p>Cada dashboard será sinalizado usando o método MoSCoW (Must, Should, Could, Wish), e:</p>
 <ul>
-<li>usuários e autenticação</li>
-<li>histórico e interações</li>
-<li>registros processados pela IA</li>
+<li>Must: deverá estar no projeto.</li>
+<li>Should: estará no projeto, mas será dada menor prioridade.</li>
+<li>Could: se tivermos tempo, podemos aplicar.</li>
+<li>Wish: num mundo hipotético, usaríamos.</li>
 </ul>
-<p>Bancos relacionais armazenam dados em tabelas, linhas e colunas, com integridade relacional, consistência, suporte ACID e consultas complexas.</p>
-<hr />
-<h2 id="tecnologias-avaliadas">Tecnologias avaliadas</h2>
-<h3 id="postgresql">PostgreSQL</h3>
-<h4 id="vantagens">Vantagens</h4>
-<ul>
-<li>excelente compatibilidade com Python</li>
-<li>integração nativa com Flask</li>
-<li>suporte completo ao SQLAlchemy e psycopg</li>
-<li>suporte a JSON e JSONB</li>
-<li>consultas complexas eficientes</li>
-<li>ótima escalabilidade e robustez para produção</li>
-<li>forte suporte da comunidade</li>
-</ul>
-<h4 id="limitacoes">Limitações</h4>
-<ul>
-<li>configuração inicial um pouco mais complexa</li>
-<li>curva de aprendizado maior para iniciantes</li>
-</ul>
-<hr />
-<h3 id="mysql">MySQL</h3>
-<h4 id="vantagens_1">Vantagens</h4>
-<ul>
-<li>popular e bem documentado</li>
-<li>integração com Python</li>
-<li>bom desempenho geral</li>
-</ul>
-<h4 id="limitacoes_1">Limitações</h4>
-<ul>
-<li>suporte JSON menos avançado que PostgreSQL</li>
-<li>menor flexibilidade para consultas complexas</li>
-<li>menos recursos para IA futura</li>
-</ul>
-<hr />
-<h3 id="sqlite">SQLite</h3>
-<h4 id="vantagens_2">Vantagens</h4>
-<ul>
-<li>extremamente simples</li>
-<li>não exige servidor</li>
-<li>ideal para testes locais</li>
-</ul>
-<h4 id="limitacoes_2">Limitações</h4>
-<ul>
-<li>não recomendado para produção escalável</li>
-<li>limitações de concorrência</li>
-<li>pouca robustez para múltiplos usuários</li>
-</ul>
-<hr />
-<h2 id="comparacao-tecnica">Comparação técnica</h2>
+<h1 id="dashboards-selecionados">Dashboards Selecionados</h1>
+<p>Após análise do escopo do projeto, os dashboards mais relevantes são:</p>
 <table>
 <thead>
 <tr>
-<th>Critério</th>
-<th>PostgreSQL</th>
-<th>MySQL</th>
-<th>SQLite</th>
+<th>Dashboard</th>
+<th>Objetivo</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Python</td>
-<td>Excelente</td>
-<td>Muito bom</td>
-<td>Excelente</td>
+<td>Dashboard 1</td>
+<td>Panorama Geral</td>
 </tr>
 <tr>
-<td>Flask</td>
-<td>Excelente</td>
-<td>Muito bom</td>
-<td>Excelente</td>
+<td>Dashboard 2</td>
+<td>Evolução Temporal</td>
 </tr>
 <tr>
-<td>SQLAlchemy</td>
-<td>Excelente</td>
-<td>Excelente</td>
-<td>Excelente</td>
+<td>Dashboard 3</td>
+<td>Análise Política</td>
 </tr>
 <tr>
-<td>psycopg</td>
-<td>Nativo</td>
-<td>Não</td>
-<td>Não</td>
+<td>Dashboard 4</td>
+<td>Tramitação Legislativa</td>
 </tr>
 <tr>
-<td>JSON</td>
-<td>Excelente</td>
-<td>Bom</td>
-<td>Limitado</td>
-</tr>
-<tr>
-<td>Escalabilidade</td>
-<td>Alta</td>
-<td>Média/Alta</td>
-<td>Baixa</td>
-</tr>
-<tr>
-<td>Produção</td>
-<td>Excelente</td>
-<td>Muito bom</td>
-<td>Fraco</td>
-</tr>
-<tr>
-<td>Testes locais</td>
-<td>Bom</td>
-<td>Bom</td>
-<td>Excelente</td>
+<td>Dashboard 5</td>
+<td>Análise de Conteúdo</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="compatibilidade-com-o-backend">Compatibilidade com o backend</h2>
-<p>O backend será desenvolvido em Python com Flask. As bibliotecas utilizadas serão:</p>
+<p>Esses cinco dashboards cobrem praticamente todos os objetivos analíticos do sistema sem adicionar complexidade desnecessária.</p>
+<h1 id="dashboard-1-panorama-geral">Dashboard 1 — Panorama Geral</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>Apresentar uma visão rápida do cenário legislativo relacionado à segurança da criança na internet.</p>
+<p>Esse será o dashboard inicial do sistema.</p>
+<h2 id="dados-utilizados">Dados Utilizados</h2>
+<p>Endpoint:</p>
 <ul>
-<li>SQLAlchemy</li>
-<li>psycopg</li>
-<li>Flask-SQLAlchemy</li>
+<li><code>/proposicoes</code></li>
 </ul>
-<p>O Flask se integra facilmente com PostgreSQL via URI:</p>
-<pre><code class="language-python">app.config[&quot;SQLALCHEMY_DATABASE_URI&quot;] = &quot;postgresql+psycopg://user:password@localhost/projeto&quot;
-</code></pre>
-<p>O SQLAlchemy oferece ORM completo, mapeamento objeto-relacional, migrations, segurança nas queries e manutenção simplificada, com excelente suporte ao PostgreSQL.</p>
-<hr />
-<h2 id="compatibilidade-com-futura-integracao-com-ia">Compatibilidade com futura integração com IA</h2>
-<p>O sistema poderá futuramente integrar NLP, embeddings, análise textual, classificação automática e recomendações inteligentes. O PostgreSQL oferece vantagens importantes para isso:</p>
-<p><strong>JSONB</strong> — permite armazenar metadados e resultados de modelos de IA de forma estruturada.</p>
-<p><strong>Extensões futuras</strong> — o PostgreSQL suporta full-text search, indexação avançada e vetores, facilitando integração com spaCy, transformers, modelos locais e APIs externas de IA.</p>
-<hr />
-<h2 id="banco-recomendado-postgresql">Banco recomendado: PostgreSQL</h2>
-<h3 id="justificativa">Justificativa</h3>
-<p>O PostgreSQL foi escolhido porque oferece:</p>
+<p>Campos:</p>
 <ul>
-<li>melhor compatibilidade com Python e Flask</li>
-<li>suporte completo ao SQLAlchemy e psycopg</li>
-<li>suporte avançado a dados estruturados e JSON para IA futura</li>
-<li>escalabilidade, segurança e robustez para produção</li>
+<li><code>id</code></li>
+<li><code>siglaTipo</code></li>
+<li><code>numero</code></li>
+<li><code>ano</code></li>
+<li><code>ementa</code></li>
+<li><code>dataApresentacao</code></li>
+<li><code>statusProposicao.descricaoSituacao</code></li>
 </ul>
-<h3 id="uso-no-projeto">Uso no projeto</h3>
+<h2 id="componentes">Componentes</h2>
+<h3 id="total-de-projetos-must">Total de Projetos (Must)</h3>
+<p>Quantidade total de projetos armazenados.</p>
+<h3 id="projetos-em-tramitacao-must">Projetos em Tramitação (Must)</h3>
+<p>Projetos com situação ativa.</p>
+<h3 id="projetos-arquivados-should">Projetos Arquivados (Should)</h3>
+<p>Projetos encerrados ou arquivados.</p>
+<h3 id="projetos-aprovados-should">Projetos Aprovados (Should)</h3>
+<p>Projetos aprovados pela Câmara.</p>
+<h3 id="projetos-por-ano-must">Projetos por Ano (Must)</h3>
+<p>Tipo:</p>
 <ul>
-<li><strong>Ambiente local</strong> — PostgreSQL como banco principal; SQLite apenas para testes rápidos (totalmente opcional)</li>
-<li><strong>Produção</strong> — PostgreSQL como banco oficial</li>
+<li>gráfico de linha.</li>
 </ul>
-<hr />
-<h2 id="proximos-estudos-necessarios">Próximos estudos necessários</h2>
-<h3 id="modelagem-de-dados">Modelagem de dados</h3>
+<p>Objetivo:</p>
 <ul>
-<li>entidades, relacionamentos, cardinalidade e normalização</li>
+<li>visualizar crescimento do tema ao longo do tempo.</li>
 </ul>
-<h3 id="sql-basico">SQL básico</h3>
+<h3 id="distribuicao-por-status-should">Distribuição por Status (Should)</h3>
+<p>Tipo:</p>
 <ul>
-<li>SELECT, INSERT, UPDATE, DELETE, JOIN, GROUP BY</li>
+<li>gráfico donut.</li>
 </ul>
-<h3 id="sqlalchemy-orm">SQLAlchemy ORM</h3>
+<p>Categorias:</p>
 <ul>
-<li>models, relationships, sessions e migrations</li>
+<li>em tramitação;</li>
+<li>arquivado;</li>
+<li>aprovado;</li>
+<li>outros.</li>
 </ul>
-<h3 id="migracoes">Migrações</h3>
+<p>Objetivo:</p>
 <ul>
-<li>Flask-Migrate e Alembic para versionar alterações e manter histórico do schema</li>
+<li>apresentar situação geral das proposições.</li>
 </ul>
-<h3 id="performance-futura">Performance futura</h3>
+<h3 id="ultimos-projetos-adicionados-should">Últimos Projetos Adicionados (Should)</h3>
+<p>Tipo:</p>
 <ul>
-<li>índices, otimização de consultas, monitoramento e tuning</li>
+<li>tabela.</li>
 </ul>
-<hr />
-<h2 id="conclusao">Conclusão</h2>
-<p>Após análise técnica das alternativas, o banco de dados definido para o projeto é o <strong>PostgreSQL</strong>.</p>
-<p>A escolha antecipa e evita retrabalho estrutural, perda de performance, incompatibilidades e limitações futuras com IA, oferecendo segurança técnica para o presente e flexibilidade para a evolução futura do sistema.</p></div>
+<p>Colunas:</p>
+<ul>
+<li>número;</li>
+<li>ano;</li>
+<li>ementa;</li>
+<li>status;</li>
+<li>data de apresentação.</li>
+</ul>
+<p>Objetivo:</p>
+<ul>
+<li>acompanhar proposições recentes.</li>
+</ul>
+<h1 id="dashboard-2-evolucao-temporal-must">Dashboard 2 — Evolução Temporal (Must)</h1>
+<h2 id="objetivo_1">Objetivo</h2>
+<p>Identificar tendências legislativas relacionadas ao tema.</p>
+<h2 id="dados-utilizados_1">Dados Utilizados</h2>
+<p>Endpoint:</p>
+<ul>
+<li><code>/proposicoes</code></li>
+</ul>
+<p>Campos:</p>
+<ul>
+<li><code>dataApresentacao</code></li>
+<li><code>ano</code></li>
+</ul>
+<h2 id="componentes_1">Componentes</h2>
+<h3 id="projetos-por-mes-must">Projetos por Mês (Must)</h3>
+<p>Tipo:</p>
+<ul>
+<li>gráfico de linha temporal.</li>
+</ul>
+<p>Objetivo:</p>
+<ul>
+<li>detectar períodos de maior atividade legislativa.</li>
+</ul>
+<h3 id="crescimento-anual-should">Crescimento Anual (Should)</h3>
+<p>Tipo:</p>
+<ul>
+<li>gráfico de barras.</li>
+</ul>
+<p>Objetivo:</p>
+<ul>
+<li>comparar quantidade de projetos entre anos.</li>
+</ul>
+<h3 id="media-mensal-de-proposicoes-could">Média Mensal de Proposições (Could)</h3>
+<p>Tipo:</p>
+<ul>
+<li>KPI numérico.</li>
+</ul>
+<p>Objetivo:</p>
+<ul>
+<li>medir frequência média de criação de projetos.</li>
+</ul>
+<h3 id="heatmap-de-atividade-legislativa-could">Heatmap de Atividade Legislativa (Could)</h3>
+<p>Tipo:</p>
+<ul>
+<li>mapa de calor.</li>
+</ul>
+<p>Objetivo:</p>
+<ul>
+<li>identificar meses e anos com maior atividade.</li>
+</ul>
+<h1 id="dashboard-3-analise-politica-must">Dashboard 3 — Análise Política (Must)</h1>
+<h2 id="objetivo_2">Objetivo</h2>
+<p>Identificar quais grupos políticos mais atuam no tema.</p>
+<h2 id="dados-utilizados_2">Dados Utilizados</h2>
+<p>Endpoints:</p>
+<ul>
+<li><code>/proposicoes</code></li>
+<li><code>/partidos</code></li>
+</ul>
+<p>Campos:</p>
+<ul>
+<li>proposicao;</li>
+<li>partido;</li>
+</ul>
+<h2 id="componentes_2">Componentes</h2>
+<h3 id="projetos-por-partido-should">Projetos por Partido (Should)</h3>
+<p>Tipo:</p>
+<ul>
+<li>gráfico de barras horizontais.</li>
+</ul>
+<p>Objetivo:</p>
+<ul>
+<li>identificar protagonismo partidário.</li>
+</ul>
+<h3 id="comparacao-partido-status-could">Comparação Partido × Status (Could)</h3>
+<p>Tipo:</p>
+<ul>
+<li>barras empilhadas.</li>
+</ul>
+<p>Objetivo:</p>
+<ul>
+<li>comparar efetividade legislativa entre partidos.</li>
+</ul>
+<h1 id="consideracoes-tecnicas">Considerações Técnicas</h1>
+<p>Os dashboards foram escolhidos para:</p>
+<ul>
+<li>utilizar poucos dados;</li>
+<li>evitar processamento pesado;</li>
+<li>evitar relações muito complicadas;</li>
+<li>funcionar com baixo custo computacional;</li>
+<li>aproveitar diretamente os dados da API da Câmara;</li>
+<li>facilitar desenvolvimento acadêmico.</li>
+</ul>
+<p>O sistema não necessitará de Big Data, processamento distribuído ou infraestrutura complexa.</p>
+<h1 id="conclusao">Conclusão</h1>
+<p>Os dashboards selecionados são suficientes para atender os objetivos acadêmicos do projeto sem adicionar complexidade excessiva.</p>
+<p>Eles permitem:</p>
+<ul>
+<li>monitorar atividade legislativa;</li>
+<li>identificar tendências;</li>
+<li>analisar atuação política;</li>
+<li>acompanhar tramitação;</li>
+<li>explorar os temas discutidos nos projetos.</li>
+</ul>
+<p>Além disso, os dashboards foram escolhidos considerando simplicidade de implementação, desempenho e limitação de armazenamento.</p></div>
             </div>
         </div>
 

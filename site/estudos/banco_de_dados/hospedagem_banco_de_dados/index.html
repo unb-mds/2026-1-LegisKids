@@ -8,7 +8,7 @@
         <meta name="author" content="Equipe do Projeto">
         
         <link rel="shortcut icon" href="../../../img/favicon.ico">
-        <title>Estudo de APIs – Monitoramento Legislativo - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <title>Decisão de Hospedagem do Banco de Dados - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../../css/brands.min.css" rel="stylesheet">
@@ -44,10 +44,10 @@
                                 <a href="../../arquitetura/" class="nav-link">Arquitetura</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../" class="nav-link">Backend / API</a>
+                                <a href="../../API/" class="nav-link">Backend / API</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../banco_de_dados/" class="nav-link">Banco de Dados</a>
+                                <a href="../" class="nav-link">Banco de Dados</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../../frontend/" class="nav-link">Frontend</a>
@@ -99,37 +99,25 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#estudo-de-apis-monitoramento-legislativo" class="nav-link">Estudo de APIs – Monitoramento Legislativo</a>
+            <li class="nav-item" data-bs-level="1"><a href="#decisao-de-hospedagem-do-banco-de-dados" class="nav-link">Decisão de Hospedagem do Banco de Dados</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#visao-geral" class="nav-link">Visão geral</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#conteudo-principal" class="nav-link">Conteúdo principal</a>
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo" class="nav-link">Objetivo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#decisao-do-projeto" class="nav-link">Decisão do projeto</a>
+            <li class="nav-item" data-bs-level="2"><a href="#opcoes-analisadas" class="nav-link">Opções analisadas</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#o-que-a-api-da-camara-oferece" class="nav-link">O que a API da Câmara oferece</a>
+            <li class="nav-item" data-bs-level="2"><a href="#analise-tecnica" class="nav-link">Análise técnica</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#endpoints-principais" class="nav-link">Endpoints principais</a>
+            <li class="nav-item" data-bs-level="2"><a href="#analise-de-risco" class="nav-link">Análise de risco</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#formato-e-atualizacao" class="nav-link">Formato e atualização</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#cobertura-da-solucao" class="nav-link">Cobertura da solução</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#limitacoes-e-riscos" class="nav-link">Limitações e riscos</a>
+            <li class="nav-item" data-bs-level="2"><a href="#decisao-final" class="nav-link">Decisão final</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -144,124 +132,229 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="estudo-de-apis-monitoramento-legislativo">Estudo de APIs – Monitoramento Legislativo</h1>
-<h2 id="visao-geral">Visão geral</h2>
-<p>Este documento apresenta o levantamento e análise das APIs e fontes de dados disponíveis para o sistema de monitoramento legislativo, bem como a decisão de arquitetura de dados adotada no projeto.</p>
-<hr />
-<h2 id="conteudo-principal">Conteúdo principal</h2>
-<h3 id="fontes-de-dados">Fontes de dados</h3>
-<h4 id="coleta-primaria">Coleta primária</h4>
-<h5 id="camara-dos-deputados">Câmara dos Deputados</h5>
+<h1 id="decisao-de-hospedagem-do-banco-de-dados">Decisão de Hospedagem do Banco de Dados</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>Definir a melhor estratégia de hospedagem para o banco de dados do projeto, considerando:</p>
 <ul>
-<li>Fonte principal do projeto  </li>
-<li>Fornece dados completos sobre proposições e tramitações  </li>
-<li>Documentação disponível via Swagger e Dados Abertos  </li>
-</ul>
-<h5 id="senado-federal">Senado Federal</h5>
-<ul>
-<li>Fonte complementar de dados legislativos  </li>
-<li>Pode ser utilizado futuramente para expansão do sistema  </li>
+<li>uso de PostgreSQL</li>
+<li>estrutura com menos de 10 tabelas relacionais</li>
+<li>baixo volume de requisições (projeto acadêmico)</li>
+<li>crescimento de dados incerto</li>
 </ul>
 <hr />
-<h3 id="enriquecimento-e-consolidacao">Enriquecimento e consolidação</h3>
-<h4 id="lexml">LexML</h4>
+<h2 id="opcoes-analisadas">Opções analisadas</h2>
+<h3 id="hospedagem-local">Hospedagem local</h3>
+<p>Banco de dados executado na máquina de um integrante do grupo.</p>
+<h4 id="vantagens">Vantagens</h4>
 <ul>
-<li>Não deve ser utilizado como fonte primária  </li>
-<li>Utilizado apenas para:</li>
-<li>normalização de dados  </li>
-<li>deduplicação  </li>
-<li>resolução de documentos jurídicos  </li>
+<li>custo zero</li>
+<li>simplicidade de configuração</li>
+<li>bom para desenvolvimento inicial</li>
+</ul>
+<h4 id="desvantagens">Desvantagens</h4>
+<ul>
+<li>baixa disponibilidade (depende da máquina estar ligada)</li>
+<li>acesso externo limitado</li>
+<li>maior risco de perda de dados</li>
+<li>difícil colaboração entre integrantes</li>
+<li>não adequado para integração com frontend remoto</li>
 </ul>
 <hr />
-<h3 id="publicacao-oficial">Publicação oficial</h3>
-<h4 id="diario-oficial-da-uniao-dou">Diário Oficial da União (DOU)</h4>
+<h3 id="hospedagem-em-nuvem">Hospedagem em nuvem</h3>
+<p>Banco de dados hospedado em um serviço cloud, acessível via internet. Opções consideradas: Neon, Supabase e AWS RDS.</p>
+<hr />
+<h2 id="analise-tecnica">Análise técnica</h2>
+<h3 id="caracteristicas-do-projeto">Características do projeto</h3>
+<p>O banco terá menos de 10 tabelas relacionais, dados estruturados sem arquivos pesados, baixo volume de acessos simultâneos e uso acadêmico não crítico. Isso implica baixo consumo de CPU e armazenamento, com necessidade maior de simplicidade do que de escala.</p>
+<hr />
+<h3 id="estimativa-de-armazenamento">Estimativa de armazenamento</h3>
+<p>O projeto consumirá dados da API de projetos de lei da Câmara dos Deputados, filtrando os relacionados à segurança da criança na internet. Cada registro pode conter ID, título, ementa, texto/justificativa, autor, data, situação e temas.</p>
+<h4 id="estimativa-por-registro">Estimativa por registro</h4>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tamanho estimado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID + metadados</td>
+<td>~100 bytes</td>
+</tr>
+<tr>
+<td>Título (ementa curta)</td>
+<td>~200 bytes</td>
+</tr>
+<tr>
+<td>Ementa detalhada</td>
+<td>~500 bytes</td>
+</tr>
+<tr>
+<td>Texto (justificativa)</td>
+<td>~2 KB a 10 KB</td>
+</tr>
+<tr>
+<td>Outros campos</td>
+<td>~200 bytes</td>
+</tr>
+</tbody>
+</table>
+<p>Total por registro: conservador ~3 KB, médio ~5 KB, alto ~10 KB.</p>
+<h4 id="quantidade-estimada-de-dados">Quantidade estimada de dados</h4>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Nº de projetos</th>
+<th>Tamanho total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pequeno</td>
+<td>500</td>
+<td>~2,5 MB</td>
+</tr>
+<tr>
+<td>Médio</td>
+<td>2.000</td>
+<td>~10 MB</td>
+</tr>
+<tr>
+<td>Grande</td>
+<td>10.000</td>
+<td>~50 MB</td>
+</tr>
+<tr>
+<td>Muito grande</td>
+<td>50.000</td>
+<td>~250 MB</td>
+</tr>
+</tbody>
+</table>
+<p>O número de projetos relacionados ao tema é limitado. Mesmo armazenando milhares de registros, o banco ficará bem abaixo de 0,5 GB, com crescimento lento e previsível.</p>
+<h4 id="fatores-de-risco">Fatores de risco</h4>
+<p>O tamanho pode crescer significativamente caso o sistema armazene o texto completo dos projetos, histórico de versões ou dados redundantes da API sem filtro.</p>
+<h4 id="estrategias-para-otimizar-armazenamento">Estratégias para otimizar armazenamento</h4>
 <ul>
-<li>Fonte oficial de atos normativos  </li>
-<li>Utilizado como referência de validação  </li>
-<li>Disponível via catálogo de APIs governamentais  </li>
+<li>armazenar apenas campos relevantes, evitando duplicação</li>
+<li>salvar apenas resumo/ementa quando possível</li>
+<li>normalizar autores, temas, etc. em tabelas separadas</li>
+<li>usar <code>TEXT</code> (PostgreSQL já otimiza internamente)</li>
+</ul>
+<h4 id="conclusao-da-estimativa">Conclusão da estimativa</h4>
+<p>O banco de dados provavelmente ficará entre <strong>5 MB e 100 MB</strong> na maioria dos cenários — bem abaixo do limite de 500 MB, com margem de segurança confortável.</p>
+<hr />
+<h3 id="opcoes-em-nuvem">Opções em nuvem</h3>
+<h4 id="neon-postgresql-serverless">Neon (PostgreSQL serverless)</h4>
+<ul>
+<li>plano gratuito: 0,5 GB de armazenamento, compute limitado, escala para zero quando ocioso</li>
+<li>custo adicional: ~$0,35 por GB extra/mês</li>
+<li>vantagens: custo inicial zero, escalabilidade automática, PostgreSQL puro, ideal para uso intermitente</li>
+<li>desvantagens: possível latência inicial (cold start), limite inicial de armazenamento</li>
 </ul>
 <hr />
-<h3 id="descoberta-de-dados">Descoberta de dados</h3>
-<h4 id="portal-dadosgovbr">Portal dados.gov.br</h4>
+<h4 id="supabase">Supabase</h4>
 <ul>
-<li>Utilizado apenas como suporte  </li>
-<li>Permite:</li>
-<li>descoberta de datasets  </li>
-<li>identificação de organizações  </li>
-<li>busca por categorias e tags  </li>
+<li>plano gratuito: ~500 MB de banco</li>
+<li>plano pago: ~$25/mês</li>
+<li>vantagens: fácil integração, inclui autenticação e backend prontos</li>
+<li>desvantagens: menos controle, custo fixo mais alto ao escalar, pode ser excessivo para o escopo do projeto</li>
 </ul>
 <hr />
-<h2 id="decisao-do-projeto">Decisão do projeto</h2>
-<p>Apesar da existência de múltiplas fontes de dados, para viabilizar o projeto dentro do prazo:</p>
-<p>Será utilizada como fonte principal apenas a API da Câmara dos Deputados.</p>
-<hr />
-<h2 id="o-que-a-api-da-camara-oferece">O que a API da Câmara oferece</h2>
-<p>A API cobre os principais dados necessários para o sistema:</p>
+<h4 id="aws-rds">AWS RDS</h4>
 <ul>
-<li>Proposições  </li>
-<li>Tramitações  </li>
-<li>Autores  </li>
-<li>Comissões e órgãos  </li>
-<li>Temas  </li>
+<li>plano: ~750h gratuitas por 1 ano, ~20 GB de armazenamento</li>
+<li>após free tier: ~$10–15/mês mínimo</li>
+<li>vantagens: alta confiabilidade, controle total, padrão de mercado</li>
+<li>desvantagens: configuração mais complexa, custo maior desde o início, não escala para zero</li>
 </ul>
 <hr />
-<h2 id="endpoints-principais">Endpoints principais</h2>
+<h3 id="comparacao">Comparação</h3>
+<table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Neon</th>
+<th>Supabase</th>
+<th>AWS RDS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custo inicial</td>
+<td>$0</td>
+<td>$0</td>
+<td>~$0–10</td>
+</tr>
+<tr>
+<td>Armazenamento</td>
+<td>0,5 GB</td>
+<td>~0,5 GB</td>
+<td>20 GB</td>
+</tr>
+<tr>
+<td>Escala para zero</td>
+<td>Sim</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
+<td>Complexidade</td>
+<td>Baixa</td>
+<td>Muito baixa</td>
+<td>Média</td>
+</tr>
+<tr>
+<td>Controle</td>
+<td>Médio</td>
+<td>Médio</td>
+<td>Alto</td>
+</tr>
+<tr>
+<td>Indicado para</td>
+<td>Acadêmico/MVP</td>
+<td>MVP completo</td>
+<td>Produção</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="analise-de-risco">Análise de risco</h2>
+<p>O principal risco identificado é o crescimento do banco além de 0,5 GB. A probabilidade é baixa, considerando as poucas tabelas, dados estruturados e baixo volume de uso. O custo adicional por armazenamento extra é pequeno e a migração é simples por se tratar de PostgreSQL padrão.</p>
+<p>Mitigações:</p>
 <ul>
-<li>/api/v2/proposicoes  </li>
-<li>/api/v2/proposicoes/{id}  </li>
-<li>/api/v2/proposicoes/{id}/tramitacoes  </li>
-<li>/api/v2/proposicoes/{id}/autores  </li>
-<li>/api/v2/proposicoes/{id}/temas  </li>
-<li>/api/v2/orgaos  </li>
-<li>/api/v2/orgaos/{id}  </li>
+<li>monitorar tamanho do banco periodicamente</li>
+<li>limpar dados desnecessários (logs, temporários)</li>
+<li>migrar ou escalar caso necessário</li>
 </ul>
 <hr />
-<h2 id="formato-e-atualizacao">Formato e atualização</h2>
-<p>A API da Câmara fornece:</p>
+<h2 id="decisao-final">Decisão final</h2>
+<p><strong>PostgreSQL em nuvem via Neon.</strong></p>
+<h3 id="justificativa">Justificativa</h3>
 <ul>
-<li>API REST  </li>
-<li>Formatos suportados:</li>
-<li>JSON  </li>
-<li>CSV  </li>
-<li>XML  </li>
-<li>XLSX  </li>
-<li>ODS  </li>
-<li>Atualização diária dos dados principais  </li>
+<li>custo zero inicial, ideal para projeto acadêmico</li>
+<li>baixa complexidade de configuração e uso</li>
+<li>escalabilidade adequada ao crescimento do projeto</li>
+<li>não cobra quando o sistema está ocioso</li>
+<li>flexibilidade para migrar facilmente para outras soluções PostgreSQL caso necessário</li>
 </ul>
-<hr />
-<h2 id="cobertura-da-solucao">Cobertura da solução</h2>
-<p>A API cobre:</p>
+<h3 id="estrategia-de-uso">Estratégia de uso</h3>
 <ul>
-<li>proposições  </li>
-<li>tramitações  </li>
-<li>autores  </li>
-<li>comissões  </li>
-<li>temas  </li>
+<li><strong>desenvolvimento local</strong> — PostgreSQL local ou Docker</li>
+<li><strong>integração e testes</strong> — Neon</li>
+<li><strong>produção acadêmica</strong> — Neon</li>
 </ul>
-<hr />
-<h2 id="limitacoes-e-riscos">Limitações e riscos</h2>
-<p>A API não cobre completamente:</p>
+<h3 id="plano-de-contingencia">Plano de contingência</h3>
+<p>Caso o banco ultrapasse os limites ou surjam novas necessidades:</p>
 <ul>
-<li>Senado Federal  </li>
-<li>Publicações oficiais no DOU  </li>
-<li>Classificação específica sobre proteção digital de crianças  </li>
-</ul>
-<h3 id="pontos-de-atencao">Pontos de atenção</h3>
-<ul>
-<li>escopo limitado à Câmara dos Deputados  </li>
-<li>classificação temática genérica  </li>
-<li>possíveis mudanças na API  </li>
-<li>necessidade de filtros e regras próprias  </li>
+<li>expandir armazenamento no Neon (baixo custo)</li>
+<li>ou migrar para Supabase (mais recursos) ou AWS RDS (maior robustez)</li>
 </ul>
 <hr />
 <h2 id="conclusao">Conclusão</h2>
-<p>A API da Câmara dos Deputados atende adequadamente o escopo inicial do projeto e será utilizada como fonte principal de dados, permitindo a coleta estruturada de informações sobre:</p>
-<ul>
-<li>proposições  </li>
-<li>tramitações  </li>
-<li>autores  </li>
-<li>comissões  </li>
-</ul></div>
+<p>Para um projeto acadêmico com poucas tabelas, baixo volume de requisições e crescimento incerto, o PostgreSQL em nuvem via Neon oferece o melhor equilíbrio entre custo, simplicidade e escalabilidade.</p></div>
             </div>
         </div>
 
