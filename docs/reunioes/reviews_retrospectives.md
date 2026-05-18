@@ -1,58 +1,88 @@
-# 30/03
-# Review e Retrospectiva Sprint 0
-Conseguimos resolver todas Issues, menos o Estudo de Front-End.  
-Vimos que o Estudo de GitHub foi feito, mas o documento produzido ficou ruim para os outros integrantes, 
-então o Arthur ficou responsável de refazê-lo.  
+# Review e Retrospectiva das Sprints
 
 ---
 
-# 06/04
-# Review e Retrospectiva da Sprint 1
-Vimos que nossa organização não estava boa, então decidimos que iríamos fazer diferente na próxima.  
-Visando melhora, definimos Caio como Product Owner, e Renan como Scrum Master.  
+## 30/03 — Sprint 0
+
+Conseguimos resolver todas as issues, exceto o estudo de Front-End.
+
+O estudo de GitHub foi realizado, porém o documento produzido não ficou adequado para os demais integrantes, então o Arthur ficou responsável por refazê-lo.
 
 ---
 
-# 13/04
-# Review e Retrospectiva da Sprint 2
-Conseguimos resolver todas Issues a tempo.
+## 06/04 — Sprint 1
 
-Reforçamos que devemos commitar TUDO que der, para deixarmos rastros, até de nossos estudos e escolhas.
+Foi identificada uma organização inicial inadequada no processo do time.
 
-Decidimos mudar as Dailies pra 3 vezes na semana, 2 vezes online e 1 por texto, pra aumentar a produtividade (ainda estamos em fase de teste).
+Como melhoria, foram definidos:
+- Caio como Product Owner
+- Renan como Scrum Master
 
-Discutimos sobre Labels S M L - separar tarefas contando o tamanho, mas ainda não decidimos nada.
+---
 
-# 20/04
-# Review e Retrospectiva da Sprint 3
+## 13/04 — Sprint 2
 
-Presentes: Arthur, Caio, Ítalo, Luis e Renan.  
+Conseguimos resolver todas as issues dentro do prazo.
 
-Todos mostraram o que fizeram durante a semana, para interar os integrantes sobre o andamento do projeto.  
+Foi reforçada a importância de realizar commits de todas as atividades possíveis, incluindo estudos e decisões técnicas, para manter rastreabilidade do projeto.
 
-Mudamos nossas Review e Retrospectiva para as segundas-feiras, após a aula de MDS, e logo após acontecerá a Sprint Planning.  
-Mudamos nossas Dailies para as quartas-feiras, após a aula de MDS, e as sextas-feiras, às 13 horas.  
+Foi proposta a mudança no formato das dailies para três vezes por semana:
+- duas online
+- uma por texto
 
-# 27/04
-# Review e Retrospectiva da Sprint 4
+(implementação em fase de teste)
 
-Presentes: Caio, Ítalo, Luís e Renan  
-Mostramos tudo o que foi entregue nessa semana.  
-Criar um Protótipo Interativo do site design Identidade visual e UX -> levado para a Sprint 5, pois não foi concluído ainda.  
-Implementar banco de dados -> levado para a Sprint 5, pois não houve tempo para os integrantes se dedicarem a isso.  
-Ninguém enfrentou um problema grande. As mudanças nas cerimônias Scrum surtiram efeito positivo. 
+Também foi discutida a adoção de labels de tamanho (S, M, L), porém sem definição final.
 
-# 04/05
-# Review e Retrospectiva da Sprint 4
+---
 
-Presentes: Arthur, Caio, Luís e Renan
+## 20/04 — Sprint 3
 
-Arthur: ajudou no Protótipo interativo, deverá acabar a issue de Estudo de IA até terça a noite. 
+Presentes: Arthur, Caio, Ítalo, Luis e Renan
 
-Caio: finalizou a issue de Protótipo Interativo, e apenas está esperando um reviewer no Pull Request de revisão de Requisitos 
+Todos apresentaram suas atividades da semana para alinhamento do andamento do projeto.
 
-Luís: não acabou sua issue, mas deverá acabar até terça à noite. 
+Foram definidas mudanças no processo Scrum:
+- Reviews e Retrospectivas passam para segunda-feira após aula de MDS
+- Sprint Planning ocorre logo em seguida
+- Dailies passam para quarta-feira após aula de MDS e sexta-feira às 13h
 
-Renan: entregou a issue de fix de pastas, MK Docs, e revisão de Arqutitetura (com 3 sub-issues). 
+---
 
-Entregamos muito pouco nessa Sprint, e devemos prestar mais atenção para as Reviews em PR’s, para ajudar numa entrega de alto nível. 
+## 27/04 — Sprint 4
+
+Presentes: Caio, Ítalo, Luis e Renan
+
+Foram apresentados os entregáveis da semana.
+
+Issues não concluídas e movidas para Sprint 5:
+- Protótipo interativo (design, identidade visual e UX)
+- Implementação do banco de dados
+
+Nenhum problema crítico foi identificado. As mudanças no processo Scrum tiveram efeito positivo.
+
+---
+
+## 04/05 — Sprint 5
+
+Presentes: Arthur, Caio, Luis e Renan
+
+- Arthur: contribuiu com protótipo interativo e continuará estudo de IA até terça-feira  
+- Caio: finalizou protótipo interativo e aguarda review de PR de requisitos  
+- Luis: issue ainda não concluída, previsão de finalização até terça-feira  
+- Renan: entregou fix de pastas, MkDocs e revisão de arquitetura (3 sub-issues)  
+
+Foi identificado baixo volume de entregas na sprint e necessidade de maior atenção aos Pull Requests para garantir qualidade nas entregas.
+
+---
+
+## 11/05 — Sprint 6
+
+Presentes: Arthur, Caio, Luis e Renan
+
+- Arthur: entregou estrutura base do front-end  
+- Caio: entregou estrutura base do front-end e revisou requisitos do projeto  
+- Luis: melhorou filtros da API da Câmara  
+- Renan: avançou nos estudos de banco de dados, concluindo 2 de 6 issues  
+
+Foi identificada necessidade de melhoria na divisão de tarefas para aumento de produtividade do time.

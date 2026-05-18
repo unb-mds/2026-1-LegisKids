@@ -1,59 +1,66 @@
 # Padronização de Commits
-## Formato padrão
 
-```
+## Visão geral
+
+Os commits devem seguir um padrão consistente para facilitar o entendimento do histórico do projeto.
+
+---
+
+## Conteúdo principal
+
+### Formato padrão
+
 tipo: descrição breve da alteração
-```
 
-### Exemplo
+---
 
-```
-feat: adiciona tela de login
-fix: corrige validaçãodo formulário
-docs: atualiza documentação da API
-```
+### Exemplos
 
-# Prefixos oficiais
+- feat: adiciona tela de login  
+- fix: corrige validação do formulário  
+- docs: atualiza documentação da API  
 
-| Prefixo | Uso | Exemplo |
-| --- | --- | --- |
-| `feat` | Nova funcionalidade | `feat: adiciona cadastro de usuário` |
-| `fix` | Correção de bug | `fix: corrige erro na autenticação` |
-| `refactor` | Refatoração sem mudar comportamento | `refactor: reorganiza service de login` |
-| `docs` | Alterações na documentação | `docs: adiciona guia de instalação` |
-| `style` | Formatação visual/código | `style: ajusta identação do controller` |
-| `test` | Testes | `test: adiciona testes do módulo de usuários` |
-| `chore` | Manutenção geral | `chore: atualiza dependências` |
-| `infra` | Infraestrutura | `infra: configura docker compose` |
-| `devops` | Pipeline/deploy | `devops: adiciona workflow do github actions` |
-| `management` | Gestão/processos | `management: atualiza template de issue` |
+---
 
-# Regras de uso
+### Prefixos oficiais
 
-## Deve:
+| Prefixo     | Uso                                         | Exemplo |
+|------------|----------------------------------------------|--------|
+| feat       | Nova funcionalidade                          | feat: adiciona cadastro de usuário |
+| fix        | Correção de bug                              | fix: corrige erro na autenticação |
+| refactor   | Refatoração sem alterar comportamento        | refactor: reorganiza service de login |
+| docs       | Alterações na documentação                   | docs: adiciona guia de instalação |
+| style      | Formatação de código ou estilo               | style: ajusta indentação do controller |
+| test       | Adição ou ajuste de testes                   | test: adiciona testes do módulo de usuários |
+| chore      | Manutenção geral                             | chore: atualiza dependências |
+| infra      | Infraestrutura                               | infra: configura docker compose |
+| devops     | Pipeline e deploy                            | devops: adiciona workflow do GitHub Actions |
+| management | Gestão de processos                          | management: atualiza template de issue |
 
-- usar prefixo em minúsculo
-- descrição curta
-- verbo no presente
-- sem ponto final
+---
 
-### Correto
+### Regras de uso
 
-```
-feat: adiciona endpoint de login
-fix: corrige erro no banco
-```
+**Deve:**
 
-## Não deve:
+- usar prefixo em minúsculo  
+- descrição curta e objetiva  
+- verbo no presente  
+- sem ponto final  
 
-- commits genéricos
-- mensagens vagas
-- mistura de idiomas
+Exemplos corretos:
 
-### Incorreto
+- feat: adiciona endpoint de login  
+- fix: corrige erro no banco  
 
-```
-update
-mudanças
-corrigi coisas
-```
+**Não deve:**
+
+- commits genéricos  
+- mensagens vagas  
+- mistura de idiomas  
+
+Exemplos incorretos:
+
+- update  
+- mudanças  
+- corrigi coisas  

@@ -1,84 +1,57 @@
 # Decisão de Hospedagem do Banco de Dados
-## 1. Objetivo
+
+## Objetivo
 
 Definir a melhor estratégia de hospedagem para o banco de dados do projeto, considerando:
 
-- Uso de **PostgreSQL**
-- Estrutura com menos de 10 **tabelas relacionais**
-- **Baixo volume de requisições** (projeto acadêmico)
-- **Crescimento de dados incerto**
+- uso de PostgreSQL
+- estrutura com menos de 10 tabelas relacionais
+- baixo volume de requisições (projeto acadêmico)
+- crescimento de dados incerto
 
-## 2. Opções Analisadas
+---
 
-### 2.1 Hospedagem Local
+## Opções analisadas
 
-**Descrição:**
+### Hospedagem local
 
 Banco de dados executado na máquina de um integrante do grupo.
 
-**Vantagens:**
+#### Vantagens
 
-- Custo zero
-- Simplicidade de configuração
-- Bom para desenvolvimento inicial
+- custo zero
+- simplicidade de configuração
+- bom para desenvolvimento inicial
 
-**Desvantagens:**
+#### Desvantagens
 
-- Baixa disponibilidade (depende da máquina estar ligada)
-- Acesso externo limitado
-- Maior risco de perda de dados
-- Difícil colaboração entre integrantes
-- Não adequado para integração com frontend remoto
+- baixa disponibilidade (depende da máquina estar ligada)
+- acesso externo limitado
+- maior risco de perda de dados
+- difícil colaboração entre integrantes
+- não adequado para integração com frontend remoto
 
-### 2.2 Hospedagem em Nuvem (PostgreSQL)
+---
 
-**Descrição:**
+### Hospedagem em nuvem
 
-Banco de dados hospedado em um serviço cloud, acessível via internet.
+Banco de dados hospedado em um serviço cloud, acessível via internet. Opções consideradas: Neon, Supabase e AWS RDS.
 
-**Opções consideradas:**
+---
 
-- Neon (PostgreSQL serverless)
-- Supabase (PostgreSQL + backend)
-- AWS RDS (PostgreSQL gerenciado)
+## Análise técnica
 
-## 3. Análise Técnica – Banco SQL em Nuvem
+### Características do projeto
 
-### 3.1 Características do Projeto
+O banco terá menos de 10 tabelas relacionais, dados estruturados sem arquivos pesados, baixo volume de acessos simultâneos e uso acadêmico não crítico. Isso implica baixo consumo de CPU e armazenamento, com necessidade maior de simplicidade do que de escala.
 
-O banco de dados terá:
+---
 
-- menos de 10 tabelas relacionais
-- Dados estruturados (sem arquivos pesados)
-- Baixo volume de acessos simultâneos
-- Uso acadêmico (não crítico)
+### Estimativa de armazenamento
 
-Isso implica:
+O projeto consumirá dados da API de projetos de lei da Câmara dos Deputados, filtrando os relacionados à segurança da criança na internet. Cada registro pode conter ID, título, ementa, texto/justificativa, autor, data, situação e temas.
 
-- Baixo consumo de CPU
-- Baixo consumo de armazenamento (inicialmente)
-- Necessidade maior de simplicidade do que de escala
-
-## 3.2 Estimativa de Uso de Armazenamento
-
-O projeto irá consumir dados da **API de projetos de lei da Câmara dos Deputados**, filtrando aqueles relacionados à **segurança da criança na internet**.
-
-### Estrutura esperada dos dados
-
-Cada projeto de lei normalmente contém:
-
-- ID
-- Título (ementa)
-- Descrição/ementa detalhada
-- Texto/justificativa (às vezes longo)
-- Autor(es)
-- Data
-- Situação
-- Tags/temas
-
-Isso significa que os registros não são pequenos — principalmente por causa de **campos de texto**.
-
-### Estimativa por registro
+#### Estimativa por registro
 
 | Campo | Tamanho estimado |
 | --- | --- |
@@ -88,209 +61,117 @@ Isso significa que os registros não são pequenos — principalmente por causa 
 | Texto (justificativa) | ~2 KB a 10 KB |
 | Outros campos | ~200 bytes |
 
-**Total por registro:**
+Total por registro: conservador ~3 KB, médio ~5 KB, alto ~10 KB.
 
-- Conservador: ~3 KB
-- Médio: ~5 KB
-- Alto: ~10 KB
-
-### Quantidade estimada de dados
-
-Nem todos os projetos da Câmara serão armazenados — apenas os relacionados ao tema.
-
-Estimativa realista:
+#### Quantidade estimada de dados
 
 | Cenário | Nº de projetos | Tamanho total |
 | --- | --- | --- |
-| Pequeno | 500 | ~2.5 MB |
+| Pequeno | 500 | ~2,5 MB |
 | Médio | 2.000 | ~10 MB |
 | Grande | 10.000 | ~50 MB |
-| Muito grande (exagerado) | 50.000 | ~250 MB |
+| Muito grande | 50.000 | ~250 MB |
 
-### Considerações importantes
+O número de projetos relacionados ao tema é limitado. Mesmo armazenando milhares de registros, o banco ficará bem abaixo de 0,5 GB, com crescimento lento e previsível.
 
-- O número de projetos relacionados ao tema é **limitado**
-- Mesmo armazenando milhares de registros:
-    - ainda fica **bem abaixo de 0.5 GB**
-- O crescimento é **lento e previsível**
+#### Fatores de risco
 
-### Possível fator de risco
+O tamanho pode crescer significativamente caso o sistema armazene o texto completo dos projetos, histórico de versões ou dados redundantes da API sem filtro.
 
-O único cenário que pode aumentar muito o tamanho:
+#### Estratégias para otimizar armazenamento
 
-- Armazenar **texto completo do projeto (inteiro)**
-- Armazenar **histórico de versões**
-- Armazenar **dados redundantes da API sem filtro**
+- armazenar apenas campos relevantes, evitando duplicação
+- salvar apenas resumo/ementa quando possível
+- normalizar autores, temas, etc. em tabelas separadas
+- usar `TEXT` (PostgreSQL já otimiza internamente)
 
-### Estratégias para otimizar armazenamento
+#### Conclusão da estimativa
 
-1. **Armazenar apenas campos relevantes**
-    - evitar duplicação de dados
-2. **Evitar armazenar documentos completos desnecessariamente**
-    - salvar apenas resumo/ementa quando possível
-3. **Normalização**
-    - separar autores, temas, etc.
-4. **Compressão lógica**
-    - usar `TEXT` (PostgreSQL já otimiza internamente)
+O banco de dados provavelmente ficará entre **5 MB e 100 MB** na maioria dos cenários — bem abaixo do limite de 500 MB, com margem de segurança confortável.
 
-### Conclusão da estimativa
+---
 
-Mesmo considerando dados reais da Câmara:
+### Opções em nuvem
 
-> O banco de dados provavelmente ficará entre **5 MB e 100 MB** na maioria dos cenários.
-> 
+#### Neon (PostgreSQL serverless)
 
-Ou seja:
+- plano gratuito: 0,5 GB de armazenamento, compute limitado, escala para zero quando ocioso
+- custo adicional: ~$0,35 por GB extra/mês
+- vantagens: custo inicial zero, escalabilidade automática, PostgreSQL puro, ideal para uso intermitente
+- desvantagens: possível latência inicial (cold start), limite inicial de armazenamento
 
-- Muito abaixo do limite de **0.5 GB (500 MB)**
-- Com margem de segurança confortável
+---
 
-## 3.3 Opções em Nuvem
+#### Supabase
 
-### 🔹 Neon (PostgreSQL Serverless)
+- plano gratuito: ~500 MB de banco
+- plano pago: ~$25/mês
+- vantagens: fácil integração, inclui autenticação e backend prontos
+- desvantagens: menos controle, custo fixo mais alto ao escalar, pode ser excessivo para o escopo do projeto
 
-**Plano gratuito:**
+---
 
-- 0.5 GB armazenamento
-- Compute limitado
-- Escala para zero (sem custo quando ocioso)
+#### AWS RDS
 
-**Custos adicionais:**
+- plano: ~750h gratuitas por 1 ano, ~20 GB de armazenamento
+- após free tier: ~$10–15/mês mínimo
+- vantagens: alta confiabilidade, controle total, padrão de mercado
+- desvantagens: configuração mais complexa, custo maior desde o início, não escala para zero
 
-- ~$0.35 por GB extra/mês
+---
 
-**Vantagens:**
-
-- Custo inicial zero
-- Escalabilidade automática
-- PostgreSQL puro (sem lock-in)
-- Ideal para uso intermitente
-
-**Desvantagens:**
-
-- Possível latência inicial (cold start)
-- Limite inicial de armazenamento
-
-### Supabase
-
-**Plano gratuito:**
-
-- ~500 MB banco
-
-**Plano pago:**
-
-- ~$25/mês
-
-**Vantagens:**
-
-- Fácil integração (API pronta)
-- Inclui autenticação e backend
-
-**Desvantagens:**
-
-- Menos controle
-- Custo fixo mais alto ao escalar
-- Pode ser excessivo para o escopo do projeto
-
-### AWS RDS
-
-**Plano:**
-
-- ~750h gratuitas por 1 ano
-- ~20 GB armazenamento
-
-**Após free tier:**
-
-- ~$10–15/mês mínimo
-
-**Vantagens:**
-
-- Alta confiabilidade
-- Controle total
-- Padrão de mercado
-
-**Desvantagens:**
-
-- Configuração mais complexa
-- Custo maior desde o início
-- Não escala para zero
-
-## 3.4 Comparação
+### Comparação
 
 | Critério | Neon | Supabase | AWS RDS |
 | --- | --- | --- | --- |
 | Custo inicial | $0 | $0 | ~$0–10 |
-| Armazenamento | 0.5 GB | ~0.5 GB | 20 GB |
-| Escala p/ zero | Sim | Não | Não |
+| Armazenamento | 0,5 GB | ~0,5 GB | 20 GB |
+| Escala para zero | Sim | Não | Não |
 | Complexidade | Baixa | Muito baixa | Média |
 | Controle | Médio | Médio | Alto |
-| Indicado p/ | Acadêmico/MVP | MVP completo | Produção |
+| Indicado para | Acadêmico/MVP | MVP completo | Produção |
 
-## 4. Análise de Risco
+---
 
-### Risco identificado
+## Análise de risco
 
-- Crescimento do banco além de **0.5 GB**
+O principal risco identificado é o crescimento do banco além de 0,5 GB. A probabilidade é baixa, considerando as poucas tabelas, dados estruturados e baixo volume de uso. O custo adicional por armazenamento extra é pequeno e a migração é simples por se tratar de PostgreSQL padrão.
 
-### Probabilidade
+Mitigações:
 
-- **Baixa**, considerando:
-    - Poucas tabelas
-    - Dados estruturados
-    - Baixo volume de uso
+- monitorar tamanho do banco periodicamente
+- limpar dados desnecessários (logs, temporários)
+- migrar ou escalar caso necessário
 
-Motivo:
+---
 
-- O custo adicional é muito pequeno
-- Migração é simples (PostgreSQL padrão)
+## Decisão final
 
-### Mitigações
+**PostgreSQL em nuvem via Neon.**
 
-1. **Monitorar tamanho do banco**
-2. **Limpar dados desnecessários (logs, temporários)**
-3. **Migrar ou escalar caso necessário**
+### Justificativa
 
-## 5. Decisão Final
+- custo zero inicial, ideal para projeto acadêmico
+- baixa complexidade de configuração e uso
+- escalabilidade adequada ao crescimento do projeto
+- não cobra quando o sistema está ocioso
+- flexibilidade para migrar facilmente para outras soluções PostgreSQL caso necessário
 
-**Escolha:** PostgreSQL em nuvem utilizando **Neon**
+### Estratégia de uso
 
-## 6. Justificativa
+- **desenvolvimento local** — PostgreSQL local ou Docker
+- **integração e testes** — Neon
+- **produção acadêmica** — Neon
 
-A decisão foi baseada nos seguintes pontos:
+### Plano de contingência
 
-1. **Custo zero inicial**
-    - Ideal para projeto acadêmico
-2. **Baixa complexidade**
-    - Fácil de configurar e usar
-3. **Escalabilidade adequada**
-    - Cresce conforme necessário
-4. **Uso eficiente para baixa demanda**
-    - Não cobra quando o sistema está ocioso
-5. **Flexibilidade futura**
-    - Pode migrar facilmente para outras soluções PostgreSQL
+Caso o banco ultrapasse os limites ou surjam novas necessidades:
 
-## 7. Estratégia de Uso
+- expandir armazenamento no Neon (baixo custo)
+- ou migrar para Supabase (mais recursos) ou AWS RDS (maior robustez)
 
-- **Desenvolvimento local:** PostgreSQL local (ou Docker)
-- **Integração e testes:** Neon
-- **Produção acadêmica:** Neon
+---
 
-## 8. Plano de Contingência
+## Conclusão
 
-Caso o banco ultrapasse limites ou surjam novas necessidades:
-
-- Expandir armazenamento (baixo custo)
-- Ou migrar para:
-    - Supabase (mais recursos)
-    - AWS RDS (maior robustez)
-
-## 9. Conclusão
-
-Para um projeto acadêmico com:
-
-- Poucas tabelas
-- Baixo volume de requisições
-- Crescimento incerto
-
-> A utilização de PostgreSQL em nuvem via Neon oferece o melhor equilíbrio entre **custo, simplicidade e escalabilidade**.
->
+Para um projeto acadêmico com poucas tabelas, baixo volume de requisições e crescimento incerto, o PostgreSQL em nuvem via Neon oferece o melhor equilíbrio entre custo, simplicidade e escalabilidade.

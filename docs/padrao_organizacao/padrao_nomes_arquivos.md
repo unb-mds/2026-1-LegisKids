@@ -1,26 +1,34 @@
-### pastas
+# Padronização de Pastas e Arquivos
 
-- usar sempre letras minúsculas
-- evitar acentos
-- usar underscore(_) para separar palavras
+## Visão geral
 
-ex:
+Este documento define regras para padronização de nomes de pastas e arquivos no projeto, garantindo consistência e legibilidade.
 
-git_github
+---
 
-metodos_ageis
+## Conteúdo principal
 
-requisitos
+### Pastas
 
-### arquivos
+- Usar sempre letras minúsculas  
+- Evitar acentos e caracteres especiais  
+- Usar underscore (_) para separar palavras  
 
-- seguir o mesmo padrão das pastas
-- nome simples e direto, de acordo com o conteúdo
+Exemplos:
 
-ex:
+- git_github  
+- metodos_ageis  
+- requisitos  
 
-requisitos_software.md
+---
 
-comandos_git.md
+### Arquivos
 
+- Seguir o mesmo padrão das pastas  
+- Utilizar nomes simples, diretos e coerentes com o conteúdo  
+- Evitar abreviações desnecessárias  
 
+Exemplos:
+
+- requisitos_software.md  
+- comandos_git.md  

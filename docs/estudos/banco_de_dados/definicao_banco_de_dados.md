@@ -13,150 +13,92 @@ A escolha correta do banco de dados é importante para garantir:
 - escalabilidade futura
 - suporte à futura camada de IA
 
-# O que é um banco de dados e qual sua importância?
+---
 
-Um **banco de dados** é uma coleção organizada de informações armazenadas eletronicamente.
+## O que é um banco de dados
 
-Seu gerenciamento é feito por um:
+Um banco de dados é uma coleção organizada de informações armazenadas eletronicamente, gerenciada por um SGBD (Sistema de Gerenciamento de Banco de Dados). Exemplos: PostgreSQL, MySQL, SQLite.
 
-**SGBD (Sistema de Gerenciamento de Banco de Dados)**
-
-**DBMS (Data Bank Management System)**
-
-Exemplos:
-
-- PostgreSQL
-- MySQL
-- SQLite
-
-Um banco de dados é importante porque permite:
+Um banco de dados bem definido permite:
 
 - armazenar informações de forma segura
 - recuperar dados rapidamente
 - atualizar informações sem perda de consistência
 - evitar duplicidade
 - organizar grandes volumes de dados
-- permitir consultas complexas
+- realizar consultas complexas
 - sustentar o crescimento do sistema
 
-Sem um banco de dados bem definido, o sistema pode sofrer com:
+Sem um banco bem definido, o sistema pode sofrer com lentidão, inconsistência de dados, retrabalho futuro e limitações técnicas.
 
-- lentidão
-- inconsistência de dados
-- retrabalho futuro
-- dificuldade de integração
-- limitações técnicas
+---
 
-# Tipos de banco de dados
+## Por que usar banco relacional (SQL)
 
-Os bancos de dados podem ser divididos em dois grandes grupos.
+Como já definido no estudo anterior, o ideal para o projeto é um banco relacional. Os dados do sistema serão estruturados, relacionais, consistentes e conectados entre si:
 
-Como já definido no estudo anterior, o ideal, claramente, é um banco relacional (SQL).
-
-A seguir há um breve resumo de o que é um SQL e porque será usado para o projeto.
-
-## Bancos relacionais (SQL)
-
-Armazenam dados em:
-
-- tabelas
-- linhas
-- colunas
-
-Exemplo:
-
-| id | nome | email |
-| --- | --- | --- |
-| 1 | João | [joao@email.com](mailto:joao@email.com) |
-
-Vantagens:
-
-- integridade relacional
-- consistência
-- suporte ACID
-- consultas complexas
-- estrutura organizada
-
-Exemplos:
-
-- PostgreSQL
-- MySQL
-- SQLite
-
-# Por que o projeto deve usar SQL
-
-Para o contexto atual do projeto, os dados serão:
-
-- estruturados
-- relacionais
-- consistentes
-- conectados entre si
-
-Exemplo:
-
-- usuários
-- autenticação
-- histórico
-- interações
+- usuários e autenticação
+- histórico e interações
 - registros processados pela IA
 
-Isso torna um banco relacional mais adequado.
+Bancos relacionais armazenam dados em tabelas, linhas e colunas, com integridade relacional, consistência, suporte ACID e consultas complexas.
 
-# Tecnologias avaliadas
+---
 
-Foram consideradas as seguintes opções:
+## Tecnologias avaliadas
 
-## PostgreSQL
+### PostgreSQL
 
-### Vantagens
+#### Vantagens
 
 - excelente compatibilidade com Python
 - integração nativa com Flask
-- suporte completo ao SQLAlchemy
-- suporte oficial ao psycopg
+- suporte completo ao SQLAlchemy e psycopg
 - suporte a JSON e JSONB
 - consultas complexas eficientes
-- ótima escalabilidade
-- robustez para produção
-- alta confiabilidade
+- ótima escalabilidade e robustez para produção
 - forte suporte da comunidade
 
-### Limitações
+#### Limitações
 
 - configuração inicial um pouco mais complexa
 - curva de aprendizado maior para iniciantes
 
-## MySQL
+---
 
-### Vantagens
+### MySQL
 
-- popular
-- fácil de encontrar documentação
+#### Vantagens
+
+- popular e bem documentado
 - integração com Python
 - bom desempenho geral
 
-### Limitações
+#### Limitações
 
 - suporte JSON menos avançado que PostgreSQL
 - menor flexibilidade para consultas complexas
-- menos recursos avançados para IA futura
+- menos recursos para IA futura
 
-## SQLite
+---
 
-### Vantagens
+### SQLite
+
+#### Vantagens
 
 - extremamente simples
 - não exige servidor
 - ideal para testes locais
-- configuração mínima
 
-### Limitações
+#### Limitações
 
 - não recomendado para produção escalável
 - limitações de concorrência
 - pouca robustez para múltiplos usuários
 
-# Comparação técnica
+---
+
+## Comparação técnica
 
 | Critério | PostgreSQL | MySQL | SQLite |
 | --- | --- | --- | --- |
@@ -169,210 +111,80 @@ Foram consideradas as seguintes opções:
 | Produção | Excelente | Muito bom | Fraco |
 | Testes locais | Bom | Bom | Excelente |
 
-# Compatibilidade com o backend
+---
 
-## Python
+## Compatibilidade com o backend
 
-O backend será desenvolvido em:
-
-*Python*
-
-Todos os bancos avaliados possuem suporte, porém o PostgreSQL possui melhor integração para aplicações robustas.
-
-Bibliotecas utilizadas:
+O backend será desenvolvido em Python com Flask. As bibliotecas utilizadas serão:
 
 - SQLAlchemy
 - psycopg
 - Flask-SQLAlchemy
 
-## Flask
-
 O Flask se integra facilmente com PostgreSQL via URI:
 
-python
-postgresql+psycopg://usuario:senha@localhost/banco
+```python
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg://user:password@localhost/projeto"
+```
 
+O SQLAlchemy oferece ORM completo, mapeamento objeto-relacional, migrations, segurança nas queries e manutenção simplificada, com excelente suporte ao PostgreSQL.
 
-Exemplo de configuração:
+---
 
+## Compatibilidade com futura integração com IA
 
-app.config["SQLALCHEMY_DATABASE_URI"]="postgresql+psycopg://user:password@localhost/projeto"
+O sistema poderá futuramente integrar NLP, embeddings, análise textual, classificação automática e recomendações inteligentes. O PostgreSQL oferece vantagens importantes para isso:
 
+**JSONB** — permite armazenar metadados e resultados de modelos de IA de forma estruturada.
 
-## SQLAlchemy
+**Extensões futuras** — o PostgreSQL suporta full-text search, indexação avançada e vetores, facilitando integração com spaCy, transformers, modelos locais e APIs externas de IA.
 
-O SQLAlchemy oferece:
+---
 
-- ORM completo
-- mapeamento objeto-relacional
-- migrations
-- segurança nas queries
-- manutenção simplificada
+## Banco recomendado: PostgreSQL
 
-O PostgreSQL possui excelente suporte.
-
-# Compatibilidade com futura integração com IA
-
-O sistema poderá futuramente integrar:
-
-- NLP
-- embeddings
-- análise textual
-- classificação automática
-- recomendações inteligentes
-
-O PostgreSQL oferece vantagens importantes:
-
-## JSONB
-
-Permite armazenar:
-
-- metadados
-- resultados de modelos
-- respostas estruturadas de IA
-
-Exemplo:
-
-
-{
-  "sentimento":"positivo",
-  "confianca":0.92
-}
-
-
-## Extensões futuras
-
-PostgreSQL suporta:
-
-- full-text search
-- indexação avançada
-- vetores com extensões
-- consultas semiestruturadas
-
-Isso facilita integração futura com:
-
-- spaCy
-- transformers
-- modelos locais
-- APIs externas de IA
-
-# Facilidade para a equipe
-
-A escolha também considera a equipe.
-
-O PostgreSQL apresenta:
-
-- documentação extensa
-- comunidade ativa
-- muitos tutoriais
-- padrão amplamente usado no mercado
-
-Benefícios para o time:
-
-- aprendizado profissional
-- facilidade de manutenção
-- facilidade de contratação futura
-- padronização tecnológica
-
-# Banco recomendado: PostgreSQL
-
-# Justificativa da escolha
+### Justificativa
 
 O PostgreSQL foi escolhido porque oferece:
 
-- melhor compatibilidade com Python
-- integração excelente com Flask
-- suporte completo ao SQLAlchemy
-- compatibilidade nativa com psycopg
-- suporte avançado a dados estruturados
-- suporte a JSON para IA futura
-- escalabilidade superior
-- segurança
-- robustez para produção
+- melhor compatibilidade com Python e Flask
+- suporte completo ao SQLAlchemy e psycopg
+- suporte avançado a dados estruturados e JSON para IA futura
+- escalabilidade, segurança e robustez para produção
 
-# Uso recomendado no projeto
+### Uso no projeto
 
-## Ambiente local
+- **Ambiente local** — PostgreSQL como banco principal; SQLite apenas para testes rápidos (totalmente opcional)
+- **Produção** — PostgreSQL como banco oficial
 
-Durante desenvolvimento:
+---
 
-- PostgreSQL como principal
-- SQLite apenas para testes rápidos (TOTALMENTE OPCIONAL)
+## Próximos estudos necessários
 
-## Produção
+### Modelagem de dados
 
-Em produção:
+- entidades, relacionamentos, cardinalidade e normalização
 
-- PostgreSQL como banco oficial
+### SQL básico
 
-# Próximos estudos necessários
+- SELECT, INSERT, UPDATE, DELETE, JOIN, GROUP BY
 
-Após a definição do banco, a equipe deverá aprofundar os estudos em:
+### SQLAlchemy ORM
 
-## Modelagem de dados
+- models, relationships, sessions e migrations
 
-Estudar:
+### Migrações
 
-- entidades
-- relacionamentos
-- cardinalidade
-- normalização
+- Flask-Migrate e Alembic para versionar alterações e manter histórico do schema
 
-## SQL básico
+### Performance futura
 
-Aprender:
+- índices, otimização de consultas, monitoramento e tuning
 
-- SELECT
-- INSERT
-- UPDATE
-- DELETE
-- JOIN
-- GROUP BY
+---
 
-## SQLAlchemy ORM
+## Conclusão
 
-Entender:
+Após análise técnica das alternativas, o banco de dados definido para o projeto é o **PostgreSQL**.
 
-- models
-- relationships
-- sessions
-- migrations
-
-## Migrações
-
-Estudar:
-
-- Flask-Migrate
-- Alembic
-
-Para:
-
-- versionar alterações
-- manter histórico do schema
-
-## Performance futura
-
-Investigar:
-
-- índices
-- otimização de consultas
-- monitoramento
-- tuning
-
-# Riscos evitados com essa decisão
-
-A escolha antecipada evita:
-
-- retrabalho estrutural
-- perda de performance
-- incompatibilidades
-- dificuldade de manutenção
-- limitações futuras com IA
-
-# Conclusão
-
-Após análise técnica das alternativas, o banco de dados definido para o projeto é:
-
-## *PostgreSQL*
-
-A escolha oferece segurança técnica para o presente e flexibilidade para a evolução futura do sistema.
+A escolha antecipa e evita retrabalho estrutural, perda de performance, incompatibilidades e limitações futuras com IA, oferecendo segurança técnica para o presente e flexibilidade para a evolução futura do sistema.

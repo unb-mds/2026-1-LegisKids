@@ -1,4 +1,4 @@
-# Definição de Dashboards do Sistema 
+# Definição de Dashboards do Sistema
 O sistema irá consumir dados da API pública da Câmara dos Deputados.
 
 O objetivo do sistema é coletar e analisar projetos de lei relacionados à **segurança da criança na internet**, permitindo visualização acadêmica de:
@@ -20,7 +20,7 @@ Por isso, os dashboards precisam ser:
 Cada dashboard será sinalizado usando o método MoSCoW (Must, Should, Could, Wish), e:
 
 - Must: deverá estar no projeto.
-- Should: poderá estar no projeto, mas com menor prioridade.
+- Should: estará no projeto, mas será dada menor prioridade.
 - Could: se tivermos tempo, podemos aplicar.
 - Wish: num mundo hipotético, usaríamos.
 
@@ -38,7 +38,7 @@ Após análise do escopo do projeto, os dashboards mais relevantes são:
 
 Esses cinco dashboards cobrem praticamente todos os objetivos analíticos do sistema sem adicionar complexidade desnecessária.
 
-# Dashboard 1 — Panorama Geral (Must)
+# Dashboard 1 — Panorama Geral
 
 ## Objetivo
 
@@ -64,25 +64,23 @@ Campos:
 
 ## Componentes
 
-### Cards Informativos
-
-#### Total de Projetos
+### Total de Projetos (Must)
 
 Quantidade total de projetos armazenados.
 
-#### Projetos em Tramitação
+### Projetos em Tramitação (Must)
 
 Projetos com situação ativa.
 
-#### Projetos Arquivados
+### Projetos Arquivados (Should)
 
 Projetos encerrados ou arquivados.
 
-#### Projetos Aprovados
+### Projetos Aprovados (Should)
 
 Projetos aprovados pela Câmara.
 
-#### Projetos por Ano
+### Projetos por Ano (Must)
 
 Tipo:
 
@@ -92,7 +90,7 @@ Objetivo:
 
 - visualizar crescimento do tema ao longo do tempo.
 
-#### Distribuição por Status
+### Distribuição por Status (Should)
 
 Tipo:
 
@@ -109,7 +107,7 @@ Objetivo:
 
 - apresentar situação geral das proposições.
 
-#### Últimos Projetos Adicionados
+### Últimos Projetos Adicionados (Should)
 
 Tipo:
 
@@ -120,7 +118,6 @@ Colunas:
 - número;
 - ano;
 - ementa;
-- autor;
 - status;
 - data de apresentação.
 
@@ -147,7 +144,7 @@ Campos:
 
 ## Componentes
 
-### Projetos por Mês
+### Projetos por Mês (Must)
 
 Tipo:
 
@@ -157,7 +154,7 @@ Objetivo:
 
 - detectar períodos de maior atividade legislativa.
 
-### Crescimento Anual
+### Crescimento Anual (Should)
 
 Tipo:
 
@@ -167,7 +164,7 @@ Objetivo:
 
 - comparar quantidade de projetos entre anos.
 
-### Média Mensal de Proposições
+### Média Mensal de Proposições (Could)
 
 Tipo:
 
@@ -177,7 +174,7 @@ Objetivo:
 
 - medir frequência média de criação de projetos.
 
-### Heatmap de Atividade Legislativa
+### Heatmap de Atividade Legislativa (Could)
 
 Tipo:
 
@@ -198,18 +195,16 @@ Identificar quais grupos políticos mais atuam no tema.
 Endpoints:
 
 - `/proposicoes`
-- `/deputados`
 - `/partidos`
 
 Campos:
 
-- autor;
+- proposicao;
 - partido;
-- UF.
 
 ## Componentes
 
-### Projetos por Partido
+### Projetos por Partido (Should)
 
 Tipo:
 
@@ -219,34 +214,7 @@ Objetivo:
 
 - identificar protagonismo partidário.
 
-### Projetos por Estado
-
-Tipo:
-
-- mapa do Brasil ou gráfico de barras.
-
-Objetivo:
-
-- visualizar distribuição regional das propostas.
-
-### Ranking de Deputados
-
-Tipo:
-
-- tabela ordenada.
-
-Colunas:
-
-- deputado;
-- partido;
-- UF;
-- quantidade de projetos.
-
-Objetivo:
-
-- identificar parlamentares mais ativos.
-
-### Comparação Partido × Status
+### Comparação Partido × Status (Could)
 
 Tipo:
 
@@ -262,6 +230,7 @@ Os dashboards foram escolhidos para:
 
 - utilizar poucos dados;
 - evitar processamento pesado;
+- evitar relações muito complicadas;
 - funcionar com baixo custo computacional;
 - aproveitar diretamente os dados da API da Câmara;
 - facilitar desenvolvimento acadêmico.

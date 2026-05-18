@@ -1,83 +1,103 @@
 # Estudo sobre Login
-Este documento tem o intuito de avaliar a forma de login atual do sistema, propor pelo menos 3 alternativas, e decidir a melhor para nosso projeto.
 
-A ideia é que o login possibilite o usuário salvar projetos de lei, para ser notificado caso haja alguma atualização nele, consiga ter acesso ao seu histórico, etc.
+Este documento tem como objetivo avaliar a forma de autenticação do sistema, propor alternativas viáveis e definir a abordagem mais adequada para o projeto.
 
-Importante: o sistema trabalha apenas com **dados públicos**, e o login não envolve informações sensíveis, sendo utilizado apenas para personalização da experiência do usuário.
+O sistema permitirá que o usuário salve projetos de lei, acompanhe atualizações e acesse seu histórico.
 
-> **Identificar o usuário de forma simples e rápida**
-> 
+Importante: o sistema trabalha apenas com dados públicos, e o login tem como finalidade exclusiva a personalização da experiência do usuário.
 
-# Ideia 1: Login pelo Gov.br
+---
 
-## Prós:
+# Objetivo do login
+
+- Identificar o usuário de forma simples e eficiente
+- Permitir personalização (favoritos, histórico e notificações)
+- Garantir boa experiência de uso
+
+---
+
+# Alternativas de login
+
+## Ideia 1: Login com Gov.br
+
+### Vantagens
 
 - Alta confiabilidade e autenticação forte
 - Identidade verificada do usuário
-- Pode agregar credibilidade institucional ao sistema
+- Maior credibilidade institucional
 
-## Contras:
+### Desvantagens
 
-- Complexidade alta de integração com o Governo do Brasil
+- Integração complexa com o governo
 - Processo burocrático para liberação de acesso
-- Experiência do usuário mais lenta (redirecionamentos e validações)
-- Totalmente desproporcional para o objetivo do sistema
-- Pode afastar usuários devido à fricção no login
+- Experiência do usuário mais lenta
+- Complexidade desproporcional ao escopo do projeto
+- Possível redução na adesão de usuários
 
-**Análise:** solução robusta demais para um problema simples.
+### Análise
 
-# Ideia 2: Login pelo Google
+Solução robusta, porém excessiva para as necessidades do sistema.
 
-## Prós:
+---
 
-- Implementação simples usando OAuth 2.0
+## Ideia 2: Login com Google (OAuth 2.0)
+
+### Vantagens
+
+- Implementação simples
 - Experiência rápida e familiar
 - Não exige criação de senha
 - Alta taxa de adesão
-- Baixa responsabilidade sobre segurança de credenciais
-- Ideal para sistemas com dados não sensíveis
+- Boa segurança sem gestão de credenciais
+- Adequado para sistemas com dados não sensíveis
 
-## Contras:
+### Desvantagens
 
-- Dependência de serviço externo (Google)
-- Nem todos usuários possuem ou querem usar conta Google
+- Dependência de serviço externo
+- Nem todos os usuários utilizam Google
 - Menor controle sobre autenticação
 
-**Análise:** excelente custo-benefício para o contexto do sistema.
+### Análise
 
-# Ideia 3: Login próprio do sistema
+Solução com melhor equilíbrio entre simplicidade, usabilidade e custo de implementação.
 
-## Prós:
+---
 
-- Total controle sobre usuários
+## Ideia 3: Login próprio do sistema
+
+### Vantagens
+
+- Controle total sobre usuários
 - Independência de serviços externos
-- Flexibilidade para evoluir funcionalidades
-- Permite login com qualquer email
+- Flexibilidade para futuras melhorias
+- Permite qualquer e-mail
 
-## Contras:
+### Desvantagens
 
-- Necessidade de implementar autenticação segura (hash, tokens, etc.)
-- Implementar fluxo de recuperação de senha
-- Maior esforço de desenvolvimento
-- Responsabilidade maior com dados (mesmo sendo poucos)
-- Pode gerar fricção (usuário precisa criar conta)
+- Maior complexidade de implementação
+- Necessidade de segurança (hash, tokens, etc.)
+- Sistema de recuperação de senha
+- Maior responsabilidade sobre dados
+- Mais fricção para o usuário
 
-**Análise:** viável, mas exige mais trabalho do que o necessário inicialmente.
+### Análise
+
+Solução viável, porém mais complexa do que o necessário para o estágio atual do projeto.
+
+---
 
 # Conclusão
 
 Considerando que:
 
-- os dados do sistema são públicos
-- o login serve apenas para personalização (favoritos, histórico, notificações)
-- não há necessidade de autenticação forte
+- o sistema utiliza apenas dados públicos
+- o login serve apenas para personalização
+- não há necessidade de autenticação avançada
 
-→ A Ideia 1 (Gov.br) é **exagerada** para o contexto.
+Conclui-se que:
 
-→ A Ideia 3 (login próprio) é **válida**, mas traz complexidade desnecessária no início do projeto.
+- O login com Gov.br é excessivo para o escopo do projeto
+- O login próprio adiciona complexidade desnecessária neste momento
+- O login com Google (OAuth 2.0) apresenta o melhor equilíbrio entre simplicidade, usabilidade e esforço de implementação
 
-→ A Ideia 2 (login pelo Google) oferece o melhor equilíbrio entre:
-
-- simplicidade
-- experiência do usuário
-- baixo custo de implementação
+Portanto, a alternativa mais adequada para o sistema é o login via Google.

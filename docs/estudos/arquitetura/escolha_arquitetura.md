@@ -1,56 +1,54 @@
-# **Definir arquitetura do sistema**
+# Definição da Arquitetura do Sistema
 
-# **Monitoramento Legislativo: Proteção de Crianças na Internet**
+# Monitoramento Legislativo: Proteção de Crianças na Internet
 
-Neste documento, irei analisar superficialmente nosso projeto (já que ainda não decidimos muitas coisas) para já ter uma noção de qual tipo de Arquitetura seria bom para usarmos.
+Este documento tem como objetivo analisar de forma inicial a arquitetura mais adequada para o sistema, considerando que os requisitos ainda estão em fase de definição.
 
-Terei meu conhecimento com base no estudo que documentei no seguinte link: 
+A análise é baseada no seguinte estudo:
 
-> [https://www.notion.so/Estudo-Arquitetura-de-Software-1-32d40c012af180298e76e6ef7712b3ed?source=copy_link](https://www.notion.so/Estudo-Arquitetura-de-Software-32d40c012af180298e76e6ef7712b3ed?pvs=21)
-> 
+https://www.notion.so/Estudo-Arquitetura-de-Software-32d40c012af180298e76e6ef7712b3ed?pvs=21
 
-Como os Requisitos do projeto ainda não foram definidos, irei citar objetivos que imagino que serão mirados:
+---
 
-### Objetivos do sistema
+## Objetivos do sistema
 
 - Coletar dados de APIs legislativas
-- Classificar proposições por tema (NLP)
+- Classificar proposições por tema utilizando NLP
 - Gerar indicadores e análises
 - Exibir dashboards interativos
 
-# Avaliando Arquiteturas Estudadas
+---
+
+# Avaliação das arquiteturas
 
 ## Arquitetura Monolítica
 
-Todo o sistema em uma única aplicação:
-
-- API
-- Lógica de negócio
-- NLP
-- Banco de dados
+Todo o sistema é desenvolvido como uma única aplicação, incluindo API, regras de negócio, processamento de IA e acesso a dados.
 
 ### Vantagens
 
 - Simples de implementar
-- Mais rápido para começar
 - Fácil deploy
-- Ideal para equipe pequena
+- Ideal para equipes pequenas
 - Menor custo de infraestrutura
+- Mais rápida para iniciar o projeto
 
 ### Desvantagens
 
 - Escalabilidade limitada
-- Pode ficar difícil de manter se crescer muito
-- Forte acoplamento se mal estruturado
+- Pode se tornar difícil de manter em sistemas grandes
+- Alto acoplamento se mal estruturado
 
-## **Arquitetura de Microsserviços**
+---
 
-Separação em serviços:
+## Arquitetura de Microsserviços
 
-- Serviço de coleta de dados
-- Serviço de classificação (NLP)
-- Serviço de análise
-- Serviço de visualização
+O sistema é dividido em serviços independentes, como:
+
+- Coleta de dados
+- Processamento e NLP
+- Análise de dados
+- Interface
 
 ### Vantagens
 
@@ -61,115 +59,153 @@ Separação em serviços:
 ### Desvantagens
 
 - Alta complexidade
-- Overhead de comunicação
-- Mais difícil de implementar
-- Exige infraestrutura avançada
+- Maior custo de infraestrutura
+- Comunicação entre serviços mais difícil
+- Não indicado para projetos pequenos
 
-## **Arquitetura MVC**
+---
 
-Separação em:
+## Arquitetura MVC
 
-- Model → dados e regras
-- View → interface
-- Controller → controle de requisições
+Separação em três componentes:
+
+- Model: dados e regras de negócio
+- View: interface do usuário
+- Controller: controle de requisições
 
 ### Vantagens
 
-- Organização clara
-- Separação de responsabilidades
-- Facilita manutenção
-- Muito compatível com aplicações web
+- Estrutura organizada
+- Separação clara de responsabilidades
+- Fácil manutenção
+- Muito utilizada em aplicações web
 
 ### Desvantagens
 
-- Pode gerar excesso de responsabilidades no Controller
-- Não resolve arquitetura global sozinho
+- Controllers podem ficar sobrecarregados
+- Não define arquitetura completa do sistema
+
+---
 
 ## Arquitetura em Camadas
 
-Divisão por níveis:
+Divisão do sistema por níveis de responsabilidade:
 
 - Interface (Frontend)
-- Aplicação (Controllers / Use Cases)
-- Negócio (Services / NLP)
-- Dados (Repositories / Banco)
+- Aplicação (Controllers)
+- Negócio (Services)
+- Dados (Repositories)
+- Infraestrutura (Banco e APIs)
 
 ### Vantagens
 
 - Alta organização
-- Facilita manutenção
 - Boa separação de responsabilidades
-- Muito usada em sistemas reais
+- Fácil manutenção
+- Amplamente utilizada em sistemas reais
 
 ### Desvantagens
 
-- Pode gerar dependência rígida entre camadas
-- Pode impactar performance se mal usada
+- Pode gerar dependência entre camadas
+- Possível impacto de performance se mal aplicada
 
-# Decisões de Arquitetura
+---
 
-O sistema será desenvolvido como um **monolito**, organizado em **arquitetura em camadas**, utilizando o padrão **MVC** para separação de responsabilidades na interface e controle.
+# Decisão de arquitetura
 
-A seguir está disposto a escolha de cada parte, e como, a princípio, funcionará.
+O sistema será desenvolvido como um **monólito estruturado em camadas**, utilizando conceitos do padrão **MVC** para organização da interface e controle.
+
+---
 
 ## Monolito
 
-O projeto será um Monolito, pois a complexidade aumentaria exponencialmente ao fazer em Microsserviços, levando em conta o escopo da disciplina e do projeto. 
+O sistema será implementado como uma única aplicação, pois:
 
-Tudo será feito um único sistema.
+- o escopo do projeto não exige microsserviços
+- a complexidade seria desnecessária neste momento
+- facilita desenvolvimento e manutenção
 
-## Em Camadas
+---
 
-O sistema será dividido em camadas, como na Arquitetura em Camadas:
+## Arquitetura em camadas
 
-1. Interface (Front-End) - Dashboards, Filtros e Visualização
-2. Camada de Aplicação - Controller (Recebe requisições e controla o fluxo)
-3. Camada de Negócios - Service (Regras de negócio, NLP e Classificação)
-4. Camada de Dados - Repository (Banco de Dados e API externa)
-5. Infraestrutura - Banco, APIs e Configurações
+O sistema será dividido nas seguintes camadas:
 
-> Cada camada só conversa com a de baixo (FLUXO DE DEPENDÊNCIA)
-> 
+1. Interface (Frontend)
+   - Dashboards
+   - Filtros
+   - Visualização de dados
 
-Interface → Controller → Service → Repository → Banco
+2. Aplicação (Controller)
+   - Recebe requisições
+   - Controla o fluxo da aplicação
 
-## MVC
+3. Negócio (Service)
+   - Regras de negócio
+   - Processamento de dados
+   - NLP e classificação
 
-E iremos mapear tudo no sistema em MVC - MODEL VIEW CONTROLLER.
+4. Dados (Repository)
+   - Acesso ao banco de dados
+   - Consumo de APIs externas
 
-MODEL - Service, Repository (Dados e Regras de negócio)
+5. Infraestrutura
+   - Banco de dados
+   - Configurações
+   - Integrações externas
 
-VIEW - Front-End (Interface do Usuário)
+Fluxo de dependência:
 
-CONTROLLER - Recebe requisições e decide o fluxo
+Interface → Controller → Service → Repository → Banco de Dados
 
-#### Fluxo MVC
+---
 
-- Usuário interage com a View (Frontend)
-- Requisição vai para o Controller
-- Controller chama Service
-- Service processa (NLP, regras)
-- Repository acessa dados
-- Resultado volta para o Controller
-- Controller responde para a View
+## Aplicação do MVC
 
-## Estrutura
+O sistema seguirá o padrão MVC adaptado ao contexto web:
+
+- Model: Services + Repositories
+- View: Frontend
+- Controller: Camada de controle de requisições
+
+---
+
+### Fluxo MVC
+
+- Usuário interage com a interface (View)
+- Frontend envia requisição
+- Controller recebe a requisição
+- Service processa a lógica de negócio
+- Repository acessa os dados
+- Resultado retorna ao Controller
+- Controller responde à View
+
+---
+
+## Estrutura do sistema
 
 ### Backend
 
-- **Controller**
-    - Recebe requisições
-- **Service**
-    - Regras de negócio
-    - NLP
-- **Repository**
-    - Acesso a dados
-- **Infraestrutura**
-    - Banco de dados
-    - APIs externas
+- Controller: recebe e direciona requisições
+- Service: regras de negócio e processamento de IA
+- Repository: acesso a dados e APIs externas
+- Infraestrutura: banco de dados e configurações
 
 ### Frontend
 
 - Dashboards
 - Filtros
 - Visualização de dados
+
+---
+
+## Conclusão
+
+A arquitetura escolhida combina um modelo **monolítico com organização em camadas**, garantindo:
+
+- simplicidade de desenvolvimento
+- boa organização interna
+- facilidade de manutenção
+- compatibilidade com o escopo do projeto
+
+Essa abordagem equilibra estrutura profissional com baixo nível de complexidade, sendo adequada para a fase atual do sistema.
