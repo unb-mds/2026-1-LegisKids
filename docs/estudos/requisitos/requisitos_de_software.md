@@ -363,7 +363,7 @@ A API da Câmara não fornece campo de atualização global. A tramitação é u
 
 ---
 
-## Épico 9 — Usabilidade e Performance
+## ÉPICO 8 — Usabilidade e Performance
 
 ### US17 — Interface responsiva
 
@@ -393,9 +393,7 @@ A API da Câmara não fornece campo de atualização global. A tramitação é u
 
 ---
 
-## Épico 10 — Autenticação e Conta
-
-O sistema adota Google OAuth 2.0 como único método de autenticação. O login serve para personalização (favoritos, histórico, notificações) — não há dados sensíveis envolvidos.
+## ÉPICO 9 — Autenticação e Conta
 
 Fluxo: Frontend → Login Google → Backend recebe token → valida → busca ou cria usuário → cria sessão → usuário autenticado.
 

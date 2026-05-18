@@ -1,5 +1,5 @@
 # 2026-1-Squad08
-# Nome do projeto
+# LegisKids
 ### Sistema de Monitoramento de Proposições Legislativas
 
 ---
