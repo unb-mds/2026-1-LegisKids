@@ -33,5 +33,7 @@ nav:
 
   - Inteligência Artificial: estudos/inteligencia_artificial/index.md
 
+  - Dashboard: performance/index.md
+  
 plugins:
   - search
