@@ -19,12 +19,12 @@ Squad-08 MDS 2026/1 – FGA/UnB
 <table>
   <tr>
     <td align="center">
-      <img src="assets/images/team/caio-bechepeche.jpg" width="100px;" alt="Caio Bechepeche Mota"/><br />
+      <img src="docs/assets/images/team/caio-bechepeche.jpg" width="100px;" alt="Caio Bechepeche Mota"/><br />
       <sub><b>NCaio Bechepeche Mota</b></sub><br />
       <a href="https://github.com/CaioMota16">GitHub</a>
     </td>
     <td align="center">
-      <img src="assets/images/team/renan-curione.jpg" width="auto;" height="100px;" alt="Renan Curione de Castro"/><br />
+      <img src="docs/assets/images/team/renan-curione.jpg" width="auto;" height="100px;" alt="Renan Curione de Castro"/><br />
       <sub><b>Renan Curione de Castro</b></sub><br />
       <a href="https://github.com/thatsrenan">GitHub</a>
     </td>
