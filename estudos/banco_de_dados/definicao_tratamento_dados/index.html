@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Equipe do Projeto">
+        
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Tratamento de Dados Antes da Persistência - Monitoramento Legislativo – Proteção de Crianças na Internet</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Monitoramento Legislativo – Proteção de Crianças na Internet</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../projeto/" class="nav-link">Projeto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../arquitetura/" class="nav-link">Arquitetura</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../API/" class="nav-link">Backend / API</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../" class="nav-link">Banco de Dados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../frontend/" class="nav-link">Frontend</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../design/" class="nav-link">Design</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../git_github/" class="nav-link">Git / GitHub</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../metodos_ageis/" class="nav-link">Metodologia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../reunioes/" class="nav-link">Gestão</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../padrao_organizacao/" class="nav-link">Padrão / Organização</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../requisitos/" class="nav-link">Requisitos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../inteligencia_artificial/" class="nav-link">Inteligência Artificial</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../../performance/" class="nav-link">Dashboard</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tratamento-de-dados-antes-da-persistencia" class="nav-link">Tratamento de Dados Antes da Persistência</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#fluxo-de-tratamento-dos-dados" class="nav-link">Fluxo de Tratamento dos Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-validacao" class="nav-link">Estratégias de Validação</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_1" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#regras-gerais-de-validacao" class="nav-link">Regras Gerais de Validação</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#validacao-de-tipos" class="nav-link">Validação de Tipos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#validacao-de-formatos" class="nav-link">Validação de Formatos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-normalizacao" class="nav-link">Estratégias de Normalização</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_2" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#regras-de-normalizacao" class="nav-link">Regras de Normalização</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-sanitizacao" class="nav-link">Estratégias de Sanitização</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_3" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#protecoes-aplicadas" class="nav-link">Proteções Aplicadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-transformacao" class="nav-link">Estratégias de Transformação</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#objetivo_4" class="nav-link">Objetivo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#transformacoes-definidas" class="nav-link">Transformações Definidas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#tratamentos-adicionais-de-dados" class="nav-link">Tratamentos Adicionais de Dados</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-valores-nulos" class="nav-link">Tratamento de Valores Nulos</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-caracteres-especiais" class="nav-link">Tratamento de Caracteres Especiais</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-dados-duplicados" class="nav-link">Tratamento de Dados Duplicados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-logs-e-auditoria" class="nav-link">Tratamento de Logs e Auditoria</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-dados-sensiveis" class="nav-link">Tratamento de Dados Sensíveis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-dados-vindos-da-api" class="nav-link">Tratamento de Dados Vindos da API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-erros" class="nav-link">Tratamento de Erros</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#estrategias-de-transacoes" class="nav-link">Estratégias de Transações</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#estrategias-de-performance" class="nav-link">Estratégias de Performance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#estrategias-de-versionamento-de-dados" class="nav-link">Estratégias de Versionamento de Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#garantia-de-consistencia" class="nav-link">Garantia de Consistência</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#estrategias-utilizadas" class="nav-link">Estratégias Utilizadas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#controle-de-duplicidade" class="nav-link">Controle de Duplicidade</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#compatibilidade-com-postgresql" class="nav-link">Compatibilidade com PostgreSQL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#boas-praticas-aplicadas" class="nav-link">Boas Práticas Aplicadas</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#seguranca" class="nav-link">Segurança</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#padronizacao" class="nav-link">Padronização</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#qualidade-dos-dados" class="nav-link">Qualidade dos Dados</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tratamento-de-dados-antes-da-persistencia">Tratamento de Dados Antes da Persistência</h1>
+<h2 id="objetivo">Objetivo</h2>
+<p>Este documento define como os dados recebidos pelo sistema serão tratados antes de serem armazenados no banco de dados.</p>
+<p>O objetivo é garantir:</p>
+<ul>
+<li>integridade;</li>
+<li>padronização;</li>
+<li>segurança;</li>
+<li>consistência;</li>
+<li>confiabilidade dos dados.</li>
+</ul>
+<p>As regras aqui descritas serão aplicadas tanto aos dados vindos da API da Câmara quanto aos dados inseridos por usuários no sistema.</p>
+<h1 id="fluxo-de-tratamento-dos-dados">Fluxo de Tratamento dos Dados</h1>
+<p>Todos os dados seguirão o seguinte fluxo antes da persistência:</p>
+<pre><code>Recebimento dos Dados
+        ↓
+Validação
+        ↓
+Sanitização
+        ↓
+Normalização
+        ↓
+Transformações Necessárias
+        ↓
+Persistência no Banco
+</code></pre>
+<h1 id="estrategias-de-validacao">Estratégias de Validação</h1>
+<h2 id="objetivo_1">Objetivo</h2>
+<p>Garantir que apenas dados válidos sejam armazenados no sistema.</p>
+<h2 id="regras-gerais-de-validacao">Regras Gerais de Validação</h2>
+<h3 id="campos-obrigatorios">Campos Obrigatórios</h3>
+<p>Campos marcados como obrigatórios deverão:</p>
+<ul>
+<li>existir no payload;</li>
+<li>não ser nulos;</li>
+<li>não estar vazios.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>email</td>
+<td>obrigatório</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>obrigatório</td>
+</tr>
+<tr>
+<td>id</td>
+<td>obrigatório</td>
+</tr>
+<tr>
+<td>ementa</td>
+<td>obrigatório</td>
+</tr>
+</tbody>
+</table>
+<h2 id="validacao-de-tipos">Validação de Tipos</h2>
+<p>Cada campo deverá respeitar o tipo esperado definido na modelagem.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Validação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INTEGER</td>
+<td>apenas números inteiros</td>
+</tr>
+<tr>
+<td>VARCHAR</td>
+<td>texto curto</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>texto longo</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>formato de data válido</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>data e hora válidas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="validacao-de-formatos">Validação de Formatos</h2>
+<h3 id="emails">Emails</h3>
+<p>Os emails deverão:</p>
+<ul>
+<li>possuir formato válido;</li>
+<li>conter <code>@</code>;</li>
+<li>conter domínio válido.</li>
+</ul>
+<p>Exemplo:</p>
+<pre><code>usuario@email.com
+</code></pre>
+<h3 id="datas">Datas</h3>
+<p>As datas serão convertidas para o padrão ISO.</p>
+<pre><code>YYYY-MM-DD
+</code></pre>
+<p>Exemplo:</p>
+<pre><code>2026-05-19
+</code></pre>
+<h3 id="ids">IDs</h3>
+<p>IDs externos recebidos da API deverão:</p>
+<ul>
+<li>ser numéricos;</li>
+<li>possuir valor positivo;</li>
+<li>não conter caracteres especiais.</li>
+</ul>
+<h1 id="estrategias-de-normalizacao">Estratégias de Normalização</h1>
+<h2 id="objetivo_2">Objetivo</h2>
+<p>Padronizar os dados armazenados para facilitar:</p>
+<ul>
+<li>buscas;</li>
+<li>filtros;</li>
+<li>análises;</li>
+<li>comparações;</li>
+<li>dashboards.</li>
+</ul>
+<h2 id="regras-de-normalizacao">Regras de Normalização</h2>
+<h3 id="remocao-de-espacos-extras">Remoção de Espaços Extras</h3>
+<p>Será aplicado:</p>
+<pre><code>trim()
+</code></pre>
+<p>Exemplo:</p>
+<pre><code>&quot;  Projeto de Lei  &quot;
+↓
+&quot;Projeto de Lei&quot;
+</code></pre>
+<h3 id="conversao-de-texto">Conversão de Texto</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo de Dado</th>
+<th>Estratégia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>emails</td>
+<td>lowercase</td>
+</tr>
+<tr>
+<td>siglas partidárias</td>
+<td>uppercase</td>
+</tr>
+<tr>
+<td>textos descritivos</td>
+<td>preservados</td>
+</tr>
+</tbody>
+</table>
+<p>Exemplos:</p>
+<pre><code>USUARIO@EMAIL.COM
+↓
+usuario@email.com
+</code></pre>
+<pre><code>pt
+↓
+PT
+</code></pre>
+<h3 id="padronizacao-de-datas">Padronização de Datas</h3>
+<p>Todas as datas serão armazenadas em formato PostgreSQL compatível.</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Formato</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DATE</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="padronizacao-de-valores-vazios">Padronização de Valores Vazios</h3>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Tratamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string vazia</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>campo ausente</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>espaços em branco</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<h1 id="estrategias-de-sanitizacao">Estratégias de Sanitização</h1>
+<h2 id="objetivo_3">Objetivo</h2>
+<p>Evitar vulnerabilidades e armazenamento de dados inseguros.</p>
+<h2 id="protecoes-aplicadas">Proteções Aplicadas</h2>
+<h3 id="sql-injection">SQL Injection</h3>
+<p>O sistema utilizará:</p>
+<ul>
+<li>queries parametrizadas;</li>
+<li>ORM ou query builder;</li>
+<li>prepared statements.</li>
+</ul>
+<p>Nunca serão utilizadas concatenações diretas em SQL.</p>
+<h3 id="sanitizacao-de-strings">Sanitização de Strings</h3>
+<p>Caracteres perigosos serão tratados antes da persistência.</p>
+<p>Exemplos:</p>
+<ul>
+<li>remoção de scripts;</li>
+<li>escape de caracteres especiais;</li>
+<li>bloqueio de HTML malicioso.</li>
+</ul>
+<h3 id="limitacao-de-tamanho">Limitação de Tamanho</h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Limite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nome</td>
+<td>100 caracteres</td>
+</tr>
+<tr>
+<td>email</td>
+<td>150 caracteres</td>
+</tr>
+<tr>
+<td>sigla</td>
+<td>20 caracteres</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controle-de-inputs">Controle de Inputs</h3>
+<p>O sistema rejeitará:</p>
+<ul>
+<li>tipos inválidos;</li>
+<li>payloads malformados;</li>
+<li>campos inesperados;</li>
+<li>dados incompatíveis com a modelagem.</li>
+</ul>
+<h1 id="estrategias-de-transformacao">Estratégias de Transformação</h1>
+<h2 id="objetivo_4">Objetivo</h2>
+<p>Adequar os dados ao padrão interno do sistema antes da persistência.</p>
+<h2 id="transformacoes-definidas">Transformações Definidas</h2>
+<h3 id="conversao-de-datas-da-api">Conversão de Datas da API</h3>
+<pre><code>19/05/2026
+↓
+2026-05-19
+</code></pre>
+<h3 id="conversao-de-campos-numericos">Conversão de Campos Numéricos</h3>
+<pre><code>&quot;123&quot;
+↓
+123
+</code></pre>
+<h3 id="extracao-de-dados-relevantes">Extração de Dados Relevantes</h3>
+<p>Apenas informações necessárias ao sistema serão persistidas.</p>
+<p>Exemplos:</p>
+<ul>
+<li>proposições relevantes;</li>
+<li>partido principal;</li>
+<li>tramitações importantes.</li>
+</ul>
+<p>Dados redundantes serão descartados.</p>
+<h3 id="padronizacao-de-status">Padronização de Status</h3>
+<table>
+<thead>
+<tr>
+<th>Valor Externo</th>
+<th>Valor Interno</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Em tramitação</td>
+<td>EM_TRAMITACAO</td>
+</tr>
+<tr>
+<td>Arquivada</td>
+<td>ARQUIVADA</td>
+</tr>
+</tbody>
+</table>
+<h1 id="tratamentos-adicionais-de-dados">Tratamentos Adicionais de Dados</h1>
+<h2 id="tratamento-de-valores-nulos">Tratamento de Valores Nulos</h2>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Tratamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>campo opcional ausente</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>campo obrigatório ausente</td>
+<td>rejeição da requisição</td>
+</tr>
+<tr>
+<td>valor inválido</td>
+<td>descarte ou erro</td>
+</tr>
+<tr>
+<td>texto vazio</td>
+<td>NULL</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tratamento-de-caracteres-especiais">Tratamento de Caracteres Especiais</h2>
+<h3 id="estrategias">Estratégias</h3>
+<ul>
+<li>utilização de UTF-8;</li>
+<li>remoção de caracteres invisíveis;</li>
+<li>normalização de acentuação quando necessário;</li>
+<li>escape de caracteres especiais.</li>
+</ul>
+<p>Exemplo:</p>
+<pre><code>&quot; João Silva &quot;
+↓
+&quot;João Silva&quot;
+</code></pre>
+<h2 id="tratamento-de-dados-duplicados">Tratamento de Dados Duplicados</h2>
+<h3 id="estrategias_1">Estratégias</h3>
+<ul>
+<li>utilização de <code>UNIQUE</code>;</li>
+<li>verificação prévia antes da inserção;</li>
+<li>atualização de registros existentes;</li>
+<li>descarte de duplicidades da API.</li>
+</ul>
+<p>Exemplo:</p>
+<pre><code class="language-sql">UNIQUE (sigla_tipo, numero, ano)
+</code></pre>
+<h2 id="tratamento-de-logs-e-auditoria">Tratamento de Logs e Auditoria</h2>
+<h3 id="registro-de">Registro de:</h3>
+<ul>
+<li>erros de validação;</li>
+<li>falhas de integração;</li>
+<li>requisições realizadas;</li>
+<li>horários de coleta;</li>
+<li>quantidade de registros processados.</li>
+</ul>
+<h2 id="tratamento-de-dados-sensiveis">Tratamento de Dados Sensíveis</h2>
+<h3 id="estrategias_2">Estratégias</h3>
+<ul>
+<li>não armazenamento de senhas;</li>
+<li>autenticação via Google OAuth;</li>
+<li>armazenamento mínimo de dados pessoais;</li>
+<li>proteção de tokens de autenticação.</li>
+</ul>
+<h2 id="tratamento-de-dados-vindos-da-api">Tratamento de Dados Vindos da API</h2>
+<h3 id="estrategias_3">Estratégias</h3>
+<ul>
+<li>validação de payloads recebidos;</li>
+<li>tolerância a campos ausentes;</li>
+<li>fallback para valores inconsistentes;</li>
+<li>controle de versionamento da API;</li>
+<li>tratamento de timeout e falhas de conexão.</li>
+</ul>
+<h2 id="tratamento-de-erros">Tratamento de Erros</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo de Erro</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dado inválido</td>
+<td>rejeitar</td>
+</tr>
+<tr>
+<td>falha de conexão</td>
+<td>retry</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>registrar log</td>
+</tr>
+<tr>
+<td>erro inesperado</td>
+<td>rollback</td>
+</tr>
+</tbody>
+</table>
+<h2 id="estrategias-de-transacoes">Estratégias de Transações</h2>
+<h3 id="objetivo_5">Objetivo</h3>
+<p>Garantir integridade durante operações múltiplas.</p>
+<h3 id="estrategias_4">Estratégias</h3>
+<p>Utilização de transações para:</p>
+<ul>
+<li>inserções em múltiplas tabelas;</li>
+<li>atualizações encadeadas;</li>
+<li>persistência de tramitações;</li>
+<li>sincronização de dados da API.</li>
+</ul>
+<p>Exemplo:</p>
+<pre><code class="language-sql">BEGIN;
+INSERT ...
+UPDATE ...
+COMMIT;
+</code></pre>
+<h2 id="estrategias-de-performance">Estratégias de Performance</h2>
+<h3 id="estrategias_5">Estratégias</h3>
+<ul>
+<li>indexação de campos de busca;</li>
+<li>paginação de consultas;</li>
+<li>limitação de payloads;</li>
+<li>armazenamento apenas de dados relevantes.</li>
+</ul>
+<h2 id="estrategias-de-versionamento-de-dados">Estratégias de Versionamento de Dados</h2>
+<h3 id="estrategias_6">Estratégias</h3>
+<ul>
+<li>migrations controladas;</li>
+<li>versionamento do schema;</li>
+<li>compatibilidade entre versões;</li>
+<li>histórico de alterações estruturais.</li>
+</ul>
+<h1 id="garantia-de-consistencia">Garantia de Consistência</h1>
+<h2 id="estrategias-utilizadas">Estratégias Utilizadas</h2>
+<p>O sistema utilizará:</p>
+<ul>
+<li>validação antes da persistência;</li>
+<li>restrições no banco;</li>
+<li>chaves estrangeiras;</li>
+<li>campos obrigatórios;</li>
+<li>normalização de formatos;</li>
+<li>controle de duplicidade.</li>
+</ul>
+<h2 id="controle-de-duplicidade">Controle de Duplicidade</h2>
+<pre><code class="language-sql">UNIQUE (sigla_tipo, numero, ano)
+</code></pre>
+<pre><code class="language-sql">UNIQUE (usuario_id, proposicao_id)
+</code></pre>
+<h1 id="compatibilidade-com-postgresql">Compatibilidade com PostgreSQL</h1>
+<p>As estratégias foram planejadas considerando:</p>
+<ul>
+<li>compatibilidade com PostgreSQL;</li>
+<li>uso eficiente de armazenamento;</li>
+<li>integridade relacional;</li>
+<li>facilidade de manutenção;</li>
+<li>performance de consultas.</li>
+</ul>
+<h1 id="boas-praticas-aplicadas">Boas Práticas Aplicadas</h1>
+<h2 id="seguranca">Segurança</h2>
+<ul>
+<li>prevenção contra SQL Injection;</li>
+<li>sanitização de entradas;</li>
+<li>validação de payloads;</li>
+<li>prepared statements.</li>
+</ul>
+<h2 id="padronizacao">Padronização</h2>
+<ul>
+<li>uso de snake_case;</li>
+<li>formatos únicos de data;</li>
+<li>normalização textual;</li>
+<li>padronização de status.</li>
+</ul>
+<h2 id="qualidade-dos-dados">Qualidade dos Dados</h2>
+<ul>
+<li>remoção de inconsistências;</li>
+<li>validação de obrigatoriedade;</li>
+<li>prevenção de duplicidade;</li>
+<li>tratamento de valores inválidos.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
