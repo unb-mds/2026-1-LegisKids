@@ -1,12 +1,12 @@
 # 2026-1-Squad08
-# Nome do projeto
+# LegisKids
 ### Sistema de Monitoramento de Proposições Legislativas
 
 ---
 
 ## Descrição Geral
 
-O **Nome do Projeto** é um sistema web desenvolvido para monitorar, analisar e facilitar o acesso a proposições legislativas no Brasil. A plataforma permite que usuários busquem leis, acompanhem mudanças e entendam o impacto de decisões legislativas de forma clara e acessível.
+O LegisKids é um sistema web desenvolvido para monitorar, analisar e facilitar o acesso a proposições legislativas no Brasil. A plataforma permite que usuários busquem leis, acompanhem mudanças e entendam o impacto de decisões legislativas de forma clara e acessível, com foco na proteção de crianças e adolescentes na internet.
 
 ---
 
@@ -29,17 +29,17 @@ Squad-08 MDS 2026/1 – FGA/UnB
       <a href="https://github.com/thatsrenan">GitHub</a>
     </td>
     <td align="center">
-      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt=" Ítalo Lacerda Martins"/><br />
+      <img src="https://github.com/italo-lm.png" width="auto;" height="100px;" alt=" Ítalo Lacerda Martins"/><br />
       <sub><b>Italo Lacerda Martins</b></sub><br />
       <a href="https://github.com/italo-lm">GitHub</a>
     </td>
     <td align="center">
-      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt="Luís Henrique Luna de Arruda"/><br />
+      <img src="https://github.com/Donnk61.png" width="auto;" height="100px;" alt="Luís Henrique Luna de Arruda"/><br />
       <sub><b>Luís Henrique Luna de Arruda</b></sub><br />
       <a href="https://github.com/Donnk61">GitHub</a>
     </td>
     <td align="center">
-      <img src="LINK_IMAGEM" width="auto;" height="100px;" alt="Arthur Palhares Ferreira Silva"/><br />
+      <img src="https://github.com/arthurpalhares1.png" width="auto;" height="100px;" alt="Arthur Palhares Ferreira Silva"/><br />
       <sub><b>Arthur Palhares Ferreira Silva</b></sub><br />
       <a href="https://github.com/arthurpalhares1">GitHub</a>
     </td>
@@ -73,11 +73,12 @@ Este sistema surge como uma solução para:
 
 ## Tecnologias Utilizadas
 
-- **Front-end:** HTML, CSS, JavaScript , Next
-- **Back-end:** Python (Flask) 
-- **Consumo de API:** Fetch API  
-- **Banco de Dados:** PostgreSQL  
-- **Prototipação:** Figma  
+- **Front-end:**  HTML, CSS, JavaScript , Next
+- **Back-end:**  Python (Flask) 
+- **Inteligência Artificial:**  Google Gemini API  ( `gemini-1.5-flash` ) para filtragem e triagem semântica das proposições
+- **Consumo de API:**  Fetch API  
+- **Banco de Dados:**  PostgreSQL  
+- **Prototipação:**  Figma  
 
 ---
 
@@ -97,8 +98,8 @@ Certifique-se de ter instalado:
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/unb-mds/2026-1-Squad08.git
-cd nome-do-projeto
+git clone [https://github.com/unb-mds/2026-1-Squad08.git](https://github.com/unb-mds/2026-1-Squad08.git)
+cd 2026-1-Squad08
 ```
 
 ---
@@ -112,20 +113,26 @@ python -m venv venv
 ---
 
 ### 3. Ativar o ambiente
+
 Windows:
 ```bash
 venv\Scripts\activate
 ```
+
 Linux/Mac:
-``` bash
+```bash
 source venv/bin/activate
 ```
+
+---
 
 ### 4. Instalar dependências
 
 ```bash
 pip install -r requirements.txt
 ```
+
+---
 
 ### 5. Configurar o banco de dados (PostgreSQL)
 
@@ -144,51 +151,49 @@ Crie um arquivo `.env` na raiz como no exemplo:
 ```env
 PORT=3000
 
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=guardioes_da_lei
-DB_USER=postgres
-DB_PASSWORD=sua_senha
+DATABASE_URL=postgresql://postgres:sua_senha@localhost:5432/guardioes_da_lei
+GOOGLE_API_KEY=sua_chave_do_google_ai_studio
 ```
 
 ---
 
-### 7. Executar o projeto
+### 7. Executar o servidor Backend (Flask)
+
+Com o ambiente virtual (`venv`) ativo, inicialize a aplicação executando:
 
 ```bash
-flask run
-```
-
-```bash
-python app.py
+python run.py
 ```
 
 ---
 
 ### 8. Acessar no navegador
 
+O servidor backend estará escutando requisições localmente em:
+
 ```text
-http://localhost:3000
+[http://127.0.0.1:5000](http://127.0.0.1:5000)
 ```
 
 ---
 
 ### Observações
 
-Observações
-Certifique-se de que o PostgreSQL está em execução
-Caso existam migrations:
+Certifique-se de que o PostgreSQL está em execução caso existam migrations
 
 ```bash
 flask db upgrade
 ```
+
 ---
+
 ## Contribuindo
 1. Fork o projeto
 2. Crie uma branch para sua feature (<code>git checkout -b feature/nova-feature</code>)
 3. Commit suas mudancas (<code>git commit -m 'Adiciona nova feature'</code>)
 4. Push para a branch (<code>git push origin feature/nova-feature</code>)
 5. Abra um Pull Request
+
 ---
 
 ## Licenca
@@ -197,3 +202,4 @@ flask db upgrade
 
 ## Equipe
 Desenvolvido como parte do projeto de Metodos de Desenvolvimento de Software (MDS) da Universidade de Brasilia (UnB).
+```
