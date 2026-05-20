@@ -1,6 +1,7 @@
-site_name: Monitoramento Legislativo – Proteção de Crianças na Internet
+site_name: LegisKids – Proteção de Crianças na Internet
 site_description: Plataforma de monitoramento e análise de proposições legislativas
 site_author: Equipe do Projeto
+site_url: https://unb-mds.github.io/2026-1-LegisKids/
 
 theme:
   name: mkdocs
