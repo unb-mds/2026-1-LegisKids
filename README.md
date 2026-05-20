@@ -98,8 +98,8 @@ Certifique-se de ter instalado:
 ### 1. Clonar o repositório
 
 ```bash
-git clone [https://github.com/unb-mds/2026-1-Squad08.git](https://github.com/unb-mds/2026-1-Squad08.git)
-cd 2026-1-Squad08
+git clone https://github.com/unb-mds/2026-1-LegisKids.git
+cd 2026-1-LegisKids
 ```
 
 ---
@@ -162,7 +162,11 @@ GOOGLE_API_KEY=sua_chave_do_google_ai_studio
 Com o ambiente virtual (`venv`) ativo, inicialize a aplicação executando:
 
 ```bash
-python run.py
+flask run
+```
+
+```bash
+python app.py
 ```
 
 ---
@@ -202,4 +206,3 @@ flask db upgrade
 
 ## Equipe
 Desenvolvido como parte do projeto de Metodos de Desenvolvimento de Software (MDS) da Universidade de Brasilia (UnB).
-```
