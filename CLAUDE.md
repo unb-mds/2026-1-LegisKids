@@ -162,7 +162,51 @@ O projeto usa o sistema **OpenSpec** para gerenciar o ciclo de vida de cada func
 | **Implementar** | `/opsx:apply` | Executar as tasks geradas na proposta, marcando cada uma como concluída. |
 | **Arquivar** | `/opsx:archive` | Finalizar a mudança e mover para `openspec/changes/archive/`. |
 
-Toda mudança deve ser criada via /opsx:propose — nunca criar a pasta manualmente. O spec.json visual vai dentro de openspec/changes/<nome>/specs/<componente>/spec.json, junto com os demais artefatos gerados pelo comando.
+## OpenSpec Workflow
+
+O projeto usa OpenSpec para gerenciamento de mudanças.
+
+Fluxo padrão:
+
+1. /opsx:explore
+2. /opsx:propose
+3. /opsx:apply
+4. /opsx:archive
+
+---
+
+## Exceção: spec.json como entrada válida
+
+Quando existir um arquivo:
+
+openspec/changes/<change-name>/specs/<feature>/spec.json
+
+ele deve ser considerado uma fonte oficial de especificação visual e estrutural.
+
+Nesse caso, o agente DEVE:
+
+1. Ler o spec.json
+2. Gerar automaticamente:
+   - proposal.md
+   - design.md
+   - tasks.md
+3. Só depois iniciar implementação.
+
+O usuário pode criar manualmente apenas o spec.json.
+
+O agente NÃO deve exigir proposal.md/tasks.md previamente quando spec.json existir.
+
+---
+
+## Regra de implementação
+
+Nenhuma implementação deve começar sem:
+
+- spec.json
+OU
+- proposal.md + tasks.md
+
+Se houver apenas spec.json, o agente deve completar automaticamente o restante do fluxo OpenSpec antes da implementação.
 
 Os artefatos de cada mudança ficam em `openspec/changes/<nome-da-mudança>/`.
 

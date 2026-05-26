@@ -46,6 +46,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h2 {
+  font-family: 'Cinzel', 'Inter', serif;
+  font-size: 100px;
+  letter-spacing: 0.04em;
+}
+
 /* ===== NAVBAR ===== */
 .navbar {
   height: 72px;

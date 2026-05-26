@@ -28,6 +28,17 @@ const MOCK_PROJETOS = [
 const searchInput = document.getElementById('searchInput');
 const projetosList = document.getElementById('projetosList');
 
+// Enter executa a busca completa na tela de pesquisa
+if (searchInput) {
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (!query) return;
+    window.location.href = `pesquisa.html?q=${encodeURIComponent(query)}`;
+  });
+}
+
 if (searchInput && projetosList) {
   searchInput.addEventListener('input', () => {
     const query = searchInput.value.trim().toLowerCase();
