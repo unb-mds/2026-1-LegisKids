@@ -1,0 +1,651 @@
+{
+  "theme": {
+    "colors": {
+      "primary": "#2846B7",
+      "primaryDark": "#1F3794",
+      "primaryLight": "#9CB8FF",
+      "background": "#D6DCE5",
+      "surface": "#FFFFFF",
+      "surfaceSecondary": "#EEF3FF",
+      "border": "#D7DCE5",
+      "textPrimary": "#111111",
+      "textSecondary": "#6F6F6F",
+      "textMuted": "#8B8B8B",
+      "white": "#FFFFFF",
+
+      "statusUrgentBg": "#F7C0BE",
+      "statusUrgentText": "#C54236",
+
+      "statusActiveBg": "#F8F2D9",
+      "statusActiveText": "#B4890D",
+
+      "statusApprovedBg": "#D6F0DD",
+      "statusApprovedText": "#218A4B",
+
+      "statusAnalysisBg": "#DCE6FF",
+      "statusAnalysisText": "#335DDB",
+
+      "topicBg": "#ECD7FF",
+      "topicText": "#7C3AED",
+
+      "searchBorder": "#6B6B6B",
+      "paginationBg": "#FFFFFF",
+      "paginationActive": "#2846B7",
+      "paginationText": "#111111"
+    },
+
+    "typography": {
+      "fontFamily": "'Inter', sans-serif",
+      "titleWeight": 700,
+      "subtitleWeight": 600,
+      "bodyWeight": 400,
+
+      "sizes": {
+        "hero": "48px",
+        "title": "32px",
+        "sectionTitle": "22px",
+        "cardTitle": "24px",
+        "body": "16px",
+        "small": "14px",
+        "caption": "12px"
+      },
+
+      "lineHeight": {
+        "tight": 1.1,
+        "normal": 1.5,
+        "relaxed": 1.7
+      }
+    },
+
+    "radius": {
+      "xs": "6px",
+      "sm": "10px",
+      "md": "16px",
+      "lg": "22px",
+      "xl": "28px",
+      "pill": "999px"
+    },
+
+    "shadow": {
+      "card": "0 2px 8px rgba(0,0,0,0.05)",
+      "hover": "0 8px 24px rgba(0,0,0,0.12)",
+      "navbar": "0 2px 10px rgba(0,0,0,0.15)"
+    },
+
+    "transition": {
+      "default": "0.25s ease",
+      "fast": "0.18s ease"
+    }
+  },
+
+  "layout": {
+    "maxWidth": "1280px",
+    "pagePaddingDesktop": "32px",
+    "pagePaddingTablet": "24px",
+    "pagePaddingMobile": "16px",
+
+    "sectionGap": "36px",
+    "cardGap": "24px",
+
+    "mainWrapper": {
+      "display": "flex",
+      "flexDirection": "column",
+      "minHeight": "100vh"
+    },
+
+    "contentContainer": {
+      "width": "100%",
+      "maxWidth": "1280px",
+      "margin": "0 auto"
+    }
+  },
+
+  "components": {
+    "navbar": {
+      "tag": "nav",
+      "class": "navbar",
+
+      "styles": {
+        "height": "88px",
+        "background": "#2846B7",
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "space-between",
+        "padding": "0 32px",
+        "boxShadow": "0 2px 10px rgba(0,0,0,0.15)"
+      },
+
+      "structure": {
+        "left": {
+          "logoWrapper": {
+            "class": "navbar__brand",
+            "children": [
+              "logoIcon",
+              "brandText"
+            ]
+          }
+        },
+
+        "center": {
+          "navigation": {
+            "class": "navbar__menu",
+            "items": [
+              "Projetos",
+              "Alertas",
+              "Análises"
+            ]
+          }
+        },
+
+        "right": {
+          "actions": [
+            "settingsButton",
+            "notificationButton"
+          ]
+        }
+      },
+
+      "hover": {
+        "menuItem": {
+          "background": "rgba(255,255,255,0.12)",
+          "color": "#FFFFFF"
+        }
+      }
+    },
+
+    "pageHeader": {
+      "tag": "section",
+      "class": "page-header",
+
+      "structure": {
+        "title": "Dashboard de Monitoramento",
+        "subtitle": "Acompanhe projetos de lei e políticas públicas relacionadas à proteção infantil digital."
+      },
+
+      "styles": {
+        "marginTop": "18px",
+        "marginBottom": "24px"
+      }
+    },
+
+    "backButton": {
+      "tag": "button",
+      "class": "back-button",
+
+      "styles": {
+        "display": "flex",
+        "alignItems": "center",
+        "gap": "8px",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "color": "#2846B7",
+        "background": "transparent",
+        "border": "none",
+        "cursor": "pointer"
+      },
+
+      "icon": {
+        "type": "svg",
+        "description": "Arrow left icon"
+      }
+    },
+
+    "searchBar": {
+      "tag": "section",
+      "class": "search-bar",
+
+      "styles": {
+        "height": "78px",
+        "borderRadius": "999px",
+        "border": "4px solid #6B6B6B",
+        "background": "#FFFFFF",
+        "display": "flex",
+        "alignItems": "center",
+        "padding": "0 28px",
+        "gap": "18px"
+      },
+
+      "children": {
+        "icon": {
+          "type": "svg",
+          "description": "Large magnifier icon"
+        },
+
+        "input": {
+          "tag": "input",
+          "placeholder": "Cyberbullying",
+          "styles": {
+            "fontSize": "28px",
+            "fontWeight": 500,
+            "border": "none",
+            "outline": "none",
+            "width": "100%",
+            "background": "transparent"
+          }
+        }
+      },
+
+      "focus": {
+        "borderColor": "#2846B7"
+      }
+    },
+
+    "searchSummaryCard": {
+      "tag": "section",
+      "class": "search-summary",
+
+      "styles": {
+        "background": "#EEF3FF",
+        "borderRadius": "24px",
+        "padding": "28px",
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center"
+      },
+
+      "left": {
+        "iconBubble": {
+          "size": "72px",
+          "background": "#2846B7",
+          "iconColor": "#FFFFFF"
+        },
+
+        "text": {
+          "label": "Resultados para:",
+          "query": "“Cyberbullying”"
+        }
+      },
+
+      "right": {
+        "resultsCounter": {
+          "background": "#AFC6FF",
+          "borderRadius": "18px",
+          "padding": "18px 28px",
+          "numberSize": "56px",
+          "labelSize": "22px"
+        }
+      }
+    },
+
+    "toolbar": {
+      "tag": "section",
+      "class": "toolbar",
+
+      "styles": {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center",
+        "marginTop": "22px"
+      },
+
+      "left": {
+        "filtersButton": {
+          "background": "#FFFFFF",
+          "borderRadius": "10px",
+          "padding": "10px 18px",
+          "border": "1px solid #D7DCE5"
+        }
+      },
+
+      "right": {
+        "sortDropdown": {
+          "background": "#FFFFFF",
+          "borderRadius": "10px",
+          "height": "42px",
+          "padding": "0 16px",
+          "border": "1px solid #D7DCE5"
+        }
+      }
+    },
+
+    "resultsSectionTitle": {
+      "tag": "h2",
+      "class": "results-title",
+
+      "styles": {
+        "fontSize": "34px",
+        "fontWeight": 700,
+        "textTransform": "uppercase",
+        "marginTop": "36px",
+        "marginBottom": "28px"
+      }
+    },
+
+    "resultCard": {
+      "tag": "article",
+      "class": "result-card",
+
+      "styles": {
+        "background": "#FFFFFF",
+        "borderRadius": "26px",
+        "padding": "30px",
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "22px",
+        "boxShadow": "0 2px 8px rgba(0,0,0,0.05)"
+      },
+
+      "header": {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center"
+      },
+
+      "badges": {
+        "plTag": {
+          "background": "#DCE6FF",
+          "color": "#335DDB",
+          "borderRadius": "10px",
+          "padding": "8px 18px",
+          "fontSize": "14px",
+          "fontWeight": 700
+        },
+
+        "topicTag": {
+          "background": "#ECD7FF",
+          "color": "#7C3AED",
+          "borderRadius": "10px",
+          "padding": "8px 18px",
+          "fontSize": "14px",
+          "fontWeight": 700
+        }
+      },
+
+      "statusVariants": {
+        "urgent": {
+          "background": "#F7C0BE",
+          "color": "#C54236"
+        },
+
+        "active": {
+          "background": "#F8F2D9",
+          "color": "#B4890D"
+        },
+
+        "approved": {
+          "background": "#D6F0DD",
+          "color": "#218A4B"
+        },
+
+        "analysis": {
+          "background": "#DCE6FF",
+          "color": "#335DDB"
+        }
+      },
+
+      "content": {
+        "title": {
+          "fontSize": "28px",
+          "fontWeight": 700,
+          "color": "#111111"
+        },
+
+        "description": {
+          "fontSize": "18px",
+          "lineHeight": 1.6,
+          "color": "#6F6F6F"
+        }
+      },
+
+      "footer": {
+        "display": "flex",
+        "gap": "32px",
+        "fontSize": "14px",
+        "color": "#8B8B8B"
+      },
+
+      "hover": {
+        "transform": "translateY(-4px)",
+        "boxShadow": "0 8px 24px rgba(0,0,0,0.12)"
+      }
+    },
+
+    "pagination": {
+      "tag": "nav",
+      "class": "pagination",
+
+      "styles": {
+        "display": "flex",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "gap": "20px",
+        "marginTop": "48px"
+      },
+
+      "button": {
+        "size": "48px",
+        "borderRadius": "10px",
+        "background": "#FFFFFF",
+        "color": "#111111"
+      },
+
+      "activeButton": {
+        "background": "#2846B7",
+        "color": "#FFFFFF"
+      },
+
+      "ellipsis": {
+        "fontSize": "26px",
+        "fontWeight": 700
+      }
+    },
+
+    "footer": {
+      "tag": "footer",
+      "class": "footer",
+
+      "styles": {
+        "height": "120px",
+        "background": "#2846B7",
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "space-between",
+        "padding": "0 48px",
+        "color": "#FFFFFF"
+      },
+
+      "links": {
+        "gap": "32px",
+        "fontSize": "14px"
+      }
+    }
+  },
+
+  "responsive": {
+    "desktop": {
+      "breakpoint": "1280px+",
+
+      "layout": {
+        "cardsPerRow": 1,
+        "navbarPadding": "32px"
+      }
+    },
+
+    "tablet": {
+      "breakpoint": "768px - 1279px",
+
+      "changes": {
+        "navbar": {
+          "padding": "0 20px"
+        },
+
+        "searchSummaryCard": {
+          "flexDirection": "column",
+          "gap": "24px",
+          "alignItems": "flex-start"
+        },
+
+        "resultCard": {
+          "padding": "24px"
+        }
+      }
+    },
+
+    "mobile": {
+      "breakpoint": "0px - 767px",
+
+      "changes": {
+        "navbar": {
+          "height": "72px",
+          "menuHidden": true
+        },
+
+        "searchBar": {
+          "height": "60px",
+          "padding": "0 18px"
+        },
+
+        "searchInput": {
+          "fontSize": "18px"
+        },
+
+        "toolbar": {
+          "flexDirection": "column",
+          "gap": "14px",
+          "alignItems": "stretch"
+        },
+
+        "resultCard": {
+          "padding": "20px",
+          "borderRadius": "18px"
+        },
+
+        "footer": {
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "gap": "16px",
+          "height": "auto",
+          "padding": "24px"
+        }
+      }
+    }
+  },
+
+  "interactions": {
+    "searchInput": {
+      "onType": "Filtra os cards em tempo real pelo título, tema ou descrição.",
+      "onEnter": "Executa busca."
+    },
+
+    "filtersButton": {
+      "onClick": "Abre modal lateral de filtros."
+    },
+
+    "sortDropdown": {
+      "onChange": "Reordena os resultados."
+    },
+
+    "resultCard": {
+      "onHover": {
+        "translateY": "-4px",
+        "shadow": "0 8px 24px rgba(0,0,0,0.12)"
+      },
+
+      "onClick": "Abre página de detalhes do projeto."
+    },
+
+    "pagination": {
+      "onClick": "Troca página de resultados."
+    },
+
+    "navbarItems": {
+      "onHover": "Altera fundo para rgba(255,255,255,0.12)",
+      "onClick": "Navega entre páginas do sistema."
+    }
+  },
+
+  "mockData": {
+    "searchQuery": "Cyberbullying",
+
+    "resultsCount": 23,
+
+    "results": [
+      {
+        "id": "PL-2654/2026",
+        "status": "Urgente",
+        "statusType": "urgent",
+        "topic": "Proteção Legal",
+        "title": "Proteção Contra Cyberbullying e Assédio Online",
+        "description": "Define cyberbullying como crime e estabelece medidas protetivas para vítimas menores de idade.",
+        "date": "02/04/2026",
+        "institution": "Câmara dos Deputados"
+      },
+
+      {
+        "id": "PL-2103/2026",
+        "status": "Aprovado",
+        "statusType": "approved",
+        "topic": "Transparência",
+        "title": "Transparência em Algoritmos de Recomendação para Menores",
+        "description": "Obriga plataformas digitais a divulgarem critérios de algoritmos para usuários menores.",
+        "date": "28/03/2026",
+        "institution": "Senado Federal"
+      },
+
+      {
+        "id": "PL-1987/2026",
+        "status": "Ativo",
+        "statusType": "active",
+        "topic": "Educação Digital",
+        "title": "Programa Nacional de Educação Digital Infantil",
+        "description": "Institui diretrizes para alfabetização digital segura nas escolas.",
+        "date": "19/03/2026",
+        "institution": "Câmara dos Deputados"
+      }
+    ]
+  },
+
+  "assets": {
+    "logo": {
+      "type": "svg",
+      "description": "Escudo azul e verde com balança da justiça no centro."
+    },
+
+    "icons": [
+      {
+        "name": "search",
+        "description": "Lupa outline com stroke 2px."
+      },
+
+      {
+        "name": "notification",
+        "description": "Sino outline minimalista."
+      },
+
+      {
+        "name": "settings",
+        "description": "Engrenagem outline."
+      },
+
+      {
+        "name": "analytics",
+        "description": "Gráfico de barras verticais."
+      },
+
+      {
+        "name": "projects",
+        "description": "Documento com linhas internas."
+      },
+
+      {
+        "name": "warning",
+        "description": "Triângulo outline com exclamação."
+      },
+
+      {
+        "name": "calendar",
+        "description": "Calendário outline minimalista."
+      },
+
+      {
+        "name": "institution",
+        "description": "Ícone de prédio governamental outline."
+      },
+
+      {
+        "name": "paginationArrow",
+        "description": "Chevron lateral com stroke grosso."
+      }
+    ]
+  }
+}
