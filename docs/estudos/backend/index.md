@@ -1,19 +1,24 @@
 # Backend
 
-Esta seção reúne os estudos, conceitos, tecnologias e decisões relacionadas ao desenvolvimento backend do sistema.
+Esta seção reúne os estudos, definições e tecnologias relacionadas ao desenvolvimento backend da plataforma LegisKids.
 
-Aqui estão documentados os fundamentos da arquitetura backend, APIs, banco de dados, autenticação, servidores, hospedagem e stacks tecnológicas utilizadas no projeto.
+O backend é responsável pelo processamento das informações legislativas, integração com APIs públicas, organização dos dados e comunicação com o banco de dados da aplicação.
+
+---
 
 ## Objetivos
 
-- Estudar os fundamentos do desenvolvimento backend
+- Definir a arquitetura backend do sistema
 - Documentar tecnologias e stacks utilizadas
-- Definir padrões de arquitetura do sistema
-- Organizar conteúdos sobre APIs, banco de dados e autenticação
-- Garantir escalabilidade, segurança e manutenção do backend
+- Estruturar padrões de organização e desenvolvimento
+- Garantir escalabilidade, segurança e manutenção
+- Centralizar estudos relacionados ao processamento de dados e APIs
 
-# Conteúdo
+---
 
-- [Estudo de Stack Back-End](estudo_stack_backend_definida.md)
-- [Comparação de Stacks Back-End](comparacao_stacks_backend.md)
-- [Estudo de Tecnologias Back-End](estudo_tecnologias_backend.md)
+## Conteúdo
+
+- [Estudo de Stack Backend](estudo_stack_backend_definida.md)
+- [Comparação de Stacks Backend](comparacao_stacks_backend.md)
+- [Estudo de Tecnologias Backend](estudo_tecnologias_backend.md)
+
