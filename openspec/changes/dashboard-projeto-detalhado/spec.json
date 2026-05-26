@@ -1,0 +1,516 @@
+{
+  "meta": {
+    "page": "detalhe-projeto-lei",
+    "description": "Página de detalhes de um Projeto de Lei — LegisKids",
+    "version": "1.0.0"
+  },
+
+  "theme": {
+    "colors": {
+      "page_bg": "#DDE3EE",
+      "card_bg": "#FFFFFF",
+      "card_bg_subtle": "#EEF1F8",
+      "primary": "#2B3FBF",
+      "primary_hover": "#1E2E99",
+      "primary_light_bg": "#E8ECFB",
+      "text_primary": "#0F172A",
+      "text_secondary": "#475569",
+      "text_caption": "#64748B",
+      "text_link": "#2B3FBF",
+      "border": "#D1D9E6",
+      "border_light": "#E8ECF4",
+      "badge_urgente_bg": "#FBCFCA",
+      "badge_urgente_text": "#C0392B",
+      "badge_aprovado_bg": "#D1FAE5",
+      "badge_aprovado_text": "#166534",
+      "badge_topic_bg": "#F0E6FB",
+      "badge_topic_text": "#7C3AED",
+      "badge_em_tramitacao_bg": "#E0F2FE",
+      "badge_em_tramitacao_text": "#0369A1",
+      "timeline_done_fill": "#22C55E",
+      "timeline_done_border": "#22C55E",
+      "timeline_active_fill": "#FFFFFF",
+      "timeline_active_border": "#2B3FBF",
+      "timeline_pending_fill": "#FFFFFF",
+      "timeline_pending_border": "#CBD5E1",
+      "timeline_line": "#CBD5E1",
+      "urgencia_dot_alta": "#EF4444",
+      "indicator_bar_filled": "#7C3AED",
+      "indicator_bar_empty": "#D1D5DB",
+      "objective_check_bg": "#22C55E",
+      "objective_check_icon": "#FFFFFF",
+      "pdf_icon_bg": "#FEE2E2",
+      "pdf_icon_color": "#EF4444",
+      "share_icon_bg": "#F1F5F9",
+      "share_icon_color": "#475569",
+      "button_outline_border": "#CBD5E1",
+      "button_outline_text": "#374151",
+      "button_outline_bg": "#FFFFFF",
+      "button_outline_hover_bg": "#F1F5F9",
+      "tab_active_text": "#2B3FBF",
+      "tab_active_underline": "#2B3FBF",
+      "tab_inactive_text": "#64748B",
+      "tab_inactive_icon": "#94A3B8",
+      "section_link_color": "#2B3FBF",
+      "related_card_bg": "#EEF1F8",
+      "related_card_border": "#DDE3EE"
+    },
+    "typography": {
+      "font_family": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "font_mono": "'IBM Plex Mono', 'Courier New', monospace",
+      "sizes": {
+        "page_title": "32px",
+        "page_subtitle": "14px",
+        "section_title": "18px",
+        "card_title": "15px",
+        "label": "12px",
+        "body": "14px",
+        "small": "12px",
+        "tab": "15px",
+        "badge": "12px",
+        "meta_label": "12px",
+        "meta_value": "14px",
+        "back_link": "14px",
+        "action_btn": "14px",
+        "timeline_title": "14px",
+        "timeline_desc": "12px",
+        "timeline_date": "12px",
+        "indicator_label": "14px",
+        "indicator_value": "13px",
+        "counter_number": "28px"
+      },
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "line_heights": {
+        "tight": "1.2",
+        "normal": "1.5",
+        "relaxed": "1.6"
+      }
+    },
+    "border_radius": {
+      "xs": "4px",
+      "sm": "6px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    },
+    "shadows": {
+      "card": "0 1px 4px rgba(0,0,0,0.06)",
+      "card_hover": "0 4px 16px rgba(0,0,0,0.10)",
+      "button": "none"
+    },
+    "transitions": {
+      "default": "0.2s ease",
+      "hover": "0.15s ease"
+    }
+  },
+
+  "layout": {
+    "max_width": "1280px",
+    "page_padding": "32px 40px",
+    "page_padding_mobile": "16px",
+    "top_bar_height": "auto",
+    "content_grid": {
+      "type": "flex",
+      "direction": "row",
+      "gap": "24px",
+      "main_column": {
+        "flex": "1 1 0",
+        "min_width": "0"
+      },
+      "sidebar_column": {
+        "width": "320px",
+        "flex_shrink": "0"
+      }
+    },
+    "section_gap": "20px",
+    "card_padding": "24px"
+  },
+
+  "components": {
+
+    "top_bar": {
+      "name": "TopBar",
+      "description": "Barra superior com voltar ao dashboard à esquerda e botões Compartilhar + Salvar à direita",
+      "html": "<div class='top-bar'><a href='#' class='top-bar__back'><svg>...</svg> Voltar ao dashboard</a><div class='top-bar__actions'><button class='btn-outline'><svg>...</svg> Compartilhar</button><button class='btn-outline'><svg>...</svg> Salvar</button></div></div>",
+      "classes": {
+        "top-bar": "display:flex; justify-content:space-between; align-items:center; padding:20px 0 16px;",
+        "top-bar__back": "display:flex; align-items:center; gap:8px; color:#2B3FBF; font-size:14px; font-weight:500; text-decoration:none;",
+        "top-bar__back svg": "width:18px; height:18px; stroke:#2B3FBF;",
+        "top-bar__actions": "display:flex; gap:12px;",
+        "btn-outline": "display:flex; align-items:center; gap:8px; background:#FFFFFF; border:1px solid #D1D9E6; border-radius:8px; padding:8px 16px; font-size:14px; font-weight:500; color:#374151; cursor:pointer;"
+      },
+      "interactions": {
+        "btn-outline:hover": "background:#F1F5F9; border-color:#B0BBD0;",
+        "top-bar__back:hover": "text-decoration:underline;"
+      },
+      "assets": {
+        "back_arrow": "SVG: arrow-left — linha horizontal com ponta à esquerda, stroke #2B3FBF, 18x18",
+        "share_icon": "SVG: share-2 — círculo central com 2 linhas saindo para círculos menores, stroke #475569, 16x16",
+        "bookmark_icon": "SVG: bookmark — forma de favorito/fita, stroke #475569, 16x16"
+      }
+    },
+
+    "project_header": {
+      "name": "ProjectHeader",
+      "description": "Cabeçalho do projeto com badges de ID/status/tópico, título, subtítulo e metadados",
+      "html": "<div class='project-header'><div class='project-header__badges'><span class='badge badge--id'>PL .../...</span><span class='badge badge--urgente'>Urgente</span><span class='badge badge--topic'>Tópico</span></div><h1 class='project-header__title'>Tema do Projeto de Lei</h1><p class='project-header__subtitle'>Resumo sobre o novo projeto e seus principais objetivos</p><div class='project-header__meta'><div class='meta-item'><svg>...</svg><div><span class='meta-item__label'>Data de aprovação do projeto</span><span class='meta-item__value'>12/02/2026</span></div></div><div class='meta-item'><svg>...</svg><div><span class='meta-item__label'>Onde foi aprovado</span><span class='meta-item__value'>Câmara dos deputados</span></div></div></div></div>",
+      "classes": {
+        "project-header": "padding:8px 0 24px;",
+        "project-header__badges": "display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;",
+        "badge": "font-size:12px; font-weight:600; padding:5px 14px; border-radius:9999px;",
+        "badge--id": "background:#E8ECFB; color:#2B3FBF; font-family:monospace;",
+        "badge--urgente": "background:#FBCFCA; color:#C0392B;",
+        "badge--topic": "background:#F0E6FB; color:#7C3AED;",
+        "project-header__title": "font-size:32px; font-weight:700; color:#0F172A; line-height:1.2; margin-bottom:8px;",
+        "project-header__subtitle": "font-size:14px; color:#475569; margin-bottom:20px;",
+        "project-header__meta": "display:flex; gap:40px; flex-wrap:wrap;",
+        "meta-item": "display:flex; align-items:flex-start; gap:10px;",
+        "meta-item svg": "width:20px; height:20px; stroke:#94A3B8; flex-shrink:0; margin-top:2px;",
+        "meta-item__label": "display:block; font-size:12px; color:#64748B;",
+        "meta-item__value": "display:block; font-size:14px; font-weight:600; color:#0F172A;"
+      },
+      "assets": {
+        "calendar_icon": "SVG: calendar — retângulo com topo recortado e linhas horizontais internas, stroke #94A3B8, 20x20",
+        "scales_icon": "SVG: scale/balance — balança de justiça com haste central e dois pratos, stroke #94A3B8, 20x20"
+      }
+    },
+
+    "tabs": {
+      "name": "Tabs",
+      "description": "Navegação por abas: Visão geral, Tramitação, Análise, Documentos, Comentários",
+      "html": "<nav class='tabs'><button class='tab tab--active'><svg>...</svg> Visão geral</button><button class='tab'><svg>...</svg> Tramitação</button><button class='tab'><svg>...</svg> Análise</button><button class='tab'><svg>...</svg> Documentos</button><button class='tab'><svg>...</svg> Comentários</button></nav>",
+      "classes": {
+        "tabs": "display:flex; gap:0; background:#FFFFFF; border-radius:12px; padding:0 8px; box-shadow:0 1px 4px rgba(0,0,0,0.06); overflow-x:auto;",
+        "tab": "display:flex; align-items:center; gap:8px; padding:16px 20px; font-size:15px; font-weight:500; color:#64748B; background:none; border:none; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:color 0.2s, border-color 0.2s;",
+        "tab--active": "color:#2B3FBF; border-bottom:3px solid #2B3FBF; font-weight:600;",
+        "tab svg": "width:18px; height:18px; stroke:currentColor;"
+      },
+      "interactions": {
+        "tab:hover": "color:#2B3FBF; background:#F8F9FF;",
+        "tab--active:hover": "background:transparent;"
+      },
+      "items": [
+        { "label": "Visão geral", "icon": "globe", "active": true },
+        { "label": "Tramitação", "icon": "settings/gear" },
+        { "label": "Análise", "icon": "bar-chart-2" },
+        { "label": "Documentos", "icon": "file-text" },
+        { "label": "Comentários", "icon": "message-square" }
+      ],
+      "assets": {
+        "globe_icon": "SVG: globe — círculo com meridianos e paralelos, stroke #2B3FBF quando ativo / #94A3B8 inativo, 18x18",
+        "gear_icon": "SVG: settings — engrenagem circular com 8 dentes, stroke, 18x18",
+        "bar_chart_icon": "SVG: bar-chart-2 — 3 barras verticais de alturas diferentes, stroke, 18x18",
+        "file_icon": "SVG: file-text — folha com canto dobrado e 3 linhas horizontais, stroke, 18x18",
+        "message_icon": "SVG: message-square — balão de fala retangular com rabo, stroke, 18x18"
+      }
+    },
+
+    "card_sobre_projeto": {
+      "name": "CardSobreProjeto",
+      "description": "Card da coluna principal com texto descritivo do projeto e botão 'Ver mais'",
+      "html": "<div class='card'><h2 class='card__title'>Sobre o projeto</h2><div class='card__body collapsed' id='sobreBody'><p>...</p><p>...</p></div><button class='btn-expand' id='sobreToggle'>Ver mais <svg>...</svg></button></div>",
+      "classes": {
+        "card": "background:#FFFFFF; border-radius:16px; padding:24px; box-shadow:0 1px 4px rgba(0,0,0,0.06);",
+        "card__title": "font-size:18px; font-weight:700; color:#0F172A; margin-bottom:16px;",
+        "card__body": "font-size:14px; color:#475569; line-height:1.6; display:flex; flex-direction:column; gap:12px;",
+        "card__body.collapsed": "max-height:120px; overflow:hidden;",
+        "btn-expand": "display:flex; align-items:center; gap:6px; background:none; border:none; color:#2B3FBF; font-size:14px; font-weight:500; cursor:pointer; margin-top:16px; padding:0;"
+      },
+      "interactions": {
+        "btn-expand click": "Toggle class 'collapsed' on card__body; rotate chevron 180deg when expanded",
+        "btn-expand:hover": "text-decoration:underline;"
+      },
+      "assets": {
+        "chevron_down": "SVG: chevron-down — seta apontando para baixo (V), stroke #2B3FBF, 16x16"
+      }
+    },
+
+    "card_informacoes_pessoais": {
+      "name": "CardInformacoesPessoais",
+      "description": "Card com grid 4 colunas de campos de metadados do projeto (autor, partido, data, urgência, situação, casa, regime)",
+      "html": "<div class='card'><h2 class='card__title'>Informações pessoais</h2><div class='info-grid'><div class='info-cell'><span class='info-cell__label'>Autor</span><span class='info-cell__value'>Dep. Ana Silva</span></div>...</div></div>",
+      "classes": {
+        "info-grid": "display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;",
+        "info-cell": "background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 16px;",
+        "info-cell__label": "display:block; font-size:12px; color:#64748B; margin-bottom:4px;",
+        "info-cell__value": "display:block; font-size:14px; font-weight:600; color:#0F172A;"
+      },
+      "special_cells": {
+        "urgencia": "info-cell__value contém <span class='dot dot--red'></span> Alta — dot: width:8px; height:8px; border-radius:50%; background:#EF4444; display:inline-block; margin-right:6px;"
+      }
+    },
+
+    "card_objetivos": {
+      "name": "CardObjetivos",
+      "description": "Card com lista de objetivos do projeto, cada item com ícone de check verde",
+      "html": "<div class='card'><h2 class='card__title'>Objetivos do projeto</h2><ul class='objective-list'><li class='objective-item'><span class='objective-check'><svg>...</svg></span><span>Texto do objetivo</span></li></ul></div>",
+      "classes": {
+        "objective-list": "list-style:none; display:flex; flex-direction:column; gap:16px; padding:0;",
+        "objective-item": "display:flex; align-items:center; gap:12px; font-size:14px; color:#0F172A; font-weight:500;",
+        "objective-check": "width:24px; height:24px; border-radius:50%; background:#22C55E; display:flex; align-items:center; justify-content:center; flex-shrink:0;"
+      },
+      "assets": {
+        "check_icon": "SVG: check — linha em formato de visto/tick, stroke:#FFFFFF, stroke-width:2.5, 12x12"
+      }
+    },
+
+    "card_documentos": {
+      "name": "CardDocumentos",
+      "description": "Card com lista de arquivos PDF para download e link 'Ver todos os documentos'",
+      "html": "<div class='card'><h2 class='card__title'>Documentos e anexos</h2><div class='doc-list'><div class='doc-item'><div class='doc-item__icon'><svg>...</svg></div><div class='doc-item__info'><span class='doc-item__name'>Texto completo do projeto</span><span class='doc-item__meta'>PDF <span class='dot dot--gray'></span> 245 KB</span></div><button class='btn-download'><svg>...</svg> Baixar</button></div></div><a href='#' class='card__link'>Ver todos os documentos (5) <svg>...</svg></a></div>",
+      "classes": {
+        "doc-list": "display:flex; flex-direction:column;",
+        "doc-item": "display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid #E8ECF4;",
+        "doc-item__icon": "width:40px; height:40px; border-radius:8px; background:#FEE2E2; display:flex; align-items:center; justify-content:center; flex-shrink:0;",
+        "doc-item__info": "flex:1; min-width:0;",
+        "doc-item__name": "display:block; font-size:14px; font-weight:600; color:#0F172A;",
+        "doc-item__meta": "display:flex; align-items:center; gap:6px; font-size:12px; color:#64748B; margin-top:2px;",
+        "btn-download": "display:flex; align-items:center; gap:8px; background:#FFFFFF; border:1px solid #D1D9E6; border-radius:8px; padding:8px 16px; font-size:14px; font-weight:500; color:#374151; cursor:pointer; white-space:nowrap;",
+        "card__link": "display:flex; align-items:center; justify-content:space-between; padding:16px 0 4px; font-size:14px; font-weight:500; color:#2B3FBF; text-decoration:none;"
+      },
+      "interactions": {
+        "btn-download:hover": "background:#F1F5F9;",
+        "card__link:hover": "text-decoration:underline;"
+      },
+      "assets": {
+        "pdf_icon": "SVG: arquivo PDF — retângulo com canto dobrado superior direito, texto 'PDF' interno, fill background:#FEE2E2, icon stroke/fill #EF4444, 20x20",
+        "download_icon": "SVG: download — seta apontando para baixo com linha horizontal na base, stroke #374151, 16x16",
+        "chevron_right": "SVG: chevron-right — seta apontando para direita, stroke #2B3FBF, 16x16"
+      }
+    },
+
+    "card_projetos_relacionados": {
+      "name": "CardProjetosRelacionados",
+      "description": "Card com grid de 3 projetos relacionados e link 'Ver todos'",
+      "html": "<div class='card'><div class='card__header'><h2 class='card__title'>Projetos relacionados</h2><a href='#' class='card__link-right'>Ver todos</a></div><div class='related-grid'><div class='related-card'><span class='badge badge--id'>PL .../...</span><p class='related-card__title'>Proteção de dados de crianças e adolescentes</p><span class='badge badge--topic'>Tópico</span></div></div></div>",
+      "classes": {
+        "card__header": "display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;",
+        "card__link-right": "font-size:14px; font-weight:600; color:#2B3FBF; text-decoration:none;",
+        "related-grid": "display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;",
+        "related-card": "background:#EEF1F8; border:1px solid #DDE3EE; border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:box-shadow 0.2s;",
+        "related-card__title": "font-size:13px; color:#475569; line-height:1.5; flex:1;"
+      },
+      "interactions": {
+        "related-card:hover": "box-shadow:0 4px 16px rgba(0,0,0,0.10); border-color:#B8C5E0;"
+      }
+    },
+
+    "sidebar_status_tramitacao": {
+      "name": "SidebarStatusTramitacao",
+      "description": "Card lateral com badge de status, subtítulo e timeline vertical dos passos de tramitação",
+      "html": "<div class='card sidebar-card'><div class='sidebar-card__header'><h3>Status da tramitação</h3><span class='badge badge--em-tramitacao'>Em tramitação</span></div><p class='sidebar-card__subtitle'>Acompanhe o andamento do projeto</p><div class='timeline'><div class='timeline-item timeline-item--done'><div class='timeline-node timeline-node--done'><svg>...</svg></div><div class='timeline-line'></div><div class='timeline-content'><span class='timeline-content__title'>Apresentação</span><span class='timeline-content__date'>10/05/2025</span><span class='timeline-content__desc'>Projeto apresentado na Câmara dos Deputados</span></div></div><div class='timeline-item timeline-item--active'>...</div><div class='timeline-item timeline-item--pending'>...</div><div class='timeline-item timeline-item--pending'>...</div></div><a href='#' class='sidebar-card__link'>Ver tramitação completa <svg>...</svg></a></div>",
+      "classes": {
+        "sidebar-card": "background:#FFFFFF; border-radius:16px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.06);",
+        "sidebar-card__header": "display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;",
+        "sidebar-card__header h3": "font-size:15px; font-weight:700; color:#0F172A;",
+        "badge--em-tramitacao": "background:#E0F2FE; color:#0369A1; font-size:11px; font-weight:600; padding:3px 10px; border-radius:9999px;",
+        "sidebar-card__subtitle": "font-size:12px; color:#64748B; margin-bottom:20px;",
+        "timeline": "position:relative; display:flex; flex-direction:column; gap:0;",
+        "timeline-item": "display:flex; gap:12px; position:relative;",
+        "timeline-node": "width:24px; height:24px; border-radius:50%; border:2px solid; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:1; background:#FFFFFF;",
+        "timeline-node--done": "background:#22C55E; border-color:#22C55E;",
+        "timeline-node--active": "background:#FFFFFF; border-color:#2B3FBF; border-width:2px;",
+        "timeline-node--pending": "background:#FFFFFF; border-color:#CBD5E1;",
+        "timeline-line": "position:absolute; left:11px; top:24px; bottom:-24px; width:2px; background:#CBD5E1; z-index:0;",
+        "timeline-content": "padding-bottom:24px; flex:1;",
+        "timeline-content__title": "display:block; font-size:14px; font-weight:600; color:#0F172A;",
+        "timeline-content__date": "float:right; font-size:12px; color:#64748B;",
+        "timeline-content__desc": "display:block; font-size:12px; color:#64748B; margin-top:4px; clear:both;",
+        "timeline-item--active .timeline-content__title": "color:#2B3FBF;",
+        "sidebar-card__link": "display:flex; justify-content:space-between; align-items:center; padding:12px 0 0; border-top:1px solid #E8ECF4; margin-top:4px; font-size:14px; font-weight:500; color:#2B3FBF; text-decoration:none;"
+      },
+      "assets": {
+        "check_white": "SVG: check — visto branco, stroke:#FFFFFF, stroke-width:2.5, 12x12",
+        "chevron_right_small": "SVG: chevron-right, stroke:#2B3FBF, 14x14"
+      }
+    },
+
+    "sidebar_analise_indicadores": {
+      "name": "SidebarAnaliseIndicadores",
+      "description": "Card lateral com ícone de livro/análise, três indicadores com barra de progresso segmentada (Relevância, Impacto social, Apoio popular) e link 'Ver análise detalhada'",
+      "html": "<div class='card sidebar-card'><div class='analise-header'><div class='analise-icon'><svg>...</svg></div><div><h3>Análise e indicadores</h3><p>Dados e análises sobre o impacto e relevância do projeto</p></div></div><div class='indicators'><div class='indicator'><div class='indicator__labels'><span class='indicator__name'>Relevância</span><span class='indicator__value'>Muito alta</span></div><div class='indicator__bar'><span class='indicator__segment indicator__segment--filled'></span><span class='indicator__segment indicator__segment--filled'></span><span class='indicator__segment indicator__segment--filled'></span><span class='indicator__segment indicator__segment--filled'></span><span class='indicator__segment indicator__segment--empty'></span></div></div></div><a href='#' class='sidebar-card__link'>Ver análise detalhada <svg>...</svg></a></div>",
+      "classes": {
+        "analise-header": "display:flex; gap:14px; align-items:flex-start; margin-bottom:20px;",
+        "analise-icon": "width:48px; height:48px; border-radius:12px; background:#F0E6FB; display:flex; align-items:center; justify-content:center; flex-shrink:0;",
+        "analise-header h3": "font-size:15px; font-weight:700; color:#0F172A; margin-bottom:4px;",
+        "analise-header p": "font-size:12px; color:#64748B; line-height:1.4;",
+        "indicators": "display:flex; flex-direction:column; gap:0;",
+        "indicator": "padding:16px 0; border-bottom:1px solid #E8ECF4;",
+        "indicator__labels": "display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;",
+        "indicator__name": "font-size:14px; font-weight:600; color:#0F172A;",
+        "indicator__value": "font-size:13px; color:#64748B;",
+        "indicator__bar": "display:flex; gap:4px;",
+        "indicator__segment": "height:8px; flex:1; border-radius:4px;",
+        "indicator__segment--filled": "background:#7C3AED;",
+        "indicator__segment--empty": "background:#D1D5DB;"
+      },
+      "bar_configs": {
+        "relevancia": { "label": "Relevância", "value": "Muito alta", "filled": 4, "total": 5 },
+        "impacto_social": { "label": "Impacto social", "value": "Alto", "filled": 3, "total": 5 },
+        "apoio_popular": { "label": "Apoio popular", "value": "75%", "filled": 3, "total": 5 }
+      },
+      "assets": {
+        "book_icon": "SVG: book-open — livro aberto com duas páginas, stroke:#7C3AED, 22x22"
+      }
+    },
+
+    "sidebar_compartilhar": {
+      "name": "SidebarCompartilhar",
+      "description": "Card lateral com título 'Compartilhe este projeto', subtexto e 4 botões de redes sociais (link, WhatsApp, Twitter/X, Facebook)",
+      "html": "<div class='card sidebar-card'><div class='share-header'><svg>...</svg><h3>Compartilhe este projeto</h3></div><p>Ajude a divulgar informações importantes sobre esse projeto de lei</p><div class='share-buttons'><button class='share-btn' aria-label='Copiar link'><svg>...</svg></button><button class='share-btn share-btn--whatsapp' aria-label='WhatsApp'><svg>...</svg></button><button class='share-btn share-btn--twitter' aria-label='Twitter'><svg>...</svg></button><button class='share-btn share-btn--facebook' aria-label='Facebook'><svg>...</svg></button></div></div>",
+      "classes": {
+        "share-header": "display:flex; align-items:center; gap:10px; margin-bottom:8px;",
+        "share-header h3": "font-size:15px; font-weight:700; color:#0F172A;",
+        "share-header svg": "stroke:#475569; width:20px; height:20px;",
+        "sidebar-card p": "font-size:13px; color:#64748B; line-height:1.5; margin-bottom:16px;",
+        "share-buttons": "display:flex; gap:8px;",
+        "share-btn": "width:44px; height:44px; border-radius:8px; background:#F1F5F9; border:1px solid #E2E8F0; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.15s;",
+        "share-btn:hover": "background:#E2E8F0;"
+      },
+      "assets": {
+        "link_icon": "SVG: link-2 — duas argolas ligadas por uma linha, stroke #475569, 18x18",
+        "whatsapp_icon": "SVG: WhatsApp — balão de fala com handset interno, fill #25D366, 18x18",
+        "twitter_icon": "SVG: X/Twitter — logo X, fill #000000, 18x18",
+        "facebook_icon": "SVG: Facebook — letra f em bold, fill #1877F2, 18x18"
+      }
+    }
+  },
+
+  "responsive": {
+    "breakpoints": {
+      "mobile": "max-width: 640px",
+      "tablet": "max-width: 1024px",
+      "desktop": "min-width: 1025px"
+    },
+    "rules": {
+      "content_grid": {
+        "desktop": "flex-direction:row; sidebar width:320px",
+        "tablet": "flex-direction:column; sidebar width:100%",
+        "mobile": "flex-direction:column; sidebar width:100%"
+      },
+      "top_bar": {
+        "mobile": "flex-direction:column; gap:12px; align-items:flex-start"
+      },
+      "tabs": {
+        "mobile": "overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none",
+        "tab": "padding:14px 14px; font-size:13px"
+      },
+      "info_grid": {
+        "desktop": "grid-template-columns:repeat(4,1fr)",
+        "tablet": "grid-template-columns:repeat(2,1fr)",
+        "mobile": "grid-template-columns:repeat(2,1fr)"
+      },
+      "related_grid": {
+        "desktop": "grid-template-columns:repeat(3,1fr)",
+        "tablet": "grid-template-columns:repeat(2,1fr)",
+        "mobile": "grid-template-columns:1fr"
+      },
+      "project_header__title": {
+        "mobile": "font-size:24px"
+      }
+    }
+  },
+
+  "interactions": {
+    "tabs": "Clicar numa aba remove a classe 'tab--active' de todas e adiciona na aba clicada. Conteúdo das seções pode ser controlado por JS (show/hide) ou por âncoras.",
+    "btn_ver_mais": "Ao clicar, remove a classe 'collapsed' do card__body, anima height com CSS transition (max-height de 120px para none/2000px), e troca o label para 'Ver menos' com chevron rotacionado 180deg.",
+    "btn_download": "Inicia download do arquivo. Não há estado de loading visível na tela — manter comportamento padrão do browser.",
+    "related_card": "Ao clicar, navega para a página de detalhe do projeto relacionado.",
+    "timeline_link": "Ao clicar em 'Ver tramitação completa', ativa a aba 'Tramitação' ou navega para URL correspondente.",
+    "analise_link": "Ao clicar em 'Ver análise detalhada', ativa a aba 'Análise' ou navega para URL correspondente.",
+    "share_buttons": {
+      "link": "Copia URL da página para clipboard. Exibe tooltip 'Copiado!' por 2 segundos.",
+      "whatsapp": "Abre `https://wa.me/?text=` com URL encoded da página.",
+      "twitter": "Abre `https://twitter.com/intent/tweet?url=` com URL e texto do projeto.",
+      "facebook": "Abre `https://www.facebook.com/sharer/sharer.php?u=` com URL encoded."
+    },
+    "btn_compartilhar_top": "Abre modal ou dropdown com as mesmas opções de redes sociais.",
+    "btn_salvar_top": "Adiciona projeto a lista de favoritos/salvos. Altera ícone de bookmark para preenchido. Exige autenticação — redirecionar para login se não autenticado."
+  },
+
+  "mockData": {
+    "projeto": {
+      "id": "PL-2654/2026",
+      "status": "urgente",
+      "status_label": "Urgente",
+      "topico": "Proteção Legal",
+      "titulo": "Proteção Contra Cyberbullying e Assédio Online",
+      "subtitulo": "Define cyberbullying como crime e estabelece medidas protetivas para vítimas menores de idade.",
+      "data_aprovacao": "12/02/2026",
+      "casa_aprovacao": "Câmara dos Deputados",
+      "autor": "Dep. Ana Silva",
+      "partido": "PL",
+      "data_apresentacao": "10/05/2025",
+      "urgencia": "Alta",
+      "situacao_atual": "Em tramitação",
+      "casa_legislativa": "Câmara dos Deputados",
+      "regime_tramitacao": "Ordinário",
+      "autor_data": "12/02/2026 às 14:30"
+    },
+    "sobre": "Este projeto de lei tem como objetivo instituir medidas de proteção a crianças e adolescentes no ambiente digital, prevenindo situações de violência, abuso e exploração sexual online.\n\nPropõe a criação de diretrizes para plataformas digitais e canais de denúncia eficientes, além de campanhas educativas sobre uso seguro da internet.",
+    "objetivos": [
+      "Proteger crianças e adolescentes contra abusos e exploração sexual online.",
+      "Estabelecer responsabilidades para plataformas digitais.",
+      "Criar canais de denúncia acessíveis e eficientes.",
+      "Promover educação digital para uso seguro da internet."
+    ],
+    "tramitacao": {
+      "status": "Em tramitação",
+      "passos": [
+        { "titulo": "Apresentação", "data": "10/05/2025", "descricao": "Projeto apresentado na Câmara dos Deputados", "estado": "done" },
+        { "titulo": "Comissão de educação", "data": null, "descricao": "Aguardando análise da comissão", "estado": "active" },
+        { "titulo": "", "data": null, "descricao": "", "estado": "pending" },
+        { "titulo": "", "data": null, "descricao": "", "estado": "pending" }
+      ]
+    },
+    "indicadores": {
+      "relevancia": { "label": "Muito alta", "filled": 4, "total": 5 },
+      "impacto_social": { "label": "Alto", "filled": 3, "total": 5 },
+      "apoio_popular": { "label": "75%", "filled": 3, "total": 5 }
+    },
+    "documentos": [
+      { "nome": "Texto completo do projeto", "tipo": "PDF", "tamanho": "245 KB" },
+      { "nome": "Texto completo do projeto", "tipo": "PDF", "tamanho": "110 KB" },
+      { "nome": "Texto completo do projeto", "tipo": "PDF", "tamanho": "189 KB" }
+    ],
+    "total_documentos": 5,
+    "projetos_relacionados": [
+      { "id": "PL .../...", "titulo": "Proteção de dados de crianças e adolescentes", "topico": "Tópico" },
+      { "id": "PL .../...", "titulo": "Prevenção ao cyberbullying nas escolas", "topico": "Tópico" },
+      { "id": "PL .../...", "titulo": "Educação digital e cidadania online", "topico": "Tópico" }
+    ]
+  },
+
+  "assets": {
+    "icons_library": "Lucide Icons (https://lucide.dev) — stroke-based, stroke-width 2, stroke-linecap round, stroke-linejoin round",
+    "icons_needed": [
+      { "name": "arrow-left", "uso": "Botão voltar", "size": "18x18", "color": "#2B3FBF" },
+      { "name": "share-2", "uso": "Botão Compartilhar (top bar e sidebar)", "size": "16x16", "color": "#475569" },
+      { "name": "bookmark", "uso": "Botão Salvar", "size": "16x16", "color": "#475569" },
+      { "name": "calendar", "uso": "Meta data de aprovação", "size": "20x20", "color": "#94A3B8" },
+      { "name": "scale (custom)", "uso": "Meta casa legislativa", "size": "20x20", "color": "#94A3B8", "nota": "Balança de justiça — usar SVG customizado ou 'gavel'" },
+      { "name": "globe", "uso": "Tab Visão geral", "size": "18x18", "color": "#2B3FBF ativo / #94A3B8 inativo" },
+      { "name": "settings", "uso": "Tab Tramitação", "size": "18x18", "color": "#94A3B8" },
+      { "name": "bar-chart-2", "uso": "Tab Análise", "size": "18x18", "color": "#94A3B8" },
+      { "name": "file-text", "uso": "Tab Documentos", "size": "18x18", "color": "#94A3B8" },
+      { "name": "message-square", "uso": "Tab Comentários", "size": "18x18", "color": "#94A3B8" },
+      { "name": "chevron-down", "uso": "Botão Ver mais", "size": "16x16", "color": "#2B3FBF" },
+      { "name": "chevron-right", "uso": "Links de navegação", "size": "14x14 / 16x16", "color": "#2B3FBF" },
+      { "name": "check", "uso": "Ícone de objetivo concluído e timeline done", "size": "12x12", "color": "#FFFFFF" },
+      { "name": "download", "uso": "Botão baixar documento", "size": "16x16", "color": "#374151" },
+      { "name": "book-open", "uso": "Ícone Análise e indicadores", "size": "22x22", "color": "#7C3AED" },
+      { "name": "link-2", "uso": "Botão copiar link no share", "size": "18x18", "color": "#475569" },
+      { "name": "file (pdf custom)", "uso": "Ícone dos documentos PDF", "size": "24x24", "color": "#EF4444", "bg": "#FEE2E2", "nota": "Retângulo com canto dobrado e label PDF" }
+    ],
+    "fonts": [
+      { "family": "Inter", "weights": [400, 500, 600, 700], "source": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" },
+      { "family": "IBM Plex Mono", "weights": [400, 600], "source": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" }
+    ]
+  }
+}
