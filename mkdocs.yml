@@ -121,7 +121,7 @@ nav:
       - Identidade Visual: estudos/design/identidade_visual.md
       - Dashboards: estudos/design/definicao_dashboards.md
 
-  - Git / GitHub:
+  - GitHub:
       - Visão Geral: estudos/git_github/index.md
       - Estudo GitHub: estudos/git_github/estudo_github.md
       - Labels de Issues: estudos/git_github/labels_tamanho_issue.md
@@ -150,7 +150,7 @@ nav:
       - Requisitos de Software: estudos/requisitos/requisitos_de_software.md
       - Documento Complementar: estudos/requisitos/estudo_requisitos_software.md
 
-  - Inteligência Artificial:
+  - IA:
       - Visão Geral: estudos/inteligencia_artificial/index.md
       - Estudo IA: estudos/inteligencia_artificial/estudo_ia.md
 
