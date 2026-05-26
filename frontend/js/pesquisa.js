@@ -89,9 +89,9 @@ function renderResultCard(item) {
     </footer>
   `;
 
+  card.style.cursor = 'pointer';
   card.addEventListener('click', () => {
-    // TODO: navegar para a página de detalhes (projetos.html?id=...)
-    console.log(`[pesquisa] Abrir detalhes de ${item.id}`);
+    window.location.href = `detalhe-projeto.html?id=${encodeURIComponent(item.id)}`;
   });
 
   return card;

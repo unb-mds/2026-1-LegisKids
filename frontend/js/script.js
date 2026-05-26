@@ -83,8 +83,8 @@ projetosList?.addEventListener('click', (e) => {
   if (!e.target.classList.contains('projeto-btn')) return;
   const card = e.target.closest('.projeto-card');
   const id = card?.dataset.id;
-  // TODO: navegar para projetos.html?id=PL-001
-  console.log(`Abrir detalhes de ${id}`);
+  if (!id) return;
+  window.location.href = `detalhe-projeto.html?id=${encodeURIComponent(id)}`;
 });
 
 // Biblioteca — clique nas categorias
