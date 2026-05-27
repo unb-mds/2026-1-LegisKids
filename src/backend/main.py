@@ -1,5 +1,5 @@
-from services.camara_api import listar_proposicoes
-from services.camara_api import buscarCodTema
+from backend.services.camara_api import listar_proposicoes
+from backend.services.camara_api import buscarCodTema
 from datetime import datetime
 
 # Lista de palavras-chave para filtrar proposições
