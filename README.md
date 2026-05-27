@@ -23,14 +23,35 @@ Acesse o protótipo interativo no Figma:
 
 Squad-08 MDS 2026/1 – FGA/UnB
 
-| Nome | GitHub |
-|---|---|
-| Caio Bechepeche Mota | [@CaioMota16](https://github.com/CaioMota16) |
-| Renan Curione de Castro | [@thatsrenan](https://github.com/thatsrenan) |
-| Ítalo Lacerda Martins | [@italo-lm](https://github.com/italo-lm) |
-| Luís Henrique Luna de Arruda | [@Donnk61](https://github.com/Donnk61) |
-| Arthur Palhares Ferreira Silva | [@arthurpalhares1](https://github.com/arthurpalhares1) |
-
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/assets/images/team/caio-bechepeche.jpg" width="100px;" alt="Caio Bechepeche Mota"/><br />
+      <sub><b>Caio Bechepeche Mota</b></sub><br />
+      <a href="https://github.com/CaioMota16">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="docs/assets/images/team/renan-curione.jpg" width="auto;" height="100px;" alt="Renan Curione de Castro"/><br />
+      <sub><b>Renan Curione de Castro</b></sub><br />
+      <a href="https://github.com/thatsrenan">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="docs/assets/images/team/italo-lacerda.jpg" width="auto;" height="100px;" alt=" Ítalo Lacerda Martins"/><br />
+      <sub><b>Italo Lacerda Martins</b></sub><br />
+      <a href="https://github.com/italo-lm">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="docs/assets/images/team/luis-henrique.jpg" width="auto;" height="100px;" alt="Luís Henrique Luna de Arruda"/><br />
+      <sub><b>Luís Henrique Luna de Arruda</b></sub><br />
+      <a href="https://github.com/Donnk61">GitHub</a>
+    </td>
+    <td align="center">
+      <img src="docs/assets/images/team/arthur-palhares.jpg" width="auto;" height="100px;" alt="Arthur Palhares Ferreira Silva"/><br />
+      <sub><b>Arthur Palhares Ferreira Silva</b></sub><br />
+      <a href="https://github.com/arthurpalhares1">GitHub</a>
+    </td>
+  </tr>
+</table>
 ---
 
 ## Objetivo do Sistema
