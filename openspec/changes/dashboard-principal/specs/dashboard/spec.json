@@ -1,0 +1,341 @@
+{
+  "project": {
+    "name": "LegisKids",
+    "subtitle": "Proteção de Crianças na Internet",
+    "type": "Dashboard Legislativo",
+    "logo": {
+      "image": "assets/images/logo-legiskids.png",
+      "alt": "Logo LegisKids",
+      "width": "190px",
+      "height": "auto"
+    },
+
+    "theme": {
+      "primaryColor": "#2447D5",
+      "primaryDark": "#0C2577",
+      "primaryLight": "#3D6BFF",
+
+      "secondaryColor": "#F3F5FA",
+      "backgroundColor": "#DDE2EB",
+      "cardColor": "#FFFFFF",
+
+      "textPrimary": "#1E1E1E",
+      "textSecondary": "#7A7A7A",
+
+      "successColor": "#A7E8B4",
+      "warningColor": "#F7D9A8",
+      "dangerColor": "#F6A6A6",
+      "purpleColor": "#D9B3F5",
+
+      "borderRadius": "14px",
+      "shadow": "0px 2px 8px rgba(0,0,0,0.08)"
+    }
+  },
+
+  "layout": {
+    "width": "100%",
+    "maxWidth": "1440px",
+    "paddingHorizontal": "20px",
+    "paddingVertical": "16px",
+    "gapSections": "24px",
+    "fontFamily": "Inter"
+  },
+
+  "navbar": {
+    "height": "72px",
+    "background": "#2447D5",
+
+    "logoSection": {
+      "enabled": true,
+
+      "logo": {
+        "src": "assets/images/logo-legiskids.png",
+        "alt": "Logo LegisKids",
+        "width": "180px"
+      },
+
+      "texts": {
+        "title": "LegisKids",
+        "subtitle": "Proteção Infantil Digital"
+      }
+    },
+
+    "menu": [
+      {
+        "name": "Projetos",
+        "icon": "assets/icons/projetos-logo.png",
+        "active": false
+      },
+      {
+        "name": "Alertas",
+        "icon": "assets/icons/alertas-logo.png",
+        "active": false
+      },
+      {
+        "name": "Análises",
+        "icon": "assets/icons/analises-logo.png",
+        "active": false
+      }
+    ],
+
+    "actions": [
+      {
+        "icon": "assets/icons/configuracoes.png",
+        "type": "settings"
+      },
+      {
+        "icon": "assets/icons/notificacoes.png",
+        "type": "notifications"
+      }
+    ]
+  },
+
+  "dashboard": {
+    "title": "Dashboard de Monitoramento",
+
+    "description": "Acompanhamento de proposições relacionadas à proteção infantil digital.",
+
+    "statsCards": [
+      {
+        "title": "Projetos Ativos",
+        "value": 24,
+        "icon": "document",
+        "color": "#D9E4FF"
+      },
+
+      {
+        "title": "Proposições Ativas",
+        "value": 12,
+        "icon": "check-circle",
+        "color": "#DDF7E5"
+      },
+
+      {
+        "title": "Alertas Urgentes",
+        "value": 3,
+        "icon": "warning",
+        "color": "#FFE2E2"
+      },
+
+      {
+        "title": "Monitoramentos",
+        "value": 50,
+        "icon": "eye",
+        "color": "#F1E4FF"
+      }
+    ],
+
+    "alertBanner": {
+      "enabled": true,
+
+      "title": "Atenção: Prazo Próximo",
+
+      "description": "Projeto legislativo próximo do vencimento do prazo.",
+
+      "buttonText": "Ver Detalhes",
+
+      "backgroundColor": "#F6E7C7",
+
+      "borderLeft": "4px solid #F28C28"
+    },
+
+    "searchBar": {
+      "placeholder": "Buscar projetos de lei, temas ou instituições...",
+
+      "icon": "search",
+
+      "borderRadius": "999px",
+
+      "background": "#FFFFFF"
+    },
+
+    "bibliotecaLegislativa": {
+      "title": "Biblioteca Legislativa",
+
+      "grid": {
+        "columns": 4,
+        "rows": 2,
+        "cardWidth": "120px",
+        "cardHeight": "120px",
+        "gap": "16px"
+      },
+
+      "cards": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ]
+    },
+
+    "projetosRecentes": {
+      "title": "Projetos de Lei Recentes",
+
+      "cards": [
+        {
+          "tag": "PL-001",
+
+          "status": "Urgente",
+
+          "statusColor": "#F6A6A6",
+
+          "topic": "Cyberbullying",
+
+          "title": "Tema do Projeto de Lei",
+
+          "description": "Resumo sobre o novo projeto",
+
+          "metadata": [
+            "Data da aprovação do projeto",
+            "Onde foi aprovado"
+          ]
+        },
+
+        {
+          "tag": "PL-002",
+
+          "status": "Aprovado",
+
+          "statusColor": "#A7E8B4",
+
+          "topic": "Proteção Infantil",
+
+          "title": "Tema do Projeto de Lei",
+
+          "description": "Resumo sobre o novo projeto",
+
+          "metadata": [
+            "Data da aprovação do projeto",
+            "Onde foi aprovado"
+          ]
+        }
+      ]
+    },
+
+    "quickActions": [
+      {
+        "title": "Participação Pública",
+
+        "description": "Contribua com consultas públicas abertas",
+
+        "icon": "community"
+      },
+
+      {
+        "title": "Análises e Relatórios",
+
+        "description": "Acesse métricas e indicadores legislativos",
+
+        "icon": "chart"
+      },
+
+      {
+        "title": "Configurar Alertas",
+
+        "description": "Receba notificações sobre temas relevantes",
+
+        "icon": "settings"
+      }
+    ]
+  },
+
+  "footer": {
+    "background": "#2447D5",
+
+    "text": "© 2026 LegisKids - Proteção Infantil Digital",
+
+    "links": [
+      "Sobre",
+      "Contato",
+      "Privacidade"
+    ]
+  },
+
+  "responsive": {
+    "mobile": {
+      "navbarCollapse": true,
+      "statsColumns": 2,
+      "cardsColumns": 1
+    },
+
+    "tablet": {
+      "statsColumns": 2,
+      "cardsColumns": 2
+    },
+
+    "desktop": {
+      "statsColumns": 4,
+      "cardsColumns": 4
+    }
+  },
+
+  "animations": {
+    "hoverCards": true,
+    "smoothTransitions": true,
+    "buttonHoverScale": 1.03,
+    "transitionTime": "0.2s"
+  },
+
+  "frontendGuidelines": {
+    "objective": "Reproduzir fielmente o protótipo do Figma utilizando HTML, CSS e JavaScript puro inicialmente.",
+
+    "designStyle": {
+      "visual": "Moderno, institucional e limpo",
+
+      "inspiration": [
+        "Dashboards governamentais",
+        "Sistemas de monitoramento",
+        "Plataformas analíticas"
+      ]
+    },
+
+    "componentPattern": [
+      "navbar",
+      "stats-card",
+      "alert-banner",
+      "search-bar",
+      "project-card",
+      "quick-action-card",
+      "footer"
+    ],
+
+    "recommendedStructure": {
+      "pages": [
+        "index.html",
+        "projetos.html",
+        "alertas.html",
+        "analises.html"
+      ],
+
+      "css": [
+        "style.css",
+        "components.css",
+        "responsive.css"
+      ],
+
+      "js": [
+        "script.js",
+        "components.js",
+        "dashboard.js"
+      ],
+
+      "assets": {
+        "images": [
+          "logo-legiskids.png"
+        ],
+
+        "icons": [
+          "projetos-logo.png",
+          "alertas-logo.png",
+          "analises-logo.png",
+          "configuracoes.png",
+          "notificacoes.png"
+        ]
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
-# Monitoramento Legislativo – Proteção de Crianças na Internet
+# LegisKids – Proteção de Crianças na Internet
 
 ## Visão geral
 
-A plataforma Monitoramento Legislativo – Proteção de Crianças na Internet é um sistema digital voltado ao acompanhamento, classificação e análise de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.
+A plataforma LegisKids – Proteção de Crianças na Internet é um sistema digital voltado ao acompanhamento, classificação e análise de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.
 
 Ela permite monitorar projetos de lei, emendas e tramitações sobre temas como:
 

@@ -132,3 +132,23 @@ Cada integrante ficou responsável por estudar sua própria área de atuação.
 - Finalização do planejamento do banco de dados  
 - Organização final do MkDocs  
 - Migração de requisitos para Figma e GitHub Project  
+
+## Sprint 8
+
+Urgente: criar email do grupo, assinar Claude, definirmos a melhor forma de usar com SDD, e todos instalarem em seus PC’s. 
+
+Todas issues pendentes devem acabar suas e issues fazer todos PR Reviews. 
+
+Revisar o protótipo, para ver se está de acordo com os dashboards definidos. 
+
+Cada um vai se auto alocar em uma User Storie de implementação, e usaremos SDD para isso (sempre checar se está de acordo com tudo). 
+
+Obs: para a parte do Front-End, usar um Json para indicar a estética (ver o melhor jeito de fazer o Claude seguir nosso protótipo).  
+
+Objetivo claro para a R1: front-end básico para chamar o consumo de API. 
+
+Até terça-feira à noite: acabar TODAS as pendências da Sprint7. 
+
+Quarta-feira: criarmos o email do grupo, assinarmos o Claude, todos lermos o padrão que seguiremos para SDD, instalarmos em nossos PC’s, e nos alocarmos em User Stories de implementação. 
+
+R1 (27/05): front-end básico que chama o consumo de API’s. 

@@ -18,3 +18,5 @@ Aqui estão documentados os modelos de dados, estratégias de armazenamento e de
 - [Hospedagem do Banco de Dados](hospedagem_banco_de_dados.md)
 - [Definição dos Dados que iremos Consumir](definicao_dados.md)
 - [Definição das Tabelas Relacionais](definicao_tabelas.md)
+- [Definição dos Campos das Tabelas](definicao_campos.md)
+- [Tratamento de Dados antes da Persistência](definicao_tratamento_dados.md)

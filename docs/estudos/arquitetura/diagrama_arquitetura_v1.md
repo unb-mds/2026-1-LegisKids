@@ -1,4 +1,4 @@
-# Diagrama da Arquitetura do Projeto v1
+# Diagrama da Arquitetura - LegisKids v1
 
 Link do Figma: https://www.figma.com/board/grHtXIYgH7mLa7bEH8CoOa/arquitetura_diagrama_v1?node-id=0-1&t=NP3GMVch7bqPS6FH-1
 

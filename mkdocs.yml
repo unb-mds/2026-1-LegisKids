@@ -1,37 +1,162 @@
-site_name: Monitoramento Legislativo – Proteção de Crianças na Internet
+site_name: LegisKids – Proteção de Crianças na Internet
 site_description: Plataforma de monitoramento e análise de proposições legislativas
 site_author: Equipe do Projeto
+site_url: https://unb-mds.github.io/2026-1-LegisKids/
 
 theme:
-  name: mkdocs
+  name: material
+
+  language: pt-BR
+
+  palette:
+
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Alternar para modo escuro
+
+    - scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Alternar para modo claro
+
+  font:
+    text: Roboto
+    code: JetBrains Mono
+
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - toc.integrate
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+
+  - toc:
+      permalink: true
+
+  - pymdownx.details
+  - pymdownx.superfences
+
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/unb-mds/2026-1-LegisKids
 
 nav:
 
   - Home: index.md
 
-  - Projeto: projeto/index.md
+  - Projeto:
+      - Visão Geral: projeto/index.md
+      - Ideia do Projeto: projeto/ideia_escolhida_projeto.md
 
-  - Arquitetura: estudos/arquitetura/index.md
+  - Arquitetura:
+      - Visão Geral: estudos/arquitetura/index.md
+      - Escolha da Arquitetura: estudos/arquitetura/escolha_arquitetura.md
+      - Tecnologias: estudos/arquitetura/checando_tecnologias.md
+      - Diagrama V1: estudos/arquitetura/diagrama_arquitetura_v1.md
+      - Diagrama V2: estudos/arquitetura/diagrama_arquitetura_v2.md
+      - Fluxo de Dados: estudos/arquitetura/estudo_fluxo_de_dados.md
+      - Login: estudos/arquitetura/estudo_login.md
+      - Estudo Inicial: estudos/arquitetura/estudo_arquiteturas.md
 
-  - Backend / API: estudos/API/index.md
+  - Backend:
+      - Visão Geral: estudos/backend/index.md
+      - Estudo de Stack Backend: estudos/backend/estudo_stack_backend_definida.md
+      - Comparação de Stacks: estudos/backend/comparacao_stacks_backend.md
+      - Tecnologias Backend: estudos/backend/estudo_tecnologias_backend.md
 
-  - Banco de Dados: estudos/banco_de_dados/index.md
+      - API:
+          - Visão Geral: estudos/API/index.md
+          - Levantamento de APIs: estudos/API/levantamento_api.md
 
-  - Frontend: estudos/frontend/index.md
+  - Banco de Dados:
+      - Visão Geral: estudos/banco_de_dados/index.md
+      - Definição Banco: estudos/banco_de_dados/definicao_banco_de_dados.md
+      - Definição de Dados: estudos/banco_de_dados/definicao_dados.md
+      - Definição de Tabelas: estudos/banco_de_dados/definicao_tabelas.md
+      - Estudo Banco: estudos/banco_de_dados/estudo_banco_de_dados.md
+      - Hospedagem: estudos/banco_de_dados/hospedagem_banco_de_dados.md
 
-  - Design: estudos/design/index.md
+  - Frontend:
+      - Visão Geral: estudos/frontend/index.md
+      - Tecnologias e Estrutura: estudos/frontend/tecnologias_estrutura.md
 
-  - Git / GitHub: estudos/git_github/index.md
+  - Design:
+      - Visão Geral: estudos/design/index.md
+      - Protótipo Interativo: estudos/design/prototipo_interativo.md
+      - Identidade Visual: estudos/design/identidade_visual.md
+      - Dashboards: estudos/design/definicao_dashboards.md
 
-  - Metodologia: estudos/metodos_ageis/index.md
+  - GitHub:
+      - Visão Geral: estudos/git_github/index.md
+      - Estudo GitHub: estudos/git_github/estudo_github.md
+      - Labels de Issues: estudos/git_github/labels_tamanho_issue.md
 
-  - Gestão: reunioes/index.md
+  - Metodologia:
+      - Visão Geral: estudos/metodos_ageis/index.md
+      - Métodos Ágeis: estudos/metodos_ageis/metodos_ageis.md
 
-  - Padrão / Organização: padrao_organizacao/index.md
+  - Gestão:
+      - Visão Geral: reunioes/index.md
+      - Dailies: reunioes/dailies.md
+      - Horários: reunioes/horarios.md
+      - Reviews e Retrospectivas: reunioes/reviews_retrospectives.md
+      - Sprint Planning: reunioes/sprint_plannings.md
 
-  - Requisitos: estudos/requisitos/index.md
+  - Organização:
+      - Visão Geral: padrao_organizacao/index.md
+      - Organização Geral: padrao_organizacao/organizacao_geral.md
+      - Padrão Commits: padrao_organizacao/padrao_commits.md
+      - Padrão PR: padrao_organizacao/padrao_PR.md
+      - Padrão Kanban: padrao_organizacao/padrao_kanban.md
+      - Nome de Arquivos: padrao_organizacao/padrao_nomes_arquivos.md
 
-  - Inteligência Artificial: estudos/inteligencia_artificial/index.md
+  - Requisitos:
+      - Visão Geral: estudos/requisitos/index.md
+      - Requisitos de Software: estudos/requisitos/requisitos_de_software.md
+      - Documento Complementar: estudos/requisitos/estudo_requisitos_software.md
 
-plugins:
-  - search
+  - IA:
+      - Visão Geral: estudos/inteligencia_artificial/index.md
+      - Estudo IA: estudos/inteligencia_artificial/estudo_ia.md
+
+  - Dashboard:
+      - Visão Geral: performance/index.md
+
+  - SDD:
+      - Visão Geral: estudos/sdd/index.md
+      - Estudo SDD: estudos/sdd/sddEstudo.md

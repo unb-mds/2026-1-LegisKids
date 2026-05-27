@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LegisKids — Detalhes do Projeto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/detalhe.css">
+</head>
+<body class="detalhe-page">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="navbar__logo">
+      <div class="logo-icon" style="background:#fff; border-radius:8px; padding:4px 8px; display:flex; align-items:center; justify-content:center;">
+        <img src="../assets/images/logo-legiskids.png" alt="LegisKids" style="height:56px; width:auto; object-fit:contain;">
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">LegisKids</span>
+        <span class="logo-subtitle">Sistema de Monitoramento Legislativo</span>
+      </div>
+    </div>
+
+    <div class="navbar__menu">
+      <a href="index.html" class="nav-item active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/>
+        </svg>
+        Projetos
+      </a>
+      <a href="#" class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+        </svg>
+        Alertas
+      </a>
+      <a href="#" class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        Análises
+      </a>
+    </div>
+
+    <div class="navbar__actions">
+      <button class="icon-btn" aria-label="Configurações">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      </button>
+      <button class="icon-btn" aria-label="Notificações">
+        <span class="notif-badge">3</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+    <div class="container detalhe-container">
+
+      <!-- TopBar -->
+      <div class="detalhe-topbar">
+        <a class="detalhe-topbar__back" href="index.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Voltar ao dashboard
+        </a>
+        <div class="detalhe-topbar__actions">
+          <button class="btn-outline" id="btnShareTop" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            Compartilhar
+          </button>
+          <button class="btn-outline" id="btnSalvar" type="button" aria-pressed="false">
+            <svg class="btn-outline__icon-outline" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+            </svg>
+            <svg class="btn-outline__icon-filled" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+            </svg>
+            <span class="btn-outline__label">Salvar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Header -->
+      <header class="projeto-header">
+        <div class="projeto-header__badges">
+          <span class="badge badge--id">PL-2654/2026</span>
+          <span class="badge badge--urgente">Urgente</span>
+          <span class="badge badge--topic">Proteção Legal</span>
+        </div>
+        <h1 class="projeto-header__title">Proteção Contra Cyberbullying e Assédio Online</h1>
+        <p class="projeto-header__subtitle">Define cyberbullying como crime e estabelece medidas protetivas para vítimas menores de idade.</p>
+        <div class="projeto-header__meta">
+          <div class="meta-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <div>
+              <span class="meta-item__label">Data de aprovação do projeto</span>
+              <span class="meta-item__value">12/02/2026</span>
+            </div>
+          </div>
+          <div class="meta-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3L4 7v2h16V7l-8-4z"/><line x1="6" y1="11" x2="6" y2="19"/><line x1="10" y1="11" x2="10" y2="19"/><line x1="14" y1="11" x2="14" y2="19"/><line x1="18" y1="11" x2="18" y2="19"/><line x1="3" y1="21" x2="21" y2="21"/>
+            </svg>
+            <div>
+              <span class="meta-item__label">Onde foi aprovado</span>
+              <span class="meta-item__value">Câmara dos Deputados</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Tabs -->
+      <nav class="detalhe-tabs" role="tablist" aria-label="Seções do projeto">
+        <button class="detalhe-tab detalhe-tab--active" role="tab" id="tab-visao" aria-selected="true" aria-controls="panel-visao" tabindex="0" data-tab="visao" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+          Visão geral
+        </button>
+        <button class="detalhe-tab" role="tab" id="tab-tramitacao" aria-selected="false" aria-controls="panel-tramitacao" tabindex="-1" data-tab="tramitacao" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+          Tramitação
+        </button>
+        <button class="detalhe-tab" role="tab" id="tab-analise" aria-selected="false" aria-controls="panel-analise" tabindex="-1" data-tab="analise" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          Análise
+        </button>
+        <button class="detalhe-tab" role="tab" id="tab-documentos" aria-selected="false" aria-controls="panel-documentos" tabindex="-1" data-tab="documentos" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          Documentos
+        </button>
+        <button class="detalhe-tab" role="tab" id="tab-comentarios" aria-selected="false" aria-controls="panel-comentarios" tabindex="-1" data-tab="comentarios" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          Comentários
+        </button>
+      </nav>
+
+      <!-- Content Grid -->
+      <div class="detalhe-grid">
+
+        <!-- ============ MAIN COLUMN ============ -->
+        <div class="detalhe-main">
+
+          <!-- ===== PANEL: Visão geral ===== -->
+          <section class="detalhe-panel" id="panel-visao" role="tabpanel" aria-labelledby="tab-visao" data-panel="visao">
+
+            <!-- Sobre o projeto -->
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Sobre o projeto</h2>
+              <div class="detalhe-card__body collapsed" id="sobreBody">
+                <p>Este projeto de lei tem como objetivo instituir medidas de proteção a crianças e adolescentes no ambiente digital, prevenindo situações de violência, abuso e exploração sexual online.</p>
+                <p>Propõe a criação de diretrizes para plataformas digitais e canais de denúncia eficientes, além de campanhas educativas sobre uso seguro da internet.</p>
+              </div>
+              <button class="btn-expand" id="sobreToggle" type="button" aria-expanded="false" aria-controls="sobreBody">
+                <span class="btn-expand__label">Ver mais</span>
+                <svg class="btn-expand__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+            </article>
+
+            <!-- Informações pessoais -->
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Informações pessoais</h2>
+              <div class="info-grid">
+                <div class="info-cell">
+                  <span class="info-cell__label">Autor</span>
+                  <span class="info-cell__value">Dep. Ana Silva</span>
+                </div>
+                <div class="info-cell">
+                  <span class="info-cell__label">Partido</span>
+                  <span class="info-cell__value">PL</span>
+                </div>
+                <div class="info-cell">
+                  <span class="info-cell__label">Data de apresentação</span>
+                  <span class="info-cell__value">10/05/2025</span>
+                </div>
+                <div class="info-cell">
+                  <span class="info-cell__label">Urgência</span>
+                  <span class="info-cell__value"><span class="dot dot--red" aria-hidden="true"></span>Alta</span>
+                </div>
+                <div class="info-cell">
+                  <span class="info-cell__label">Situação atual</span>
+                  <span class="info-cell__value">Em tramitação</span>
+                </div>
+                <div class="info-cell">
+                  <span class="info-cell__label">Casa legislativa</span>
+                  <span class="info-cell__value">Câmara dos Deputados</span>
+                </div>
+                <div class="info-cell">
+                  <span class="info-cell__label">Regime de tramitação</span>
+                  <span class="info-cell__value">Ordinário</span>
+                </div>
+                <div class="info-cell">
+                  <span class="info-cell__label">Última atualização</span>
+                  <span class="info-cell__value">12/02/2026 às 14:30</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Objetivos do projeto -->
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Objetivos do projeto</h2>
+              <ul class="objetivos-list">
+                <li class="objetivo-item">
+                  <span class="objetivo-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span>Proteger crianças e adolescentes contra abusos e exploração sexual online.</span>
+                </li>
+                <li class="objetivo-item">
+                  <span class="objetivo-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span>Estabelecer responsabilidades para plataformas digitais.</span>
+                </li>
+                <li class="objetivo-item">
+                  <span class="objetivo-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span>Criar canais de denúncia acessíveis e eficientes.</span>
+                </li>
+                <li class="objetivo-item">
+                  <span class="objetivo-check" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  <span>Promover educação digital para uso seguro da internet.</span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Documentos e anexos -->
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Documentos e anexos</h2>
+              <div class="doc-list">
+                <div class="doc-item">
+                  <div class="doc-item__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/>
+                    </svg>
+                  </div>
+                  <div class="doc-item__info">
+                    <span class="doc-item__name">Texto completo do projeto</span>
+                    <span class="doc-item__meta">PDF <span class="dot dot--gray" aria-hidden="true"></span> 245 KB</span>
+                  </div>
+                  <button class="btn-download" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Baixar
+                  </button>
+                </div>
+                <div class="doc-item">
+                  <div class="doc-item__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/>
+                    </svg>
+                  </div>
+                  <div class="doc-item__info">
+                    <span class="doc-item__name">Justificativa do autor</span>
+                    <span class="doc-item__meta">PDF <span class="dot dot--gray" aria-hidden="true"></span> 110 KB</span>
+                  </div>
+                  <button class="btn-download" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Baixar
+                  </button>
+                </div>
+                <div class="doc-item">
+                  <div class="doc-item__icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/>
+                    </svg>
+                  </div>
+                  <div class="doc-item__info">
+                    <span class="doc-item__name">Parecer da comissão</span>
+                    <span class="doc-item__meta">PDF <span class="dot dot--gray" aria-hidden="true"></span> 189 KB</span>
+                  </div>
+                  <button class="btn-download" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Baixar
+                  </button>
+                </div>
+              </div>
+              <a href="#" class="detalhe-card__link" data-link="documentos">
+                <span>Ver todos os documentos (5)</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </a>
+            </article>
+
+            <!-- Projetos relacionados -->
+            <article class="detalhe-card">
+              <header class="detalhe-card__header">
+                <h2 class="detalhe-card__title">Projetos relacionados</h2>
+                <a href="#" class="detalhe-card__link-right">Ver todos</a>
+              </header>
+              <div class="relacionados-grid">
+                <a class="relacionado-card" href="detalhe-projeto.html?id=PL-1987">
+                  <span class="badge badge--id">PL-1987/2025</span>
+                  <p class="relacionado-card__title">Proteção de dados de crianças e adolescentes</p>
+                  <span class="badge badge--topic">Proteção de Dados</span>
+                </a>
+                <a class="relacionado-card" href="detalhe-projeto.html?id=PL-2103">
+                  <span class="badge badge--id">PL-2103/2025</span>
+                  <p class="relacionado-card__title">Prevenção ao cyberbullying nas escolas</p>
+                  <span class="badge badge--topic">Cyberbullying</span>
+                </a>
+                <a class="relacionado-card" href="detalhe-projeto.html?id=PL-2240">
+                  <span class="badge badge--id">PL-2240/2025</span>
+                  <p class="relacionado-card__title">Educação digital e cidadania online</p>
+                  <span class="badge badge--topic">Educação Digital</span>
+                </a>
+              </div>
+            </article>
+
+          </section>
+
+          <!-- ===== PANEL: Tramitação ===== -->
+          <section class="detalhe-panel" id="panel-tramitacao" role="tabpanel" aria-labelledby="tab-tramitacao" data-panel="tramitacao" hidden>
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Histórico de tramitação</h2>
+              <p class="detalhe-panel__placeholder">A timeline completa de tramitação será exibida aqui. Acompanhe o resumo no card lateral "Status da tramitação".</p>
+            </article>
+          </section>
+
+          <!-- ===== PANEL: Análise ===== -->
+          <section class="detalhe-panel" id="panel-analise" role="tabpanel" aria-labelledby="tab-analise" data-panel="analise" hidden>
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Análise detalhada</h2>
+              <p class="detalhe-panel__placeholder">A análise completa dos indicadores e gráficos será exibida aqui. Confira o resumo no card lateral "Análise e indicadores".</p>
+            </article>
+          </section>
+
+          <!-- ===== PANEL: Documentos ===== -->
+          <section class="detalhe-panel" id="panel-documentos" role="tabpanel" aria-labelledby="tab-documentos" data-panel="documentos" hidden>
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Todos os documentos</h2>
+              <p class="detalhe-panel__placeholder">A listagem completa de documentos e anexos será exibida aqui.</p>
+            </article>
+          </section>
+
+          <!-- ===== PANEL: Comentários ===== -->
+          <section class="detalhe-panel" id="panel-comentarios" role="tabpanel" aria-labelledby="tab-comentarios" data-panel="comentarios" hidden>
+            <article class="detalhe-card">
+              <h2 class="detalhe-card__title">Comentários</h2>
+              <p class="detalhe-panel__placeholder">Em breve. O painel de comentários será habilitado quando a autenticação estiver disponível.</p>
+            </article>
+          </section>
+
+        </div>
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="detalhe-sidebar" aria-label="Informações complementares">
+
+          <!-- Status da tramitação -->
+          <article class="detalhe-card sidebar-card">
+            <header class="sidebar-card__header">
+              <h3>Status da tramitação</h3>
+              <span class="badge badge--em-tramitacao">Em tramitação</span>
+            </header>
+            <p class="sidebar-card__subtitle">Acompanhe o andamento do projeto</p>
+
+            <ol class="timeline">
+              <li class="timeline-item timeline-item--done">
+                <span class="timeline-node timeline-node--done" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+                <span class="timeline-line" aria-hidden="true"></span>
+                <div class="timeline-content">
+                  <span class="timeline-content__title">Apresentação</span>
+                  <span class="timeline-content__date">10/05/2025</span>
+                  <span class="timeline-content__desc">Projeto apresentado na Câmara dos Deputados.</span>
+                </div>
+              </li>
+              <li class="timeline-item timeline-item--active">
+                <span class="timeline-node timeline-node--active" aria-hidden="true"></span>
+                <span class="timeline-line" aria-hidden="true"></span>
+                <div class="timeline-content">
+                  <span class="timeline-content__title">Comissão de educação</span>
+                  <span class="timeline-content__desc">Aguardando análise da comissão.</span>
+                </div>
+              </li>
+              <li class="timeline-item timeline-item--pending">
+                <span class="timeline-node timeline-node--pending" aria-hidden="true"></span>
+                <span class="timeline-line" aria-hidden="true"></span>
+                <div class="timeline-content">
+                  <span class="timeline-content__title timeline-content__title--muted">Plenário</span>
+                  <span class="timeline-content__desc">Votação em plenário pendente.</span>
+                </div>
+              </li>
+              <li class="timeline-item timeline-item--pending">
+                <span class="timeline-node timeline-node--pending" aria-hidden="true"></span>
+                <div class="timeline-content">
+                  <span class="timeline-content__title timeline-content__title--muted">Sanção</span>
+                  <span class="timeline-content__desc">Aguardando sanção presidencial.</span>
+                </div>
+              </li>
+            </ol>
+
+            <a href="#" class="sidebar-card__link" data-link="tramitacao">
+              <span>Ver tramitação completa</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Análise e indicadores -->
+          <article class="detalhe-card sidebar-card">
+            <header class="analise-header">
+              <div class="analise-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+                </svg>
+              </div>
+              <div>
+                <h3>Análise e indicadores</h3>
+                <p>Dados e análises sobre o impacto e relevância do projeto</p>
+              </div>
+            </header>
+
+            <div class="indicators">
+              <div class="indicator">
+                <div class="indicator__labels">
+                  <span class="indicator__name">Relevância</span>
+                  <span class="indicator__value">Muito alta</span>
+                </div>
+                <div class="indicator__bar" aria-hidden="true">
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--empty"></span>
+                </div>
+              </div>
+              <div class="indicator">
+                <div class="indicator__labels">
+                  <span class="indicator__name">Impacto social</span>
+                  <span class="indicator__value">Alto</span>
+                </div>
+                <div class="indicator__bar" aria-hidden="true">
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--empty"></span>
+                  <span class="indicator__segment indicator__segment--empty"></span>
+                </div>
+              </div>
+              <div class="indicator">
+                <div class="indicator__labels">
+                  <span class="indicator__name">Apoio popular</span>
+                  <span class="indicator__value">75%</span>
+                </div>
+                <div class="indicator__bar" aria-hidden="true">
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--filled"></span>
+                  <span class="indicator__segment indicator__segment--empty"></span>
+                  <span class="indicator__segment indicator__segment--empty"></span>
+                </div>
+              </div>
+            </div>
+
+            <a href="#" class="sidebar-card__link" data-link="analise">
+              <span>Ver análise detalhada</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Compartilhar -->
+          <article class="detalhe-card sidebar-card share-card">
+            <header class="share-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              <h3>Compartilhe este projeto</h3>
+            </header>
+            <p class="share-card__subtitle">Ajude a divulgar informações importantes sobre este projeto de lei.</p>
+
+            <div class="share-buttons">
+              <button class="share-btn" type="button" data-share="link" aria-label="Copiar link da página">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.72"/>
+                  <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+                </svg>
+              </button>
+              <button class="share-btn share-btn--whatsapp" type="button" data-share="whatsapp" aria-label="Compartilhar no WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+                  <path d="M17.6 6.32A7.84 7.84 0 0012.05 4 7.96 7.96 0 004.1 11.95a7.93 7.93 0 001.06 3.98L4 20l4.18-1.1a7.95 7.95 0 003.85.98h.01a7.96 7.96 0 007.96-7.96 7.9 7.9 0 00-2.4-5.6zm-5.55 12.24h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.48.65.66-2.42-.16-.25a6.6 6.6 0 01-1.01-3.53 6.62 6.62 0 0111.3-4.68 6.57 6.57 0 011.94 4.69 6.62 6.62 0 01-6.64 6.6zm3.62-4.94c-.2-.1-1.18-.58-1.36-.65-.18-.07-.31-.1-.45.1-.13.2-.51.65-.63.78-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99-.59-.53-.99-1.18-1.11-1.38-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34h-.39c-.13 0-.34.05-.52.25-.18.2-.69.67-.69 1.64s.7 1.9.8 2.03c.1.13 1.39 2.13 3.37 2.99.47.2.84.32 1.13.41.47.15.9.13 1.24.08.38-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.95-.05-.08-.18-.13-.38-.23z"/>
+                </svg>
+              </button>
+              <button class="share-btn share-btn--twitter" type="button" data-share="twitter" aria-label="Compartilhar no Twitter (X)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </button>
+              <button class="share-btn share-btn--facebook" type="button" data-share="facebook" aria-label="Compartilhar no Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+                  <path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0022 12z"/>
+                </svg>
+              </button>
+            </div>
+
+            <span class="share-tooltip" id="shareTooltip" role="status" aria-live="polite">Copiado!</span>
+          </article>
+
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <span>© 2026 Sistema de Monitoramento Legislativo — Proteção Infantil Digital</span>
+    <nav class="footer-links">
+      <a href="#">Sobre</a>
+      <a href="#">Contato</a>
+      <a href="#">Privacidade</a>
+    </nav>
+  </footer>
+
+  <script src="../js/detalhe.js"></script>
+</body>
+</html>

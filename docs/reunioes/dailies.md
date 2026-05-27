@@ -220,3 +220,41 @@ Foi definido o seguinte modelo de acompanhamento:
   - Storymap  
   - Figma  
   - Público-alvo  
+
+## Quarta-feira 06/05
+
+Presentes: Ítalo, Luís e Renan
+
+Ítalo: terminou issue pendente, README talvez conseguirá.
+
+Luís: implementando as issues de filtros, acha que acaba até a sexta.
+
+Renan: fiz nada até agora,   até sexta
+
+## Quarta-feira 13/05
+
+Presentes: Arthur, Caio, Ítalo, Luís e Renan 
+
+Arthur: resolveu 3 issues de organização do MK Docs, provavelmente acabará o resto nessa semana. 
+
+Caio: fez o backlog, vai aprimorá-lo e depois colocá-lo no Figma e no Project. 
+
+Ítalo: não fez nada ainda, vai se reorganizar e depois vai fazer o README. 
+
+Luís: estudou sobre SDD, ainda vai criar as issues sobre e depois subir os estudos. 
+
+Renan: resolveu 2 issues do planejamento de banco de dados e projeta acabar o resto nessa Sprint
+
+## Quarta-feira 20/05
+
+Presente: Arthur, Caio, Ítalo, Luís e Renan 
+
+Arthur: finalizou as isseus do MK Docs, e vai tentar implementar o MKDocs materials. 
+
+Caio: finalizou o backlog, arrumar algumas nomenclaturas (números), pegar US. 
+
+Ítalo: terminou o README, vai fazer o voltar do dashboard. 
+
+Luís: fez o documento do estudo de Spec, e não vai conseguir ajudar até sexta. 
+
+Renan: acabei o planejamento do Banco de Dados,  
