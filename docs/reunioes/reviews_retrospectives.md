@@ -86,3 +86,9 @@ Presentes: Arthur, Caio, Luis e Renan
 - Renan: avançou nos estudos de banco de dados, concluindo 2 de 6 issues  
 
 Foi identificada necessidade de melhoria na divisão de tarefas para aumento de produtividade do time.
+
+## 18/05 - Sprint 7
+
+Presentes: Arthur, Caio, Ítalo, Luís e Renan
+
+Todos entregamos a maioria, mas ainda faltou algumas conclusões.

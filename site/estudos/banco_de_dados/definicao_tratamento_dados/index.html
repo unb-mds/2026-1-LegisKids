@@ -1,267 +1,2871 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Plataforma de monitoramento e análise de proposições legislativas">
+      
+      
         <meta name="author" content="Equipe do Projeto">
+      
+      
         <link rel="canonical" href="https://unb-mds.github.io/2026-1-LegisKids/estudos/banco_de_dados/definicao_tratamento_dados/">
-        <link rel="shortcut icon" href="../../../img/favicon.ico">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
         <title>Tratamento de Dados Antes da Persistência - LegisKids – Proteção de Crianças na Internet</title>
-        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../../css/brands.min.css" rel="stylesheet">
-        <link href="../../../css/solid.min.css" rel="stylesheet">
-        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../../../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
 
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="../../..">LegisKids – Proteção de Crianças na Internet</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href="../../.." class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../projeto/" class="nav-link">Projeto</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../arquitetura/" class="nav-link">Arquitetura</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../API/" class="nav-link">Backend / API</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../" class="nav-link">Banco de Dados</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../frontend/" class="nav-link">Frontend</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../design/" class="nav-link">Design</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../git_github/" class="nav-link">Git / GitHub</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../metodos_ageis/" class="nav-link">Metodologia</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../reunioes/" class="nav-link">Gestão</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../padrao_organizacao/" class="nav-link">Padrão / Organização</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../requisitos/" class="nav-link">Requisitos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../inteligencia_artificial/" class="nav-link">Inteligência Artificial</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../../performance/" class="nav-link">Dashboard</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#tratamento-de-dados-antes-da-persistencia" class="nav-link">Tratamento de Dados Antes da Persistência</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#objetivo" class="nav-link">Objetivo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#fluxo-de-tratamento-dos-dados" class="nav-link">Fluxo de Tratamento dos Dados</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-validacao" class="nav-link">Estratégias de Validação</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#objetivo_1" class="nav-link">Objetivo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#regras-gerais-de-validacao" class="nav-link">Regras Gerais de Validação</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#validacao-de-tipos" class="nav-link">Validação de Tipos</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#validacao-de-formatos" class="nav-link">Validação de Formatos</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-normalizacao" class="nav-link">Estratégias de Normalização</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#objetivo_2" class="nav-link">Objetivo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#regras-de-normalizacao" class="nav-link">Regras de Normalização</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-sanitizacao" class="nav-link">Estratégias de Sanitização</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#objetivo_3" class="nav-link">Objetivo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#protecoes-aplicadas" class="nav-link">Proteções Aplicadas</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#estrategias-de-transformacao" class="nav-link">Estratégias de Transformação</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#objetivo_4" class="nav-link">Objetivo</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#transformacoes-definidas" class="nav-link">Transformações Definidas</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#tratamentos-adicionais-de-dados" class="nav-link">Tratamentos Adicionais de Dados</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-valores-nulos" class="nav-link">Tratamento de Valores Nulos</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-caracteres-especiais" class="nav-link">Tratamento de Caracteres Especiais</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-dados-duplicados" class="nav-link">Tratamento de Dados Duplicados</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-logs-e-auditoria" class="nav-link">Tratamento de Logs e Auditoria</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-dados-sensiveis" class="nav-link">Tratamento de Dados Sensíveis</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-dados-vindos-da-api" class="nav-link">Tratamento de Dados Vindos da API</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#tratamento-de-erros" class="nav-link">Tratamento de Erros</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#estrategias-de-transacoes" class="nav-link">Estratégias de Transações</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#estrategias-de-performance" class="nav-link">Estratégias de Performance</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#estrategias-de-versionamento-de-dados" class="nav-link">Estratégias de Versionamento de Dados</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#garantia-de-consistencia" class="nav-link">Garantia de Consistência</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#estrategias-utilizadas" class="nav-link">Estratégias Utilizadas</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#controle-de-duplicidade" class="nav-link">Controle de Duplicidade</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#compatibilidade-com-postgresql" class="nav-link">Compatibilidade com PostgreSQL</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#boas-praticas-aplicadas" class="nav-link">Boas Práticas Aplicadas</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#seguranca" class="nav-link">Segurança</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#padronizacao" class="nav-link">Padronização</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#qualidade-dos-dados" class="nav-link">Qualidade dos Dados</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-<h1 id="tratamento-de-dados-antes-da-persistencia">Tratamento de Dados Antes da Persistência</h1>
-<h2 id="objetivo">Objetivo</h2>
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tratamento-de-dados-antes-da-persistencia" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="LegisKids – Proteção de Crianças na Internet" class="md-header__button md-logo" aria-label="LegisKids – Proteção de Crianças na Internet" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LegisKids – Proteção de Crianças na Internet
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tratamento de Dados Antes da Persistência
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../projeto/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projeto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arquitetura/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../backend/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Backend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Banco de Dados
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../frontend/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Frontend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../git_github/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GitHub
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../metodos_ageis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Metodologia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../reunioes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Gestão
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../padrao_organizacao/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Organização
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../requisitos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requisitos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../inteligencia_artificial/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../performance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Dashboard
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sdd/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SDD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="LegisKids – Proteção de Crianças na Internet" class="md-nav__button md-logo" aria-label="LegisKids – Proteção de Crianças na Internet" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LegisKids – Proteção de Crianças na Internet
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../projeto/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projeto
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../projeto/ideia_escolhida_projeto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ideia do Projeto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../arquitetura/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitetura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/escolha_arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escolha da Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/checando_tecnologias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tecnologias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/diagrama_arquitetura_v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrama V1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/diagrama_arquitetura_v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrama V2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/estudo_fluxo_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/estudo_login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/estudo_arquiteturas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo Inicial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../backend/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backend/estudo_stack_backend_definida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo de Stack Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backend/comparacao_stacks_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparação de Stacks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backend/estudo_tecnologias_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tecnologias Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/levantamento_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levantamento de APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Dados
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Banco de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../definicao_banco_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definição Banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../definicao_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definição de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../definicao_tabelas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definição de Tabelas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estudo_banco_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo Banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hospedagem_banco_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hospedagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../frontend/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/tecnologias_estrutura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tecnologias e Estrutura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/prototipo_interativo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipo Interativo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/identidade_visual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidade Visual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/definicao_dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../git_github/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GitHub
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git_github/estudo_github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git_github/labels_tamanho_issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labels de Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../metodos_ageis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodologia
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Metodologia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodos_ageis/metodos_ageis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos Ágeis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reunioes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestão
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Gestão
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reunioes/dailies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dailies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reunioes/horarios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Horários
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reunioes/reviews_retrospectives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews e Retrospectivas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reunioes/sprint_plannings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint Planning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../padrao_organizacao/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organização
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Organização
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../padrao_organizacao/organizacao_geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organização Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../padrao_organizacao/padrao_commits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrão Commits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../padrao_organizacao/padrao_PR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrão PR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../padrao_organizacao/padrao_kanban/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrão Kanban
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../padrao_organizacao/padrao_nomes_arquivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nome de Arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../requisitos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requisitos/requisitos_de_software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos de Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requisitos/estudo_requisitos_software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documento Complementar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../inteligencia_artificial/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inteligencia_artificial/estudo_ia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dashboard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../sdd/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdd/sddEstudo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo SDD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tratamento-de-dados-antes-da-persistencia">Tratamento de Dados Antes da Persistência<a class="headerlink" href="#tratamento-de-dados-antes-da-persistencia" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
 <p>Este documento define como os dados recebidos pelo sistema serão tratados antes de serem armazenados no banco de dados.</p>
 <p>O objetivo é garantir:</p>
 <ul>
@@ -272,25 +2876,25 @@
 <li>confiabilidade dos dados.</li>
 </ul>
 <p>As regras aqui descritas serão aplicadas tanto aos dados vindos da API da Câmara quanto aos dados inseridos por usuários no sistema.</p>
-<h1 id="fluxo-de-tratamento-dos-dados">Fluxo de Tratamento dos Dados</h1>
+<h1 id="fluxo-de-tratamento-dos-dados">Fluxo de Tratamento dos Dados<a class="headerlink" href="#fluxo-de-tratamento-dos-dados" title="Permanent link">&para;</a></h1>
 <p>Todos os dados seguirão o seguinte fluxo antes da persistência:</p>
-<pre><code>Recebimento dos Dados
-        ↓
-Validação
-        ↓
-Sanitização
-        ↓
-Normalização
-        ↓
-Transformações Necessárias
-        ↓
-Persistência no Banco
-</code></pre>
-<h1 id="estrategias-de-validacao">Estratégias de Validação</h1>
-<h2 id="objetivo_1">Objetivo</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Recebimento dos Dados
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        ↓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Validação
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ↓
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Sanitização
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        ↓
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Normalização
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        ↓
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Transformações Necessárias
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        ↓
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>Persistência no Banco
+</code></pre></div>
+<h1 id="estrategias-de-validacao">Estratégias de Validação<a class="headerlink" href="#estrategias-de-validacao" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo_1">Objetivo<a class="headerlink" href="#objetivo_1" title="Permanent link">&para;</a></h2>
 <p>Garantir que apenas dados válidos sejam armazenados no sistema.</p>
-<h2 id="regras-gerais-de-validacao">Regras Gerais de Validação</h2>
-<h3 id="campos-obrigatorios">Campos Obrigatórios</h3>
+<h2 id="regras-gerais-de-validacao">Regras Gerais de Validação<a class="headerlink" href="#regras-gerais-de-validacao" title="Permanent link">&para;</a></h2>
+<h3 id="campos-obrigatorios">Campos Obrigatórios<a class="headerlink" href="#campos-obrigatorios" title="Permanent link">&para;</a></h3>
 <p>Campos marcados como obrigatórios deverão:</p>
 <ul>
 <li>existir no payload;</li>
@@ -323,7 +2927,7 @@ Persistência no Banco
 </tr>
 </tbody>
 </table>
-<h2 id="validacao-de-tipos">Validação de Tipos</h2>
+<h2 id="validacao-de-tipos">Validação de Tipos<a class="headerlink" href="#validacao-de-tipos" title="Permanent link">&para;</a></h2>
 <p>Cada campo deverá respeitar o tipo esperado definido na modelagem.</p>
 <table>
 <thead>
@@ -355,8 +2959,8 @@ Persistência no Banco
 </tr>
 </tbody>
 </table>
-<h2 id="validacao-de-formatos">Validação de Formatos</h2>
-<h3 id="emails">Emails</h3>
+<h2 id="validacao-de-formatos">Validação de Formatos<a class="headerlink" href="#validacao-de-formatos" title="Permanent link">&para;</a></h2>
+<h3 id="emails">Emails<a class="headerlink" href="#emails" title="Permanent link">&para;</a></h3>
 <p>Os emails deverão:</p>
 <ul>
 <li>possuir formato válido;</li>
@@ -364,24 +2968,24 @@ Persistência no Banco
 <li>conter domínio válido.</li>
 </ul>
 <p>Exemplo:</p>
-<pre><code>usuario@email.com
-</code></pre>
-<h3 id="datas">Datas</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>usuario@email.com
+</code></pre></div>
+<h3 id="datas">Datas<a class="headerlink" href="#datas" title="Permanent link">&para;</a></h3>
 <p>As datas serão convertidas para o padrão ISO.</p>
-<pre><code>YYYY-MM-DD
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>YYYY-MM-DD
+</code></pre></div>
 <p>Exemplo:</p>
-<pre><code>2026-05-19
-</code></pre>
-<h3 id="ids">IDs</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>2026-05-19
+</code></pre></div>
+<h3 id="ids">IDs<a class="headerlink" href="#ids" title="Permanent link">&para;</a></h3>
 <p>IDs externos recebidos da API deverão:</p>
 <ul>
 <li>ser numéricos;</li>
 <li>possuir valor positivo;</li>
 <li>não conter caracteres especiais.</li>
 </ul>
-<h1 id="estrategias-de-normalizacao">Estratégias de Normalização</h1>
-<h2 id="objetivo_2">Objetivo</h2>
+<h1 id="estrategias-de-normalizacao">Estratégias de Normalização<a class="headerlink" href="#estrategias-de-normalizacao" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo_2">Objetivo<a class="headerlink" href="#objetivo_2" title="Permanent link">&para;</a></h2>
 <p>Padronizar os dados armazenados para facilitar:</p>
 <ul>
 <li>buscas;</li>
@@ -390,17 +2994,17 @@ Persistência no Banco
 <li>comparações;</li>
 <li>dashboards.</li>
 </ul>
-<h2 id="regras-de-normalizacao">Regras de Normalização</h2>
-<h3 id="remocao-de-espacos-extras">Remoção de Espaços Extras</h3>
+<h2 id="regras-de-normalizacao">Regras de Normalização<a class="headerlink" href="#regras-de-normalizacao" title="Permanent link">&para;</a></h2>
+<h3 id="remocao-de-espacos-extras">Remoção de Espaços Extras<a class="headerlink" href="#remocao-de-espacos-extras" title="Permanent link">&para;</a></h3>
 <p>Será aplicado:</p>
-<pre><code>trim()
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>trim()
+</code></pre></div>
 <p>Exemplo:</p>
-<pre><code>&quot;  Projeto de Lei  &quot;
-↓
-&quot;Projeto de Lei&quot;
-</code></pre>
-<h3 id="conversao-de-texto">Conversão de Texto</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&quot;  Projeto de Lei  &quot;
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>↓
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>&quot;Projeto de Lei&quot;
+</code></pre></div>
+<h3 id="conversao-de-texto">Conversão de Texto<a class="headerlink" href="#conversao-de-texto" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -424,15 +3028,15 @@ Persistência no Banco
 </tbody>
 </table>
 <p>Exemplos:</p>
-<pre><code>USUARIO@EMAIL.COM
-↓
-usuario@email.com
-</code></pre>
-<pre><code>pt
-↓
-PT
-</code></pre>
-<h3 id="padronizacao-de-datas">Padronização de Datas</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>USUARIO@EMAIL.COM
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>↓
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>usuario@email.com
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pt
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>↓
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>PT
+</code></pre></div>
+<h3 id="padronizacao-de-datas">Padronização de Datas<a class="headerlink" href="#padronizacao-de-datas" title="Permanent link">&para;</a></h3>
 <p>Todas as datas serão armazenadas em formato PostgreSQL compatível.</p>
 <table>
 <thead>
@@ -452,7 +3056,7 @@ PT
 </tr>
 </tbody>
 </table>
-<h3 id="padronizacao-de-valores-vazios">Padronização de Valores Vazios</h3>
+<h3 id="padronizacao-de-valores-vazios">Padronização de Valores Vazios<a class="headerlink" href="#padronizacao-de-valores-vazios" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -475,11 +3079,11 @@ PT
 </tr>
 </tbody>
 </table>
-<h1 id="estrategias-de-sanitizacao">Estratégias de Sanitização</h1>
-<h2 id="objetivo_3">Objetivo</h2>
+<h1 id="estrategias-de-sanitizacao">Estratégias de Sanitização<a class="headerlink" href="#estrategias-de-sanitizacao" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo_3">Objetivo<a class="headerlink" href="#objetivo_3" title="Permanent link">&para;</a></h2>
 <p>Evitar vulnerabilidades e armazenamento de dados inseguros.</p>
-<h2 id="protecoes-aplicadas">Proteções Aplicadas</h2>
-<h3 id="sql-injection">SQL Injection</h3>
+<h2 id="protecoes-aplicadas">Proteções Aplicadas<a class="headerlink" href="#protecoes-aplicadas" title="Permanent link">&para;</a></h2>
+<h3 id="sql-injection">SQL Injection<a class="headerlink" href="#sql-injection" title="Permanent link">&para;</a></h3>
 <p>O sistema utilizará:</p>
 <ul>
 <li>queries parametrizadas;</li>
@@ -487,7 +3091,7 @@ PT
 <li>prepared statements.</li>
 </ul>
 <p>Nunca serão utilizadas concatenações diretas em SQL.</p>
-<h3 id="sanitizacao-de-strings">Sanitização de Strings</h3>
+<h3 id="sanitizacao-de-strings">Sanitização de Strings<a class="headerlink" href="#sanitizacao-de-strings" title="Permanent link">&para;</a></h3>
 <p>Caracteres perigosos serão tratados antes da persistência.</p>
 <p>Exemplos:</p>
 <ul>
@@ -495,7 +3099,7 @@ PT
 <li>escape de caracteres especiais;</li>
 <li>bloqueio de HTML malicioso.</li>
 </ul>
-<h3 id="limitacao-de-tamanho">Limitação de Tamanho</h3>
+<h3 id="limitacao-de-tamanho">Limitação de Tamanho<a class="headerlink" href="#limitacao-de-tamanho" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -518,7 +3122,7 @@ PT
 </tr>
 </tbody>
 </table>
-<h3 id="controle-de-inputs">Controle de Inputs</h3>
+<h3 id="controle-de-inputs">Controle de Inputs<a class="headerlink" href="#controle-de-inputs" title="Permanent link">&para;</a></h3>
 <p>O sistema rejeitará:</p>
 <ul>
 <li>tipos inválidos;</li>
@@ -526,21 +3130,21 @@ PT
 <li>campos inesperados;</li>
 <li>dados incompatíveis com a modelagem.</li>
 </ul>
-<h1 id="estrategias-de-transformacao">Estratégias de Transformação</h1>
-<h2 id="objetivo_4">Objetivo</h2>
+<h1 id="estrategias-de-transformacao">Estratégias de Transformação<a class="headerlink" href="#estrategias-de-transformacao" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo_4">Objetivo<a class="headerlink" href="#objetivo_4" title="Permanent link">&para;</a></h2>
 <p>Adequar os dados ao padrão interno do sistema antes da persistência.</p>
-<h2 id="transformacoes-definidas">Transformações Definidas</h2>
-<h3 id="conversao-de-datas-da-api">Conversão de Datas da API</h3>
-<pre><code>19/05/2026
-↓
-2026-05-19
-</code></pre>
-<h3 id="conversao-de-campos-numericos">Conversão de Campos Numéricos</h3>
-<pre><code>&quot;123&quot;
-↓
-123
-</code></pre>
-<h3 id="extracao-de-dados-relevantes">Extração de Dados Relevantes</h3>
+<h2 id="transformacoes-definidas">Transformações Definidas<a class="headerlink" href="#transformacoes-definidas" title="Permanent link">&para;</a></h2>
+<h3 id="conversao-de-datas-da-api">Conversão de Datas da API<a class="headerlink" href="#conversao-de-datas-da-api" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>19/05/2026
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>↓
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>2026-05-19
+</code></pre></div>
+<h3 id="conversao-de-campos-numericos">Conversão de Campos Numéricos<a class="headerlink" href="#conversao-de-campos-numericos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&quot;123&quot;
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>↓
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>123
+</code></pre></div>
+<h3 id="extracao-de-dados-relevantes">Extração de Dados Relevantes<a class="headerlink" href="#extracao-de-dados-relevantes" title="Permanent link">&para;</a></h3>
 <p>Apenas informações necessárias ao sistema serão persistidas.</p>
 <p>Exemplos:</p>
 <ul>
@@ -549,7 +3153,7 @@ PT
 <li>tramitações importantes.</li>
 </ul>
 <p>Dados redundantes serão descartados.</p>
-<h3 id="padronizacao-de-status">Padronização de Status</h3>
+<h3 id="padronizacao-de-status">Padronização de Status<a class="headerlink" href="#padronizacao-de-status" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -568,8 +3172,8 @@ PT
 </tr>
 </tbody>
 </table>
-<h1 id="tratamentos-adicionais-de-dados">Tratamentos Adicionais de Dados</h1>
-<h2 id="tratamento-de-valores-nulos">Tratamento de Valores Nulos</h2>
+<h1 id="tratamentos-adicionais-de-dados">Tratamentos Adicionais de Dados<a class="headerlink" href="#tratamentos-adicionais-de-dados" title="Permanent link">&para;</a></h1>
+<h2 id="tratamento-de-valores-nulos">Tratamento de Valores Nulos<a class="headerlink" href="#tratamento-de-valores-nulos" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -596,8 +3200,8 @@ PT
 </tr>
 </tbody>
 </table>
-<h2 id="tratamento-de-caracteres-especiais">Tratamento de Caracteres Especiais</h2>
-<h3 id="estrategias">Estratégias</h3>
+<h2 id="tratamento-de-caracteres-especiais">Tratamento de Caracteres Especiais<a class="headerlink" href="#tratamento-de-caracteres-especiais" title="Permanent link">&para;</a></h2>
+<h3 id="estrategias">Estratégias<a class="headerlink" href="#estrategias" title="Permanent link">&para;</a></h3>
 <ul>
 <li>utilização de UTF-8;</li>
 <li>remoção de caracteres invisíveis;</li>
@@ -605,12 +3209,12 @@ PT
 <li>escape de caracteres especiais.</li>
 </ul>
 <p>Exemplo:</p>
-<pre><code>&quot; João Silva &quot;
-↓
-&quot;João Silva&quot;
-</code></pre>
-<h2 id="tratamento-de-dados-duplicados">Tratamento de Dados Duplicados</h2>
-<h3 id="estrategias_1">Estratégias</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&quot; João Silva &quot;
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>↓
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>&quot;João Silva&quot;
+</code></pre></div>
+<h2 id="tratamento-de-dados-duplicados">Tratamento de Dados Duplicados<a class="headerlink" href="#tratamento-de-dados-duplicados" title="Permanent link">&para;</a></h2>
+<h3 id="estrategias_1">Estratégias<a class="headerlink" href="#estrategias_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>utilização de <code>UNIQUE</code>;</li>
 <li>verificação prévia antes da inserção;</li>
@@ -618,10 +3222,10 @@ PT
 <li>descarte de duplicidades da API.</li>
 </ul>
 <p>Exemplo:</p>
-<pre><code class="language-sql">UNIQUE (sigla_tipo, numero, ano)
-</code></pre>
-<h2 id="tratamento-de-logs-e-auditoria">Tratamento de Logs e Auditoria</h2>
-<h3 id="registro-de">Registro de:</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">sigla_tipo</span><span class="p">,</span><span class="w"> </span><span class="n">numero</span><span class="p">,</span><span class="w"> </span><span class="n">ano</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="tratamento-de-logs-e-auditoria">Tratamento de Logs e Auditoria<a class="headerlink" href="#tratamento-de-logs-e-auditoria" title="Permanent link">&para;</a></h2>
+<h3 id="registro-de">Registro de:<a class="headerlink" href="#registro-de" title="Permanent link">&para;</a></h3>
 <ul>
 <li>erros de validação;</li>
 <li>falhas de integração;</li>
@@ -629,16 +3233,16 @@ PT
 <li>horários de coleta;</li>
 <li>quantidade de registros processados.</li>
 </ul>
-<h2 id="tratamento-de-dados-sensiveis">Tratamento de Dados Sensíveis</h2>
-<h3 id="estrategias_2">Estratégias</h3>
+<h2 id="tratamento-de-dados-sensiveis">Tratamento de Dados Sensíveis<a class="headerlink" href="#tratamento-de-dados-sensiveis" title="Permanent link">&para;</a></h2>
+<h3 id="estrategias_2">Estratégias<a class="headerlink" href="#estrategias_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>não armazenamento de senhas;</li>
 <li>autenticação via Google OAuth;</li>
 <li>armazenamento mínimo de dados pessoais;</li>
 <li>proteção de tokens de autenticação.</li>
 </ul>
-<h2 id="tratamento-de-dados-vindos-da-api">Tratamento de Dados Vindos da API</h2>
-<h3 id="estrategias_3">Estratégias</h3>
+<h2 id="tratamento-de-dados-vindos-da-api">Tratamento de Dados Vindos da API<a class="headerlink" href="#tratamento-de-dados-vindos-da-api" title="Permanent link">&para;</a></h2>
+<h3 id="estrategias_3">Estratégias<a class="headerlink" href="#estrategias_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>validação de payloads recebidos;</li>
 <li>tolerância a campos ausentes;</li>
@@ -646,7 +3250,7 @@ PT
 <li>controle de versionamento da API;</li>
 <li>tratamento de timeout e falhas de conexão.</li>
 </ul>
-<h2 id="tratamento-de-erros">Tratamento de Erros</h2>
+<h2 id="tratamento-de-erros">Tratamento de Erros<a class="headerlink" href="#tratamento-de-erros" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -673,10 +3277,10 @@ PT
 </tr>
 </tbody>
 </table>
-<h2 id="estrategias-de-transacoes">Estratégias de Transações</h2>
-<h3 id="objetivo_5">Objetivo</h3>
+<h2 id="estrategias-de-transacoes">Estratégias de Transações<a class="headerlink" href="#estrategias-de-transacoes" title="Permanent link">&para;</a></h2>
+<h3 id="objetivo_5">Objetivo<a class="headerlink" href="#objetivo_5" title="Permanent link">&para;</a></h3>
 <p>Garantir integridade durante operações múltiplas.</p>
-<h3 id="estrategias_4">Estratégias</h3>
+<h3 id="estrategias_4">Estratégias<a class="headerlink" href="#estrategias_4" title="Permanent link">&para;</a></h3>
 <p>Utilização de transações para:</p>
 <ul>
 <li>inserções em múltiplas tabelas;</li>
@@ -685,29 +3289,29 @@ PT
 <li>sincronização de dados da API.</li>
 </ul>
 <p>Exemplo:</p>
-<pre><code class="language-sql">BEGIN;
-INSERT ...
-UPDATE ...
-COMMIT;
-</code></pre>
-<h2 id="estrategias-de-performance">Estratégias de Performance</h2>
-<h3 id="estrategias_5">Estratégias</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">BEGIN</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="p">...</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">UPDATE</span><span class="w"> </span><span class="p">...</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">COMMIT</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="estrategias-de-performance">Estratégias de Performance<a class="headerlink" href="#estrategias-de-performance" title="Permanent link">&para;</a></h2>
+<h3 id="estrategias_5">Estratégias<a class="headerlink" href="#estrategias_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>indexação de campos de busca;</li>
 <li>paginação de consultas;</li>
 <li>limitação de payloads;</li>
 <li>armazenamento apenas de dados relevantes.</li>
 </ul>
-<h2 id="estrategias-de-versionamento-de-dados">Estratégias de Versionamento de Dados</h2>
-<h3 id="estrategias_6">Estratégias</h3>
+<h2 id="estrategias-de-versionamento-de-dados">Estratégias de Versionamento de Dados<a class="headerlink" href="#estrategias-de-versionamento-de-dados" title="Permanent link">&para;</a></h2>
+<h3 id="estrategias_6">Estratégias<a class="headerlink" href="#estrategias_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li>migrations controladas;</li>
 <li>versionamento do schema;</li>
 <li>compatibilidade entre versões;</li>
 <li>histórico de alterações estruturais.</li>
 </ul>
-<h1 id="garantia-de-consistencia">Garantia de Consistência</h1>
-<h2 id="estrategias-utilizadas">Estratégias Utilizadas</h2>
+<h1 id="garantia-de-consistencia">Garantia de Consistência<a class="headerlink" href="#garantia-de-consistencia" title="Permanent link">&para;</a></h1>
+<h2 id="estrategias-utilizadas">Estratégias Utilizadas<a class="headerlink" href="#estrategias-utilizadas" title="Permanent link">&para;</a></h2>
 <p>O sistema utilizará:</p>
 <ul>
 <li>validação antes da persistência;</li>
@@ -717,12 +3321,12 @@ COMMIT;
 <li>normalização de formatos;</li>
 <li>controle de duplicidade.</li>
 </ul>
-<h2 id="controle-de-duplicidade">Controle de Duplicidade</h2>
-<pre><code class="language-sql">UNIQUE (sigla_tipo, numero, ano)
-</code></pre>
-<pre><code class="language-sql">UNIQUE (usuario_id, proposicao_id)
-</code></pre>
-<h1 id="compatibilidade-com-postgresql">Compatibilidade com PostgreSQL</h1>
+<h2 id="controle-de-duplicidade">Controle de Duplicidade<a class="headerlink" href="#controle-de-duplicidade" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">sigla_tipo</span><span class="p">,</span><span class="w"> </span><span class="n">numero</span><span class="p">,</span><span class="w"> </span><span class="n">ano</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">usuario_id</span><span class="p">,</span><span class="w"> </span><span class="n">proposicao_id</span><span class="p">)</span>
+</code></pre></div>
+<h1 id="compatibilidade-com-postgresql">Compatibilidade com PostgreSQL<a class="headerlink" href="#compatibilidade-com-postgresql" title="Permanent link">&para;</a></h1>
 <p>As estratégias foram planejadas considerando:</p>
 <ul>
 <li>compatibilidade com PostgreSQL;</li>
@@ -731,103 +3335,108 @@ COMMIT;
 <li>facilidade de manutenção;</li>
 <li>performance de consultas.</li>
 </ul>
-<h1 id="boas-praticas-aplicadas">Boas Práticas Aplicadas</h1>
-<h2 id="seguranca">Segurança</h2>
+<h1 id="boas-praticas-aplicadas">Boas Práticas Aplicadas<a class="headerlink" href="#boas-praticas-aplicadas" title="Permanent link">&para;</a></h1>
+<h2 id="seguranca">Segurança<a class="headerlink" href="#seguranca" title="Permanent link">&para;</a></h2>
 <ul>
 <li>prevenção contra SQL Injection;</li>
 <li>sanitização de entradas;</li>
 <li>validação de payloads;</li>
 <li>prepared statements.</li>
 </ul>
-<h2 id="padronizacao">Padronização</h2>
+<h2 id="padronizacao">Padronização<a class="headerlink" href="#padronizacao" title="Permanent link">&para;</a></h2>
 <ul>
 <li>uso de snake_case;</li>
 <li>formatos únicos de data;</li>
 <li>normalização textual;</li>
 <li>padronização de status.</li>
 </ul>
-<h2 id="qualidade-dos-dados">Qualidade dos Dados</h2>
+<h2 id="qualidade-dos-dados">Qualidade dos Dados<a class="headerlink" href="#qualidade-dos-dados" title="Permanent link">&para;</a></h2>
 <ul>
 <li>remoção de inconsistências;</li>
 <li>validação de obrigatoriedade;</li>
 <li>prevenção de duplicidade;</li>
 <li>tratamento de valores inválidos.</li>
-</ul></div>
-            </div>
-        </div>
+</ul>
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="../../../js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = "../../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../../js/base.js"></script>
-        <script src="../../../search/main.js"></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-
-    </body>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unb-mds/2026-1-LegisKids" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "toc.integrate", "search.highlight", "search.share", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
 </html>
