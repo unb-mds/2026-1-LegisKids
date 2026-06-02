@@ -1,0 +1,6 @@
+fastapi>=0.95
+uvicorn>=0.22
+SQLAlchemy>=1.4
+passlib[bcrypt]>=1.7
+PyJWT>=2.0
+pytest  
