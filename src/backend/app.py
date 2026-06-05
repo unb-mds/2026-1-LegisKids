@@ -1,7 +1,10 @@
 import os
+import sys
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from dotenv import load_dotenv
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 load_dotenv()
 
@@ -14,7 +17,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = (
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret")
 
-db = SQLAlchemy(app)
+from src.backend.database import db
+from src.backend import models  # noqa: F401
+
+db.init_app(app)
+migrate = Migrate(app, db)
 
 @app.route("/")
 def index():
