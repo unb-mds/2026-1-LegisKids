@@ -20,4 +20,4 @@ Aqui estão documentados os modelos de dados, estratégias de armazenamento e de
 - [Definição das Tabelas Relacionais](definicao_tabelas.md)
 - [Definição dos Campos das Tabelas](definicao_campos.md)
 - [Tratamento de Dados antes da Persistência](definicao_tratamento_dados.md)
-- [Configuração de Ambiente para o Banco de Dados](configuracao_ambiente.md)
+- [Guia do Banco de Dados para os Integrantes](guia_integrantes.md)
