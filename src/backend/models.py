@@ -5,7 +5,7 @@ e a documentação de arquitetura do projeto.
 """
 
 from datetime import datetime
-from src.backend.app import db
+from src.backend.database import db
 
 
 # ── Partido ───────────────────────────────────────────────────────────────────
