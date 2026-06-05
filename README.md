@@ -192,21 +192,25 @@ http://127.0.0.1:8000
 ## Contribuindo
 
 1. Faça um fork do projeto
+
 2. Crie uma branch:
 
-   ```bash
-   git checkout -b feature/nome-da-feature
-   ```
+```bash
+git checkout -b feature/nome-da-feature
+```
+
 3. Commit suas alterações:
 
-   ```bash
-   git commit -m "feat: adiciona nova funcionalidade"
-   ```
+```bash
+git commit -m "feat: adiciona nova funcionalidade"
+```
+
 4. Faça push:
 
-   ```bash
-   git push origin feature/nome-da-feature
-   ```
+```bash
+git push origin feature/nome-da-feature
+```
+
 5. Abra um Pull Request
 
 ---
