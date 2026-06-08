@@ -156,13 +156,24 @@ DB_USER=postgres
 DB_PASSWORD=sua_senha
 ```
 
-### 7. Executar as migrations (se houver)
+### 7. Documentação do banco de dados
+
+A documentação completa do schema está disponível em [`docs/db/schema.md`](docs/db/schema.md), incluindo:
+- Diagrama Entidade-Relacionamento (ERD)
+- Descrição de cada tabela, colunas, tipos e constraints
+- Relacionamentos e decisões de design
+
+O código-fonte do ERD (editável no [dbdiagram.io](https://dbdiagram.io)) está em [`docs/db/erd.dbml`](docs/db/erd.dbml).
+
+---
+
+### 8. Executar as migrations (se houver)
 
 ```bash
 flask db upgrade
 ```
 
-### 8. Iniciar o servidor
+### 9. Iniciar o servidor
 
 ```bash
 flask run
@@ -174,7 +185,7 @@ Ou alternativamente:
 python app.py
 ```
 
-### 9. Acessar no navegador
+### 10. Acessar no navegador
 
 ```
 http://localhost:3000
