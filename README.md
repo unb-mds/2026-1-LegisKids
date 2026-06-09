@@ -134,26 +134,93 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 5. Configurar o banco de dados (PostgreSQL)
+### 5. Configurar o banco de dados
 
-Crie o banco de dados:
+O projeto suporta dois modos de banco de dados:
 
-```sql
-CREATE DATABASE legiskids;
+#### Banco local com Docker (desenvolvimento diário)
+
+Suba o PostgreSQL usando o `docker-compose.yml` do projeto:
+
+```bash
+docker compose up -d
 ```
+
+Aguarde o container ficar saudável (alguns segundos) antes de continuar. Para verificar:
+
+```bash
+docker compose ps
+```
+
+Para parar:
+
+```bash
+docker compose down
+```
+
+> O volume `legiskids_db_data` persiste os dados entre reinicializações. Para apagar tudo e começar do zero: `docker compose down -v`
+
+#### Banco Neon (homologação e testes remotos)
+
+Obtenha a connection string no painel do [Neon](https://neon.tech) e use-a no `.env` local.
 
 ### 6. Configurar variáveis de ambiente
 
-Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+Copie o arquivo de exemplo e edite com suas credenciais:
+
+```bash
+cp .env.example .env
+```
+
+Exemplo para banco local Docker:
 
 ```env
-PORT=3000
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/legiskids
+FLASK_APP=src/backend/app.py
+FLASK_ENV=development
+SECRET_KEY=troque-por-uma-chave-secreta-longa-e-aleatoria
+```
 
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=legiskids
-DB_USER=postgres
-DB_PASSWORD=sua_senha
+Exemplo para banco Neon:
+
+```env
+DATABASE_URL=postgresql://usuario:senha@host.neon.tech/legiskids?sslmode=require
+FLASK_APP=src/backend/app.py
+FLASK_ENV=development
+SECRET_KEY=troque-por-uma-chave-secreta-longa-e-aleatoria
+```
+
+> A connection string real do Neon deve ser obtida no painel e **nunca commitada**.
+
+### 7. Executar as migrations e popular o banco
+
+> **Pré-requisito:** o banco configurado na `DATABASE_URL` do seu `.env` precisa estar acessível antes de executar os comandos abaixo.
+> - Se usar banco local Docker: execute `docker compose up -d` primeiro.
+> - Se usar Neon: certifique-se de que a `DATABASE_URL` no `.env` aponta para o Neon com `?sslmode=require`.
+
+Aplique o schema:
+
+```bash
+python -m flask --app src/backend/app.py db upgrade
+```
+
+Popule o banco com dados iniciais:
+
+```bash
+python scripts/seed.py
+```
+
+> **Status de validação:**
+> - **Banco local Docker** — testado e validado: migrations aplicadas e seed executado com sucesso (17 partidos inseridos).
+> - **Banco Neon** — requer troca temporária do `DATABASE_URL` conforme instruções abaixo.
+
+#### Testando no banco Neon
+
+Para aplicar o schema e popular o banco remoto no Neon, troque temporariamente o `DATABASE_URL` no seu `.env` pela connection string do Neon (obtida no painel do [Neon](https://neon.tech)):
+
+```env
+# Temporário — para testar no Neon
+DATABASE_URL=postgresql://<usuario>:<senha>@<host>.neon.tech/<banco>?sslmode=require&channel_binding=require
 ```
 
 ### 7. Documentação do banco de dados
@@ -168,9 +235,11 @@ O código-fonte do ERD (editável no [dbdiagram.io](https://dbdiagram.io)) está
 ---
 
 ### 8. Executar as migrations (se houver)
+Execute as migrations e o seed:
 
 ```bash
-flask db upgrade
+python -m flask --app src/backend/app.py db upgrade
+python scripts/seed.py
 ```
 
 ### 9. Iniciar o servidor
