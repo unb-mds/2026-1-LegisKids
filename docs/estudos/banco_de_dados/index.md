@@ -21,3 +21,4 @@ Aqui estão documentados os modelos de dados, estratégias de armazenamento e de
 - [Definição dos Campos das Tabelas](definicao_campos.md)
 - [Tratamento de Dados antes da Persistência](definicao_tratamento_dados.md)
 - [Guia do Banco de Dados para os Integrantes](guia_integrantes.md)
+- [Configuração via DATABASE_URL — Docker local e Neon](configuracao_database_url.md)

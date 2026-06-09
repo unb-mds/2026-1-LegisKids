@@ -110,6 +110,7 @@ nav:
       - Definição de Tabelas: estudos/banco_de_dados/definicao_tabelas.md
       - Estudo Banco: estudos/banco_de_dados/estudo_banco_de_dados.md
       - Hospedagem: estudos/banco_de_dados/hospedagem_banco_de_dados.md
+      - Guia de Configuração (DATABASE_URL): estudos/banco_de_dados/configuracao_database_url.md
 
   - Frontend:
       - Visão Geral: estudos/frontend/index.md
