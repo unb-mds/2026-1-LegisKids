@@ -223,6 +223,18 @@ Para aplicar o schema e popular o banco remoto no Neon, troque temporariamente o
 DATABASE_URL=postgresql://<usuario>:<senha>@<host>.neon.tech/<banco>?sslmode=require&channel_binding=require
 ```
 
+### 7. Documentação do banco de dados
+
+A documentação completa do schema está disponível em [`docs/db/schema.md`](docs/db/schema.md), incluindo:
+- Diagrama Entidade-Relacionamento (ERD)
+- Descrição de cada tabela, colunas, tipos e constraints
+- Relacionamentos e decisões de design
+
+O código-fonte do ERD (editável no [dbdiagram.io](https://dbdiagram.io)) está em [`docs/db/erd.dbml`](docs/db/erd.dbml).
+
+---
+
+### 8. Executar as migrations (se houver)
 Execute as migrations e o seed:
 
 ```bash
@@ -230,29 +242,7 @@ python -m flask --app src/backend/app.py db upgrade
 python scripts/seed.py
 ```
 
-Depois de confirmar no painel do Neon que as tabelas foram criadas e os dados inseridos, **restaure o `.env` para o banco local**:
-
-```env
-# Restaurado — banco local Docker
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/legiskids
-```
-
-> A connection string real do Neon **nunca deve ser commitada**. Obtenha-a no painel do Neon e use-a apenas localmente ou via GitHub Secrets para CI/CD.
-
-#### Erro: `connection refused` na porta 5432
-
-Se você vir este erro ao rodar `flask db upgrade` ou `python scripts/seed.py`:
-
-```
-psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
-```
-
-Significa uma das duas coisas:
-
-1. **Banco local não está rodando** → execute `docker compose up -d` e aguarde o container subir.
-2. **`.env` aponta para o ambiente errado** → verifique se `DATABASE_URL` no `.env` corresponde ao banco que você quer usar (local ou Neon).
-
-### 8. Iniciar o servidor
+### 9. Iniciar o servidor
 
 ```bash
 flask run
@@ -264,7 +254,7 @@ Ou alternativamente:
 python app.py
 ```
 
-### 9. Acessar no navegador
+### 10. Acessar no navegador
 
 ```
 http://localhost:3000

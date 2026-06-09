@@ -105,6 +105,7 @@ nav:
 
   - Banco de Dados:
       - Visão Geral: estudos/banco_de_dados/index.md
+      - Esquema e ERD: db/schema.md
       - Definição Banco: estudos/banco_de_dados/definicao_banco_de_dados.md
       - Definição de Dados: estudos/banco_de_dados/definicao_dados.md
       - Definição de Tabelas: estudos/banco_de_dados/definicao_tabelas.md
