@@ -4,9 +4,10 @@ from flask import Flask, jsonify
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
 
 app = Flask(__name__)
 
