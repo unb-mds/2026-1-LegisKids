@@ -21,6 +21,12 @@ class Partido(db.Model):
     def __repr__(self):
         return f"<Partido {self.sigla}>"
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'sigla': self.sigla,
+            'nome': self.nome,
+        }
 
 # ── Proposição ────────────────────────────────────────────────────────────────
 class Proposicao(db.Model):
@@ -48,6 +54,20 @@ class Proposicao(db.Model):
     def __repr__(self):
         return f"<Proposicao {self.sigla_tipo} {self.numero}/{self.ano}>"
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'sigla_tipo': self.sigla_tipo,
+            'numero': self.numero,
+            'ano': self.ano,
+            'ementa': self.ementa,
+            'data_apresentacao': self.data_apresentacao.isoformat() if self.data_apresentacao else None,
+            'descricao_situacao': self.descricao_situacao,
+            'sigla_partido': self.sigla_partido,
+            'categoria': self.categoria,
+            'data_coleta': self.data_coleta.isoformat() if self.data_coleta else None,
+            'partido': self.partido.to_dict() if self.partido else None,
+        }
 
 # ── Tramitação ────────────────────────────────────────────────────────────────
 class Tramitacao(db.Model):
@@ -65,6 +85,17 @@ class Tramitacao(db.Model):
 
     def __repr__(self):
         return f"<Tramitacao prop={self.proposicao_id} {self.data_hora}>"
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'proposicao_id': self.proposicao_id,
+            'data_hora': self.data_hora.isoformat() if self.data_hora else None,
+            'id_situacao': self.id_situacao,
+            'descricao_situacao': self.descricao_situacao,
+            'descricao_tramitacao': self.descricao_tramitacao,
+            'sigla_orgao': self.sigla_orgao,
+        }
 
 
 # ── Usuário ───────────────────────────────────────────────────────────────────
@@ -82,6 +113,15 @@ class Usuario(db.Model):
 
     def __repr__(self):
         return f"<Usuario {self.email}>"
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'nome': self.nome,
+            'email': self.email,
+            'google_id': self.google_id,
+            'data_criacao': self.data_criacao.isoformat() if self.data_criacao else None,
+        }
 
 
 # ── Favorito ──────────────────────────────────────────────────────────────────
@@ -102,6 +142,13 @@ class Favorito(db.Model):
     def __repr__(self):
         return f"<Favorito user={self.usuario_id} prop={self.proposicao_id}>"
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'usuario_id': self.usuario_id,
+            'proposicao_id': self.proposicao_id,
+            'data_favorito': self.data_favorito.isoformat() if self.data_favorito else None,
+        }
 
 # ── Histórico de Consultas ────────────────────────────────────────────────────
 class HistoricoConsulta(db.Model):
@@ -117,6 +164,13 @@ class HistoricoConsulta(db.Model):
     def __repr__(self):
         return f"<HistoricoConsulta user={self.usuario_id} '{self.termo_busca}'>"
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'usuario_id': self.usuario_id,
+            'termo_busca': self.termo_busca,
+            'data_consulta': self.data_consulta.isoformat() if self.data_consulta else None,
+        }
 
 # ── Requisições API ───────────────────────────────────────────────────────────
 class RequisicaoApi(db.Model):
@@ -131,3 +185,13 @@ class RequisicaoApi(db.Model):
 
     def __repr__(self):
         return f"<RequisicaoApi {self.endpoint} {self.status_requisicao}>"
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'endpoint': self.endpoint,
+            'data_requisicao': self.data_requisicao.isoformat() if self.data_requisicao else None,
+            'quantidade_registros': self.quantidade_registros,
+            'status_requisicao': self.status_requisicao,
+            'tempo_execucao_ms': self.tempo_execucao_ms,
+        }
