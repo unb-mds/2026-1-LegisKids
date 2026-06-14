@@ -39,14 +39,16 @@ Os dados armazenados foram definidos prioritariamente para suportar os dashboard
 
 # Entidades Principais do Sistema
 
-Após análise dos dashboards e da API, foram definidas 4 entidades principais:
+Após análise dos dashboards e requisitos do sistema, foram definidas as seguintes entidades principais:
 
 | Entidade | Finalidade |
 | --- | --- |
 | Proposição | armazenar projetos de lei |
 | Autor | armazenar deputados autores |
 | Partido | armazenar partidos políticos |
+| Categoria | armazenar categorias temáticas das proposições |
 | Tramitação | armazenar andamento legislativo |
+| Proposição-Categoria | tabela associativa N:N entre proposições e categorias |
 
 # Entidade: Proposição
 
@@ -72,10 +74,11 @@ GET /proposicoes
 | dataApresentacao | data | gráficos temporais |
 | descricaoSituacao | texto | status atual da proposição |
 | idAutor | inteiro | relacionamento com autor principal |
+| categoria | texto | categoria temática principal (desnormalizada para consulta rápida) |
 
 ## Observação
 
-Embora uma proposição possa possuir múltiplos autores, o sistema armazenará apenas o autor principal da proposição para simplificar a modelagem relacional e reduzir complexidade.
+Embora uma proposição possa possuir múltiplos autores, o sistema armazenará apenas o autor principal da proposição para simplificar a modelagem relacional e reduzir complexidade. O autor é persistido na tabela `autores` e referenciado por `autor_id` em `proposicoes`.
 
 # Entidade: Partido
 
@@ -96,6 +99,50 @@ GET /partidos
 | id | inteiro | identificador do partido |
 | sigla | texto | exibição simplificada |
 | nome | texto | exibição completa |
+
+# Entidade: Autor
+
+## Objetivo
+
+Armazenar informações dos deputados autores das proposições.
+
+## Endpoint Utilizado
+
+```
+GET /proposicoes/{id}/autores
+```
+
+## Campos Necessários
+
+| Campo | Tipo | Justificativa |
+| --- | --- | --- |
+| id | inteiro | identificador único do autor |
+| nome | texto | exibição do nome do parlamentar |
+
+# Entidade: Categoria
+
+## Objetivo
+
+Armazenar categorias temáticas para classificar as proposições.
+
+## Origem dos Dados
+
+As categorias são definidas internamente pelo sistema com base em termos de busca relacionados à segurança da criança na internet.
+
+## Campos Necessários
+
+| Campo | Tipo | Justificativa |
+| --- | --- | --- |
+| id | inteiro | identificador único da categoria |
+| nome | texto | nome da categoria temática |
+
+Exemplos de categorias:
+
+- cyberbullying
+- proteção digital
+- redes sociais
+- internet
+- criança e adolescente
 
 # Entidade: Tramitação
 
@@ -150,6 +197,32 @@ Relacionamento:
 
 - um para muitos.
 
+### Autor → Proposição
+
+Um autor pode estar associado a várias proposições.
+
+Relacionamento:
+
+- um para muitos.
+
+### Proposição ↔ Categoria
+
+Uma proposição pode possuir várias categorias.
+
+Uma categoria pode estar associada a várias proposições.
+
+Relacionamento:
+
+- muitos para muitos.
+
+Implementado através da tabela associativa proposicao_categoria.
+
+## Observação sobre Categorias
+
+O sistema utiliza uma tabela própria de categorias para permitir classificação temática flexível das proposições.
+
+Além disso, o campo categoria em proposicoes pode ser utilizado como categoria principal para facilitar filtros e consultas frequentes nos dashboards.
+
 # Dados Derivados Calculados pelo Sistema
 
 Alguns dados poderão ser calculados internamente sem necessidade de armazenamento permanente.
@@ -160,6 +233,7 @@ Alguns dados poderão ser calculados internamente sem necessidade de armazenamen
 | projetos ativos | descricaoSituacao |
 | ranking de autores | agregação |
 | projetos por partido | agregação |
+| projetos por categoria | agregação |
 | média mensal | cálculo temporal |
 | distribuição por status | agregação |
 | projetos por UF | agregação |
@@ -200,7 +274,9 @@ Os dados definidos neste documento são suficientes para suportar os dashboards 
 As entidades escolhidas:
 
 - Proposição;
+- Autor;
 - Partido;
+- Categoria;
 - Tramitação;
 
 permitem:
@@ -210,5 +286,19 @@ permitem:
 - análise política;
 - acompanhamento de tramitação;
 - análise textual simplificada.
+
+## Estratégias de Performance
+
+Foram criados índices para otimizar consultas frequentes realizadas pelos dashboards.
+
+Principais índices:
+
+- sigla_tipo
+- descricao_situacao
+- data_apresentacao
+- partido_id
+- categoria
+- ano
+- (sigla_tipo, ano)
 
 A estrutura relacional proposta é simples, eficiente e adequada ao escopo acadêmico do projeto, respeitando o limite de armazenamento e evitando dados redundantes.

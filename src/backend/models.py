@@ -7,7 +7,84 @@ e a documentação de arquitetura do projeto.
 from datetime import datetime
 from src.backend.database import db
 
+# Tabela associativa many-to-many
+proposicao_categoria = db.Table(
+    "proposicao_categoria",
+    db.Column(
+        "proposicao_id",
+        db.Integer,
+        db.ForeignKey("proposicoes.id"),
+        primary_key=True,
+    ),
+    db.Column(
+        "categoria_id",
+        db.Integer,
+        db.ForeignKey("categorias.id"),
+        primary_key=True,
+    ),
+)
 
+# ── Autor ───────────────────────────────────────────────────────────────────
+class Autor(db.Model):
+    __tablename__ = "autores"
+
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(200), nullable=False)
+    partido = db.Column(db.String(20))
+    uf = db.Column(db.String(2))
+    tipo = db.Column(db.String(50))
+    id_externo = db.Column(db.Integer, unique=True)
+    email = db.Column(db.String(200))
+    url_foto = db.Column(db.String(300))
+
+    proposicoes = db.relationship(
+        "Proposicao",
+        back_populates="autor",
+        lazy="dynamic",
+    )
+
+    def __repr__(self):
+        return f"<Autor {self.nome}>"
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+            "partido": self.partido,
+            "uf": self.uf,
+            "tipo": self.tipo,
+        }
+
+# ── Categoria ───────────────────────────────────────────────────────────────────
+class Categoria(db.Model):
+    __tablename__ = "categorias"
+
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False, unique=True)
+    descricao = db.Column(db.Text)
+    cor = db.Column(db.String(7))
+    icone = db.Column(db.String(50))
+    ativa = db.Column(db.Boolean, default=True)
+
+    proposicoes = db.relationship(
+        "Proposicao",
+        secondary=proposicao_categoria,
+        back_populates="categorias",
+        lazy="dynamic",
+    )
+
+    def __repr__(self):
+        return f"<Categoria {self.nome}>"
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+            "descricao": self.descricao,
+            "cor": self.cor,
+            "icone": self.icone,
+            "ativa": self.ativa,
+        }
 # ── Partido ───────────────────────────────────────────────────────────────────
 class Partido(db.Model):
     __tablename__ = "partidos"
@@ -27,6 +104,8 @@ class Partido(db.Model):
             'sigla': self.sigla,
             'nome': self.nome,
         }
+    
+    
 
 # ── Proposição ────────────────────────────────────────────────────────────────
 class Proposicao(db.Model):
@@ -50,11 +129,21 @@ class Proposicao(db.Model):
     data_apresentacao  = db.Column(db.Date,          nullable=False)
     descricao_situacao = db.Column(db.String(150),   nullable=False)
     partido_id         = db.Column(db.Integer,       db.ForeignKey("partidos.id", ondelete="SET NULL"), nullable=True)
+    autor_id = db.Column(db.Integer, db.ForeignKey("autores.id"), nullable=True)
     sigla_partido      = db.Column(db.String(20),    nullable=False)
     categoria          = db.Column(db.String(100))   # classificação temática derivada das palavras-chave
     data_coleta        = db.Column(db.DateTime,      nullable=False, default=datetime.utcnow)
-
     partido      = db.relationship("Partido",     back_populates="proposicoes")
+    autor = db.relationship(
+        "Autor",
+        back_populates="proposicoes",
+    )
+
+    categorias = db.relationship(
+        "Categoria",
+        secondary=proposicao_categoria,
+        back_populates="proposicoes",
+    )
     tramitacoes  = db.relationship("Tramitacao",  back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
     favoritos    = db.relationship("Favorito",    back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
 
@@ -74,9 +163,14 @@ class Proposicao(db.Model):
             'categoria': self.categoria,
             'data_coleta': self.data_coleta.isoformat() if self.data_coleta else None,
             'partido': self.partido.to_dict() if self.partido else None,
+            'autor': self.autor.to_dict() if self.autor else None,
+            'categorias': [
+                categoria.to_dict()
+                for categoria in self.categorias
+            ],
         }
-
-# ── Tramitação ────────────────────────────────────────────────────────────────
+    
+    # ── Tramitação ────────────────────────────────────────────────────────────────
 class Tramitacao(db.Model):
     __tablename__ = "tramitacoes"
 
