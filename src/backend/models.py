@@ -32,8 +32,15 @@ class Partido(db.Model):
 class Proposicao(db.Model):
     __tablename__ = "proposicoes"
     __table_args__ = (
-        db.UniqueConstraint("sigla_tipo", "numero", "ano"),
-    )
+    db.UniqueConstraint("sigla_tipo", "numero", "ano"),
+    db.Index('idx_proposicoes_sigla_tipo',         'sigla_tipo'),
+    db.Index('idx_proposicoes_descricao_situacao', 'descricao_situacao'),
+    db.Index('idx_proposicoes_data_apresentacao',  'data_apresentacao'),
+    db.Index('idx_proposicoes_partido_id',         'partido_id'),
+    db.Index('idx_proposicoes_categoria',          'categoria'),
+    db.Index('idx_proposicoes_ano',                'ano'),
+    db.Index('idx_proposicoes_tipo_ano',           'sigla_tipo', 'ano'),
+)
 
     id                 = db.Column(db.Integer,      primary_key=True)  # ID oficial da API
     sigla_tipo         = db.Column(db.String(20),   nullable=False)

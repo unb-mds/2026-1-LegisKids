@@ -115,6 +115,7 @@ nav:
   - Frontend:
       - Visão Geral: estudos/frontend/index.md
       - Tecnologias e Estrutura: estudos/frontend/tecnologias_estrutura.md
+      - Frameworks e Bibliotecas: estudos/frontend/frameworks_bibliotecas.md
 
   - Design:
       - Visão Geral: estudos/design/index.md
