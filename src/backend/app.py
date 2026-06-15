@@ -1,0 +1,40 @@
+import os
+import sys
+from flask import Flask, jsonify
+from flask_migrate import Migrate
+from dotenv import load_dotenv
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+load_dotenv(os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
+
+app = Flask(__name__)
+
+_database_url = os.getenv("DATABASE_URL")
+if not _database_url:
+    raise RuntimeError("DATABASE_URL não configurada no ambiente.")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = _database_url
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret")
+
+from src.backend.database import db
+from src.backend import models  # noqa: F401
+
+db.init_app(app)
+migrate = Migrate(app, db)
+
+@app.route("/")
+def index():
+    return jsonify({"status": "ok", "message": "LegisKids está no ar!"})
+
+@app.route("/health")
+def health():
+    try:
+        with db.engine.connect():
+            pass
+        return jsonify({"status": "ok", "database": "conectado"}), 200
+    except Exception as exc:
+        return jsonify({"status": "erro", "database": str(exc)}), 500
+
+if __name__ == "__main__":
+    app.run(debug=True)
