@@ -22,7 +22,6 @@ Além disso, a ausência de constraints de unicidade permitia a inserção de re
 | `idx_proposicoes_descricao_situacao` | `descricao_situacao` | filtro por status legislativo |
 | `idx_proposicoes_data_apresentacao` | `data_apresentacao` | ordenação e filtro temporal |
 | `idx_proposicoes_partido_id` | `partido_id` | join com tabela de partidos |
-| `idx_proposicoes_autor_id` | `autor_id` | join com tabela de autores |
 | `idx_proposicoes_categoria` | `categoria` | filtro por categoria temática |
 | `idx_proposicoes_ano` | `ano` | agrupamento por ano |
 | `idx_proposicoes_tipo_ano` | `sigla_tipo`, `ano` | índice composto para consultas combinadas |
@@ -39,7 +38,6 @@ Além disso, a ausência de constraints de unicidade permitia a inserção de re
 | --- | --- | --- | --- |
 | `uq_proposicoes_url_api` | `proposicoes` | `url_api` | evita duplicatas de proposições coletadas da API |
 | `uq_favorito_usuario_proposicao` | `favoritos` | `usuario_id`, `proposicao_id` | impede que um usuário favorite a mesma proposição duas vezes |
-| `uq_autores_email` | `autores` | `email` | garante unicidade de email por autor |
 
 ### CHECK Constraint
 
@@ -107,7 +105,6 @@ Resultado:
 | indexname | descrição |
 | --- | --- |
 | `idx_proposicoes_ano` | índice em `ano` |
-| `idx_proposicoes_autor_id` | índice em `autor_id` |
 | `idx_proposicoes_categoria` | índice em `categoria` |
 | `idx_proposicoes_data_apresentacao` | índice em `data_apresentacao` |
 | `idx_proposicoes_descricao_situacao` | índice em `descricao_situacao` |
@@ -125,10 +122,9 @@ Resultado:
 | listagem por tipo de proposição | índice em `sigla_tipo` elimina varredura completa |
 | filtro por status legislativo | índice em `descricao_situacao` |
 | ordenação por data | índice em `data_apresentacao` |
-| join com autores | índice em `autor_id` |
 | join com partidos | índice em `partido_id` |
 | consulta de favoritos por usuário | índice composto elimina varredura na tabela |
-| coleta incremental da API | constraint `UNIQUE` em `url_api` impede reinsercão |
+| coleta incremental da API | constraint `UNIQUE` em `url_api` impede reinserção |
 
 ## Conclusão
 
