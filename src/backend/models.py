@@ -85,7 +85,6 @@ class Proposicao(db.Model):
         db.Index('idx_proposicoes_descricao_situacao', 'descricao_situacao'),
         db.Index('idx_proposicoes_data_apresentacao',  'data_apresentacao'),
         db.Index('idx_proposicoes_partido_id',         'partido_id'),
-        db.Index('idx_proposicoes_categoria',          'categoria'),
         db.Index('idx_proposicoes_ano',                'ano'),
         db.Index('idx_proposicoes_tipo_ano',           'sigla_tipo', 'ano'),
         db.CheckConstraint(
@@ -103,12 +102,10 @@ class Proposicao(db.Model):
     descricao_situacao = db.Column(db.String(150), nullable=False)
     partido_id         = db.Column(db.Integer,     db.ForeignKey("partidos.id", ondelete="SET NULL"), nullable=True)
     sigla_partido      = db.Column(db.String(20),  nullable=False)
-    categoria          = db.Column(db.String(100))
     data_coleta        = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
-    url_api            = db.Column(db.String(255), unique=True, nullable=False)
 
     partido     = db.relationship("Partido",   back_populates="proposicoes")
-    categorias  = db.relationship("Categoria", secondary=proposicao_categoria, back_populates="proposicoes")
+    categorias  = db.relationship("Categoria", secondary=proposicao_categoria, back_populates="proposicoes", lazy="dynamic")
     tramitacoes = db.relationship("Tramitacao", back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
     favoritos   = db.relationship("Favorito",   back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
 
@@ -125,12 +122,11 @@ class Proposicao(db.Model):
             'data_apresentacao': self.data_apresentacao.isoformat() if self.data_apresentacao else None,
             'descricao_situacao': self.descricao_situacao,
             'sigla_partido': self.sigla_partido,
-            'categoria': self.categoria,
             'data_coleta': self.data_coleta.isoformat() if self.data_coleta else None,
             'partido': self.partido.to_dict() if self.partido else None,
             'categorias': [
                 categoria.to_dict()
-                for categoria in self.categorias
+                for categoria in self.categorias.all()
             ],
         }
 
