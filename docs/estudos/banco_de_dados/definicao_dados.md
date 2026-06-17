@@ -1,5 +1,6 @@
 # Identificação e Documentação dos Dados do Sistema
-# Objetivo
+
+## Objetivo
 
 Este documento define todos os dados que deverão ser coletados, armazenados e utilizados pelo sistema de análise legislativa sobre segurança da criança na internet.
 
@@ -13,7 +14,7 @@ O objetivo é garantir:
 - baixo custo computacional;
 - estrutura simples e relacional.
 
-# Objetivos do Armazenamento
+## Objetivos do Armazenamento
 
 O banco de dados deverá permitir:
 
@@ -25,7 +26,7 @@ O banco de dados deverá permitir:
 
 Como o sistema terá limite aproximado de 200 MB, apenas dados realmente necessários serão persistidos.
 
-# Dashboards que Dependem dos Dados
+## Dashboards que Dependem dos Dados
 
 | Dashboard | Tipo |
 | --- | --- |
@@ -37,30 +38,31 @@ Como o sistema terá limite aproximado de 200 MB, apenas dados realmente necess�
 
 Os dados armazenados foram definidos prioritariamente para suportar os dashboards classificados como Must, mantendo compatibilidade parcial com dashboards classificados como Should e Could.
 
-# Entidades Principais do Sistema
+## Entidades Principais do Sistema
 
-Após análise dos dashboards e da API, foram definidas 4 entidades principais:
+Após análise dos dashboards e requisitos do sistema, foram definidas as seguintes entidades principais:
 
 | Entidade | Finalidade |
 | --- | --- |
 | Proposição | armazenar projetos de lei |
-| Autor | armazenar deputados autores |
 | Partido | armazenar partidos políticos |
+| Categoria | armazenar categorias temáticas das proposições |
 | Tramitação | armazenar andamento legislativo |
+| Proposição-Categoria | tabela associativa N:N entre proposições e categorias |
 
-# Entidade: Proposição
+## Entidade: Proposição
 
-## Objetivo
+### Objetivo
 
 Armazenar informações principais dos projetos de lei.
 
-## Endpoint Utilizado
+### Endpoint Utilizado
 
 ```
 GET /proposicoes
 ```
 
-## Campos Necessários
+### Campos Necessários
 
 | Campo | Tipo | Justificativa |
 | --- | --- | --- |
@@ -71,25 +73,23 @@ GET /proposicoes
 | ementa | texto | análise de conteúdo |
 | dataApresentacao | data | gráficos temporais |
 | descricaoSituacao | texto | status atual da proposição |
-| idAutor | inteiro | relacionamento com autor principal |
+| siglaPartido | texto | partido do autor da proposição |
+| categoria | texto | categoria temática principal (desnormalizada para consulta rápida) |
+| url_api | texto | URL oficial da proposição na API da Câmara |
 
-## Observação
+## Entidade: Partido
 
-Embora uma proposição possa possuir múltiplos autores, o sistema armazenará apenas o autor principal da proposição para simplificar a modelagem relacional e reduzir complexidade.
-
-# Entidade: Partido
-
-## Objetivo
+### Objetivo
 
 Permitir agrupamentos e análises partidárias.
 
-## Endpoint Utilizado
+### Endpoint Utilizado
 
 ```
 GET /partidos
 ```
 
-## Campos Necessários
+### Campos Necessários
 
 | Campo | Tipo | Justificativa |
 | --- | --- | --- |
@@ -97,19 +97,48 @@ GET /partidos
 | sigla | texto | exibição simplificada |
 | nome | texto | exibição completa |
 
-# Entidade: Tramitação
+## Entidade: Categoria
 
-## Objetivo
+### Objetivo
+
+Armazenar categorias temáticas para classificar as proposições.
+
+### Origem dos Dados
+
+As categorias são definidas internamente pelo sistema com base em termos de busca relacionados à segurança da criança na internet.
+
+### Campos Necessários
+
+| Campo | Tipo | Justificativa |
+| --- | --- | --- |
+| id | inteiro | identificador único da categoria |
+| nome | texto | nome da categoria temática |
+| descricao | texto | descrição opcional da categoria |
+| cor | texto | cor para exibição nos dashboards |
+| icone | texto | ícone para exibição nos dashboards |
+| ativa | booleano | controle de categorias ativas |
+
+Exemplos de categorias:
+
+- cyberbullying
+- proteção digital
+- redes sociais
+- internet
+- criança e adolescente
+
+## Entidade: Tramitação
+
+### Objetivo
 
 Armazenar andamento legislativo das proposições.
 
-## Endpoint Utilizado
+### Endpoint Utilizado
 
 ```
 GET /proposicoes/{id}/tramitacoes
 ```
 
-## Campos Necessários
+### Campos Necessários
 
 | Campo | Tipo | Justificativa |
 | --- | --- | --- |
@@ -119,7 +148,7 @@ GET /proposicoes/{id}/tramitacoes
 | descricaoTramitacao | texto | histórico simplificado |
 | siglaOrgao | texto | identificação de comissão ou órgão |
 
-# Estratégia de Armazenamento
+## Estratégia de Armazenamento
 
 Para evitar crescimento excessivo do banco:
 
@@ -128,11 +157,10 @@ Para evitar crescimento excessivo do banco:
 - não serão armazenadas mídias;
 - não serão armazenadas votações detalhadas;
 - não serão armazenados anexos;
-- não serão armazenados textos integrais das proposições.
+- não serão armazenados textos integrais das proposições;
+- informações individuais de parlamentares não serão persistidas.
 
-# Relacionamento Entre Entidades
-
-## Estrutura Relacional
+## Relacionamento Entre Entidades
 
 ### Proposição → Partido
 
@@ -150,7 +178,23 @@ Relacionamento:
 
 - um para muitos.
 
-# Dados Derivados Calculados pelo Sistema
+### Proposição ↔ Categoria
+
+Uma proposição pode possuir várias categorias. Uma categoria pode estar associada a várias proposições.
+
+Relacionamento:
+
+- muitos para muitos.
+
+Implementado através da tabela associativa `proposicao_categoria`.
+
+### Observação sobre Categorias
+
+O sistema utiliza uma tabela própria de categorias para permitir classificação temática flexível das proposições.
+
+Além disso, o campo `categoria` em `proposicoes` pode ser utilizado como categoria principal para facilitar filtros e consultas frequentes nos dashboards.
+
+## Dados Derivados Calculados pelo Sistema
 
 Alguns dados poderão ser calculados internamente sem necessidade de armazenamento permanente.
 
@@ -158,15 +202,14 @@ Alguns dados poderão ser calculados internamente sem necessidade de armazenamen
 | --- | --- |
 | quantidade por ano | dataApresentacao |
 | projetos ativos | descricaoSituacao |
-| ranking de autores | agregação |
 | projetos por partido | agregação |
+| projetos por categoria | agregação |
 | média mensal | cálculo temporal |
 | distribuição por status | agregação |
-| projetos por UF | agregação |
 
 Isso evita redundância e reduz espaço no banco.
 
-# Estratégias para Evitar Redundância
+## Estratégias para Evitar Redundância
 
 O sistema adotará as seguintes práticas:
 
@@ -177,7 +220,7 @@ O sistema adotará as seguintes práticas:
 - armazenar apenas informações utilizadas nos dashboards;
 - evitar armazenamento de dados históricos desnecessários.
 
-# Justificativa Técnica
+## Justificativa Técnica
 
 A estrutura proposta foi escolhida porque:
 
@@ -193,7 +236,21 @@ A estrutura proposta foi escolhida porque:
 
 O sistema não necessita de Big Data, processamento distribuído ou infraestrutura complexa, sendo suficiente uma arquitetura relacional simples.
 
-# Conclusão
+## Estratégias de Performance
+
+Foram criados índices para otimizar consultas frequentes realizadas pelos dashboards.
+
+Principais índices:
+
+- `sigla_tipo`
+- `descricao_situacao`
+- `data_apresentacao`
+- `partido_id`
+- `categoria`
+- `ano`
+- `(sigla_tipo, ano)`
+
+## Conclusão
 
 Os dados definidos neste documento são suficientes para suportar os dashboards acadêmicos do sistema sem desperdício de armazenamento ou complexidade desnecessária.
 
@@ -201,6 +258,7 @@ As entidades escolhidas:
 
 - Proposição;
 - Partido;
+- Categoria;
 - Tramitação;
 
 permitem:

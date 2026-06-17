@@ -3,8 +3,6 @@ from logging.config import fileConfig
 
 from flask import current_app
 
-PYTHONPATH='/home/asus/GITHUB/MDS'
-
 from alembic import context
 
 # this is the Alembic Config object, which provides

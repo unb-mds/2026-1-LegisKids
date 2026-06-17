@@ -1,8 +1,9 @@
 """
-Testa a criação e integridade das tabelas do banco de dados.
+Testa a criação e integridade das tabelas do banco de dados,
+a partir das definições em models.py (SQLAlchemy).
 Execute na raiz do projeto com o venv ativado:
 
-    python src/backend/migrations/test_tables.py
+    python src/backend/migrations/testa_models.py
 """
 
 import sys
@@ -11,8 +12,11 @@ from datetime import date, datetime
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 
+from sqlalchemy.exc import IntegrityError
+
 from src.backend.app import app, db
 from src.backend.models import (
+    Categoria,
     Partido,
     Proposicao,
     Tramitacao,
@@ -23,6 +27,8 @@ from src.backend.models import (
 )
 
 TABELAS_ESPERADAS = {
+    "categorias",
+    "proposicao_categoria",
     "partidos",
     "proposicoes",
     "tramitacoes",
@@ -54,17 +60,52 @@ def checar_tabelas(conn):
             erro(f"Tabela '{t}' NÃO encontrada")
 
 
-def checar_campo_categoria(conn):
-    print("\n── 2. Verificando campo 'categoria' em proposicoes ─────")
-    colunas = [c["name"] for c in db.engine.dialect.get_columns(conn, "proposicoes")]
-    if "categoria" in colunas:
-        ok("Campo 'categoria' existe em 'proposicoes'")
+def checar_tabela_associativa(conn):
+    print("\n── 2. Verificando tabela associativa proposicao_categoria ─")
+    colunas = [c["name"] for c in db.engine.dialect.get_columns(conn, "proposicao_categoria")]
+    if "proposicao_id" in colunas and "categoria_id" in colunas:
+        ok("Tabela 'proposicao_categoria' possui as colunas esperadas")
     else:
-        erro("Campo 'categoria' NÃO encontrado em 'proposicoes'")
+        erro("Tabela 'proposicao_categoria' NÃO possui as colunas esperadas")
+
+
+def checar_constraint_status():
+    print("\n── 3. Testando CheckConstraint de descricao_situacao ───")
+
+    prop_invalida = Proposicao(
+        id=99998,
+        sigla_tipo="PL",
+        numero=2,
+        ano=2024,
+        ementa="Proposição com status inválido para teste de constraint.",
+        data_apresentacao=date(2024, 1, 1),
+        descricao_situacao="Status Inexistente",
+        sigla_partido="XX",
+    )
+    db.session.add(prop_invalida)
+    try:
+        db.session.flush()
+        erro("CheckConstraint NÃO bloqueou status inválido")
+        db.session.rollback()
+    except IntegrityError:
+        ok("CheckConstraint bloqueou status inválido corretamente")
+        db.session.rollback()
 
 
 def checar_insercao():
-    print("\n── 3. Testando inserção de dados ───────────────────────")
+    print("\n── 4. Testando inserção de dados ───────────────────────")
+
+    # Categoria
+    categoria = Categoria(
+        nome="Proteção de Dados Teste",
+        descricao="Categoria de teste para validação do banco.",
+        cor="#FF0000",
+        icone="shield",
+        ativa=True,
+    )
+    db.session.add(categoria)
+    db.session.flush()
+    ok("Inseriu categoria")
 
     # Partido
     partido = Partido(id=99999, sigla="XX", nome="Partido Teste")
@@ -83,11 +124,15 @@ def checar_insercao():
         descricao_situacao="Em tramitação",
         partido_id=99999,
         sigla_partido="XX",
-        categoria="proteção de dados",
     )
     db.session.add(prop)
     db.session.flush()
-    ok("Inseriu proposição com categoria")
+    ok("Inseriu proposição")
+
+    # Associação N:N proposicao <-> categoria
+    prop.categorias.append(categoria)
+    db.session.flush()
+    ok("Associou proposição à categoria (N:N)")
 
     # Tramitação
     tram = Tramitacao(
@@ -137,7 +182,7 @@ def checar_insercao():
 
 
 def checar_consulta():
-    print("\n── 4. Testando consultas e relacionamentos ──────────────")
+    print("\n── 5. Testando consultas e relacionamentos ──────────────")
 
     prop = Proposicao.query.get(99999)
     if prop:
@@ -146,15 +191,21 @@ def checar_consulta():
         erro("Não encontrou proposição inserida")
         return
 
-    if prop.categoria == "proteção de dados":
-        ok(f"Campo categoria correto: '{prop.categoria}'")
-    else:
-        erro(f"Campo categoria incorreto: '{prop.categoria}'")
-
     if prop.partido and prop.partido.sigla == "XX":
         ok(f"Relacionamento partido OK: {prop.partido.sigla}")
     else:
         erro("Relacionamento partido falhou")
+
+    if prop.categorias.count() == 1 and prop.categorias.first().nome == "Proteção de Dados Teste":
+        ok("Relacionamento N:N categorias (via proposição) OK")
+    else:
+        erro("Relacionamento N:N categorias (via proposição) falhou")
+
+    categoria = Categoria.query.filter_by(nome="Proteção de Dados Teste").first()
+    if categoria and categoria.proposicoes.count() == 1:
+        ok("Relacionamento N:N proposições (via categoria) OK")
+    else:
+        erro("Relacionamento N:N proposições (via categoria) falhou")
 
     if prop.tramitacoes.count() == 1:
         ok("Relacionamento tramitações OK")
@@ -173,15 +224,38 @@ def checar_consulta():
         erro("Relacionamento histórico falhou")
 
 
+def checar_to_dict():
+    print("\n── 6. Testando métodos to_dict() ────────────────────────")
+
+    prop = Proposicao.query.get(99999)
+    dados = prop.to_dict()
+    if dados.get("id") == 99999 and "categorias" in dados and "partido" in dados:
+        ok("Proposicao.to_dict() OK")
+    else:
+        erro("Proposicao.to_dict() retornou estrutura inesperada")
+
+    categoria = Categoria.query.filter_by(nome="Proteção de Dados Teste").first()
+    if categoria.to_dict().get("nome") == "Proteção de Dados Teste":
+        ok("Categoria.to_dict() OK")
+    else:
+        erro("Categoria.to_dict() retornou estrutura inesperada")
+
+    usuario = Usuario.query.filter_by(email="teste@legiskids.com").first()
+    if usuario.to_dict().get("email") == "teste@legiskids.com":
+        ok("Usuario.to_dict() OK")
+    else:
+        erro("Usuario.to_dict() retornou estrutura inesperada")
+
+
 def limpar():
-    print("\n── 5. Limpando dados de teste ──────────────────────────")
+    print("\n── 7. Limpando dados de teste ──────────────────────────")
     db.session.rollback()
     ok("Dados de teste descartados (rollback)")
 
 
 with app.app_context():
     print("═" * 55)
-    print("  LegisKids — Teste de tabelas do banco de dados")
+    print("  LegisKids — Teste de models (SQLAlchemy)")
     print("═" * 55)
 
     db.create_all()
@@ -189,11 +263,13 @@ with app.app_context():
 
     with db.engine.connect() as conn:
         checar_tabelas(conn)
-        checar_campo_categoria(conn)
+        checar_tabela_associativa(conn)
 
     try:
+        checar_constraint_status()
         checar_insercao()
         checar_consulta()
+        checar_to_dict()
     finally:
         limpar()
 

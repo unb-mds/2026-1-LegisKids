@@ -7,6 +7,53 @@ e a documentação de arquitetura do projeto.
 from datetime import datetime
 from src.backend.database import db
 
+# Tabela associativa many-to-many
+proposicao_categoria = db.Table(
+    "proposicao_categoria",
+    db.Column(
+        "proposicao_id",
+        db.Integer,
+        db.ForeignKey("proposicoes.id"),
+        primary_key=True,
+    ),
+    db.Column(
+        "categoria_id",
+        db.Integer,
+        db.ForeignKey("categorias.id"),
+        primary_key=True,
+    ),
+)
+
+# ── Categoria ───────────────────────────────────────────────────────────────────
+class Categoria(db.Model):
+    __tablename__ = "categorias"
+
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False, unique=True)
+    descricao = db.Column(db.Text)
+    cor = db.Column(db.String(7))
+    icone = db.Column(db.String(50))
+    ativa = db.Column(db.Boolean, default=True)
+
+    proposicoes = db.relationship(
+        "Proposicao",
+        secondary=proposicao_categoria,
+        back_populates="categorias",
+        lazy="dynamic",
+    )
+
+    def __repr__(self):
+        return f"<Categoria {self.nome}>"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+            "descricao": self.descricao,
+            "cor": self.cor,
+            "icone": self.icone,
+            "ativa": self.ativa,
+        }
 
 # ── Partido ───────────────────────────────────────────────────────────────────
 class Partido(db.Model):
@@ -28,28 +75,39 @@ class Partido(db.Model):
             'nome': self.nome,
         }
 
+
 # ── Proposição ────────────────────────────────────────────────────────────────
 class Proposicao(db.Model):
     __tablename__ = "proposicoes"
     __table_args__ = (
         db.UniqueConstraint("sigla_tipo", "numero", "ano"),
+        db.Index('idx_proposicoes_sigla_tipo',         'sigla_tipo'),
+        db.Index('idx_proposicoes_descricao_situacao', 'descricao_situacao'),
+        db.Index('idx_proposicoes_data_apresentacao',  'data_apresentacao'),
+        db.Index('idx_proposicoes_partido_id',         'partido_id'),
+        db.Index('idx_proposicoes_ano',                'ano'),
+        db.Index('idx_proposicoes_tipo_ano',           'sigla_tipo', 'ano'),
+        db.CheckConstraint(
+            "descricao_situacao IN ('Em tramitação', 'Aprovado', 'Arquivado', 'Encerrado')",
+            name="ck_proposicao_status"
+        ),
     )
 
-    id                 = db.Column(db.Integer,      primary_key=True)  # ID oficial da API
-    sigla_tipo         = db.Column(db.String(20),   nullable=False)
-    numero             = db.Column(db.Integer,       nullable=False)
-    ano                = db.Column(db.Integer,       nullable=False)
-    ementa             = db.Column(db.Text,          nullable=False)
-    data_apresentacao  = db.Column(db.Date,          nullable=False)
-    descricao_situacao = db.Column(db.String(150),   nullable=False)
-    partido_id         = db.Column(db.Integer,       db.ForeignKey("partidos.id", ondelete="SET NULL"), nullable=True)
-    sigla_partido      = db.Column(db.String(20),    nullable=False)
-    categoria          = db.Column(db.String(100))   # classificação temática derivada das palavras-chave
-    data_coleta        = db.Column(db.DateTime,      nullable=False, default=datetime.utcnow)
+    id                 = db.Column(db.Integer,    primary_key=True)  # ID oficial da API
+    sigla_tipo         = db.Column(db.String(20),  nullable=False)
+    numero             = db.Column(db.Integer,     nullable=False)
+    ano                = db.Column(db.Integer,     nullable=False)
+    ementa             = db.Column(db.Text,        nullable=False)
+    data_apresentacao  = db.Column(db.Date,        nullable=False)
+    descricao_situacao = db.Column(db.String(150), nullable=False)
+    partido_id         = db.Column(db.Integer,     db.ForeignKey("partidos.id", ondelete="SET NULL"), nullable=True)
+    sigla_partido      = db.Column(db.String(20),  nullable=False)
+    data_coleta        = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
 
-    partido      = db.relationship("Partido",     back_populates="proposicoes")
-    tramitacoes  = db.relationship("Tramitacao",  back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
-    favoritos    = db.relationship("Favorito",    back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
+    partido     = db.relationship("Partido",   back_populates="proposicoes")
+    categorias  = db.relationship("Categoria", secondary=proposicao_categoria, back_populates="proposicoes", lazy="dynamic")
+    tramitacoes = db.relationship("Tramitacao", back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
+    favoritos   = db.relationship("Favorito",   back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Proposicao {self.sigla_tipo} {self.numero}/{self.ano}>"
@@ -64,28 +122,32 @@ class Proposicao(db.Model):
             'data_apresentacao': self.data_apresentacao.isoformat() if self.data_apresentacao else None,
             'descricao_situacao': self.descricao_situacao,
             'sigla_partido': self.sigla_partido,
-            'categoria': self.categoria,
             'data_coleta': self.data_coleta.isoformat() if self.data_coleta else None,
             'partido': self.partido.to_dict() if self.partido else None,
+            'categorias': [
+                categoria.to_dict()
+                for categoria in self.categorias.all()
+            ],
         }
+
 
 # ── Tramitação ────────────────────────────────────────────────────────────────
 class Tramitacao(db.Model):
     __tablename__ = "tramitacoes"
 
-    id                   = db.Column(db.Integer,   primary_key=True)
-    proposicao_id        = db.Column(db.Integer,   db.ForeignKey("proposicoes.id", ondelete="CASCADE"), nullable=False)
-    data_hora            = db.Column(db.DateTime,  nullable=False)
-    id_situacao          = db.Column(db.Integer,   nullable=False)
+    id                   = db.Column(db.Integer,     primary_key=True)
+    proposicao_id        = db.Column(db.Integer,     db.ForeignKey("proposicoes.id", ondelete="CASCADE"), nullable=False)
+    data_hora            = db.Column(db.DateTime,    nullable=False)
+    id_situacao          = db.Column(db.Integer,     nullable=False)
     descricao_situacao   = db.Column(db.String(150), nullable=False)
-    descricao_tramitacao = db.Column(db.Text,      nullable=False)
-    sigla_orgao          = db.Column(db.String(50), nullable=False)
+    descricao_tramitacao = db.Column(db.Text,        nullable=False)
+    sigla_orgao          = db.Column(db.String(50),  nullable=False)
 
     proposicao = db.relationship("Proposicao", back_populates="tramitacoes")
 
     def __repr__(self):
         return f"<Tramitacao prop={self.proposicao_id} {self.data_hora}>"
-    
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -102,18 +164,18 @@ class Tramitacao(db.Model):
 class Usuario(db.Model):
     __tablename__ = "usuarios"
 
-    id           = db.Column(db.Integer,    primary_key=True)
+    id           = db.Column(db.Integer,     primary_key=True)
     nome         = db.Column(db.String(100), nullable=False)
     email        = db.Column(db.String(150), nullable=False, unique=True)
     google_id    = db.Column(db.String(100), nullable=False, unique=True)
-    data_criacao = db.Column(db.DateTime,   nullable=False, default=datetime.utcnow)
+    data_criacao = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
 
     favoritos           = db.relationship("Favorito",          back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")
     historico_consultas = db.relationship("HistoricoConsulta", back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Usuario {self.email}>"
-    
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -128,7 +190,16 @@ class Usuario(db.Model):
 class Favorito(db.Model):
     __tablename__ = "favoritos"
     __table_args__ = (
-        db.UniqueConstraint("usuario_id", "proposicao_id"),
+        db.UniqueConstraint(
+            "usuario_id",
+            "proposicao_id",
+            name="uq_favorito_usuario_proposicao"
+        ),
+        db.Index(
+            "idx_favoritos_usuario_proposicao",
+            "usuario_id",
+            "proposicao_id"
+        ),
     )
 
     id            = db.Column(db.Integer,  primary_key=True)
@@ -150,14 +221,15 @@ class Favorito(db.Model):
             'data_favorito': self.data_favorito.isoformat() if self.data_favorito else None,
         }
 
+
 # ── Histórico de Consultas ────────────────────────────────────────────────────
 class HistoricoConsulta(db.Model):
     __tablename__ = "historico_consultas"
 
-    id            = db.Column(db.Integer,    primary_key=True)
-    usuario_id    = db.Column(db.Integer,    db.ForeignKey("usuarios.id", ondelete="CASCADE"), nullable=False)
+    id            = db.Column(db.Integer,     primary_key=True)
+    usuario_id    = db.Column(db.Integer,     db.ForeignKey("usuarios.id", ondelete="CASCADE"), nullable=False)
     termo_busca   = db.Column(db.String(255), nullable=False)
-    data_consulta = db.Column(db.DateTime,   nullable=False, default=datetime.utcnow)
+    data_consulta = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
 
     usuario = db.relationship("Usuario", back_populates="historico_consultas")
 
@@ -172,20 +244,21 @@ class HistoricoConsulta(db.Model):
             'data_consulta': self.data_consulta.isoformat() if self.data_consulta else None,
         }
 
+
 # ── Requisições API ───────────────────────────────────────────────────────────
 class RequisicaoApi(db.Model):
     __tablename__ = "requisicoes_api"
 
-    id                   = db.Column(db.Integer,    primary_key=True)
+    id                   = db.Column(db.Integer,     primary_key=True)
     endpoint             = db.Column(db.String(255), nullable=False)
-    data_requisicao      = db.Column(db.DateTime,   nullable=False, default=datetime.utcnow)
-    quantidade_registros = db.Column(db.Integer,    nullable=False)
-    status_requisicao    = db.Column(db.String(50), nullable=False)
+    data_requisicao      = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
+    quantidade_registros = db.Column(db.Integer,     nullable=False)
+    status_requisicao    = db.Column(db.String(50),  nullable=False)
     tempo_execucao_ms    = db.Column(db.Integer)    # nullable — monitoramento opcional
 
     def __repr__(self):
         return f"<RequisicaoApi {self.endpoint} {self.status_requisicao}>"
-    
+
     def to_dict(self):
         return {
             'id': self.id,
