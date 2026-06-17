@@ -154,35 +154,31 @@ docs: adiciona guia de PR
 Copie e cole sempre:
 
 ```markdown
-## O que foi feito?
-
+## 📌 O que foi feito?
 - Descreva as alterações
 
-## Por que isso foi feito?
-
+## 🎯 Por que isso foi feito?
 - Explique o objetivo
 
-## Como testar?
-
+## 🧪 Como testar?
 - Passo a passo para validar
 
-## Prints/Vídeos (se houver)
+## 📸 Prints/Vídeos (se houver)
 
-## Issue relacionada
-
+## 🔗 Issue relacionada
 Closes #numero
 ```
 
 ---
 
-## Boas Práticas
+## Boas Práticas (CRÍTICO)
 
-- Nunca commitar direto na `main`
-- Sempre usar branch
-- Fazer PR mesmo sendo simples
-- Manter PR pequeno (fácil de revisar)
-- Nome claro em tudo (branch, commit, PR)
-- Sempre linkar Issue
+- ❌ Nunca commitar direto na `main`
+- ✅ Sempre usar branch
+- ✅ Fazer PR mesmo sendo simples
+- ✅ Manter PR pequeno (fácil de revisar)
+- ✅ Nome claro em tudo (branch, commit, PR)
+- ✅ Sempre linkar Issue
 
 ---
 
