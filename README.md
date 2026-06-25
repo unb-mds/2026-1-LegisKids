@@ -266,6 +266,31 @@ http://127.0.0.1:8000
 
 ---
 
+## Subindo o banco com Docker
+
+Pré-requisito: [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado.
+
+```bash
+# 1. Copie o arquivo de variáveis de ambiente
+cp .env.example .env
+
+# 2. Suba o banco
+docker compose up -d
+
+# 3. Aplique as migrations
+flask db upgrade
+
+# 4. Popule com dados iniciais (opcional)
+python scripts/seed.py
+
+# 5. Pare o banco quando terminar
+docker compose down
+```
+
+> As credenciais são lidas do `.env`. Nenhuma senha está hardcoded no `docker-compose.yml`.
+
+---
+
 ## Contribuindo
 
 1. Faça um fork do projeto

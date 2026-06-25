@@ -234,7 +234,7 @@ O agente **não deve iniciar nenhuma implementação sem que a spec da mudança 
 
 **IA:** considerar custo de chamadas, modularidade, possibilidade de fallback e facilidade de troca futura do modelo.
 
-**Banco:** evitar schemas excessivamente complexos, manter modelagem relacional limpa e consistência dos dados.
+**Banco:** evitar schemas excessivamente complexos, manter modelagem relacional limpa e consistência dos dados. O schema inclui a tabela `categorias` — uma proposição pode estar associada a uma ou várias categorias (relação muitos-para-muitos via tabela intermediária `proposicao_categorias`).
 
 ---
 
