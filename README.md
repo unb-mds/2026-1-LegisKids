@@ -84,9 +84,11 @@ O LegisKids surge como uma solução para:
 
 | Camada         | Tecnologia                   |
 | -------------- | ---------------------------- |
-| Front-end      | HTML, CSS e JavaScript       |
-| Back-end       | Python + FastAPI             |
-| Servidor ASGI  | Uvicorn                      |
+| Front-end      | Vue 3 + Vite                 |
+| Roteamento     | Vue Router 4                 |
+| Estado global  | Pinia                        |
+| Gráficos       | Chart.js 4                   |
+| Back-end       | Python + Flask               |
 | Banco de Dados | PostgreSQL                   |
 | ORM            | SQLAlchemy                   |
 | Documentação   | MkDocs + Material for MkDocs |
@@ -97,10 +99,49 @@ O LegisKids surge como uma solução para:
 ## Estrutura do Projeto
 
 ```text
-docs/           -> documentação do projeto
-src/            -> código-fonte da aplicação
-openspec/       -> especificações e mudanças
-scripts/        -> scripts auxiliares
+docs/                -> documentação do projeto
+src/
+  backend/           -> Flask + SQLAlchemy (backend)
+  frontend/          -> Vue 3 + Vite (frontend SPA)
+openspec/            -> especificações e mudanças
+scripts/             -> scripts auxiliares
+```
+
+---
+
+## Como Executar o Frontend
+
+### Pré-requisitos
+
+* Node.js 18+
+* npm 9+
+
+### 1. Instalar dependências
+
+```bash
+cd src/frontend
+npm install
+```
+
+### 2. Configurar variáveis de ambiente
+
+```bash
+cp .env.example .env
+# Edite .env se o backend estiver em outra porta/host
+```
+
+### 3. Iniciar o servidor de desenvolvimento
+
+```bash
+npm run dev
+# Disponível em http://localhost:5173
+```
+
+### 4. Build de produção
+
+```bash
+npm run build
+# Saída em src/frontend/dist/
 ```
 
 ---
