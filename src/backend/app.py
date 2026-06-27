@@ -26,10 +26,18 @@ from src.backend import models  # noqa: F401
 db.init_app(app)
 migrate = Migrate(app, db)
 
-# Scheduler de sincronização automática
+# Seed de categorias e scheduler (pula em modo de testes)
 if os.getenv("FLASK_ENV") != "testing":
+    from src.backend.repository import camara_repository as repo
     from src.backend.schedulers.camara_scheduler import start_scheduler
     with app.app_context():
+        try:
+            repo.seed_categorias()
+        except Exception as _seed_err:
+            import logging as _log
+            _log.getLogger(__name__).warning(
+                "seed_categorias ignorado na inicialização (migrations pendentes?): %s", _seed_err
+            )
         start_scheduler(app)
 
 

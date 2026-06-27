@@ -36,6 +36,7 @@ PALAVRAS_CHAVE = [
     "regulação digital",
 ]
 
+# 8 categorias fixas — sem "outros". Irrelevantes são descartadas antes de persistir.
 CATEGORIAS_FIXAS = [
     "cyberbullying",
     "exploração sexual infantil online",
@@ -45,8 +46,9 @@ CATEGORIAS_FIXAS = [
     "conteúdos nocivos para menores",
     "crimes virtuais contra crianças",
     "privacidade de menores",
-    "outros",
 ]
+
+RESULTADO_IRRELEVANTE = "irrelevante"
 
 STATUS_VALIDOS_SITUACAO = {
     "Em tramitação",
@@ -57,6 +59,8 @@ STATUS_VALIDOS_SITUACAO = {
 
 _CAMPOS_OBRIGATORIOS = ("id", "siglaTipo", "numero", "ano", "ementa", "dataApresentacao")
 
+
+# ── Helpers de API da Câmara ──────────────────────────────────────────────────
 
 def _is_retryable(exc: BaseException) -> bool:
     if isinstance(exc, requests.HTTPError):
@@ -71,7 +75,6 @@ def _is_retryable(exc: BaseException) -> bool:
     reraise=True,
 )
 def _buscar_proposicoes_api(pagina: int, itens: int = 100) -> list[dict]:
-    """Busca uma página de proposições na API da Câmara com retry automático."""
     params = {
         "itens": itens,
         "pagina": pagina,
@@ -91,7 +94,7 @@ def _buscar_proposicoes_api(pagina: int, itens: int = 100) -> list[dict]:
 def _normalizar_data(valor: str | None) -> date | None:
     if not valor:
         return None
-    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M", "%Y-%m-%d"):
         try:
             return datetime.strptime(valor[:19], fmt).date()
         except ValueError:
@@ -100,7 +103,6 @@ def _normalizar_data(valor: str | None) -> date | None:
 
 
 def _validar_proposicao(dado: dict) -> dict | None:
-    """Valida e normaliza um dado bruto da API. Retorna DTO ou None se inválido."""
     for campo in _CAMPOS_OBRIGATORIOS:
         if dado.get(campo) is None:
             logger.warning("Proposição %s: campo obrigatório ausente '%s'. Ignorando.", dado.get("id"), campo)
@@ -113,14 +115,15 @@ def _validar_proposicao(dado: dict) -> dict | None:
 
     data_apresentacao = _normalizar_data(dado.get("dataApresentacao"))
     if data_apresentacao is None:
-        logger.warning("Proposição %s: dataApresentacao inválida '%s'. Ignorando.", dado.get("id"), dado.get("dataApresentacao"))
+        logger.warning(
+            "Proposição %s: dataApresentacao inválida '%s'. Ignorando.",
+            dado.get("id"), dado.get("dataApresentacao"),
+        )
         return None
 
     descricao_situacao = dado.get("descricaoSituacao") or "Em tramitação"
     if descricao_situacao not in STATUS_VALIDOS_SITUACAO:
         descricao_situacao = "Em tramitação"
-
-    sigla_partido = dado.get("siglaPartido") or ""
 
     return {
         "id": int(dado["id"]),
@@ -130,7 +133,7 @@ def _validar_proposicao(dado: dict) -> dict | None:
         "ementa": ementa,
         "data_apresentacao": data_apresentacao,
         "descricao_situacao": descricao_situacao,
-        "sigla_partido": sigla_partido[:20],
+        "sigla_partido": str(dado.get("siglaPartido") or "")[:20],
         "data_coleta": datetime.now(timezone.utc),
         "classificacao_status": Proposicao.CLASSIFICACAO_PENDENTE,
     }
@@ -138,48 +141,85 @@ def _validar_proposicao(dado: dict) -> dict | None:
 
 def _filtrar_por_palavras_chave(dados: list[dict]) -> list[dict]:
     palavras = [p.lower() for p in PALAVRAS_CHAVE]
-    resultado = []
-    for d in dados:
-        texto = " ".join([
-            str(d.get("ementa", "")),
-            str(d.get("ementaDetalhada", "")),
-        ]).lower()
-        if any(p in texto for p in palavras):
-            resultado.append(d)
-    return resultado
+    return [
+        d for d in dados
+        if any(
+            p in " ".join([str(d.get("ementa", "")), str(d.get("ementaDetalhada", ""))]).lower()
+            for p in palavras
+        )
+    ]
 
 
-def _categorizar_via_gemini(ementa: str) -> str:
-    """Envia a ementa ao Gemini e retorna a categoria. Lança exceção em falha."""
+# ── Gemini ────────────────────────────────────────────────────────────────────
+
+def _is_rate_limit_error(exc: Exception) -> bool:
+    exc_str = str(exc).lower()
+    return (
+        "429" in exc_str
+        or "resourceexhausted" in type(exc).__name__.lower()
+        or "quota" in exc_str
+    )
+
+
+def _classificar_via_gemini(ementa: str) -> str:
+    """Chama o Gemini e retorna "irrelevante" ou o nome exato de uma categoria.
+
+    Lança exceção se a API falhar após retentativas — o chamador trata o fallback.
+    """
     try:
-        import google.generativeai as genai
+        from google import genai
+        from google.genai import types as genai_types
     except ImportError:
-        raise RuntimeError("google-generativeai não instalado.")
+        raise RuntimeError("google-genai não instalado. Execute: pip install google-genai")
 
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise RuntimeError("GOOGLE_API_KEY não configurada.")
 
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    client = genai.Client(api_key=api_key)
 
     categorias_str = "\n".join(f"- {c}" for c in CATEGORIAS_FIXAS)
     prompt = (
-        f"Classifique a seguinte ementa legislativa em UMA das categorias abaixo.\n"
-        f"Responda SOMENTE com o nome exato da categoria, sem explicações.\n\n"
-        f"Categorias válidas:\n{categorias_str}\n\n"
-        f"Ementa: {ementa[:500]}"
+        "Você é um classificador de proposições legislativas brasileiras.\n\n"
+        "Analise a ementa abaixo e responda com UMA das seguintes opções:\n"
+        '- "irrelevante" → se NÃO tratar de proteção de crianças ou adolescentes '
+        "no ambiente digital/internet\n"
+        "- Um dos temas abaixo → se a proposta tratar do tema\n\n"
+        f"Temas válidos:\n{categorias_str}\n\n"
+        "Responda SOMENTE com a palavra ou frase exata. Sem explicação.\n\n"
+        f"Ementa: {ementa[:600]}"
     )
 
-    response = model.generate_content(prompt, request_options={"timeout": 5})
-    categoria = response.text.strip().lower()
+    response = None
+    for tentativa in range(2):
+        try:
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=prompt,
+                config=genai_types.GenerateContentConfig(
+                    http_options=genai_types.HttpOptions(timeout=5000),
+                ),
+            )
+            break
+        except Exception as exc:
+            if tentativa == 0 and _is_rate_limit_error(exc):
+                logger.warning("Gemini 429 ResourceExhausted: aguardando 60s antes de re-tentar.")
+                time.sleep(60)
+                continue
+            raise
 
-    if categoria not in CATEGORIAS_FIXAS:
-        logger.warning("Gemini retornou categoria inválida: '%s'", categoria)
-        raise ValueError(f"Categoria inválida: {categoria}")
+    resultado = response.text.strip().lower()
 
-    return categoria
+    if resultado == RESULTADO_IRRELEVANTE:
+        return RESULTADO_IRRELEVANTE
 
+    if resultado not in CATEGORIAS_FIXAS:
+        raise ValueError(f"Gemini retornou resultado inválido: '{resultado}'")
+
+    return resultado
+
+
+# ── Service ───────────────────────────────────────────────────────────────────
 
 class CamaraService:
     def __init__(self):
@@ -187,30 +227,61 @@ class CamaraService:
         self._min_interval = 60.0 / self._rpm if self._rpm > 0 else 0
         self._last_gemini_call = 0.0
 
-    def _categorizar_com_rate_limit(self, ementa: str) -> str:
-        """Aplica rate limit antes de chamar o Gemini."""
+    def _classificar_com_rate_limit(self, ementa: str) -> str:
         agora = time.monotonic()
         espera = self._min_interval - (agora - self._last_gemini_call)
         if espera > 0:
-            logger.info("Gemini rate limit: aguardando %.1fs.", espera)
+            logger.debug("Gemini rate limit: aguardando %.1fs.", espera)
             time.sleep(espera)
         self._last_gemini_call = time.monotonic()
-        return _categorizar_via_gemini(ementa)
+        return _classificar_via_gemini(ementa)
 
-    def _categorizar_com_fallback(self, dto: dict) -> dict:
-        """Categoriza a proposição via Gemini; em falha, define pendente_classificacao."""
+    def _classificar_e_filtrar(self, dto: dict) -> tuple[dict, str | None]:
+        """Classifica a proposição via Gemini.
+
+        Retorna (dto, resultado) onde resultado é:
+        - nome da categoria  → relevante, deve persistir e vincular
+        - RESULTADO_IRRELEVANTE → descartar, não persistir
+        - None               → Gemini falhou, persistir como pendente_classificacao
+        """
         try:
-            categoria = self._categorizar_com_rate_limit(dto["ementa"])
+            resultado = self._classificar_com_rate_limit(dto["ementa"])
+            if resultado == RESULTADO_IRRELEVANTE:
+                return dto, RESULTADO_IRRELEVANTE
             dto["classificacao_status"] = Proposicao.CLASSIFICACAO_CLASSIFICADO
-            logger.debug("Proposição %d categorizada como '%s'.", dto["id"], categoria)
+            return dto, resultado
         except Exception as exc:
             logger.warning(
-                "Falha ao categorizar proposição %d via Gemini: %s. Marcando como pendente.",
-                dto["id"],
-                exc,
+                "Falha ao classificar proposição %d via Gemini: %s. Marcando como pendente.",
+                dto["id"], exc,
             )
             dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
-        return dto
+            return dto, None
+
+    def _retentar_pendentes(self) -> None:
+        """Re-classifica proposições com status pendente_classificacao."""
+        pendentes = repo.get_proposicoes_pendentes(limite=50)
+        if not pendentes:
+            return
+        logger.info("Re-tentando classificação de %d proposições pendentes.", len(pendentes))
+        for prop in pendentes:
+            dto_pendente = {
+                "id": prop.id,
+                "ementa": prop.ementa,
+                "classificacao_status": prop.classificacao_status,
+            }
+            try:
+                _, resultado = self._classificar_e_filtrar(dto_pendente)
+                if resultado == RESULTADO_IRRELEVANTE:
+                    repo.deletar_proposicao(prop.id)
+                    logger.info("Proposição pendente %d era irrelevante — removida.", prop.id)
+                elif resultado is not None:
+                    repo.vincular_categoria(prop.id, resultado)
+                    repo.atualizar_classificacao_status(prop.id, Proposicao.CLASSIFICACAO_CLASSIFICADO)
+                    logger.info("Proposição pendente %d classificada como '%s'.", prop.id, resultado)
+                # resultado None → continua pendente, será re-tentada no próximo run
+            except Exception as exc:
+                logger.warning("Falha ao re-tentar proposição %d: %s.", prop.id, exc)
 
     def run_sync(self) -> dict:
         """Executa a sincronização completa. Registra tudo em sync_executions."""
@@ -221,11 +292,15 @@ class CamaraService:
         total_inseridos = 0
         total_atualizados = 0
         total_erros = 0
+        total_descartados = 0
         status_final = SyncExecution.STATUS_CONCLUIDO
         mensagem_erro = None
         cota_gemini_esgotada = False
 
         try:
+            # Re-tentar pendentes de runs anteriores antes de buscar novas proposições
+            self._retentar_pendentes()
+
             pagina = 1
             while True:
                 logger.info("Buscando página %d da API da Câmara...", pagina)
@@ -242,9 +317,14 @@ class CamaraService:
                     break
 
                 filtrados = _filtrar_por_palavras_chave(dados_brutos)
-                logger.info("Página %d: %d recebidos, %d após filtro.", pagina, len(dados_brutos), len(filtrados))
+                logger.info(
+                    "Página %d: %d recebidos, %d após filtro de palavras-chave.",
+                    pagina, len(dados_brutos), len(filtrados),
+                )
 
-                dtos = []
+                # Lista de (dto, categoria_nome | "irrelevante" | None)
+                dtos_com_resultado: list[tuple[dict, str | None]] = []
+
                 for dado in filtrados:
                     dto = _validar_proposicao(dado)
                     if dto is None:
@@ -253,17 +333,30 @@ class CamaraService:
 
                     if not cota_gemini_esgotada:
                         try:
-                            dto = self._categorizar_com_fallback(dto)
+                            dto, resultado = self._classificar_e_filtrar(dto)
                         except Exception:
                             cota_gemini_esgotada = True
                             dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
+                            resultado = None
+                    else:
+                        dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
+                        resultado = None
 
-                    dtos.append(dto)
+                    if resultado == RESULTADO_IRRELEVANTE:
+                        total_descartados += 1
+                        continue  # não persistir
 
-                if dtos:
-                    contadores = repo.upsert_proposicoes_lote(dtos)
+                    dtos_com_resultado.append((dto, resultado))
+
+                if dtos_com_resultado:
+                    dtos_apenas = [d for d, _ in dtos_com_resultado]
+                    contadores = repo.upsert_proposicoes_lote(dtos_apenas)
                     total_inseridos += contadores["inseridos"]
                     total_atualizados += contadores["atualizados"]
+
+                    for dto, categoria_nome in dtos_com_resultado:
+                        if categoria_nome:
+                            repo.vincular_categoria(dto["id"], categoria_nome)
 
                 total_processados += len(filtrados)
                 pagina += 1
@@ -293,13 +386,12 @@ class CamaraService:
             "total_inseridos": total_inseridos,
             "total_atualizados": total_atualizados,
             "total_erros": total_erros,
+            "total_descartados": total_descartados,
         }
         logger.info(
-            "=== Sincronização concluída: %s | processados=%d inseridos=%d atualizados=%d erros=%d ===",
-            status_final,
-            total_processados,
-            total_inseridos,
-            total_atualizados,
-            total_erros,
+            "=== Sincronização concluída: %s | processados=%d inseridos=%d "
+            "atualizados=%d erros=%d descartados=%d ===",
+            status_final, total_processados, total_inseridos,
+            total_atualizados, total_erros, total_descartados,
         )
         return resumo
