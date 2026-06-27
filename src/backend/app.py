@@ -2,6 +2,7 @@ import os
 import sys
 import click
 from flask import Flask, jsonify
+from flask_cors import CORS
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 
@@ -9,6 +10,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
 
 _database_url = os.getenv("DATABASE_URL")
 if not _database_url:
