@@ -194,10 +194,10 @@ def _classificar_via_gemini(ementa: str) -> str:
     for tentativa in range(2):
         try:
             response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-2.0-flash",
                 contents=prompt,
                 config=genai_types.GenerateContentConfig(
-                    http_options=genai_types.HttpOptions(timeout=5000),
+                    http_options=genai_types.HttpOptions(timeout=30000),
                 ),
             )
             break
