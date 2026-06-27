@@ -1,5 +1,6 @@
 import os
 import sys
+import click
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -24,6 +25,28 @@ from src.backend import models  # noqa: F401
 
 db.init_app(app)
 migrate = Migrate(app, db)
+
+# Scheduler de sincronização automática
+if os.getenv("FLASK_ENV") != "testing":
+    from src.backend.schedulers.camara_scheduler import start_scheduler
+    with app.app_context():
+        start_scheduler(app)
+
+
+@app.cli.command("sync-camara")
+def sync_camara():
+    """Executa sincronização manual de proposições da Câmara dos Deputados."""
+    from src.backend.services.camara_service import CamaraService
+    click.echo("Iniciando sincronização...")
+    resumo = CamaraService().run_sync()
+    click.echo(
+        f"Concluído: status={resumo['status']} | "
+        f"processados={resumo['total_processados']} | "
+        f"inseridos={resumo['total_inseridos']} | "
+        f"atualizados={resumo['total_atualizados']} | "
+        f"erros={resumo['total_erros']}"
+    )
+
 
 @app.route("/")
 def index():

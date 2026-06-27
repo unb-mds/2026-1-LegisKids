@@ -2,7 +2,7 @@
 
 ## Visão geral
 
-O banco de dados do LegisKids é um PostgreSQL relacional composto por **7 tabelas** que suportam o ciclo completo da plataforma: coleta de proposições legislativas, classificação temática, acompanhamento de tramitações, autenticação de usuários, favoritos, histórico de buscas e auditoria de chamadas à API da Câmara dos Deputados.
+O banco de dados do LegisKids é um PostgreSQL relacional composto por **8 tabelas** que suportam o ciclo completo da plataforma: coleta e sincronização automática de proposições legislativas, classificação temática via IA, acompanhamento de tramitações, autenticação de usuários, favoritos, histórico de buscas, auditoria de chamadas à API e rastreamento de execuções do job de sincronização.
 
 A fonte de verdade do schema são os modelos SQLAlchemy em `src/backend/models.py`. As migrations em `migrations/versions/` garantem que o banco físico reflita esses modelos — sempre rode `python -m flask --app src/backend/app.py db upgrade` ao puxar mudanças.
 
@@ -47,8 +47,8 @@ Tabela central do sistema. Armazena as proposições legislativas coletadas da A
 | `descricao_situacao` | varchar(150) | Sim | Situação atual da proposição (ex: "Aguardando Pauta") |
 | `partido_id` | integer | Não | FK para `partidos.id` — nulo se partido não identificado na coleta |
 | `sigla_partido` | varchar(20) | Sim | Cópia desnormalizada da sigla do partido para leitura rápida |
-| `categoria` | varchar(100) | Não | Classificação temática derivada por palavras-chave ou IA (campo derivado) |
 | `data_coleta` | datetime | Sim | Timestamp automático do momento em que a proposição foi coletada |
+| `classificacao_status` | varchar(30) | Sim | Estado da categorização por IA: `pendente_classificacao` (padrão) ou `classificado` |
 
 **Constraints:** `id` PK · `(sigla_tipo, numero, ano)` UNIQUE · `partido_id` FK → `partidos.id` ON DELETE SET NULL
 
@@ -135,6 +135,36 @@ Log de auditoria das chamadas realizadas à API da Câmara dos Deputados. Permit
 
 ---
 
+### sync_executions
+
+Registra metadados de cada execução do job de sincronização automática com a API da Câmara dos Deputados. Permite auditar quando o job rodou, quantas proposições foram processadas e se houve erros. Não tem FK para outras tabelas — é um log independente.
+
+| Coluna | Tipo | Obrigatória | Descrição |
+|---|---|---|---|
+| `id` | integer | Sim | Identificador único da execução (PK) |
+| `iniciado_em` | timestamptz | Sim | Timestamp UTC do início da execução |
+| `finalizado_em` | timestamptz | Não | Timestamp UTC do fim da execução — nulo enquanto em andamento |
+| `status` | varchar(30) | Sim | Estado da execução (veja valores abaixo) |
+| `total_processados` | integer | Sim | Total de proposições processadas (filtradas por palavra-chave) |
+| `total_inseridos` | integer | Sim | Total de proposições novas inseridas no banco |
+| `total_atualizados` | integer | Sim | Total de proposições existentes com campos atualizados |
+| `total_erros` | integer | Sim | Total de proposições que falharam na validação ou categorização |
+| `mensagem_erro` | text | Não | Descrição do erro em caso de falha — nulo em execuções bem-sucedidas |
+
+**Valores de `status`:**
+
+| Valor | Significado |
+|---|---|
+| `em_andamento` | Job iniciado, ainda em execução |
+| `concluido` | Todas as proposições processadas e categorizadas com sucesso |
+| `concluido_parcial` | Processamento concluído, mas parte das proposições ficou com `pendente_classificacao` por falha do Gemini |
+| `erro_api` | Falha ao consumir a API da Câmara após retries esgotados |
+| `erro_interno` | Exceção inesperada dentro do pipeline |
+
+**Constraints:** `id` PK
+
+---
+
 ## Relacionamentos
 
 ```
@@ -143,6 +173,7 @@ proposicoes ──────────────── tramitacoes        
 proposicoes ──────────────── favoritos             (1 para N)
 usuarios ─────────────────── favoritos             (1 para N)
 usuarios ─────────────────── historico_consultas   (1 para N)
+sync_executions ─────────── (sem FK — log independente)
 ```
 
 **partidos → proposicoes (1:N)**
@@ -180,6 +211,7 @@ Um usuário pode ter muitos registros de busca. O `ON DELETE CASCADE` garante co
 | `historico_consultas` | `id` | PK | — |
 | `historico_consultas` | `usuario_id → usuarios.id` | FK | ON DELETE CASCADE |
 | `requisicoes_api` | `id` | PK | — |
+| `sync_executions` | `id` | PK | — |
 
 ---
 
@@ -205,6 +237,9 @@ Esta tabela não está relacionada a nenhuma outra — é um log independente. O
 
 **`tempo_execucao_ms` nullable em `requisicoes_api`**
 Monitoramento de tempo de execução é instrumentação opcional. Em cenários onde a medição não é possível ou relevante (ex: requisições assíncronas sem callback), o campo pode ser omitido sem invalidar o registro de auditoria.
+
+**`classificacao_status` em `proposicoes`**
+Proposições recém-coletadas entram no banco com `classificacao_status = 'pendente_classificacao'`. Após categorização bem-sucedida pelo Gemini, o status é atualizado para `'classificado'`. Falhas de IA não bloqueiam a ingestão — a proposição fica disponível com status pendente e pode ser reclassificada por um job futuro. A separação explícita de status (em vez de campo nullable) permite consultar facilmente o backlog de classificação.
 
 ---
 

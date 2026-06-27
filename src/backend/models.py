@@ -4,7 +4,7 @@ Espelham exatamente o schema definido em create_tables.sql
 e a documentação de arquitetura do projeto.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from src.backend.database import db
 
 # Tabela associativa many-to-many
@@ -93,16 +93,20 @@ class Proposicao(db.Model):
         ),
     )
 
-    id                 = db.Column(db.Integer,    primary_key=True)  # ID oficial da API
-    sigla_tipo         = db.Column(db.String(20),  nullable=False)
-    numero             = db.Column(db.Integer,     nullable=False)
-    ano                = db.Column(db.Integer,     nullable=False)
-    ementa             = db.Column(db.Text,        nullable=False)
-    data_apresentacao  = db.Column(db.Date,        nullable=False)
-    descricao_situacao = db.Column(db.String(150), nullable=False)
-    partido_id         = db.Column(db.Integer,     db.ForeignKey("partidos.id", ondelete="SET NULL"), nullable=True)
-    sigla_partido      = db.Column(db.String(20),  nullable=False)
-    data_coleta        = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
+    CLASSIFICACAO_PENDENTE   = "pendente_classificacao"
+    CLASSIFICACAO_CLASSIFICADO = "classificado"
+
+    id                   = db.Column(db.Integer,    primary_key=True)  # ID oficial da API
+    sigla_tipo           = db.Column(db.String(20),  nullable=False)
+    numero               = db.Column(db.Integer,     nullable=False)
+    ano                  = db.Column(db.Integer,     nullable=False)
+    ementa               = db.Column(db.Text,        nullable=False)
+    data_apresentacao    = db.Column(db.Date,        nullable=False)
+    descricao_situacao   = db.Column(db.String(150), nullable=False)
+    partido_id           = db.Column(db.Integer,     db.ForeignKey("partidos.id", ondelete="SET NULL"), nullable=True)
+    sigla_partido        = db.Column(db.String(20),  nullable=False)
+    data_coleta          = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
+    classificacao_status = db.Column(db.String(30),  nullable=False, default=CLASSIFICACAO_PENDENTE)
 
     partido     = db.relationship("Partido",   back_populates="proposicoes")
     categorias  = db.relationship("Categoria", secondary=proposicao_categoria, back_populates="proposicoes", lazy="dynamic")
@@ -123,6 +127,7 @@ class Proposicao(db.Model):
             'descricao_situacao': self.descricao_situacao,
             'sigla_partido': self.sigla_partido,
             'data_coleta': self.data_coleta.isoformat() if self.data_coleta else None,
+            'classificacao_status': self.classificacao_status,
             'partido': self.partido.to_dict() if self.partido else None,
             'categorias': [
                 categoria.to_dict()
@@ -267,4 +272,43 @@ class RequisicaoApi(db.Model):
             'quantidade_registros': self.quantidade_registros,
             'status_requisicao': self.status_requisicao,
             'tempo_execucao_ms': self.tempo_execucao_ms,
+        }
+
+
+# ── Execução de Sincronização ─────────────────────────────────────────────────
+class SyncExecution(db.Model):
+    __tablename__ = "sync_executions"
+
+    STATUS_EM_ANDAMENTO    = "em_andamento"
+    STATUS_CONCLUIDO       = "concluido"
+    STATUS_CONCLUIDO_PARC  = "concluido_parcial"
+    STATUS_ERRO_API        = "erro_api"
+    STATUS_ERRO_INTERNO    = "erro_interno"
+
+    id                = db.Column(db.Integer,  primary_key=True)
+    iniciado_em       = db.Column(db.DateTime(timezone=True), nullable=False,
+                                  default=lambda: datetime.now(timezone.utc))
+    finalizado_em     = db.Column(db.DateTime(timezone=True), nullable=True)
+    status            = db.Column(db.String(30), nullable=False,
+                                  default=STATUS_EM_ANDAMENTO)
+    total_processados = db.Column(db.Integer, nullable=False, default=0)
+    total_inseridos   = db.Column(db.Integer, nullable=False, default=0)
+    total_atualizados = db.Column(db.Integer, nullable=False, default=0)
+    total_erros       = db.Column(db.Integer, nullable=False, default=0)
+    mensagem_erro     = db.Column(db.Text, nullable=True)
+
+    def __repr__(self):
+        return f"<SyncExecution id={self.id} status={self.status}>"
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'iniciado_em': self.iniciado_em.isoformat() if self.iniciado_em else None,
+            'finalizado_em': self.finalizado_em.isoformat() if self.finalizado_em else None,
+            'status': self.status,
+            'total_processados': self.total_processados,
+            'total_inseridos': self.total_inseridos,
+            'total_atualizados': self.total_atualizados,
+            'total_erros': self.total_erros,
+            'mensagem_erro': self.mensagem_erro,
         }

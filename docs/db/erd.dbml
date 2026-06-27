@@ -1,5 +1,6 @@
 // LegisKids — Esquema do banco de dados
-// Gerado a partir de src/backend/models.py (migration: 7deb4eaf030e)
+// Gerado a partir de src/backend/models.py
+// Última atualização: add sync_executions + classificacao_status (sync-proposicoes-camara-ia)
 //
 // Para atualizar: edite este arquivo e reimporte no dbdiagram.io
 // Exportar como erd.png e salvar em docs/db/erd.png
@@ -19,9 +20,9 @@ Table proposicoes {
   data_apresentacao   date         [not null]
   descricao_situacao  varchar(150) [not null]
   partido_id          integer      [null, ref: > partidos.id, note: "ON DELETE SET NULL — pode ser nulo se partido não identificado"]
-  sigla_partido       varchar(20)  [not null, note: "Cópia desnormalizada da sigla para leitura rápida"]
-  categoria           varchar(100) [null, note: "Classificação temática derivada das palavras-chave (campo derivado, não digitado pelo usuário)"]
-  data_coleta         datetime     [not null, note: "Timestamp automático da coleta via API"]
+  sigla_partido        varchar(20)  [not null, note: "Cópia desnormalizada da sigla para leitura rápida"]
+  data_coleta          datetime     [not null, note: "Timestamp automático da coleta via API"]
+  classificacao_status varchar(30)  [not null, default: 'pendente_classificacao', note: "Estado da categorização por IA: pendente_classificacao | classificado"]
 
   indexes {
     (sigla_tipo, numero, ano) [unique, name: "uq_proposicao_tipo_numero_ano"]
@@ -71,4 +72,16 @@ Table requisicoes_api {
   quantidade_registros  integer      [not null, note: "Número de registros retornados na chamada"]
   status_requisicao     varchar(50)  [not null, note: "Ex: sucesso, erro_504, timeout"]
   tempo_execucao_ms     integer      [null, note: "Duração da chamada em milissegundos — campo de monitoramento opcional"]
+}
+
+Table sync_executions {
+  id                integer      [pk]
+  iniciado_em       timestamptz  [not null, note: "Timestamp UTC do início da execução"]
+  finalizado_em     timestamptz  [null, note: "Timestamp UTC do fim — nulo enquanto em andamento"]
+  status            varchar(30)  [not null, default: 'em_andamento', note: "em_andamento | concluido | concluido_parcial | erro_api | erro_interno"]
+  total_processados integer      [not null, default: 0]
+  total_inseridos   integer      [not null, default: 0]
+  total_atualizados integer      [not null, default: 0]
+  total_erros       integer      [not null, default: 0]
+  mensagem_erro     text         [null, note: "Descrição do erro — nulo em execuções bem-sucedidas"]
 }
