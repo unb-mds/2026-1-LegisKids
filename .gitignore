@@ -34,6 +34,8 @@ site/
 node_modules/
 npm-debug.log*
 yarn-error.log*
+src/frontend/.env
+src/frontend/dist/
 
 # ── IDEs ─────────────────────────────────────────────────────────────────────
 .vscode/

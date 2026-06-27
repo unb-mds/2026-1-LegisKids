@@ -20,8 +20,11 @@ O LegisKids é uma plataforma web para monitoramento, organização e análise d
 |---|---|
 | Backend | Python 3.11+ / Flask |
 | Banco de dados | PostgreSQL + SQLAlchemy + psycopg |
-| Frontend | HTML5 / CSS3 / JavaScript |
-| Requisições HTTP | Fetch API |
+| Frontend | Vue 3 + Vite |
+| Roteamento | Vue Router 4 |
+| Estado global | Pinia |
+| Gráficos | Chart.js 4 |
+| Requisições HTTP | Fetch API (via services) |
 | IA | Google Gemini API (gemini-1.5-flash) |
 | Dados Legislativos | API da Câmara dos Deputados |
 | Documentação | MkDocs |
@@ -40,15 +43,39 @@ O LegisKids é uma plataforma web para monitoramento, organização e análise d
 │       ├── services/
 │       ├── models/
 │       └── utils/
-├── frontend/
-│   ├── pages/
-│   ├── css/
-│   ├── js/
-│   │   ├── components/
-│   │   ├── services/
-│   │   ├── utils/
-│   │   └── script.js
-│   └── assets/
+├── src/
+│   ├── backend/                 ← Flask + SQLAlchemy
+│   └── frontend/                ← Projeto Vue 3 + Vite
+│       ├── index.html
+│       ├── vite.config.js
+│       ├── package.json
+│       ├── .env.example
+│       └── src/
+│           ├── main.js
+│           ├── App.vue
+│           ├── assets/
+│           │   └── main.css     ← variáveis CSS / design tokens
+│           ├── router/
+│           │   └── index.js
+│           ├── stores/          ← Pinia
+│           │   ├── busca.js
+│           │   └── proposicoes.js
+│           ├── services/        ← Fetch API encapsulada
+│           │   ├── proposicoes.js
+│           │   ├── temas.js
+│           │   └── estatisticas.js
+│           ├── components/
+│           │   ├── charts/      ← Chart.js
+│           │   ├── Navbar.vue
+│           │   ├── StatusBadge.vue
+│           │   ├── LoadingSpinner.vue
+│           │   ├── ProposicaoCard.vue
+│           │   ├── FilterBar.vue
+│           │   └── Pagination.vue
+│           └── views/
+│               ├── DashboardView.vue
+│               ├── BuscaView.vue
+│               └── DetalheView.vue
 ├── docs/
 │   ├── estudos/
 │   ├── projeto/
@@ -267,11 +294,26 @@ GOOGLE_API_KEY=<chave_gemini>
 
 ## Execução Local
 
+**Backend:**
 ```bash
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 flask run
+```
+
+**Frontend:**
+```bash
+cd src/frontend
+cp .env.example .env          # configurar VITE_API_BASE_URL se necessário
+npm install
+npm run dev                    # http://localhost:5173
+```
+
+**Build de produção do frontend:**
+```bash
+cd src/frontend
+npm run build                  # gera src/frontend/dist/
 ```
 
 ---
