@@ -8,8 +8,8 @@
 
 - [x] 2.1 Criar model SQLAlchemy `SyncExecution` em `backend/src/models/` com todas as colunas da spec (`sync_executions`)
 - [x] 2.2 Adicionar coluna `classificacao_status` (VARCHAR(30) NOT NULL DEFAULT `'pendente_classificacao'`) ao model `Proposicao`
-- [ ] 2.3 Gerar migration via `flask db migrate -m "add sync_executions and classificacao_status"`
-- [ ] 2.4 Revisar migration gerada e confirmar que `sync_executions` é criada e `proposicoes.classificacao_status` é adicionada corretamente
+- [x] 2.3 Gerar migration via `flask db migrate -m "add sync_executions and classificacao_status"`
+- [x] 2.4 Revisar migration gerada e confirmar que `sync_executions` é criada e `proposicoes.classificacao_status` é adicionada corretamente
 - [ ] 2.5 Aplicar migration no banco local com `flask db upgrade`
 
 ## 3. Repository
