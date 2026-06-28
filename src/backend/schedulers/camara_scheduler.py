@@ -15,23 +15,25 @@ def _run_sync_job(app):
 
 
 def start_scheduler(app) -> None:
-    """Inicia o BackgroundScheduler com o job de sync da Câmara."""
+    """Inicia o BackgroundScheduler com o job de sync da Câmara (diário ao meio-dia)."""
     global _scheduler
 
-    interval_minutes = int(os.getenv("CAMARA_SYNC_INTERVAL_MINUTES", "60"))
+    sync_hour = int(os.getenv("CAMARA_SYNC_HOUR", "12"))
+    sync_minute = int(os.getenv("CAMARA_SYNC_MINUTE", "0"))
 
     _scheduler = BackgroundScheduler()
     _scheduler.add_job(
         func=_run_sync_job,
         args=[app],
-        trigger="interval",
-        minutes=interval_minutes,
+        trigger="cron",
+        hour=sync_hour,
+        minute=sync_minute,
         id="camara_sync",
         coalesce=True,
         misfire_grace_time=300,
     )
     _scheduler.start()
-    logger.info("Scheduler iniciado: sync a cada %d minuto(s).", interval_minutes)
+    logger.info("Scheduler iniciado: sync diário às %02d:%02d.", sync_hour, sync_minute)
 
 
 def stop_scheduler() -> None:
