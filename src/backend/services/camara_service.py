@@ -388,14 +388,11 @@ class CamaraService:
                             dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
                         dtos_com_resultado.extend((dto, None) for dto in lote)
                         continue
-                    try:
-                        pares = self._classificar_lote(lote)
-                        dtos_com_resultado.extend(pares)
-                    except Exception:
+                    pares = self._classificar_lote(lote)
+                    dtos_com_resultado.extend(pares)
+                    # Gemini falhou em todo o lote (todos retornaram None) → parar de chamar neste run
+                    if all(categorias is None for _, categorias in pares):
                         cota_gemini_esgotada = True
-                        for dto in lote:
-                            dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
-                        dtos_com_resultado.extend((dto, None) for dto in lote)
 
                 # Filtra irrelevantes e persiste o restante
                 para_persistir = []
@@ -434,6 +431,7 @@ class CamaraService:
             total_inseridos=total_inseridos,
             total_atualizados=total_atualizados,
             total_erros=total_erros,
+            total_descartados=total_descartados,
             mensagem_erro=mensagem_erro,
         )
 

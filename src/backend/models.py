@@ -87,6 +87,7 @@ class Proposicao(db.Model):
         db.Index('idx_proposicoes_partido_id',         'partido_id'),
         db.Index('idx_proposicoes_ano',                'ano'),
         db.Index('idx_proposicoes_tipo_ano',           'sigla_tipo', 'ano'),
+        db.Index('idx_proposicoes_classificacao_status', 'classificacao_status'),
         db.CheckConstraint(
             "descricao_situacao IN ('Em tramitação', 'Aprovado', 'Arquivado', 'Encerrado')",
             name="ck_proposicao_status"
@@ -294,8 +295,9 @@ class SyncExecution(db.Model):
     total_processados = db.Column(db.Integer, nullable=False, default=0)
     total_inseridos   = db.Column(db.Integer, nullable=False, default=0)
     total_atualizados = db.Column(db.Integer, nullable=False, default=0)
-    total_erros       = db.Column(db.Integer, nullable=False, default=0)
-    mensagem_erro     = db.Column(db.Text, nullable=True)
+    total_erros         = db.Column(db.Integer, nullable=False, default=0)
+    total_descartados   = db.Column(db.Integer, nullable=False, default=0)
+    mensagem_erro       = db.Column(db.Text, nullable=True)
 
     def __repr__(self):
         return f"<SyncExecution id={self.id} status={self.status}>"
@@ -310,5 +312,6 @@ class SyncExecution(db.Model):
             'total_inseridos': self.total_inseridos,
             'total_atualizados': self.total_atualizados,
             'total_erros': self.total_erros,
+            'total_descartados': self.total_descartados,
             'mensagem_erro': self.mensagem_erro,
         }
