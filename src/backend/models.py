@@ -87,6 +87,7 @@ class Proposicao(db.Model):
         db.Index('idx_proposicoes_partido_id',         'partido_id'),
         db.Index('idx_proposicoes_ano',                'ano'),
         db.Index('idx_proposicoes_tipo_ano',           'sigla_tipo', 'ano'),
+        db.Index('idx_proposicoes_classificacao_status', 'classificacao_status'),
         db.CheckConstraint(
             "descricao_situacao IN ('Em tramitação', 'Aprovado', 'Arquivado', 'Encerrado')",
             name="ck_proposicao_status"
@@ -105,7 +106,7 @@ class Proposicao(db.Model):
     descricao_situacao   = db.Column(db.String(150), nullable=False)
     partido_id           = db.Column(db.Integer,     db.ForeignKey("partidos.id", ondelete="SET NULL"), nullable=True)
     sigla_partido        = db.Column(db.String(20),  nullable=False)
-    data_coleta          = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
+    data_coleta          = db.Column(db.DateTime,    nullable=False, default=lambda: datetime.now(timezone.utc))
     classificacao_status = db.Column(db.String(30),  nullable=False, default=CLASSIFICACAO_PENDENTE)
 
     partido     = db.relationship("Partido",   back_populates="proposicoes")
@@ -173,7 +174,7 @@ class Usuario(db.Model):
     nome         = db.Column(db.String(100), nullable=False)
     email        = db.Column(db.String(150), nullable=False, unique=True)
     google_id    = db.Column(db.String(100), nullable=False, unique=True)
-    data_criacao = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
+    data_criacao = db.Column(db.DateTime,    nullable=False, default=lambda: datetime.now(timezone.utc))
 
     favoritos           = db.relationship("Favorito",          back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")
     historico_consultas = db.relationship("HistoricoConsulta", back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")
@@ -210,7 +211,7 @@ class Favorito(db.Model):
     id            = db.Column(db.Integer,  primary_key=True)
     usuario_id    = db.Column(db.Integer,  db.ForeignKey("usuarios.id",    ondelete="CASCADE"), nullable=False)
     proposicao_id = db.Column(db.Integer,  db.ForeignKey("proposicoes.id", ondelete="CASCADE"), nullable=False)
-    data_favorito = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    data_favorito = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc))
 
     usuario    = db.relationship("Usuario",    back_populates="favoritos")
     proposicao = db.relationship("Proposicao", back_populates="favoritos")
@@ -234,7 +235,7 @@ class HistoricoConsulta(db.Model):
     id            = db.Column(db.Integer,     primary_key=True)
     usuario_id    = db.Column(db.Integer,     db.ForeignKey("usuarios.id", ondelete="CASCADE"), nullable=False)
     termo_busca   = db.Column(db.String(255), nullable=False)
-    data_consulta = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
+    data_consulta = db.Column(db.DateTime,    nullable=False, default=lambda: datetime.now(timezone.utc))
 
     usuario = db.relationship("Usuario", back_populates="historico_consultas")
 
@@ -256,7 +257,7 @@ class RequisicaoApi(db.Model):
 
     id                   = db.Column(db.Integer,     primary_key=True)
     endpoint             = db.Column(db.String(255), nullable=False)
-    data_requisicao      = db.Column(db.DateTime,    nullable=False, default=datetime.utcnow)
+    data_requisicao      = db.Column(db.DateTime,    nullable=False, default=lambda: datetime.now(timezone.utc))
     quantidade_registros = db.Column(db.Integer,     nullable=False)
     status_requisicao    = db.Column(db.String(50),  nullable=False)
     tempo_execucao_ms    = db.Column(db.Integer)    # nullable — monitoramento opcional
@@ -294,8 +295,9 @@ class SyncExecution(db.Model):
     total_processados = db.Column(db.Integer, nullable=False, default=0)
     total_inseridos   = db.Column(db.Integer, nullable=False, default=0)
     total_atualizados = db.Column(db.Integer, nullable=False, default=0)
-    total_erros       = db.Column(db.Integer, nullable=False, default=0)
-    mensagem_erro     = db.Column(db.Text, nullable=True)
+    total_erros         = db.Column(db.Integer, nullable=False, default=0)
+    total_descartados   = db.Column(db.Integer, nullable=False, default=0)
+    mensagem_erro       = db.Column(db.Text, nullable=True)
 
     def __repr__(self):
         return f"<SyncExecution id={self.id} status={self.status}>"
@@ -310,5 +312,6 @@ class SyncExecution(db.Model):
             'total_inseridos': self.total_inseridos,
             'total_atualizados': self.total_atualizados,
             'total_erros': self.total_erros,
+            'total_descartados': self.total_descartados,
             'mensagem_erro': self.mensagem_erro,
         }

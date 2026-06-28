@@ -2,7 +2,7 @@
 
 ## Visão geral
 
-O banco de dados do LegisKids é um PostgreSQL relacional composto por **8 tabelas** que suportam o ciclo completo da plataforma: coleta e sincronização automática de proposições legislativas, classificação temática via IA, acompanhamento de tramitações, autenticação de usuários, favoritos, histórico de buscas, auditoria de chamadas à API e rastreamento de execuções do job de sincronização.
+O banco de dados do LegisKids é um PostgreSQL relacional composto por **10 tabelas** que suportam o ciclo completo da plataforma: coleta e sincronização automática de proposições legislativas, classificação temática via IA, acompanhamento de tramitações, autenticação de usuários, favoritos, histórico de buscas, auditoria de chamadas à API e rastreamento de execuções do job de sincronização.
 
 A fonte de verdade do schema são os modelos SQLAlchemy em `src/backend/models.py`. As migrations em `migrations/versions/` garantem que o banco físico reflita esses modelos — sempre rode `python -m flask --app src/backend/app.py db upgrade` ao puxar mudanças.
 
@@ -51,6 +51,49 @@ Tabela central do sistema. Armazena as proposições legislativas coletadas da A
 | `classificacao_status` | varchar(30) | Sim | Estado da categorização por IA: `pendente_classificacao` (padrão) ou `classificado` |
 
 **Constraints:** `id` PK · `(sigla_tipo, numero, ano)` UNIQUE · `partido_id` FK → `partidos.id` ON DELETE SET NULL
+
+---
+
+### categorias
+
+Armazena as categorias temáticas fixas usadas para classificar proposições via IA. As 8 categorias são inseridas automaticamente no startup da aplicação (`seed_categorias()`) usando `INSERT ... ON CONFLICT (nome) DO NOTHING` — são imutáveis e não devem ser editadas manualmente.
+
+| Coluna | Tipo | Obrigatória | Descrição |
+|---|---|---|---|
+| `id` | integer | Sim | Identificador da categoria (PK, autoincremento) |
+| `nome` | varchar(100) | Sim | Nome canônico da categoria — único no banco |
+| `descricao` | text | Não | Descrição da categoria para uso no frontend |
+| `cor` | varchar(7) | Não | Cor hex para visualização (ex: `#EF4444`) |
+| `icone` | varchar(50) | Não | Identificador de ícone (ex: `shield-alert`) |
+| `ativa` | boolean | Sim | Indica se a categoria está ativa (padrão: `true`) |
+
+**Seed data (8 categorias fixas):**
+
+| Nome | Cor | Ícone |
+|---|---|---|
+| cyberbullying | `#EF4444` | shield-alert |
+| exploração sexual infantil online | `#DC2626` | alert-triangle |
+| proteção de dados de menores | `#3B82F6` | lock |
+| segurança digital infantil | `#8B5CF6` | shield |
+| regulação de plataformas digitais | `#F59E0B` | globe |
+| conteúdos nocivos para menores | `#EC4899` | eye-off |
+| crimes virtuais contra crianças | `#6366F1` | gavel |
+| privacidade de menores | `#10B981` | user-shield |
+
+**Constraints:** `id` PK · `nome` UNIQUE
+
+---
+
+### proposicao_categoria
+
+Tabela junction (many-to-many) entre `proposicoes` e `categorias`. Uma proposição pode pertencer a múltiplas categorias; uma categoria pode ter muitas proposições. Inserções feitas via `vincular_categoria()` em `camara_repository.py` com `ON CONFLICT DO NOTHING` para idempotência.
+
+| Coluna | Tipo | Obrigatória | Descrição |
+|---|---|---|---|
+| `proposicao_id` | integer | Sim | FK para `proposicoes.id` |
+| `categoria_id` | integer | Sim | FK para `categorias.id` |
+
+**Constraints:** `(proposicao_id, categoria_id)` PK composta · `proposicao_id` FK → `proposicoes.id` ON DELETE CASCADE · `categoria_id` FK → `categorias.id` ON DELETE CASCADE
 
 ---
 
@@ -171,6 +214,8 @@ Registra metadados de cada execução do job de sincronização automática com 
 partidos ──────────────────── proposicoes          (1 para N)
 proposicoes ──────────────── tramitacoes           (1 para N)
 proposicoes ──────────────── favoritos             (1 para N)
+proposicoes ──────────────── proposicao_categoria  (1 para N)
+categorias ──────────────── proposicao_categoria   (1 para N)
 usuarios ─────────────────── favoritos             (1 para N)
 usuarios ─────────────────── historico_consultas   (1 para N)
 sync_executions ─────────── (sem FK — log independente)
@@ -187,6 +232,9 @@ A tabela `favoritos` representa o relacionamento entre usuários e proposições
 
 **usuarios → historico_consultas (1:N)**
 Um usuário pode ter muitos registros de busca. O `ON DELETE CASCADE` garante conformidade com requisitos de exclusão de dados (LGPD) — ao remover um usuário, todo o histórico é apagado.
+
+**proposicoes ↔ categorias (N:N via proposicao_categoria)**
+Uma proposição pode ser classificada em múltiplas categorias temáticas; uma categoria pode agregar muitas proposições. A junção é gerenciada exclusivamente pelo pipeline de IA (`vincular_categoria()`). O `ON DELETE CASCADE` em ambas as FKs da junction garante que vínculos órfãos nunca existam.
 
 ---
 
@@ -211,6 +259,11 @@ Um usuário pode ter muitos registros de busca. O `ON DELETE CASCADE` garante co
 | `historico_consultas` | `id` | PK | — |
 | `historico_consultas` | `usuario_id → usuarios.id` | FK | ON DELETE CASCADE |
 | `requisicoes_api` | `id` | PK | — |
+| `categorias` | `id` | PK | — |
+| `categorias` | `nome` | UNIQUE | Impede categorias duplicadas; base do seed idempotente |
+| `proposicao_categoria` | `(proposicao_id, categoria_id)` | PK composta | Impede vínculo duplicado |
+| `proposicao_categoria` | `proposicao_id → proposicoes.id` | FK | ON DELETE CASCADE |
+| `proposicao_categoria` | `categoria_id → categorias.id` | FK | ON DELETE CASCADE |
 | `sync_executions` | `id` | PK | — |
 
 ---
@@ -220,8 +273,8 @@ Um usuário pode ter muitos registros de busca. O `ON DELETE CASCADE` garante co
 **`partido_id` nullable em `proposicoes`**
 A API da Câmara nem sempre retorna o partido do autor de uma proposição de forma estruturada. Para não bloquear a coleta, o campo `partido_id` é opcional. O campo `sigla_partido` (não-nullable) preserva sempre a sigla textual retornada pela API, mesmo quando a FK não pode ser resolvida. Isso é intencional: `sigla_partido` é uma cópia desnormalizada para leitura rápida e proteção contra perda de informação.
 
-**`categoria` como campo derivado**
-A coluna `categoria` em `proposicoes` não é preenchida pelo usuário nem pela API — ela é derivada por filtragem de palavras-chave ou pelo módulo de IA. Por isso é nullable: proposições recém-coletadas entram no banco sem categoria e são classificadas posteriormente (processamento assíncrono).
+**Categorias como tabela separada, não coluna em `proposicoes`**
+A classificação temática é modelada com uma tabela `categorias` dedicada e uma junction `proposicao_categoria`, não como coluna em `proposicoes`. Isso permite múltiplas categorias por proposição (ex: uma proposta pode ser "cyberbullying" e "regulação de plataformas digitais" ao mesmo tempo) e facilita consultas analíticas agregadas por tema. O campo `classificacao_status` em `proposicoes` rastreia se a IA já processou a proposição, independentemente de quantas categorias foram vinculadas.
 
 **Unique composta em `favoritos`**
 A tabela `favoritos` usa `UNIQUE (usuario_id, proposicao_id)` em vez de confiar na lógica da aplicação para evitar duplicatas. Isso garante integridade no banco independentemente de qualquer bug de camada de serviço.
