@@ -120,6 +120,14 @@ def vincular_categorias_lote(proposicao_id: int, categoria_nomes: list[str]) -> 
     db.session.commit()
 
 
+def get_ids_existentes(ids: list[int]) -> set[int]:
+    """Retorna o subconjunto de IDs que já existem na tabela proposicoes."""
+    if not ids:
+        return set()
+    rows = db.session.query(Proposicao.id).filter(Proposicao.id.in_(ids)).all()
+    return {row[0] for row in rows}
+
+
 def get_proposicoes_pendentes(limite: int = 50) -> list[Proposicao]:
     """Proposições com classificação pendente, ordenadas por data_coleta ASC (mais antigas primeiro)."""
     return (

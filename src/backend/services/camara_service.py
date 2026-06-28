@@ -336,6 +336,17 @@ class CamaraService:
                     logger.info("Página %d vazia — fim da paginação.", pagina)
                     break
 
+                # Filtro 1: early-stop — se todos os IDs da página já estão no banco,
+                # as páginas seguintes (IDs menores, ordem DESC) também estarão.
+                ids_brutos = [d["id"] for d in dados_brutos]
+                ids_conhecidos = repo.get_ids_existentes(ids_brutos)
+                if len(ids_conhecidos) == len(ids_brutos):
+                    logger.info(
+                        "Página %d: todos os %d IDs já no banco — paginação encerrada.",
+                        pagina, len(ids_brutos),
+                    )
+                    break
+
                 filtrados = _filtrar_por_palavras_chave(dados_brutos)
                 logger.info(
                     "Página %d: %d recebidos, %d após filtro de palavras-chave.",
@@ -350,6 +361,15 @@ class CamaraService:
                         total_erros += 1
                     else:
                         dtos_validos.append(dto)
+
+                # Filtro 2: skip de IDs já conhecidos — evita rechamar o Gemini
+                # para proposições já salvas (classificadas ou pendentes).
+                # Pendentes são tratadas por _retentar_pendentes no início do run.
+                novos = len(dtos_validos)
+                dtos_validos = [dto for dto in dtos_validos if dto["id"] not in ids_conhecidos]
+                pulados = novos - len(dtos_validos)
+                if pulados:
+                    logger.debug("Página %d: %d proposição(ões) já no banco — ignoradas.", pagina, pulados)
 
                 dtos_com_resultado: list[tuple[dict, str | None]] = []
                 for i in range(0, len(dtos_validos), self._batch_size):

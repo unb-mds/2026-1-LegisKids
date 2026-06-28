@@ -204,6 +204,56 @@ class TestUpsertProposicoes(unittest.TestCase):
         self.assertEqual(resultado["atualizados"], 1)
 
 
+class TestGetIdsExistentes(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.app = _get_app()
+        cls.ctx = cls.app.app_context()
+        cls.ctx.push()
+        from src.backend.database import db
+        from src.backend.repository.camara_repository import upsert_proposicoes_lote
+        cls.db = db
+        upsert_proposicoes_lote([{
+            "id": 9999850,
+            "sigla_tipo": "PL",
+            "numero": 9850,
+            "ano": 2099,
+            "ementa": "Ementa para teste de ids existentes",
+            "data_apresentacao": date(2099, 1, 1),
+            "descricao_situacao": "Em tramitação",
+            "sigla_partido": "TEST",
+            "data_coleta": datetime.now(timezone.utc),
+            "classificacao_status": "pendente_classificacao",
+        }])
+
+    @classmethod
+    def tearDownClass(cls):
+        from src.backend.models import Proposicao
+        cls.db.session.query(Proposicao).filter_by(id=9999850).delete()
+        cls.db.session.commit()
+        cls.ctx.pop()
+
+    def test_retorna_ids_existentes(self):
+        from src.backend.repository.camara_repository import get_ids_existentes
+        resultado = get_ids_existentes([9999850, 1, 2])
+        self.assertIn(9999850, resultado)
+        self.assertNotIn(1, resultado)
+        self.assertNotIn(2, resultado)
+
+    def test_lista_vazia_retorna_set_vazio(self):
+        from src.backend.repository.camara_repository import get_ids_existentes
+        self.assertEqual(get_ids_existentes([]), set())
+
+    def test_nenhum_existente_retorna_set_vazio(self):
+        from src.backend.repository.camara_repository import get_ids_existentes
+        self.assertEqual(get_ids_existentes([1, 2, 3]), set())
+
+    def test_todos_existentes(self):
+        from src.backend.repository.camara_repository import get_ids_existentes
+        resultado = get_ids_existentes([9999850])
+        self.assertEqual(resultado, {9999850})
+
+
 class TestSyncExecution(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -406,6 +456,104 @@ class TestRunSyncIntegration(unittest.TestCase):
         db.session.expire_all()
         prop = db.session.get(Proposicao, 9999996)
         self.assertIsNone(prop)
+
+    def test_early_stop_quando_todos_ids_conhecidos(self):
+        """Paginação encerra quando todos os IDs brutos da página já estão no banco."""
+        from unittest.mock import patch, call
+        from src.backend.repository.camara_repository import upsert_proposicoes_lote
+        from src.backend.services.camara_service import CamaraService
+        from src.backend.database import db
+
+        upsert_proposicoes_lote([{
+            "id": 9999995,
+            "sigla_tipo": "PL",
+            "numero": 9995,
+            "ano": 2099,
+            "ementa": "Proteção de crianças na internet",
+            "data_apresentacao": date(2099, 1, 1),
+            "descricao_situacao": "Em tramitação",
+            "sigla_partido": "TEST",
+            "data_coleta": datetime.now(timezone.utc),
+            "classificacao_status": "classificado",
+        }])
+
+        dado_conhecido = {
+            "id": 9999995,
+            "siglaTipo": "PL",
+            "numero": 9995,
+            "ano": 2099,
+            "ementa": "Proteção de crianças na internet",
+            "dataApresentacao": "2099-01-01",
+            "descricaoSituacao": "Em tramitação",
+        }
+
+        with patch("src.backend.services.camara_service._buscar_proposicoes_api",
+                   side_effect=[[dado_conhecido], []]) as mock_api:
+            with patch("src.backend.services.camara_service._classificar_lote_via_gemini") as mock_gemini:
+                CamaraService().run_sync()
+
+        # API chamada apenas uma vez (parou após página 1 com ID conhecido)
+        self.assertEqual(mock_api.call_count, 1)
+        # Gemini não foi chamado para proposição já no banco
+        mock_gemini.assert_not_called()
+
+        db.session.query(__import__('src.backend.models', fromlist=['Proposicao']).Proposicao).filter_by(id=9999995).delete()
+        db.session.commit()
+
+    def test_skip_gemini_para_id_ja_no_banco(self):
+        """Proposição com ID já no banco não é enviada ao Gemini no run principal."""
+        from unittest.mock import patch
+        from src.backend.repository.camara_repository import upsert_proposicoes_lote
+        from src.backend.services.camara_service import CamaraService
+        from src.backend.database import db
+
+        upsert_proposicoes_lote([{
+            "id": 9999994,
+            "sigla_tipo": "PL",
+            "numero": 9994,
+            "ano": 2099,
+            "ementa": "Proteção de crianças na internet",
+            "data_apresentacao": date(2099, 1, 1),
+            "descricao_situacao": "Em tramitação",
+            "sigla_partido": "TEST",
+            "data_coleta": datetime.now(timezone.utc),
+            "classificacao_status": "classificado",
+        }])
+
+        dado_conhecido = {
+            "id": 9999994,
+            "siglaTipo": "PL",
+            "numero": 9994,
+            "ano": 2099,
+            "ementa": "Proteção de crianças na internet",
+            "dataApresentacao": "2099-01-01",
+            "descricaoSituacao": "Em tramitação",
+        }
+        dado_novo = {
+            "id": 8888881,
+            "siglaTipo": "PL",
+            "numero": 8881,
+            "ano": 2099,
+            "ementa": "Segurança digital infantil em redes sociais",
+            "dataApresentacao": "2099-01-01",
+            "descricaoSituacao": "Em tramitação",
+        }
+
+        with patch("src.backend.services.camara_service._buscar_proposicoes_api",
+                   side_effect=[[dado_conhecido, dado_novo], []]):
+            with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                       return_value=[["segurança digital infantil"]]) as mock_gemini:
+                CamaraService().run_sync()
+
+        # Gemini chamado apenas com o DTO novo (id 8888881), não com o já conhecido
+        self.assertEqual(mock_gemini.call_count, 1)
+        ementas_enviadas = mock_gemini.call_args[0][0]
+        self.assertEqual(len(ementas_enviadas), 1)
+        self.assertIn("Segurança digital infantil", ementas_enviadas[0])
+
+        from src.backend.models import Proposicao
+        db.session.query(Proposicao).filter(Proposicao.id.in_([9999994, 8888881])).delete()
+        db.session.commit()
 
 
 if __name__ == "__main__":
