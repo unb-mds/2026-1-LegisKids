@@ -409,12 +409,16 @@ class TestRunSyncIntegration(unittest.TestCase):
             "classificacao_status": "pendente_classificacao",
         }])
 
+        prop_obj = db.session.get(Proposicao, 9999997)
+
         # run_sync com API vazia mas Gemini classifica o pendente
-        with patch("src.backend.services.camara_service._buscar_proposicoes_api",
-                   return_value=[]):
-            with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
-                       return_value=[["proteção de dados de menores"]]):
-                CamaraService().run_sync()
+        with patch("src.backend.repository.camara_repository.get_proposicoes_pendentes",
+                   return_value=[prop_obj]):
+            with patch("src.backend.services.camara_service._buscar_proposicoes_api",
+                       return_value=[]):
+                with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                           return_value=[["proteção de dados de menores"]]):
+                    CamaraService().run_sync()
 
         db.session.expire_all()
         prop = db.session.get(Proposicao, 9999997)
@@ -447,11 +451,15 @@ class TestRunSyncIntegration(unittest.TestCase):
             "classificacao_status": "pendente_classificacao",
         }])
 
-        with patch("src.backend.services.camara_service._buscar_proposicoes_api",
-                   return_value=[]):
-            with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
-                       return_value=[["irrelevante"]]):
-                CamaraService().run_sync()
+        prop_obj = db.session.get(Proposicao, 9999996)
+
+        with patch("src.backend.repository.camara_repository.get_proposicoes_pendentes",
+                   return_value=[prop_obj]):
+            with patch("src.backend.services.camara_service._buscar_proposicoes_api",
+                       return_value=[]):
+                with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                           return_value=[["irrelevante"]]):
+                    CamaraService().run_sync()
 
         db.session.expire_all()
         prop = db.session.get(Proposicao, 9999996)
@@ -487,10 +495,12 @@ class TestRunSyncIntegration(unittest.TestCase):
             "descricaoSituacao": "Em tramitação",
         }
 
-        with patch("src.backend.services.camara_service._buscar_proposicoes_api",
-                   side_effect=[[dado_conhecido], []]) as mock_api:
-            with patch("src.backend.services.camara_service._classificar_lote_via_gemini") as mock_gemini:
-                CamaraService().run_sync()
+        with patch("src.backend.repository.camara_repository.get_proposicoes_pendentes",
+                   return_value=[]):
+            with patch("src.backend.services.camara_service._buscar_proposicoes_api",
+                       side_effect=[[dado_conhecido], []]) as mock_api:
+                with patch("src.backend.services.camara_service._classificar_lote_via_gemini") as mock_gemini:
+                    CamaraService().run_sync()
 
         # API chamada apenas uma vez (parou após página 1 com ID conhecido)
         self.assertEqual(mock_api.call_count, 1)

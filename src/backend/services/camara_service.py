@@ -163,6 +163,11 @@ def _is_rate_limit_error(exc: Exception) -> bool:
     )
 
 
+def _is_transient_error(exc: Exception) -> bool:
+    exc_str = str(exc).lower()
+    return "503" in exc_str or "unavailable" in exc_str
+
+
 def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
     """Classifica um lote de ementas em uma única chamada ao Gemini.
 
@@ -201,7 +206,7 @@ def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
         f"Ementas:\n{ementas_formatadas}"
     )
 
-    for tentativa in range(2):
+    for tentativa in range(3):
         try:
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
@@ -212,9 +217,13 @@ def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
             )
             break
         except Exception as exc:
-            if tentativa == 0 and _is_rate_limit_error(exc):
+            if tentativa < 2 and _is_rate_limit_error(exc):
                 logger.warning("Gemini 429 ResourceExhausted: aguardando 60s antes de re-tentar.")
                 time.sleep(60)
+                continue
+            if tentativa < 2 and _is_transient_error(exc):
+                logger.warning("Gemini 503 Unavailable: aguardando 30s antes de re-tentar.")
+                time.sleep(30)
                 continue
             raise
 
