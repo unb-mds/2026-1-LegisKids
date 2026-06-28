@@ -292,8 +292,8 @@ class TestRunSyncIntegration(unittest.TestCase):
 
         with patch("src.backend.services.camara_service._buscar_proposicoes_api",
                    side_effect=[[self._dado_mock(9999999)], []]):
-            with patch.object(CamaraService, "_classificar_com_rate_limit",
-                              return_value="cyberbullying"):
+            with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                       return_value=[["cyberbullying"]]):
                 resumo = CamaraService().run_sync()
 
         self.assertIn(resumo["status"], ["concluido", "concluido_parcial"])
@@ -312,8 +312,8 @@ class TestRunSyncIntegration(unittest.TestCase):
 
         with patch("src.backend.services.camara_service._buscar_proposicoes_api",
                    side_effect=[[self._dado_mock(9999998)], []]):
-            with patch.object(CamaraService, "_classificar_com_rate_limit",
-                              return_value="irrelevante"):
+            with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                       return_value=[["irrelevante"]]):
                 resumo = CamaraService().run_sync()
 
         self.assertEqual(resumo["total_descartados"], 1)
@@ -362,8 +362,8 @@ class TestRunSyncIntegration(unittest.TestCase):
         # run_sync com API vazia mas Gemini classifica o pendente
         with patch("src.backend.services.camara_service._buscar_proposicoes_api",
                    return_value=[]):
-            with patch.object(CamaraService, "_classificar_com_rate_limit",
-                              return_value="proteção de dados de menores"):
+            with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                       return_value=[["proteção de dados de menores"]]):
                 CamaraService().run_sync()
 
         db.session.expire_all()
@@ -399,8 +399,8 @@ class TestRunSyncIntegration(unittest.TestCase):
 
         with patch("src.backend.services.camara_service._buscar_proposicoes_api",
                    return_value=[]):
-            with patch.object(CamaraService, "_classificar_com_rate_limit",
-                              return_value="irrelevante"):
+            with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                       return_value=[["irrelevante"]]):
                 CamaraService().run_sync()
 
         db.session.expire_all()

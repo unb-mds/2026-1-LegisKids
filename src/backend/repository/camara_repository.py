@@ -100,7 +100,7 @@ def seed_categorias() -> None:
 # ── Vinculação proposicao → categoria ────────────────────────────────────────
 
 def vincular_categoria(proposicao_id: int, categoria_nome: str) -> None:
-    """Vincula proposição a categoria via junction table (idempotente)."""
+    """Vincula proposição a uma categoria via junction table (sem commit — use vincular_categorias_lote)."""
     categoria_id = _get_categoria_id(categoria_nome)
     if categoria_id is None:
         logger.warning("vincular_categoria: categoria '%s' não encontrada no banco.", categoria_nome)
@@ -111,6 +111,12 @@ def vincular_categoria(proposicao_id: int, categoria_nome: str) -> None:
         .on_conflict_do_nothing()
     )
     db.session.execute(stmt)
+
+
+def vincular_categorias_lote(proposicao_id: int, categoria_nomes: list[str]) -> None:
+    """Vincula proposição a múltiplas categorias em um único commit."""
+    for nome in categoria_nomes:
+        vincular_categoria(proposicao_id, nome)
     db.session.commit()
 
 

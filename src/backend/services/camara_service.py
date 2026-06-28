@@ -207,7 +207,7 @@ def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
                 model="gemini-2.5-flash",
                 contents=prompt,
                 config=genai_types.GenerateContentConfig(
-                    http_options=genai_types.HttpOptions(timeout=30000),
+                    http_options=genai_types.HttpOptions(timeout=60000),
                 ),
             )
             break
@@ -299,8 +299,7 @@ class CamaraService:
                     repo.deletar_proposicao(dto["id"])
                     logger.info("Proposição pendente %d era irrelevante — removida.", dto["id"])
                 elif categorias is not None:
-                    for cat in categorias:
-                        repo.vincular_categoria(dto["id"], cat)
+                    repo.vincular_categorias_lote(dto["id"], categorias)
                     repo.atualizar_classificacao_status(dto["id"], Proposicao.CLASSIFICACAO_CLASSIFICADO)
                     logger.info("Proposição pendente %d classificada como %s.", dto["id"], categorias)
 
@@ -385,8 +384,7 @@ class CamaraService:
 
                     for dto, categorias in para_persistir:
                         if categorias:
-                            for cat in categorias:
-                                repo.vincular_categoria(dto["id"], cat)
+                            repo.vincular_categorias_lote(dto["id"], categorias)
 
                 total_processados += len(filtrados)
                 pagina += 1

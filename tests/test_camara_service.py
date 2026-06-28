@@ -63,89 +63,82 @@ class TestValidarProposicao(unittest.TestCase):
         self.assertEqual(dto["data_apresentacao"], date(2025, 3, 20))
 
 
-class TestClassificarViaGemini(unittest.TestCase):
-    """Testa _classificar_via_gemini — nova função com suporte a "irrelevante"."""
+class TestClassificarLoteViaGemini(unittest.TestCase):
+    """Testa _classificar_lote_via_gemini — classificação em batch com múltiplas categorias."""
 
-    def _mock_model(self, texto_resposta: str):
+    def _mock_client(self, texto_resposta: str):
         mock_response = MagicMock()
         mock_response.text = texto_resposta
-        mock_model = MagicMock()
-        mock_model.generate_content.return_value = mock_response
-        return mock_model
+        mock_client = MagicMock()
+        mock_client.models.generate_content.return_value = mock_response
+        return mock_client
 
-    def _chamar(self, texto_resposta: str, ementa: str = "ementa qualquer"):
-        mock_model = self._mock_model(texto_resposta)
+    def _chamar(self, texto_resposta: str, ementas=None):
+        if ementas is None:
+            ementas = ["ementa qualquer"]
+        mock_client = self._mock_client(texto_resposta)
         with patch.dict(os.environ, {"GOOGLE_API_KEY": "fake-key"}):
-            with patch("google.generativeai.configure"):
-                with patch("google.generativeai.GenerativeModel", return_value=mock_model):
-                    # Recarrega para pegar nova versão
-                    import importlib
-                    import src.backend.services.camara_service as svc
-                    importlib.reload(svc)
-                    return svc._classificar_via_gemini(ementa)
+            with patch("google.genai.Client", return_value=mock_client):
+                from src.backend.services.camara_service import _classificar_lote_via_gemini
+                return _classificar_lote_via_gemini(ementas)
 
-    # 6.3 — resposta "irrelevante" → proposição descartada
-    def test_resposta_irrelevante_retorna_irrelevante(self):
-        resultado = self._chamar("irrelevante")
-        self.assertEqual(resultado, "irrelevante")
+    def test_resposta_irrelevante_retorna_lista_irrelevante(self):
+        resultado = self._chamar("1: irrelevante")
+        self.assertEqual(resultado, [["irrelevante"]])
 
-    # 6.4 — categoria válida → retorna categoria
     def test_categoria_valida_retornada(self):
-        resultado = self._chamar("cyberbullying")
-        self.assertEqual(resultado, "cyberbullying")
+        resultado = self._chamar("1: cyberbullying")
+        self.assertEqual(resultado, [["cyberbullying"]])
 
-    # 6.5 — resposta malformada → lança ValueError (caller trata como pendente)
-    def test_resposta_malformada_lanca_excecao(self):
-        mock_model = self._mock_model("categoria_que_nao_existe")
-        with patch.dict(os.environ, {"GOOGLE_API_KEY": "fake-key"}):
-            with patch("google.generativeai.configure"):
-                with patch("google.generativeai.GenerativeModel", return_value=mock_model):
-                    import importlib
-                    import src.backend.services.camara_service as svc
-                    importlib.reload(svc)
-                    with self.assertRaises(ValueError):
-                        svc._classificar_via_gemini("ementa qualquer")
+    def test_multiplas_categorias_por_ementa(self):
+        resultado = self._chamar("1: cyberbullying, proteção de dados de menores")
+        self.assertEqual(resultado, [["cyberbullying", "proteção de dados de menores"]])
+
+    def test_lote_com_multiplas_ementas(self):
+        resultado = self._chamar(
+            "1: cyberbullying\n2: irrelevante\n3: segurança digital infantil",
+            ementas=["e1", "e2", "e3"],
+        )
+        self.assertEqual(resultado[0], ["cyberbullying"])
+        self.assertEqual(resultado[1], ["irrelevante"])
+        self.assertEqual(resultado[2], ["segurança digital infantil"])
+
+    def test_resposta_malformada_cai_para_irrelevante(self):
+        resultado = self._chamar("1: categoria_que_nao_existe")
+        self.assertEqual(resultado, [["irrelevante"]])
 
     def test_sem_api_key_lanca_runtime_error(self):
         env_sem_key = {k: v for k, v in os.environ.items() if k != "GOOGLE_API_KEY"}
         with patch.dict(os.environ, env_sem_key, clear=True):
-            import importlib
-            import src.backend.services.camara_service as svc
-            importlib.reload(svc)
+            from src.backend.services.camara_service import _classificar_lote_via_gemini
             with self.assertRaises(RuntimeError):
-                svc._classificar_via_gemini("ementa")
+                _classificar_lote_via_gemini(["ementa"])
 
-    # 6.6 — 429 na primeira tentativa → aguarda 60s e re-tenta; segunda falha → pendente via caller
     def test_429_aguarda_e_retenta(self):
         class FakeResourceExhausted(Exception):
             pass
 
         mock_response = MagicMock()
-        mock_response.text = "cyberbullying"
-        mock_model = MagicMock()
-        # Primeira chamada: 429. Segunda: sucesso.
-        mock_model.generate_content.side_effect = [
+        mock_response.text = "1: cyberbullying"
+        mock_client = MagicMock()
+        mock_client.models.generate_content.side_effect = [
             FakeResourceExhausted("429 ResourceExhausted"),
             mock_response,
         ]
 
         with patch.dict(os.environ, {"GOOGLE_API_KEY": "fake-key"}):
-            with patch("google.generativeai.configure"):
-                with patch("google.generativeai.GenerativeModel", return_value=mock_model):
-                    with patch("time.sleep") as mock_sleep:
-                        import importlib
-                        import src.backend.services.camara_service as svc
-                        importlib.reload(svc)
-                        resultado = svc._classificar_via_gemini("ementa com cyberbullying")
+            with patch("google.genai.Client", return_value=mock_client):
+                with patch("time.sleep") as mock_sleep:
+                    from src.backend.services.camara_service import _classificar_lote_via_gemini
+                    resultado = _classificar_lote_via_gemini(["ementa com cyberbullying"])
 
-        # Deve ter dormido 60s uma vez
         mock_sleep.assert_called_once_with(60)
-        self.assertEqual(resultado, "cyberbullying")
-        self.assertEqual(mock_model.generate_content.call_count, 2)
+        self.assertEqual(resultado, [["cyberbullying"]])
+        self.assertEqual(mock_client.models.generate_content.call_count, 2)
 
 
 class TestClassificarEFiltrar(unittest.TestCase):
-    """Testa _classificar_e_filtrar — retorna (dto, resultado)."""
+    """Testa _classificar_e_filtrar — retorna (dto, list[str] | None)."""
 
     def _service(self):
         from src.backend.services.camara_service import CamaraService
@@ -158,35 +151,42 @@ class TestClassificarEFiltrar(unittest.TestCase):
             "classificacao_status": "pendente_classificacao",
         }
 
-    # 6.4 — categoria válida: dto classificado e categoria retornada
-    def test_categoria_valida_retorna_dto_e_categoria(self):
+    def test_categoria_valida_retorna_dto_e_lista(self):
         svc = self._service()
-        with patch.object(svc, "_classificar_com_rate_limit", return_value="cyberbullying"):
+        with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                   return_value=[["cyberbullying"]]):
             dto, resultado = svc._classificar_e_filtrar(self._dto())
-        self.assertEqual(resultado, "cyberbullying")
+        self.assertEqual(resultado, ["cyberbullying"])
         self.assertEqual(dto["classificacao_status"], "classificado")
 
-    # 6.3 — irrelevante: dto não modificado, resultado é "irrelevante"
+    def test_multiplas_categorias_retornadas(self):
+        svc = self._service()
+        with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                   return_value=[["cyberbullying", "proteção de dados de menores"]]):
+            dto, resultado = svc._classificar_e_filtrar(self._dto())
+        self.assertEqual(resultado, ["cyberbullying", "proteção de dados de menores"])
+        self.assertEqual(dto["classificacao_status"], "classificado")
+
     def test_irrelevante_retorna_sentinel(self):
         svc = self._service()
-        with patch.object(svc, "_classificar_com_rate_limit", return_value="irrelevante"):
+        with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                   return_value=[["irrelevante"]]):
             dto, resultado = svc._classificar_e_filtrar(self._dto())
-        self.assertEqual(resultado, "irrelevante")
-        # classificacao_status não deve ser alterado para irrelevante
+        self.assertEqual(resultado, ["irrelevante"])
         self.assertEqual(dto["classificacao_status"], "pendente_classificacao")
 
-    # 6.5 — resposta malformada: resultado None, status pendente
     def test_falha_gemini_retorna_none_e_pendente(self):
         svc = self._service()
-        with patch.object(svc, "_classificar_com_rate_limit", side_effect=ValueError("inválido")):
+        with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                   side_effect=ValueError("falha")):
             dto, resultado = svc._classificar_e_filtrar(self._dto())
         self.assertIsNone(resultado)
         self.assertEqual(dto["classificacao_status"], "pendente_classificacao")
 
-    # 6.5 — timeout: resultado None, status pendente
     def test_timeout_retorna_none_e_pendente(self):
         svc = self._service()
-        with patch.object(svc, "_classificar_com_rate_limit", side_effect=TimeoutError("timeout")):
+        with patch("src.backend.services.camara_service._classificar_lote_via_gemini",
+                   side_effect=TimeoutError("timeout")):
             dto, resultado = svc._classificar_e_filtrar(self._dto())
         self.assertIsNone(resultado)
         self.assertEqual(dto["classificacao_status"], "pendente_classificacao")
