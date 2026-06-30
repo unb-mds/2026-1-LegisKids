@@ -115,6 +115,10 @@ def _validar_proposicao(dado: dict) -> dict | None:
         logger.warning("Proposição %s: ementa vazia. Ignorando.", dado.get("id"))
         return None
 
+    if int(dado["ano"]) <= 0:
+        logger.warning("Proposição %s: ano inválido '%s'. Ignorando.", dado.get("id"), dado.get("ano"))
+        return None
+
     data_apresentacao = _normalizar_data(dado.get("dataApresentacao"))
     if data_apresentacao is None:
         logger.warning(
@@ -153,6 +157,11 @@ def _filtrar_por_palavras_chave(dados: list[dict]) -> list[dict]:
 
 
 # ── Gemini ────────────────────────────────────────────────────────────────────
+
+def _is_daily_quota_error(exc: Exception) -> bool:
+    exc_str = str(exc).lower()
+    return "perday" in exc_str or "per_day" in exc_str or "generaterequestsperdayperproject" in exc_str
+
 
 def _is_rate_limit_error(exc: Exception) -> bool:
     exc_str = str(exc).lower()
@@ -217,6 +226,9 @@ def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
             )
             break
         except Exception as exc:
+            if _is_daily_quota_error(exc):
+                logger.warning("Gemini: quota diária esgotada — abortando classificação sem retry.")
+                raise
             if tentativa < 2 and _is_rate_limit_error(exc):
                 logger.warning("Gemini 429 ResourceExhausted: aguardando 60s antes de re-tentar.")
                 time.sleep(60)
