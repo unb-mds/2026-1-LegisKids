@@ -210,6 +210,10 @@ Closes #numero
 O passo a passo completo de instalação está no
 [README](README.md#como-executar-localmente).
 
+Use a `DATABASE_URL` do Neon fornecida pela equipe. Não execute migrations ou
+o seed no banco compartilhado sem autorização do responsável. Mantenha
+`FLASK_ENV=testing` no ambiente local para não iniciar o scheduler diário.
+
 ### Executar API
 
 ```bash

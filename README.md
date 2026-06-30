@@ -116,7 +116,7 @@ scripts/             -> scripts auxiliares
 * Git
 * Python 3.10+
 * Node.js 18+ e npm 9+
-* Docker com Docker Compose
+* Acesso à `DATABASE_URL` do projeto no Neon
 
 ### 1. Clonar o repositório
 
@@ -150,28 +150,23 @@ python -m pip install -r requirements.txt
 cp .env.example .env
 ```
 
-No Windows, use `copy .env.example .env`. O arquivo fornecido já aponta para o
-PostgreSQL local do `docker-compose.yml`. Preencha `GOOGLE_API_KEY` apenas se
-for executar a classificação automática.
+No Windows, use `copy .env.example .env`.
 
-### 3. Iniciar o banco de dados
+Abra o `.env` e substitua a `DATABASE_URL` vazia pela connection string
+fornecida pelo responsável pelo banco:
 
-```bash
-docker compose up -d
-docker compose ps
+```env
+DATABASE_URL=postgresql://<usuario>:<senha>@<host>.neon.tech/<banco>?sslmode=require&channel_binding=require
 ```
 
-Aguarde o serviço `db` ficar saudável antes de continuar. O volume
-`legiskids_db_data` mantém os dados entre reinicializações.
+Copie a connection string completa pelo botão **Connect** no painel do Neon ou
+solicite-a ao responsável pelo banco. Ela contém credenciais e deve permanecer
+somente no `.env`; nunca a publique em commits, issues ou mensagens abertas.
+Preencha `GOOGLE_API_KEY` apenas se for executar a classificação automática.
+O `FLASK_ENV=testing` do exemplo impede que o scheduler diário seja iniciado
+por cada ambiente local conectado ao banco compartilhado.
 
-### 4. Aplicar as migrations e popular o banco
-
-```bash
-python -m flask --app src/backend/app.py db upgrade
-python scripts/seed.py
-```
-
-### 5. Iniciar o backend
+### 3. Iniciar o backend
 
 ```bash
 python -m flask --app src/backend/app.py run --debug
@@ -180,7 +175,11 @@ python -m flask --app src/backend/app.py run --debug
 A API estará disponível em `http://127.0.0.1:5000`. Para verificar a conexão
 com o banco, acesse `http://127.0.0.1:5000/health`.
 
-### 6. Iniciar o frontend
+> Não execute migrations ou o seed no banco compartilhado sem autorização do
+> responsável pelo banco. Alterações de schema devem ser coordenadas pela
+> equipe.
+
+### 4. Iniciar o frontend
 
 Em outro terminal, a partir da raiz do repositório:
 
@@ -199,21 +198,6 @@ Para gerar o build de produção:
 ```bash
 npm run build
 ```
-
-### 7. Encerrar o banco
-
-```bash
-docker compose down
-```
-
-Use `docker compose down -v` somente quando também quiser apagar os dados
-persistidos localmente.
-
-### Usar o Neon em vez do banco local
-
-Substitua a `DATABASE_URL` do arquivo `.env` pela connection string fornecida
-no painel do [Neon](https://neon.tech), incluindo `?sslmode=require`. Depois,
-execute normalmente as migrations e o seed. Nunca publique essa credencial.
 
 ## Como Executar a Documentação
 
