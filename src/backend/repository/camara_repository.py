@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime, timezone
 
+from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 
 from src.backend.database import db
@@ -216,3 +217,165 @@ def get_ultimas_execucoes(limite: int = 10) -> list[SyncExecution]:
         .limit(limite)
         .all()
     )
+
+
+# ── Leitura para API pública ──────────────────────────────────────────────────
+
+_MESES_PT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+
+
+def listar_proposicoes_paginado(
+    filtros: dict,
+    pagina: int = 1,
+    por_pagina: int = 10,
+) -> tuple[list[Proposicao], int]:
+    """Lista proposições com filtros opcionais e paginação.
+
+    filtros aceita: q, parlamentar (ignorado — campo não existe no schema),
+    partido, data_inicio, data_fim, subtema.
+    Retorna (items, total).
+    """
+    query = db.session.query(Proposicao)
+
+    q = filtros.get("q")
+    if q:
+        query = query.filter(Proposicao.ementa.ilike(f"%{q}%"))
+
+    partido = filtros.get("partido")
+    if partido:
+        query = query.filter(Proposicao.sigla_partido.ilike(f"%{partido}%"))
+
+    data_inicio = filtros.get("data_inicio")
+    if data_inicio:
+        query = query.filter(Proposicao.data_apresentacao >= data_inicio)
+
+    data_fim = filtros.get("data_fim")
+    if data_fim:
+        query = query.filter(Proposicao.data_apresentacao <= data_fim)
+
+    subtema = filtros.get("subtema")
+    if subtema:
+        query = query.filter(
+            Proposicao.categorias.any(Categoria.nome.ilike(f"%{subtema}%"))
+        )
+
+    total = query.count()
+    offset = (pagina - 1) * por_pagina
+    items = (
+        query
+        .order_by(Proposicao.data_apresentacao.desc())
+        .offset(offset)
+        .limit(por_pagina)
+        .all()
+    )
+    return items, total
+
+
+def get_proposicao_detalhe(proposicao_id: int) -> Proposicao | None:
+    """Retorna proposição por PK ou None. Tramitações e categorias via relacionamento."""
+    return db.session.get(Proposicao, proposicao_id)
+
+
+def get_estatisticas_dashboard() -> dict:
+    """Retorna métricas agregadas para o dashboard."""
+    total = db.session.query(func.count(Proposicao.id)).scalar() or 0
+
+    ativas = (
+        db.session.query(func.count(Proposicao.id))
+        .filter(Proposicao.descricao_situacao == "Em tramitação")
+        .scalar() or 0
+    )
+
+    subtemas = (
+        db.session.query(
+            func.count(func.distinct(proposicao_categoria.c.categoria_id))
+        ).scalar() or 0
+    )
+
+    por_subtema_rows = (
+        db.session.query(
+            Categoria.nome,
+            func.count(proposicao_categoria.c.proposicao_id).label("total"),
+        )
+        .outerjoin(proposicao_categoria, proposicao_categoria.c.categoria_id == Categoria.id)
+        .group_by(Categoria.id, Categoria.nome)
+        .having(func.count(proposicao_categoria.c.proposicao_id) > 0)
+        .order_by(func.count(proposicao_categoria.c.proposicao_id).desc())
+        .all()
+    )
+    por_subtema = {
+        "labels": [r.nome for r in por_subtema_rows],
+        "values": [r.total for r in por_subtema_rows],
+    }
+
+    por_status_rows = (
+        db.session.query(Proposicao.descricao_situacao, func.count(Proposicao.id).label("total"))
+        .group_by(Proposicao.descricao_situacao)
+        .order_by(func.count(Proposicao.id).desc())
+        .all()
+    )
+    por_status = {
+        "labels": [r.descricao_situacao for r in por_status_rows],
+        "values": [r.total for r in por_status_rows],
+    }
+
+    _ano = func.extract("year", Proposicao.data_apresentacao)
+    _mes = func.extract("month", Proposicao.data_apresentacao)
+    temporal_rows = (
+        db.session.query(
+            _ano.label("ano"),
+            _mes.label("mes"),
+            func.count(Proposicao.id).label("contagem"),
+        )
+        .group_by(_ano, _mes)
+        .order_by(_ano, _mes)
+        .all()
+    )
+    temporal = {
+        "labels": [
+            f"{_MESES_PT[int(r.mes) - 1]}/{int(r.ano)}" for r in temporal_rows
+        ],
+        "values": [r.contagem for r in temporal_rows],
+    }
+
+    ultimo_sync = (
+        db.session.query(SyncExecution.finalizado_em)
+        .filter(
+            SyncExecution.status.in_([
+                SyncExecution.STATUS_CONCLUIDO,
+                SyncExecution.STATUS_CONCLUIDO_PARC,
+            ])
+        )
+        .order_by(SyncExecution.finalizado_em.desc())
+        .first()
+    )
+    ultima_atualizacao = (
+        ultimo_sync.finalizado_em.isoformat()
+        if ultimo_sync and ultimo_sync.finalizado_em
+        else None
+    )
+
+    return {
+        "total": total,
+        "ativas": ativas,
+        "subtemas": subtemas,
+        "por_subtema": por_subtema,
+        "por_status": por_status,
+        "temporal": temporal,
+        "ultima_atualizacao": ultima_atualizacao,
+    }
+
+
+def listar_categorias_com_total() -> list[dict]:
+    """Lista todas as categorias com total de proposições vinculadas, ordenado por total DESC."""
+    rows = (
+        db.session.query(
+            Categoria,
+            func.count(proposicao_categoria.c.proposicao_id).label("total"),
+        )
+        .outerjoin(proposicao_categoria, proposicao_categoria.c.categoria_id == Categoria.id)
+        .group_by(Categoria.id)
+        .order_by(func.count(proposicao_categoria.c.proposicao_id).desc())
+        .all()
+    )
+    return [{**cat.to_dict(), "total": total} for cat, total in rows]

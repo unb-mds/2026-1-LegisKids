@@ -22,9 +22,11 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret")
 
 from src.backend.database import db
 from src.backend import models  # noqa: F401
+from src.backend.controllers.proposicoes_controller import proposicoes_bp
 
 db.init_app(app)
 migrate = Migrate(app, db)
+app.register_blueprint(proposicoes_bp)
 
 # Seed de categorias e scheduler (pula em modo de testes)
 if os.getenv("FLASK_ENV") != "testing":
