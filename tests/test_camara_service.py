@@ -9,6 +9,9 @@ from unittest.mock import MagicMock, patch
 
 os.environ.setdefault("DATABASE_URL", "postgresql://test:test@localhost/test")
 os.environ.setdefault("FLASK_ENV", "testing")
+# Desabilita o rate limiter do Gemini em testes (força override independente do shell)
+os.environ["GEMINI_RATE_LIMIT_RPM"] = "1000"
+os.environ["GEMINI_RATE_LIMIT_RPD"] = "10000"
 
 
 class TestValidarProposicao(unittest.TestCase):
@@ -65,6 +68,12 @@ class TestValidarProposicao(unittest.TestCase):
 
 class TestClassificarLoteViaGemini(unittest.TestCase):
     """Testa _classificar_lote_via_gemini — classificação em batch com múltiplas categorias."""
+
+    def setUp(self):
+        import src.backend.services.camara_service as svc_mod
+        svc_mod._gemini_call_timestamps.clear()
+        svc_mod._gemini_daily_calls = 0
+        svc_mod._gemini_daily_date = None
 
     def _mock_client(self, texto_resposta: str):
         mock_response = MagicMock()

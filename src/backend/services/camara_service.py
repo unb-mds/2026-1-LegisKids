@@ -1,3 +1,4 @@
+import collections
 import logging
 import os
 import time
@@ -156,6 +157,54 @@ def _filtrar_por_palavras_chave(dados: list[dict]) -> list[dict]:
     ]
 
 
+# ── Gemini rate limiter ───────────────────────────────────────────────────────
+
+_gemini_call_timestamps: collections.deque[float] = collections.deque()
+_gemini_daily_calls: int = 0
+_gemini_daily_date: date | None = None
+
+
+def _gemini_acquire(rpm: int, rpd: int) -> None:
+    """Bloqueia até que uma chamada ao Gemini possa ser feita respeitando RPM e RPD.
+
+    Lança RuntimeError com mensagem de quota diária se o limite RPD foi atingido,
+    compatível com _is_daily_quota_error para acionar o fluxo de cota esgotada.
+    """
+    global _gemini_daily_calls, _gemini_daily_date
+
+    today = date.today()
+    if _gemini_daily_date != today:
+        _gemini_daily_date = today
+        _gemini_daily_calls = 0
+
+    if _gemini_daily_calls >= rpd:
+        raise RuntimeError(
+            f"GenerateRequestsPerDayPerProjectPerModel-FreeTier: "
+            f"quota diária de {rpd} req/dia atingida (rate limiter local)."
+        )
+
+    # Janela deslizante de 60 s para o limite de RPM
+    now = time.monotonic()
+    while _gemini_call_timestamps and now - _gemini_call_timestamps[0] >= 60.0:
+        _gemini_call_timestamps.popleft()
+
+    if len(_gemini_call_timestamps) >= rpm:
+        wait = 60.0 - (now - _gemini_call_timestamps[0]) + 0.2
+        logger.info(
+            "Gemini RPM atingido (%d/%d req/min). Aguardando %.1fs.",
+            len(_gemini_call_timestamps), rpm, wait,
+        )
+        time.sleep(wait)
+        now = time.monotonic()
+        while _gemini_call_timestamps and now - _gemini_call_timestamps[0] >= 60.0:
+            _gemini_call_timestamps.popleft()
+
+    _gemini_call_timestamps.append(now)
+    _gemini_daily_calls += 1
+    logger.debug("Gemini: chamada %d/%d no dia, %d/%d no último minuto.",
+                 _gemini_daily_calls, rpd, len(_gemini_call_timestamps), rpm)
+
+
 # ── Gemini ────────────────────────────────────────────────────────────────────
 
 def _is_daily_quota_error(exc: Exception) -> bool:
@@ -196,6 +245,10 @@ def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
         raise RuntimeError("GOOGLE_API_KEY não configurada.")
 
     client = genai.Client(api_key=api_key)
+
+    rpm = int(os.getenv("GEMINI_RATE_LIMIT_RPM", "5"))
+    rpd = int(os.getenv("GEMINI_RATE_LIMIT_RPD", "20"))
+    _gemini_acquire(rpm, rpd)
 
     categorias_str = "\n".join(f"- {c}" for c in CATEGORIAS_FIXAS)
     ementas_formatadas = "\n".join(f"{i + 1}: {e[:400]}" for i, e in enumerate(ementas))
