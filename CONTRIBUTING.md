@@ -207,34 +207,45 @@ Closes #numero
 
 ## Ambiente Local
 
-### Instalar dependências
+O passo a passo completo de instalação está no
+[README](README.md#como-executar-localmente).
 
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### Executar documentação
-
-```bash
-mkdocs serve
-```
-
----
+Use a `DATABASE_URL` do Neon fornecida pela equipe. Não execute migrations ou
+o seed no banco compartilhado sem autorização do responsável. Mantenha
+`FLASK_ENV=testing` no ambiente local para não iniciar o scheduler diário.
 
 ### Executar API
 
 ```bash
-uvicorn src.auth_api.main:app --reload
+python -m flask --app src/backend/app.py run --debug
 ```
 
----
+### Executar documentação
+
+```bash
+python -m pip install -r requirements-docs.txt
+python -m mkdocs serve
+```
+
+Antes de enviar mudanças na documentação, valide o build:
+
+```bash
+python -m mkdocs build --strict
+```
+
+### Executar frontend
+
+```bash
+cd src/frontend
+npm install
+npm run dev
+```
 
 ### Executar testes
 
 ```bash
-pytest
+python -m pip install pytest
+python -m pytest tests/
 ```
 
 ---
