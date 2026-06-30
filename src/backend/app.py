@@ -46,6 +46,12 @@ if os.getenv("FLASK_ENV") != "testing":
 @app.cli.command("sync-camara")
 def sync_camara():
     """Executa sincronização manual de proposições da Câmara dos Deputados."""
+    import logging as _logging
+    _logging.basicConfig(
+        level=_logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        datefmt="%H:%M:%S",
+    )
     from src.backend.services.camara_service import CamaraService
     click.echo("Iniciando sincronização...")
     resumo = CamaraService().run_sync()

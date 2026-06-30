@@ -1,3 +1,4 @@
+import collections
 import logging
 import os
 import time
@@ -115,6 +116,10 @@ def _validar_proposicao(dado: dict) -> dict | None:
         logger.warning("Proposição %s: ementa vazia. Ignorando.", dado.get("id"))
         return None
 
+    if int(dado["ano"]) <= 0:
+        logger.warning("Proposição %s: ano inválido '%s'. Ignorando.", dado.get("id"), dado.get("ano"))
+        return None
+
     data_apresentacao = _normalizar_data(dado.get("dataApresentacao"))
     if data_apresentacao is None:
         logger.warning(
@@ -152,7 +157,60 @@ def _filtrar_por_palavras_chave(dados: list[dict]) -> list[dict]:
     ]
 
 
+# ── Gemini rate limiter ───────────────────────────────────────────────────────
+
+_gemini_call_timestamps: collections.deque[float] = collections.deque()
+_gemini_daily_calls: int = 0
+_gemini_daily_date: date | None = None
+
+
+def _gemini_acquire(rpm: int, rpd: int) -> None:
+    """Bloqueia até que uma chamada ao Gemini possa ser feita respeitando RPM e RPD.
+
+    Lança RuntimeError com mensagem de quota diária se o limite RPD foi atingido,
+    compatível com _is_daily_quota_error para acionar o fluxo de cota esgotada.
+    """
+    global _gemini_daily_calls, _gemini_daily_date
+
+    today = date.today()
+    if _gemini_daily_date != today:
+        _gemini_daily_date = today
+        _gemini_daily_calls = 0
+
+    if _gemini_daily_calls >= rpd:
+        raise RuntimeError(
+            f"GenerateRequestsPerDayPerProjectPerModel-FreeTier: "
+            f"quota diária de {rpd} req/dia atingida (rate limiter local)."
+        )
+
+    # Janela deslizante de 60 s para o limite de RPM
+    now = time.monotonic()
+    while _gemini_call_timestamps and now - _gemini_call_timestamps[0] >= 60.0:
+        _gemini_call_timestamps.popleft()
+
+    if len(_gemini_call_timestamps) >= rpm:
+        wait = 60.0 - (now - _gemini_call_timestamps[0]) + 0.2
+        logger.info(
+            "Gemini RPM atingido (%d/%d req/min). Aguardando %.1fs.",
+            len(_gemini_call_timestamps), rpm, wait,
+        )
+        time.sleep(wait)
+        now = time.monotonic()
+        while _gemini_call_timestamps and now - _gemini_call_timestamps[0] >= 60.0:
+            _gemini_call_timestamps.popleft()
+
+    _gemini_call_timestamps.append(now)
+    _gemini_daily_calls += 1
+    logger.debug("Gemini: chamada %d/%d no dia, %d/%d no último minuto.",
+                 _gemini_daily_calls, rpd, len(_gemini_call_timestamps), rpm)
+
+
 # ── Gemini ────────────────────────────────────────────────────────────────────
+
+def _is_daily_quota_error(exc: Exception) -> bool:
+    exc_str = str(exc).lower()
+    return "perday" in exc_str or "per_day" in exc_str or "generaterequestsperdayperproject" in exc_str
+
 
 def _is_rate_limit_error(exc: Exception) -> bool:
     exc_str = str(exc).lower()
@@ -188,6 +246,10 @@ def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
 
     client = genai.Client(api_key=api_key)
 
+    rpm = int(os.getenv("GEMINI_RATE_LIMIT_RPM", "5"))
+    rpd = int(os.getenv("GEMINI_RATE_LIMIT_RPD", "20"))
+    _gemini_acquire(rpm, rpd)
+
     categorias_str = "\n".join(f"- {c}" for c in CATEGORIAS_FIXAS)
     ementas_formatadas = "\n".join(f"{i + 1}: {e[:400]}" for i, e in enumerate(ementas))
     prompt = (
@@ -217,6 +279,9 @@ def _classificar_lote_via_gemini(ementas: list[str]) -> list[list[str]]:
             )
             break
         except Exception as exc:
+            if _is_daily_quota_error(exc):
+                logger.warning("Gemini: quota diária esgotada — abortando classificação sem retry.")
+                raise
             if tentativa < 2 and _is_rate_limit_error(exc):
                 logger.warning("Gemini 429 ResourceExhausted: aguardando 60s antes de re-tentar.")
                 time.sleep(60)
@@ -288,6 +353,38 @@ class CamaraService:
         """Wrapper single-item para compatibilidade interna."""
         return self._classificar_lote([dto])[0]
 
+    def _processar_lote(
+        self, lote: list[dict], cota_esgotada: bool
+    ) -> tuple[int, int, int, bool]:
+        """Classifica via Gemini (ou marca como pendente) e persiste o lote.
+
+        Retorna (inseridos, atualizados, descartados, cota_agora_esgotada).
+        """
+        if cota_esgotada:
+            for dto in lote:
+                dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
+            pares: list[tuple[dict, list[str] | None]] = [(dto, None) for dto in lote]
+        else:
+            pares = self._classificar_lote(lote)
+            if all(categorias is None for _, categorias in pares):
+                cota_esgotada = True
+
+        para_persistir = [(dto, cat) for dto, cat in pares if cat != [RESULTADO_IRRELEVANTE]]
+        descartados = len(pares) - len(para_persistir)
+
+        inseridos = 0
+        atualizados = 0
+        if para_persistir:
+            dtos_apenas = [d for d, _ in para_persistir]
+            contadores = repo.upsert_proposicoes_lote(dtos_apenas)
+            inseridos = contadores["inseridos"]
+            atualizados = contadores["atualizados"]
+            for dto, categorias in para_persistir:
+                if categorias:
+                    repo.vincular_categorias_lote(dto["id"], categorias)
+
+        return inseridos, atualizados, descartados, cota_esgotada
+
     def _retentar_pendentes(self) -> None:
         """Re-classifica proposições com status pendente_classificacao em lotes."""
         pendentes = repo.get_proposicoes_pendentes(limite=50)
@@ -330,6 +427,7 @@ class CamaraService:
             # Re-tentar pendentes de runs anteriores antes de buscar novas proposições
             self._retentar_pendentes()
 
+            fila_dtos: list[dict] = []
             pagina = 1
             while True:
                 logger.info("Buscando página %d da API da Câmara...", pagina)
@@ -380,40 +478,26 @@ class CamaraService:
                 if pulados:
                     logger.debug("Página %d: %d proposição(ões) já no banco — ignoradas.", pagina, pulados)
 
-                dtos_com_resultado: list[tuple[dict, str | None]] = []
-                for i in range(0, len(dtos_validos), self._batch_size):
-                    lote = dtos_validos[i:i + self._batch_size]
-                    if cota_gemini_esgotada:
-                        for dto in lote:
-                            dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
-                        dtos_com_resultado.extend((dto, None) for dto in lote)
-                        continue
-                    pares = self._classificar_lote(lote)
-                    dtos_com_resultado.extend(pares)
-                    # Gemini falhou em todo o lote (todos retornaram None) → parar de chamar neste run
-                    if all(categorias is None for _, categorias in pares):
-                        cota_gemini_esgotada = True
-
-                # Filtra irrelevantes e persiste o restante
-                para_persistir = []
-                for dto, categorias in dtos_com_resultado:
-                    if categorias == [RESULTADO_IRRELEVANTE]:
-                        total_descartados += 1
-                    else:
-                        para_persistir.append((dto, categorias))
-
-                if para_persistir:
-                    dtos_apenas = [d for d, _ in para_persistir]
-                    contadores = repo.upsert_proposicoes_lote(dtos_apenas)
-                    total_inseridos += contadores["inseridos"]
-                    total_atualizados += contadores["atualizados"]
-
-                    for dto, categorias in para_persistir:
-                        if categorias:
-                            repo.vincular_categorias_lote(dto["id"], categorias)
-
+                fila_dtos.extend(dtos_validos)
                 total_processados += len(filtrados)
+
+                # Drena lotes completos da fila acumulada entre páginas
+                while len(fila_dtos) >= self._batch_size:
+                    lote = fila_dtos[:self._batch_size]
+                    fila_dtos = fila_dtos[self._batch_size:]
+                    ins, atu, desc, cota_gemini_esgotada = self._processar_lote(lote, cota_gemini_esgotada)
+                    total_inseridos += ins
+                    total_atualizados += atu
+                    total_descartados += desc
+
                 pagina += 1
+
+            # Drena o lote residual (proposições que não completaram um lote cheio)
+            if fila_dtos:
+                ins, atu, desc, cota_gemini_esgotada = self._processar_lote(fila_dtos, cota_gemini_esgotada)
+                total_inseridos += ins
+                total_atualizados += atu
+                total_descartados += desc
 
         except Exception as exc:
             logger.exception("Erro interno inesperado na sincronização.")

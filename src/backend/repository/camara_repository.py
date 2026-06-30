@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 
 from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import insert as pg_insert
+from sqlalchemy.exc import IntegrityError
 
 from src.backend.database import db
 from src.backend.models import Categoria, Proposicao, SyncExecution, proposicao_categoria
@@ -173,22 +174,31 @@ def upsert_proposicoes_lote(dtos: list[dict]) -> dict:
         for row in db.session.query(Proposicao.id).filter(Proposicao.id.in_(ids)).all()
     }
 
-    with db.session.begin_nested():
-        for dto in dtos:
-            stmt = (
-                pg_insert(Proposicao.__table__)
-                .values(**dto)
-                .on_conflict_do_update(
-                    index_elements=["id"],
-                    set_={col: dto[col] for col in dto if col != "id"},
-                )
+    inseridos = 0
+    atualizados = 0
+    for dto in dtos:
+        stmt = (
+            pg_insert(Proposicao.__table__)
+            .values(**dto)
+            .on_conflict_do_update(
+                index_elements=["id"],
+                set_={col: dto[col] for col in dto if col != "id"},
             )
-            db.session.execute(stmt)
+        )
+        try:
+            with db.session.begin_nested():
+                db.session.execute(stmt)
+            if dto["id"] in existing_ids:
+                atualizados += 1
+            else:
+                inseridos += 1
+        except IntegrityError:
+            logger.warning(
+                "Proposição %d ignorada: conflito em (sigla_tipo=%s, numero=%d, ano=%d) já existe com outro id.",
+                dto["id"], dto["sigla_tipo"], dto["numero"], dto["ano"],
+            )
 
     db.session.commit()
-
-    inseridos = sum(1 for d in dtos if d["id"] not in existing_ids)
-    atualizados = sum(1 for d in dtos if d["id"] in existing_ids)
     return {"inseridos": inseridos, "atualizados": atualizados}
 
 
