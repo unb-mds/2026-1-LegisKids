@@ -300,6 +300,38 @@ class CamaraService:
         """Wrapper single-item para compatibilidade interna."""
         return self._classificar_lote([dto])[0]
 
+    def _processar_lote(
+        self, lote: list[dict], cota_esgotada: bool
+    ) -> tuple[int, int, int, bool]:
+        """Classifica via Gemini (ou marca como pendente) e persiste o lote.
+
+        Retorna (inseridos, atualizados, descartados, cota_agora_esgotada).
+        """
+        if cota_esgotada:
+            for dto in lote:
+                dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
+            pares: list[tuple[dict, list[str] | None]] = [(dto, None) for dto in lote]
+        else:
+            pares = self._classificar_lote(lote)
+            if all(categorias is None for _, categorias in pares):
+                cota_esgotada = True
+
+        para_persistir = [(dto, cat) for dto, cat in pares if cat != [RESULTADO_IRRELEVANTE]]
+        descartados = len(pares) - len(para_persistir)
+
+        inseridos = 0
+        atualizados = 0
+        if para_persistir:
+            dtos_apenas = [d for d, _ in para_persistir]
+            contadores = repo.upsert_proposicoes_lote(dtos_apenas)
+            inseridos = contadores["inseridos"]
+            atualizados = contadores["atualizados"]
+            for dto, categorias in para_persistir:
+                if categorias:
+                    repo.vincular_categorias_lote(dto["id"], categorias)
+
+        return inseridos, atualizados, descartados, cota_esgotada
+
     def _retentar_pendentes(self) -> None:
         """Re-classifica proposições com status pendente_classificacao em lotes."""
         pendentes = repo.get_proposicoes_pendentes(limite=50)
@@ -342,6 +374,7 @@ class CamaraService:
             # Re-tentar pendentes de runs anteriores antes de buscar novas proposições
             self._retentar_pendentes()
 
+            fila_dtos: list[dict] = []
             pagina = 1
             while True:
                 logger.info("Buscando página %d da API da Câmara...", pagina)
@@ -392,40 +425,26 @@ class CamaraService:
                 if pulados:
                     logger.debug("Página %d: %d proposição(ões) já no banco — ignoradas.", pagina, pulados)
 
-                dtos_com_resultado: list[tuple[dict, str | None]] = []
-                for i in range(0, len(dtos_validos), self._batch_size):
-                    lote = dtos_validos[i:i + self._batch_size]
-                    if cota_gemini_esgotada:
-                        for dto in lote:
-                            dto["classificacao_status"] = Proposicao.CLASSIFICACAO_PENDENTE
-                        dtos_com_resultado.extend((dto, None) for dto in lote)
-                        continue
-                    pares = self._classificar_lote(lote)
-                    dtos_com_resultado.extend(pares)
-                    # Gemini falhou em todo o lote (todos retornaram None) → parar de chamar neste run
-                    if all(categorias is None for _, categorias in pares):
-                        cota_gemini_esgotada = True
-
-                # Filtra irrelevantes e persiste o restante
-                para_persistir = []
-                for dto, categorias in dtos_com_resultado:
-                    if categorias == [RESULTADO_IRRELEVANTE]:
-                        total_descartados += 1
-                    else:
-                        para_persistir.append((dto, categorias))
-
-                if para_persistir:
-                    dtos_apenas = [d for d, _ in para_persistir]
-                    contadores = repo.upsert_proposicoes_lote(dtos_apenas)
-                    total_inseridos += contadores["inseridos"]
-                    total_atualizados += contadores["atualizados"]
-
-                    for dto, categorias in para_persistir:
-                        if categorias:
-                            repo.vincular_categorias_lote(dto["id"], categorias)
-
+                fila_dtos.extend(dtos_validos)
                 total_processados += len(filtrados)
+
+                # Drena lotes completos da fila acumulada entre páginas
+                while len(fila_dtos) >= self._batch_size:
+                    lote = fila_dtos[:self._batch_size]
+                    fila_dtos = fila_dtos[self._batch_size:]
+                    ins, atu, desc, cota_gemini_esgotada = self._processar_lote(lote, cota_gemini_esgotada)
+                    total_inseridos += ins
+                    total_atualizados += atu
+                    total_descartados += desc
+
                 pagina += 1
+
+            # Drena o lote residual (proposições que não completaram um lote cheio)
+            if fila_dtos:
+                ins, atu, desc, cota_gemini_esgotada = self._processar_lote(fila_dtos, cota_gemini_esgotada)
+                total_inseridos += ins
+                total_atualizados += atu
+                total_descartados += desc
 
         except Exception as exc:
             logger.exception("Erro interno inesperado na sincronização.")
