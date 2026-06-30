@@ -109,54 +109,14 @@ scripts/             -> scripts auxiliares
 
 ---
 
-## Como Executar o Frontend
+## Como Executar Localmente
 
 ### Pré-requisitos
 
-* Node.js 18+
-* npm 9+
-
-### 1. Instalar dependências
-
-```bash
-cd src/frontend
-npm install
-```
-
-### 2. Configurar variáveis de ambiente
-
-```bash
-cp .env.example .env
-# Edite .env se o backend estiver em outra porta/host
-```
-
-### 3. Iniciar o servidor de desenvolvimento
-
-```bash
-npm run dev
-# Disponível em http://localhost:5173
-```
-
-### 4. Build de produção
-
-```bash
-npm run build
-# Saída em src/frontend/dist/
-```
-
----
-
-## Como Executar a Documentação
-
-### Pré-requisitos
-
-Certifique-se de possuir:
-
-* Python 3.10+
-* pip
 * Git
-
----
+* Python 3.10+
+* Node.js 18+ e npm 9+
+* Docker com Docker Compose
 
 ### 1. Clonar o repositório
 
@@ -165,170 +125,120 @@ git clone https://github.com/unb-mds/2026-1-LegisKids.git
 cd 2026-1-LegisKids
 ```
 
----
+### 2. Preparar o backend
 
-### 2. Criar ambiente virtual
+Crie e ative um ambiente virtual:
 
-#### Linux/Mac
-
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-#### Windows
+#### Linux/macOS
 
 ```bash
-python -m venv venv
-venv\Scripts\activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
----
+#### Windows (PowerShell)
 
-### 3. Instalar dependências
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+Instale as dependências e crie o arquivo de configuração local:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+cp .env.example .env
 ```
 
-### 5. Configurar o banco de dados
+No Windows, use `copy .env.example .env`. O arquivo fornecido já aponta para o
+PostgreSQL local do `docker-compose.yml`. Preencha `GOOGLE_API_KEY` apenas se
+for executar a classificação automática.
 
-O projeto suporta dois modos de banco de dados:
-
-#### Banco local com Docker (desenvolvimento diário)
-
-Suba o PostgreSQL usando o `docker-compose.yml` do projeto:
+### 3. Iniciar o banco de dados
 
 ```bash
 docker compose up -d
-```
-
-Aguarde o container ficar saudável (alguns segundos) antes de continuar. Para verificar:
-
-```bash
 docker compose ps
 ```
 
-Para parar:
+Aguarde o serviço `db` ficar saudável antes de continuar. O volume
+`legiskids_db_data` mantém os dados entre reinicializações.
 
-```bash
-docker compose down
-```
-
-> O volume `legiskids_db_data` persiste os dados entre reinicializações. Para apagar tudo e começar do zero: `docker compose down -v`
-
-#### Banco Neon (homologação e testes remotos)
-
-Obtenha a connection string no painel do [Neon](https://neon.tech) e use-a no `.env` local.
-
-### 6. Configurar variáveis de ambiente
-
-Copie o arquivo de exemplo e edite com suas credenciais:
-
-```bash
-cp .env.example .env
-```
-
-Exemplo para banco local Docker:
-
-```env
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/legiskids
-FLASK_APP=src/backend/app.py
-FLASK_ENV=development
-SECRET_KEY=troque-por-uma-chave-secreta-longa-e-aleatoria
-```
-
-Exemplo para banco Neon:
-
-```env
-DATABASE_URL=postgresql://usuario:senha@host.neon.tech/legiskids?sslmode=require
-FLASK_APP=src/backend/app.py
-FLASK_ENV=development
-SECRET_KEY=troque-por-uma-chave-secreta-longa-e-aleatoria
-```
-
-> A connection string real do Neon deve ser obtida no painel e **nunca commitada**.
-
-### 7. Executar as migrations e popular o banco
-
-> **Pré-requisito:** o banco configurado na `DATABASE_URL` do seu `.env` precisa estar acessível antes de executar os comandos abaixo.
-> - Se usar banco local Docker: execute `docker compose up -d` primeiro.
-> - Se usar Neon: certifique-se de que a `DATABASE_URL` no `.env` aponta para o Neon com `?sslmode=require`.
-
-Aplique o schema:
-
-```bash
-python -m flask --app src/backend/app.py db upgrade
-```
-
-Popule o banco com dados iniciais:
-
-```bash
-python scripts/seed.py
-```
-
-> **Status de validação:**
-> - **Banco local Docker** — testado e validado: migrations aplicadas e seed executado com sucesso (17 partidos inseridos).
-> - **Banco Neon** — requer troca temporária do `DATABASE_URL` conforme instruções abaixo.
-
-#### Testando no banco Neon
-
-Para aplicar o schema e popular o banco remoto no Neon, troque temporariamente o `DATABASE_URL` no seu `.env` pela connection string do Neon (obtida no painel do [Neon](https://neon.tech)):
-
-```env
-# Temporário — para testar no Neon
-DATABASE_URL=postgresql://<usuario>:<senha>@<host>.neon.tech/<banco>?sslmode=require&channel_binding=require
-```
-
-### 7. Documentação do banco de dados
-
-A documentação completa do schema está disponível em [`docs/db/schema.md`](docs/db/schema.md), incluindo:
-- Diagrama Entidade-Relacionamento (ERD)
-- Descrição de cada tabela, colunas, tipos e constraints
-- Relacionamentos e decisões de design
-
-O código-fonte do ERD (editável no [dbdiagram.io](https://dbdiagram.io)) está em [`docs/db/erd.dbml`](docs/db/erd.dbml).
-
----
-
-### 8. Executar as migrations (se houver)
-Execute as migrations e o seed:
+### 4. Aplicar as migrations e popular o banco
 
 ```bash
 python -m flask --app src/backend/app.py db upgrade
 python scripts/seed.py
 ```
 
-### 9. Iniciar o servidor
-
-```text
-http://127.0.0.1:8000
-```
-
----
-
-## Subindo o banco com Docker
-
-Pré-requisito: [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado.
+### 5. Iniciar o backend
 
 ```bash
-# 1. Copie o arquivo de variáveis de ambiente
+python -m flask --app src/backend/app.py run --debug
+```
+
+A API estará disponível em `http://127.0.0.1:5000`. Para verificar a conexão
+com o banco, acesse `http://127.0.0.1:5000/health`.
+
+### 6. Iniciar o frontend
+
+Em outro terminal, a partir da raiz do repositório:
+
+```bash
+cd src/frontend
+npm install
 cp .env.example .env
+npm run dev
+```
 
-# 2. Suba o banco
-docker compose up -d
+No Windows, use `copy .env.example .env`. A aplicação estará disponível em
+`http://localhost:5173`.
 
-# 3. Aplique as migrations
-flask db upgrade
+Para gerar o build de produção:
 
-# 4. Popule com dados iniciais (opcional)
-python scripts/seed.py
+```bash
+npm run build
+```
 
-# 5. Pare o banco quando terminar
+### 7. Encerrar o banco
+
+```bash
 docker compose down
 ```
 
-> As credenciais são lidas do `.env`. Nenhuma senha está hardcoded no `docker-compose.yml`.
+Use `docker compose down -v` somente quando também quiser apagar os dados
+persistidos localmente.
+
+### Usar o Neon em vez do banco local
+
+Substitua a `DATABASE_URL` do arquivo `.env` pela connection string fornecida
+no painel do [Neon](https://neon.tech), incluindo `?sslmode=require`. Depois,
+execute normalmente as migrations e o seed. Nunca publique essa credencial.
+
+## Como Executar a Documentação
+
+Com o ambiente virtual ativo, instale as dependências específicas:
+
+```bash
+python -m pip install -r requirements-docs.txt
+python -m mkdocs serve
+```
+
+A documentação estará disponível em `http://127.0.0.1:8000`.
+
+Para validar o site antes de enviar alterações:
+
+```bash
+python -m mkdocs build --strict
+```
+
+## Documentação do Banco de Dados
+
+A documentação completa do schema está disponível em
+[`docs/db/schema.md`](docs/db/schema.md), incluindo o diagrama
+Entidade-Relacionamento, as tabelas, constraints e decisões de design.
+O código-fonte editável do ERD está em
+[`docs/db/erd.dbml`](docs/db/erd.dbml).
 
 ---
 

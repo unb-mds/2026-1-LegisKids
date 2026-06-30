@@ -207,34 +207,41 @@ Closes #numero
 
 ## Ambiente Local
 
-### Instalar dependências
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### Executar documentação
-
-```bash
-mkdocs serve
-```
-
----
+O passo a passo completo de instalação está no
+[README](README.md#como-executar-localmente).
 
 ### Executar API
 
 ```bash
-uvicorn src.auth_api.main:app --reload
+python -m flask --app src/backend/app.py run --debug
 ```
 
----
+### Executar documentação
+
+```bash
+python -m pip install -r requirements-docs.txt
+python -m mkdocs serve
+```
+
+Antes de enviar mudanças na documentação, valide o build:
+
+```bash
+python -m mkdocs build --strict
+```
+
+### Executar frontend
+
+```bash
+cd src/frontend
+npm install
+npm run dev
+```
 
 ### Executar testes
 
 ```bash
-pytest
+python -m pip install pytest
+python -m pytest tests/
 ```
 
 ---
