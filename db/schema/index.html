@@ -1,0 +1,4760 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Plataforma de monitoramento e análise de proposições legislativas sobre proteção de crianças na internet">
+      
+      
+        <meta name="author" content="Squad 08 - MDS 2026/1">
+      
+      
+        <link rel="canonical" href="https://unb-mds.github.io/2026-1-LegisKids/db/schema/">
+      
+      
+        <link rel="prev" href="../../estudos/banco_de_dados/">
+      
+      
+        <link rel="next" href="../../estudos/banco_de_dados/definicao_banco_de_dados/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/logo-legiskids.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Esquema e ERD - LegisKids</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#esquema-do-banco-de-dados-legiskids" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="LegisKids" class="md-header__button md-logo" aria-label="LegisKids" data-md-component="logo">
+      
+  <img src="../../assets/images/logo-legiskids.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LegisKids
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Esquema e ERD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/unb-mds/2026-1-LegisKids" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unb-mds/2026-1-LegisKids
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../projeto/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projeto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../estudos/arquitetura/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../estudos/backend/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Backend e API
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../estudos/banco_de_dados/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Banco de Dados
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../estudos/frontend/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Frontend e Design
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../estudos/requisitos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Requisitos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../padrao_organizacao/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Organização
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reunioes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Gestão
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../estudos/metodos_ageis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Estudos
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../performance/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Desempenho
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LegisKids" class="md-nav__button md-logo" aria-label="LegisKids" data-md-component="logo">
+      
+  <img src="../../assets/images/logo-legiskids.png" alt="logo">
+
+    </a>
+    LegisKids
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/unb-mds/2026-1-LegisKids" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    unb-mds/2026-1-LegisKids
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../projeto/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projeto
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projeto/ideia_escolhida_projeto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão do Produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/arquitetura/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitetura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/arquitetura/escolha_arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escolha da Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/arquitetura/checando_tecnologias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tecnologias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/arquitetura/diagrama_arquitetura_v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrama V1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/arquitetura/diagrama_arquitetura_v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagrama V2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/arquitetura/estudo_fluxo_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fluxo de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/arquitetura/estudo_login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo de Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/arquitetura/estudo_arquiteturas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudos Iniciais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend e API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backend e API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/backend/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/backend/estudo_stack_backend_definida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stack Definida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/backend/comparacao_stacks_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comparação de Stacks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/backend/estudo_tecnologias_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tecnologias Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/API/referencia_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência da API interna
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/API/levantamento_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API da Câmara
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/banco_de_dados/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Dados
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Banco de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquema e ERD
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Esquema e ERD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-entidade-relacionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama Entidade-Relacionamento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabelas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        partidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        proposicoes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        categorias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposicao_categoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        proposicao_categoria
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tramitacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tramitacoes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        usuarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#favoritos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        favoritos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historico_consultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        historico_consultas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisicoes_api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        requisicoes_api
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync_executions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sync_executions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relacionamentos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indices-e-constraints-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índices e constraints importantes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisoes-de-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisões de design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-manter-este-documento-atualizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como manter este documento atualizado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/definicao_banco_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definição do Banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/definicao_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definição de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/definicao_campos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definição de Campos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/definicao_tabelas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definição de Tabelas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/definicao_tratamento_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tratamento de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/estudo_banco_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo de Banco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/hospedagem_banco_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hospedagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/configuracao_database_url/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia de Configuração (DATABASE_URL)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/guia_integrantes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia dos Integrantes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/atualizacao_dos_models_e_implementacao_seeds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Atualização de Models e Seeds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/implementacao_dos_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementação dos Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/banco_de_dados/otimizacao_indices_e_constraints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Otimização de Índices e Constraints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend e Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend e Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/frontend/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/frontend/tecnologias_estrutura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tecnologias e Estrutura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/frontend/frameworks_bibliotecas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frameworks e Bibliotecas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/design/identidade_visual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identidade Visual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/design/prototipo_interativo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protótipo Interativo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/design/definicao_dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/requisitos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/requisitos/requisitos_de_software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos de Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/requisitos/estudo_requisitos_software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo de Requisitos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../padrao_organizacao/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organização
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Organização
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../padrao_organizacao/organizacao_geral/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organização Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../padrao_organizacao/padrao_commits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrão de Commits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../padrao_organizacao/padrao_PR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrão de Pull Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../padrao_organizacao/padrao_kanban/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrão Kanban
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../padrao_organizacao/padrao_nomes_arquivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nomes de Arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/git_github/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git e GitHub
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Git e GitHub
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/git_github/estudo_github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/git_github/labels_tamanho_issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labels e Tamanho de Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reunioes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gestão
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Gestão
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/horarios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Horários
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/dailies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dailies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/sprint_plannings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint Plannings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/reviews_retrospectives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reviews e Retrospectivas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Estudos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/metodos_ageis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos Ágeis
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10_1" id="__nav_10_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Métodos Ágeis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/metodos_ageis/metodos_ageis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos Ágeis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/inteligencia_artificial/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inteligência Artificial
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10_2" id="__nav_10_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inteligência Artificial
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/inteligencia_artificial/estudo_ia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../estudos/sdd/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10_3" id="__nav_10_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/sdd/openspec-estudo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenSpec
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../estudos/sdd/sddEstudo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estudo SDD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desempenho
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desempenho
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-entidade-relacionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama Entidade-Relacionamento
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabelas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        partidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        proposicoes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        categorias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposicao_categoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        proposicao_categoria
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tramitacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tramitacoes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        usuarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#favoritos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        favoritos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historico_consultas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        historico_consultas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisicoes_api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        requisicoes_api
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync_executions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sync_executions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relacionamentos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indices-e-constraints-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índices e constraints importantes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisoes-de-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisões de design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-manter-este-documento-atualizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como manter este documento atualizado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="esquema-do-banco-de-dados-legiskids">Esquema do Banco de Dados — LegisKids<a class="headerlink" href="#esquema-do-banco-de-dados-legiskids" title="Permanent link">&para;</a></h1>
+<h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
+<p>O banco de dados do LegisKids é um PostgreSQL relacional composto por <strong>10 tabelas</strong> que suportam o ciclo completo da plataforma: coleta e sincronização automática de proposições legislativas, classificação temática via IA, acompanhamento de tramitações, autenticação de usuários, favoritos, histórico de buscas, auditoria de chamadas à API e rastreamento de execuções do job de sincronização.</p>
+<p>A fonte de verdade do schema são os modelos SQLAlchemy em <code>src/backend/models.py</code>. As migrations em <code>migrations/versions/</code> garantem que o banco físico reflita esses modelos — sempre rode <code>python -m flask --app src/backend/app.py db upgrade</code> ao puxar mudanças.</p>
+<hr />
+<h2 id="diagrama-entidade-relacionamento">Diagrama Entidade-Relacionamento<a class="headerlink" href="#diagrama-entidade-relacionamento" title="Permanent link">&para;</a></h2>
+<p><img alt="ERD do banco de dados LegisKids" src="../erd.png" /></p>
+<blockquote>
+<p>O código-fonte do diagrama está em <a href="../erd.dbml"><code>docs/db/erd.dbml</code></a> e pode ser editado no <a href="https://dbdiagram.io">dbdiagram.io</a>.</p>
+</blockquote>
+<hr />
+<h2 id="tabelas">Tabelas<a class="headerlink" href="#tabelas" title="Permanent link">&para;</a></h2>
+<h3 id="partidos">partidos<a class="headerlink" href="#partidos" title="Permanent link">&para;</a></h3>
+<p>Armazena os partidos políticos usados para classificar as proposições. Os IDs são os identificadores oficiais da API da Câmara dos Deputados e são pré-populados pelo script <code>scripts/seed.py</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>ID oficial do partido na API da Câmara dos Deputados (PK)</td>
+</tr>
+<tr>
+<td><code>sigla</code></td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>Sigla do partido (ex: PT, PL, MDB) — única no banco</td>
+</tr>
+<tr>
+<td><code>nome</code></td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Nome completo do partido</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK · <code>sigla</code> UNIQUE</p>
+<hr />
+<h3 id="proposicoes">proposicoes<a class="headerlink" href="#proposicoes" title="Permanent link">&para;</a></h3>
+<p>Tabela central do sistema. Armazena as proposições legislativas coletadas da API da Câmara dos Deputados. Cada proposição é identificada de forma única pela combinação de tipo, número e ano.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>ID oficial da proposição na API da Câmara (PK)</td>
+</tr>
+<tr>
+<td><code>sigla_tipo</code></td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>Tipo da proposição (ex: PL, PEC, MPV, PDC)</td>
+</tr>
+<tr>
+<td><code>numero</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Número da proposição no ano</td>
+</tr>
+<tr>
+<td><code>ano</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Ano de apresentação da proposição</td>
+</tr>
+<tr>
+<td><code>ementa</code></td>
+<td>text</td>
+<td>Sim</td>
+<td>Texto da ementa conforme registro oficial</td>
+</tr>
+<tr>
+<td><code>data_apresentacao</code></td>
+<td>date</td>
+<td>Sim</td>
+<td>Data em que a proposição foi apresentada à Câmara</td>
+</tr>
+<tr>
+<td><code>descricao_situacao</code></td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Situação atual da proposição (ex: "Aguardando Pauta")</td>
+</tr>
+<tr>
+<td><code>partido_id</code></td>
+<td>integer</td>
+<td>Não</td>
+<td>FK para <code>partidos.id</code> — nulo se partido não identificado na coleta</td>
+</tr>
+<tr>
+<td><code>sigla_partido</code></td>
+<td>varchar(20)</td>
+<td>Sim</td>
+<td>Cópia desnormalizada da sigla do partido para leitura rápida</td>
+</tr>
+<tr>
+<td><code>data_coleta</code></td>
+<td>datetime</td>
+<td>Sim</td>
+<td>Timestamp automático do momento em que a proposição foi coletada</td>
+</tr>
+<tr>
+<td><code>classificacao_status</code></td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Estado da categorização por IA: <code>pendente_classificacao</code> (padrão) ou <code>classificado</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK · <code>(sigla_tipo, numero, ano)</code> UNIQUE · <code>partido_id</code> FK → <code>partidos.id</code> ON DELETE SET NULL</p>
+<hr />
+<h3 id="categorias">categorias<a class="headerlink" href="#categorias" title="Permanent link">&para;</a></h3>
+<p>Armazena as categorias temáticas fixas usadas para classificar proposições via IA. As 8 categorias são inseridas automaticamente no startup da aplicação (<code>seed_categorias()</code>) usando <code>INSERT ... ON CONFLICT (nome) DO NOTHING</code> — são imutáveis e não devem ser editadas manualmente.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador da categoria (PK, autoincremento)</td>
+</tr>
+<tr>
+<td><code>nome</code></td>
+<td>varchar(100)</td>
+<td>Sim</td>
+<td>Nome canônico da categoria — único no banco</td>
+</tr>
+<tr>
+<td><code>descricao</code></td>
+<td>text</td>
+<td>Não</td>
+<td>Descrição da categoria para uso no frontend</td>
+</tr>
+<tr>
+<td><code>cor</code></td>
+<td>varchar(7)</td>
+<td>Não</td>
+<td>Cor hex para visualização (ex: <code>#EF4444</code>)</td>
+</tr>
+<tr>
+<td><code>icone</code></td>
+<td>varchar(50)</td>
+<td>Não</td>
+<td>Identificador de ícone (ex: <code>shield-alert</code>)</td>
+</tr>
+<tr>
+<td><code>ativa</code></td>
+<td>boolean</td>
+<td>Sim</td>
+<td>Indica se a categoria está ativa (padrão: <code>true</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Seed data (8 categorias fixas):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Cor</th>
+<th>Ícone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cyberbullying</td>
+<td><code>#EF4444</code></td>
+<td>shield-alert</td>
+</tr>
+<tr>
+<td>exploração sexual infantil online</td>
+<td><code>#DC2626</code></td>
+<td>alert-triangle</td>
+</tr>
+<tr>
+<td>proteção de dados de menores</td>
+<td><code>#3B82F6</code></td>
+<td>lock</td>
+</tr>
+<tr>
+<td>segurança digital infantil</td>
+<td><code>#8B5CF6</code></td>
+<td>shield</td>
+</tr>
+<tr>
+<td>regulação de plataformas digitais</td>
+<td><code>#F59E0B</code></td>
+<td>globe</td>
+</tr>
+<tr>
+<td>conteúdos nocivos para menores</td>
+<td><code>#EC4899</code></td>
+<td>eye-off</td>
+</tr>
+<tr>
+<td>crimes virtuais contra crianças</td>
+<td><code>#6366F1</code></td>
+<td>gavel</td>
+</tr>
+<tr>
+<td>privacidade de menores</td>
+<td><code>#10B981</code></td>
+<td>user-shield</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK · <code>nome</code> UNIQUE</p>
+<hr />
+<h3 id="proposicao_categoria">proposicao_categoria<a class="headerlink" href="#proposicao_categoria" title="Permanent link">&para;</a></h3>
+<p>Tabela junction (many-to-many) entre <code>proposicoes</code> e <code>categorias</code>. Uma proposição pode pertencer a múltiplas categorias; uma categoria pode ter muitas proposições. Inserções feitas via <code>vincular_categoria()</code> em <code>camara_repository.py</code> com <code>ON CONFLICT DO NOTHING</code> para idempotência.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proposicao_id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>FK para <code>proposicoes.id</code></td>
+</tr>
+<tr>
+<td><code>categoria_id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>FK para <code>categorias.id</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>(proposicao_id, categoria_id)</code> PK composta · <code>proposicao_id</code> FK → <code>proposicoes.id</code> ON DELETE CASCADE · <code>categoria_id</code> FK → <code>categorias.id</code> ON DELETE CASCADE</p>
+<hr />
+<h3 id="tramitacoes">tramitacoes<a class="headerlink" href="#tramitacoes" title="Permanent link">&para;</a></h3>
+<p>Registra o histórico de tramitação de cada proposição. Cada linha representa uma etapa do processo legislativo de uma proposição específica, na ordem em que ocorreu.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador único da tramitação (PK)</td>
+</tr>
+<tr>
+<td><code>proposicao_id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>FK para <code>proposicoes.id</code> — identifica a proposição à qual pertence</td>
+</tr>
+<tr>
+<td><code>data_hora</code></td>
+<td>datetime</td>
+<td>Sim</td>
+<td>Data e hora do evento de tramitação</td>
+</tr>
+<tr>
+<td><code>id_situacao</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Código numérico da situação conforme API da Câmara</td>
+</tr>
+<tr>
+<td><code>descricao_situacao</code></td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Descrição textual da situação (ex: "Aprovado")</td>
+</tr>
+<tr>
+<td><code>descricao_tramitacao</code></td>
+<td>text</td>
+<td>Sim</td>
+<td>Texto completo da movimentação registrada</td>
+</tr>
+<tr>
+<td><code>sigla_orgao</code></td>
+<td>varchar(50)</td>
+<td>Sim</td>
+<td>Sigla do órgão responsável (ex: PLEN, CCJ, CFT)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK · <code>proposicao_id</code> FK → <code>proposicoes.id</code> ON DELETE CASCADE</p>
+<hr />
+<h3 id="usuarios">usuarios<a class="headerlink" href="#usuarios" title="Permanent link">&para;</a></h3>
+<p>Armazena os usuários autenticados via Google OAuth 2.0. Não há senha armazenada — a autenticação é delegada integralmente ao Google.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador interno do usuário (PK)</td>
+</tr>
+<tr>
+<td><code>nome</code></td>
+<td>varchar(100)</td>
+<td>Sim</td>
+<td>Nome completo conforme conta Google</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>varchar(150)</td>
+<td>Sim</td>
+<td>Endereço de e-mail do usuário — único no banco</td>
+</tr>
+<tr>
+<td><code>google_id</code></td>
+<td>varchar(100)</td>
+<td>Sim</td>
+<td>ID único do usuário na plataforma Google — único no banco</td>
+</tr>
+<tr>
+<td><code>data_criacao</code></td>
+<td>datetime</td>
+<td>Sim</td>
+<td>Timestamp automático do primeiro login</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK · <code>email</code> UNIQUE · <code>google_id</code> UNIQUE</p>
+<hr />
+<h3 id="favoritos">favoritos<a class="headerlink" href="#favoritos" title="Permanent link">&para;</a></h3>
+<p>Tabela associativa que relaciona usuários às proposições que eles salvaram como favoritas. A constraint única composta impede que um usuário favorite a mesma proposição mais de uma vez.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador do registro de favorito (PK)</td>
+</tr>
+<tr>
+<td><code>usuario_id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>FK para <code>usuarios.id</code> — usuário que favoritou</td>
+</tr>
+<tr>
+<td><code>proposicao_id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>FK para <code>proposicoes.id</code> — proposição favoritada</td>
+</tr>
+<tr>
+<td><code>data_favorito</code></td>
+<td>datetime</td>
+<td>Sim</td>
+<td>Timestamp automático do momento em que foi salvo</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK · <code>(usuario_id, proposicao_id)</code> UNIQUE · <code>usuario_id</code> FK → <code>usuarios.id</code> ON DELETE CASCADE · <code>proposicao_id</code> FK → <code>proposicoes.id</code> ON DELETE CASCADE</p>
+<hr />
+<h3 id="historico_consultas">historico_consultas<a class="headerlink" href="#historico_consultas" title="Permanent link">&para;</a></h3>
+<p>Registra o histórico de buscas realizadas por usuários autenticados. Permite exibir as últimas buscas do usuário e futuramente analisar padrões de uso.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador do registro de histórico (PK)</td>
+</tr>
+<tr>
+<td><code>usuario_id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>FK para <code>usuarios.id</code> — usuário que realizou a busca</td>
+</tr>
+<tr>
+<td><code>termo_busca</code></td>
+<td>varchar(255)</td>
+<td>Sim</td>
+<td>Texto exato digitado na busca</td>
+</tr>
+<tr>
+<td><code>data_consulta</code></td>
+<td>datetime</td>
+<td>Sim</td>
+<td>Timestamp automático do momento da busca</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK · <code>usuario_id</code> FK → <code>usuarios.id</code> ON DELETE CASCADE</p>
+<hr />
+<h3 id="requisicoes_api">requisicoes_api<a class="headerlink" href="#requisicoes_api" title="Permanent link">&para;</a></h3>
+<p>Log de auditoria das chamadas realizadas à API da Câmara dos Deputados. Permite rastrear o volume de coletas, identificar falhas recorrentes e monitorar o tempo de resposta ao longo do tempo.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador do registro de requisição (PK)</td>
+</tr>
+<tr>
+<td><code>endpoint</code></td>
+<td>varchar(255)</td>
+<td>Sim</td>
+<td>URL ou identificador do endpoint consultado na API da Câmara</td>
+</tr>
+<tr>
+<td><code>data_requisicao</code></td>
+<td>datetime</td>
+<td>Sim</td>
+<td>Timestamp automático da requisição</td>
+</tr>
+<tr>
+<td><code>quantidade_registros</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Número de registros retornados pela chamada</td>
+</tr>
+<tr>
+<td><code>status_requisicao</code></td>
+<td>varchar(50)</td>
+<td>Sim</td>
+<td>Status do resultado (ex: <code>sucesso</code>, <code>erro_504</code>, <code>timeout</code>)</td>
+</tr>
+<tr>
+<td><code>tempo_execucao_ms</code></td>
+<td>integer</td>
+<td>Não</td>
+<td>Duração da chamada em milissegundos — campo de monitoramento opcional</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK</p>
+<hr />
+<h3 id="sync_executions">sync_executions<a class="headerlink" href="#sync_executions" title="Permanent link">&para;</a></h3>
+<p>Registra metadados de cada execução do job de sincronização automática com a API da Câmara dos Deputados. Permite auditar quando o job rodou, quantas proposições foram processadas e se houve erros. Não tem FK para outras tabelas — é um log independente.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatória</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Identificador único da execução (PK)</td>
+</tr>
+<tr>
+<td><code>iniciado_em</code></td>
+<td>timestamptz</td>
+<td>Sim</td>
+<td>Timestamp UTC do início da execução</td>
+</tr>
+<tr>
+<td><code>finalizado_em</code></td>
+<td>timestamptz</td>
+<td>Não</td>
+<td>Timestamp UTC do fim da execução — nulo enquanto em andamento</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>varchar(30)</td>
+<td>Sim</td>
+<td>Estado da execução (veja valores abaixo)</td>
+</tr>
+<tr>
+<td><code>total_processados</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Total de proposições processadas (filtradas por palavra-chave)</td>
+</tr>
+<tr>
+<td><code>total_inseridos</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Total de proposições novas inseridas no banco</td>
+</tr>
+<tr>
+<td><code>total_atualizados</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Total de proposições existentes com campos atualizados</td>
+</tr>
+<tr>
+<td><code>total_erros</code></td>
+<td>integer</td>
+<td>Sim</td>
+<td>Total de proposições que falharam na validação ou categorização</td>
+</tr>
+<tr>
+<td><code>mensagem_erro</code></td>
+<td>text</td>
+<td>Não</td>
+<td>Descrição do erro em caso de falha — nulo em execuções bem-sucedidas</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Valores de <code>status</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>em_andamento</code></td>
+<td>Job iniciado, ainda em execução</td>
+</tr>
+<tr>
+<td><code>concluido</code></td>
+<td>Todas as proposições processadas e categorizadas com sucesso</td>
+</tr>
+<tr>
+<td><code>concluido_parcial</code></td>
+<td>Processamento concluído, mas parte das proposições ficou com <code>pendente_classificacao</code> por falha do Gemini</td>
+</tr>
+<tr>
+<td><code>erro_api</code></td>
+<td>Falha ao consumir a API da Câmara após retries esgotados</td>
+</tr>
+<tr>
+<td><code>erro_interno</code></td>
+<td>Exceção inesperada dentro do pipeline</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code>id</code> PK</p>
+<hr />
+<h2 id="relacionamentos">Relacionamentos<a class="headerlink" href="#relacionamentos" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>partidos ──────────────────── proposicoes          (1 para N)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>proposicoes ──────────────── tramitacoes           (1 para N)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>proposicoes ──────────────── favoritos             (1 para N)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>proposicoes ──────────────── proposicao_categoria  (1 para N)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>categorias ──────────────── proposicao_categoria   (1 para N)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>usuarios ─────────────────── favoritos             (1 para N)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>usuarios ─────────────────── historico_consultas   (1 para N)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>sync_executions ─────────── (sem FK — log independente)
+</code></pre></div>
+<p><strong>partidos → proposicoes (1:N)</strong>
+Um partido pode estar associado a muitas proposições. Uma proposição pertence a no máximo um partido. A FK <code>partido_id</code> é nullable — caso o partido não seja identificado na coleta, o campo fica nulo e <code>sigla_partido</code> preserva a sigla textual.</p>
+<p><strong>proposicoes → tramitacoes (1:N)</strong>
+Uma proposição pode ter muitas tramitações ao longo de seu ciclo legislativo. Cada tramitação pertence a exatamente uma proposição. O <code>ON DELETE CASCADE</code> garante que ao apagar uma proposição todas as suas tramitações são removidas automaticamente.</p>
+<p><strong>proposicoes → favoritos (1:N) / usuarios → favoritos (1:N)</strong>
+A tabela <code>favoritos</code> representa o relacionamento entre usuários e proposições. Um usuário pode favoritar muitas proposições; uma proposição pode ser favoritada por muitos usuários. A constraint <code>UNIQUE (usuario_id, proposicao_id)</code> impede duplicatas por par usuário-proposição.</p>
+<p><strong>usuarios → historico_consultas (1:N)</strong>
+Um usuário pode ter muitos registros de busca. O <code>ON DELETE CASCADE</code> garante conformidade com requisitos de exclusão de dados (LGPD) — ao remover um usuário, todo o histórico é apagado.</p>
+<p><strong>proposicoes ↔ categorias (N:N via proposicao_categoria)</strong>
+Uma proposição pode ser classificada em múltiplas categorias temáticas; uma categoria pode agregar muitas proposições. A junção é gerenciada exclusivamente pelo pipeline de IA (<code>vincular_categoria()</code>). O <code>ON DELETE CASCADE</code> em ambas as FKs da junction garante que vínculos órfãos nunca existam.</p>
+<hr />
+<h2 id="indices-e-constraints-importantes">Índices e constraints importantes<a class="headerlink" href="#indices-e-constraints-importantes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Constraint</th>
+<th>Tipo</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>partidos</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>partidos</code></td>
+<td><code>sigla</code></td>
+<td>UNIQUE</td>
+<td>Impede dois partidos com a mesma sigla</td>
+</tr>
+<tr>
+<td><code>proposicoes</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>proposicoes</code></td>
+<td><code>(sigla_tipo, numero, ano)</code></td>
+<td>UNIQUE</td>
+<td>Impede duplicatas da mesma proposição em coletas repetidas</td>
+</tr>
+<tr>
+<td><code>proposicoes</code></td>
+<td><code>partido_id → partidos.id</code></td>
+<td>FK</td>
+<td>ON DELETE SET NULL — proposição permanece sem partido</td>
+</tr>
+<tr>
+<td><code>tramitacoes</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>tramitacoes</code></td>
+<td><code>proposicao_id → proposicoes.id</code></td>
+<td>FK</td>
+<td>ON DELETE CASCADE — tramitações removidas junto com a proposição</td>
+</tr>
+<tr>
+<td><code>usuarios</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>usuarios</code></td>
+<td><code>email</code></td>
+<td>UNIQUE</td>
+<td>Um e-mail por conta</td>
+</tr>
+<tr>
+<td><code>usuarios</code></td>
+<td><code>google_id</code></td>
+<td>UNIQUE</td>
+<td>Um Google ID por conta</td>
+</tr>
+<tr>
+<td><code>favoritos</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>favoritos</code></td>
+<td><code>(usuario_id, proposicao_id)</code></td>
+<td>UNIQUE</td>
+<td>Impede favorito duplicado</td>
+</tr>
+<tr>
+<td><code>favoritos</code></td>
+<td><code>usuario_id → usuarios.id</code></td>
+<td>FK</td>
+<td>ON DELETE CASCADE</td>
+</tr>
+<tr>
+<td><code>favoritos</code></td>
+<td><code>proposicao_id → proposicoes.id</code></td>
+<td>FK</td>
+<td>ON DELETE CASCADE</td>
+</tr>
+<tr>
+<td><code>historico_consultas</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>historico_consultas</code></td>
+<td><code>usuario_id → usuarios.id</code></td>
+<td>FK</td>
+<td>ON DELETE CASCADE</td>
+</tr>
+<tr>
+<td><code>requisicoes_api</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>categorias</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>categorias</code></td>
+<td><code>nome</code></td>
+<td>UNIQUE</td>
+<td>Impede categorias duplicadas; base do seed idempotente</td>
+</tr>
+<tr>
+<td><code>proposicao_categoria</code></td>
+<td><code>(proposicao_id, categoria_id)</code></td>
+<td>PK composta</td>
+<td>Impede vínculo duplicado</td>
+</tr>
+<tr>
+<td><code>proposicao_categoria</code></td>
+<td><code>proposicao_id → proposicoes.id</code></td>
+<td>FK</td>
+<td>ON DELETE CASCADE</td>
+</tr>
+<tr>
+<td><code>proposicao_categoria</code></td>
+<td><code>categoria_id → categorias.id</code></td>
+<td>FK</td>
+<td>ON DELETE CASCADE</td>
+</tr>
+<tr>
+<td><code>sync_executions</code></td>
+<td><code>id</code></td>
+<td>PK</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="decisoes-de-design">Decisões de design<a class="headerlink" href="#decisoes-de-design" title="Permanent link">&para;</a></h2>
+<p><strong><code>partido_id</code> nullable em <code>proposicoes</code></strong>
+A API da Câmara nem sempre retorna o partido do autor de uma proposição de forma estruturada. Para não bloquear a coleta, o campo <code>partido_id</code> é opcional. O campo <code>sigla_partido</code> (não-nullable) preserva sempre a sigla textual retornada pela API, mesmo quando a FK não pode ser resolvida. Isso é intencional: <code>sigla_partido</code> é uma cópia desnormalizada para leitura rápida e proteção contra perda de informação.</p>
+<p><strong>Categorias como tabela separada, não coluna em <code>proposicoes</code></strong>
+A classificação temática é modelada com uma tabela <code>categorias</code> dedicada e uma junction <code>proposicao_categoria</code>, não como coluna em <code>proposicoes</code>. Isso permite múltiplas categorias por proposição (ex: uma proposta pode ser "cyberbullying" e "regulação de plataformas digitais" ao mesmo tempo) e facilita consultas analíticas agregadas por tema. O campo <code>classificacao_status</code> em <code>proposicoes</code> rastreia se a IA já processou a proposição, independentemente de quantas categorias foram vinculadas.</p>
+<p><strong>Unique composta em <code>favoritos</code></strong>
+A tabela <code>favoritos</code> usa <code>UNIQUE (usuario_id, proposicao_id)</code> em vez de confiar na lógica da aplicação para evitar duplicatas. Isso garante integridade no banco independentemente de qualquer bug de camada de serviço.</p>
+<p><strong><code>ON DELETE CASCADE</code> em tramitacoes, favoritos e historico_consultas</strong>
+Entidades dependentes são tratadas como filhas sem sentido de existência independente. Se uma proposição é apagada, suas tramitações e favoritos associados perdem o contexto; se um usuário é removido, favoritos e histórico seguem a LGPD e são apagados. O <code>CASCADE</code> delega ao banco essa responsabilidade, evitando dados órfãos.</p>
+<p><strong><code>ON DELETE SET NULL</code> em proposicoes.partido_id</strong>
+Se um partido for apagado do banco (cenário raro), as proposições associadas não devem ser apagadas — apenas <code>partido_id</code> vai a nulo e <code>sigla_partido</code> preserva o registro histórico.</p>
+<p><strong><code>requisicoes_api</code> como log de auditoria</strong>
+Esta tabela não está relacionada a nenhuma outra — é um log independente. O objetivo é rastrear o comportamento do coletor ao longo do tempo: frequência de chamadas, endpoints mais usados, taxas de erro e tempo de resposta. Não tem FK porque um registro de requisição deve persistir mesmo que os dados coletados sejam apagados.</p>
+<p><strong><code>tempo_execucao_ms</code> nullable em <code>requisicoes_api</code></strong>
+Monitoramento de tempo de execução é instrumentação opcional. Em cenários onde a medição não é possível ou relevante (ex: requisições assíncronas sem callback), o campo pode ser omitido sem invalidar o registro de auditoria.</p>
+<p><strong><code>classificacao_status</code> em <code>proposicoes</code></strong>
+Proposições recém-coletadas entram no banco com <code>classificacao_status = 'pendente_classificacao'</code>. Após categorização bem-sucedida pelo Gemini, o status é atualizado para <code>'classificado'</code>. Falhas de IA não bloqueiam a ingestão — a proposição fica disponível com status pendente e pode ser reclassificada por um job futuro. A separação explícita de status (em vez de campo nullable) permite consultar facilmente o backlog de classificação.</p>
+<hr />
+<h2 id="como-manter-este-documento-atualizado">Como manter este documento atualizado<a class="headerlink" href="#como-manter-este-documento-atualizado" title="Permanent link">&para;</a></h2>
+<p>Sempre que uma nova migration for criada (<code>flask db migrate</code>):</p>
+<ol>
+<li>Editar <code>docs/db/erd.dbml</code> refletindo as mudanças nos modelos</li>
+<li>Reimportar o <code>.dbml</code> no <a href="https://dbdiagram.io">dbdiagram.io</a> e exportar um novo <code>erd.png</code></li>
+<li>Atualizar as tabelas e seções relevantes neste <code>schema.md</code></li>
+<li>Commitar os três arquivos juntos com a migration</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../../estudos/banco_de_dados/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Visão Geral">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Visão Geral
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../estudos/banco_de_dados/definicao_banco_de_dados/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Definição do Banco">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Definição do Banco
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/unb-mds/2026-1-LegisKids" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
