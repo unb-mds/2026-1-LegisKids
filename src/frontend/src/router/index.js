@@ -20,6 +20,26 @@ const router = createRouter({
       component: () => import('@/views/DetalheView.vue')
     },
     {
+      path: '/configuracoes',
+      name: 'configuracoes',
+      component: () => import('@/views/ConfiguracoesView.vue')
+    },
+    {
+      path: '/notificacoes',
+      name: 'notificacoes',
+      component: () => import('@/views/NotificacoesView.vue')
+    },
+    {
+      path: '/sobre',
+      name: 'sobre',
+      component: () => import('@/views/SobreView.vue')
+    },
+    {
+      path: '/analises',
+      name: 'analises',
+      component: () => import('@/views/AnalisesView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       redirect: '/'

@@ -48,6 +48,7 @@ function criarGrafico() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: { mode: 'index', intersect: false }
@@ -72,6 +73,7 @@ onUnmounted(() => chart?.destroy())
 .grafico-wrapper {
   position: relative;
   width: 100%;
+  height: 260px;
 }
 
 .grafico-vazio {

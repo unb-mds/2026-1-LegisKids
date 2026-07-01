@@ -52,6 +52,7 @@ function criarGrafico() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       cutout: '65%',
       plugins: {
         legend: { position: 'bottom' },
@@ -74,6 +75,7 @@ onUnmounted(() => chart?.destroy())
 .grafico-wrapper {
   position: relative;
   width: 100%;
+  height: 260px;
 }
 
 .grafico-vazio {

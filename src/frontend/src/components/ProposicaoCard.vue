@@ -3,19 +3,17 @@
     <div class="card-header">
       <span class="card-tag" :title="'Código: ' + (codigo || 'N/D')">{{ codigo || 'N/D' }}</span>
       <StatusBadge :status="status || 'Em tramitação'" />
-      <span v-if="subtema" class="card-subtema">{{ subtema }}</span>
+      <span
+        v-for="s in subtemasNormalizados"
+        :key="s.nome"
+        class="card-subtema"
+        :style="{ background: corBadge(s.cor).background, color: corBadge(s.cor).color }"
+      >{{ s.nome }}</span>
     </div>
 
     <h3 class="card-titulo">{{ titulo || 'Título não informado' }}</h3>
 
     <div class="card-meta">
-      <span class="meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-        </svg>
-        {{ autor || 'Autor não informado' }}
-      </span>
       <span v-if="partido" class="meta-item">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
@@ -42,21 +40,25 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import StatusBadge from './StatusBadge.vue'
+import { corBadge } from '@/utils/proposicao'
 
 const props = defineProps({
   id: [String, Number],
   titulo: String,
-  autor: String,
   partido: String,
   data: String,
   status: String,
-  subtema: String,
+  subtemas: { type: Array, default: () => [] },
   siglaTipo: String,
   numero: [String, Number],
   ano: [String, Number]
 })
 
 const router = useRouter()
+
+const subtemasNormalizados = computed(() =>
+  (props.subtemas || []).map(s => (typeof s === 'string' ? { nome: s, cor: null } : { nome: s.nome, cor: s.cor }))
+)
 
 const codigo = computed(() => {
   if (props.siglaTipo && props.numero && props.ano) {
@@ -127,9 +129,6 @@ function navegar() {
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 999px;
-  background: var(--purple-bg);
-  color: var(--purple-text);
-  margin-left: auto;
 }
 
 .card-titulo {

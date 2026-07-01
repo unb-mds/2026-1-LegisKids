@@ -7,7 +7,7 @@
     <footer class="footer">
       <span>© 2026 Sistema de Monitoramento Legislativo — Proteção Infantil Digital</span>
       <nav class="footer-links">
-        <a href="#">Sobre</a>
+        <RouterLink to="/sobre">Sobre</RouterLink>
         <a href="#">Contato</a>
         <a href="#">Privacidade</a>
       </nav>

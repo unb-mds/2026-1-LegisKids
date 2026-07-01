@@ -16,9 +16,12 @@ import { Chart, BarController, BarElement, CategoryScale, LinearScale, Tooltip, 
 
 Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
+const COR_PADRAO = '#2563EB'
+
 const props = defineProps({
   subtemas: { type: Array, default: () => [] },
   totais: { type: Array, default: () => [] },
+  cores: { type: Array, default: () => [] },
   ariaLabel: { type: String, default: 'Gráfico de barras: proposições por subtema' }
 })
 
@@ -30,6 +33,9 @@ const temDados = computed(() => props.subtemas.length > 0 && props.totais.length
 function criarGrafico() {
   if (!canvasRef.value || !temDados.value) return
   chart?.destroy()
+
+  const cores = props.subtemas.map((_, i) => props.cores[i] || COR_PADRAO)
+
   chart = new Chart(canvasRef.value, {
     type: 'bar',
     data: {
@@ -37,14 +43,15 @@ function criarGrafico() {
       datasets: [{
         label: 'Proposições',
         data: props.totais,
-        backgroundColor: 'rgba(37, 99, 235, 0.8)',
-        borderColor: '#2563EB',
+        backgroundColor: cores,
+        borderColor: cores,
         borderWidth: 1,
         borderRadius: 4
       }]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: { mode: 'index', intersect: false }
@@ -56,7 +63,7 @@ function criarGrafico() {
   })
 }
 
-watch(() => [props.subtemas, props.totais], () => {
+watch(() => [props.subtemas, props.totais, props.cores], () => {
   if (temDados.value) criarGrafico()
   else chart?.destroy()
 }, { deep: true })
@@ -69,6 +76,7 @@ onUnmounted(() => chart?.destroy())
 .grafico-wrapper {
   position: relative;
   width: 100%;
+  height: 260px;
 }
 
 .grafico-vazio {

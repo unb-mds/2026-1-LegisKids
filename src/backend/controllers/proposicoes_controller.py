@@ -101,6 +101,8 @@ def estatisticas():
         "por_subtema": dados["por_subtema"],
         "por_status": dados["por_status"],
         "temporal": dados["temporal"],
+        "temporal_por_subtema": dados["temporal_por_subtema"],
+        "periodo": dados["periodo"],
     })
 
 

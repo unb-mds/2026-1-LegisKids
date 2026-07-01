@@ -1,6 +1,6 @@
 # Spec: api-temas
 
-## Objetivo
+## Purpose
 
 Definir o endpoint `GET /api/temas` do backend Flask, retornando todas as categorias com o total de proposições vinculadas.
 
@@ -14,7 +14,7 @@ Consumido pelo frontend para popular filtros de subtema e exibir contagens. Impl
 - Ordenado por `total` DESC
 - Inclui categorias com 0 proposições
 
-## Requisitos
+## Requirements
 
 ### Requirement: Listagem de temas (categorias) com totais
 O sistema SHALL expor `GET /api/temas` retornando todas as categorias ativas com o total de proposições vinculadas a cada uma. A resposta SHALL ser um array JSON.

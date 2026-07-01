@@ -7,7 +7,7 @@
         <p class="busca-desc">Pesquise e filtre proposições legislativas por tema, parlamentar, partido ou período.</p>
       </header>
 
-      <FilterBar @filter-changed="onFiltroMudou" />
+      <FilterBar :initial-termo="buscaStore.termo" @filter-changed="onFiltroMudou" />
 
       <div class="busca-resultados">
         <LoadingSpinner v-if="store.loading" />
@@ -46,11 +46,10 @@
               <ProposicaoCard
                 :id="p.id"
                 :titulo="p.titulo || p.ementa"
-                :autor="p.autor || p.nome_autor"
                 :partido="partidoLabel(p)"
                 :data="p.data || p.data_apresentacao"
                 :status="p.status"
-                :subtema="p.subtema || p.categoria"
+                :subtemas="p.categorias || []"
                 :sigla-tipo="p.sigla_tipo"
                 :numero="p.numero"
                 :ano="p.ano"
@@ -74,7 +73,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { useProposicoesStore } from '@/stores/proposicoes'
 import { useBuscaStore } from '@/stores/busca'
 import FilterBar from '@/components/FilterBar.vue'
@@ -82,9 +82,23 @@ import ProposicaoCard from '@/components/ProposicaoCard.vue'
 import Pagination from '@/components/Pagination.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 
+const route = useRoute()
 const store = useProposicoesStore()
 const buscaStore = useBuscaStore()
 const buscaFeita = ref(false)
+
+onMounted(async () => {
+  const q = route.query.q
+  if (typeof q === 'string' && q.trim()) {
+    buscaStore.termo = q.trim()
+    buscaFeita.value = true
+    await store.carregar(
+      { ...buscaStore.filtros, termo: buscaStore.termo },
+      buscaStore.pagina,
+      buscaStore.porPagina
+    )
+  }
+})
 
 function partidoLabel(p) {
   if (p.partido && typeof p.partido === 'object') {

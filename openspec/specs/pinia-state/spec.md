@@ -1,6 +1,6 @@
 # Spec: pinia-state
 
-## Objetivo
+## Purpose
 
 Definir o gerenciamento de estado global da SPA via Pinia: filtros de busca ativos, paginação e lista de proposições carregadas.
 
@@ -14,7 +14,7 @@ O LegisKids usa Pinia como gerenciador de estado oficial do Vue 3. O estado gere
 - Store `useProposicoesStore` para lista, total, loading e error
 - Registro do Pinia no `main.js` antes do `app.mount()`
 
-## Requisitos
+## Requirements
 
 ### Requirement: Store de busca e filtros
 O sistema SHALL possuir uma store Pinia `useBuscaStore` em `src/stores/busca.js` que gerencia o estado da busca ativa: termo de busca, filtros selecionados (parlamentar, partido, dataInicio, dataFim, subtema) e número da página atual.

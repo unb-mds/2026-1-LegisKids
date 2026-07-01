@@ -1,6 +1,6 @@
 # Spec: vue-project-scaffold
 
-## Objetivo
+## Purpose
 
 Estabelecer a estrutura base do projeto Vue 3 + Vite em `frontend/`, com todas as dependências necessárias, variáveis de ambiente e sistema de design CSS integrado.
 
@@ -15,7 +15,7 @@ O frontend do LegisKids foi migrado de vanilla HTML/CSS/JS para Vue 3 + Vite com
 - Variáveis de ambiente via `VITE_API_BASE_URL`
 - CSS global com tokens de identidade visual (paleta, fontes)
 
-## Requisitos
+## Requirements
 
 ### Requirement: Projeto Vue 3 inicializado com Vite
 O sistema SHALL possuir um projeto Vue 3 na pasta `frontend/`, com Vue Router e Pinia habilitados, e Chart.js instalado.

@@ -1,6 +1,6 @@
 # Spec: database-url-config
 
-## Objetivo
+## Purpose
 
 Garantir que a aplicação LegisKids use exclusivamente a variável de ambiente `DATABASE_URL` para configurar a conexão com o banco de dados PostgreSQL, com suporte a ambientes locais (Docker) e remotos (Neon), e que o repositório permaneça seguro sem credenciais expostas.
 
@@ -18,7 +18,7 @@ A aplicação utiliza Flask + SQLAlchemy. A configuração da conexão ao banco 
 - Banco Neon populado com dados iniciais via seed
 - GitHub Secret `DATABASE_URL` configurado para CI/CD
 
-## Requisitos
+## Requirements
 
 ### Requirement: Conexão ao banco via DATABASE_URL
 O sistema SHALL usar exclusivamente a variável de ambiente `DATABASE_URL` para configurar `SQLALCHEMY_DATABASE_URI`. A aplicação SHALL levantar `RuntimeError` com mensagem descritiva se `DATABASE_URL` não estiver definida no ambiente.
