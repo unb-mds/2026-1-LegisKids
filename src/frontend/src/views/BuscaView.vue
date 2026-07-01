@@ -47,10 +47,13 @@
                 :id="p.id"
                 :titulo="p.titulo || p.ementa"
                 :autor="p.autor || p.nome_autor"
-                :partido="p.partido || p.sigla_partido"
+                :partido="partidoLabel(p)"
                 :data="p.data || p.data_apresentacao"
                 :status="p.status"
                 :subtema="p.subtema || p.categoria"
+                :sigla-tipo="p.sigla_tipo"
+                :numero="p.numero"
+                :ano="p.ano"
               />
             </div>
           </div>
@@ -82,6 +85,13 @@ import LoadingSpinner from '@/components/LoadingSpinner.vue'
 const store = useProposicoesStore()
 const buscaStore = useBuscaStore()
 const buscaFeita = ref(false)
+
+function partidoLabel(p) {
+  if (p.partido && typeof p.partido === 'object') {
+    return p.partido.sigla || p.partido.nome || ''
+  }
+  return p.partido || p.sigla_partido || ''
+}
 
 async function onFiltroMudou(filtros) {
   Object.assign(buscaStore.filtros, filtros)

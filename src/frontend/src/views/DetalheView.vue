@@ -25,7 +25,7 @@
         <article class="proposicao-detalhe" aria-label="Detalhes da proposição">
           <header class="detalhe-header">
             <div class="detalhe-badges">
-              <span class="detalhe-codigo">{{ proposicao.id }}</span>
+              <span class="detalhe-codigo">{{ codigo }}</span>
               <StatusBadge :status="proposicao.status || 'Em tramitação'" />
               <span v-if="proposicao.subtema || proposicao.categoria" class="detalhe-subtema">
                 {{ proposicao.subtema || proposicao.categoria }}
@@ -41,7 +41,7 @@
             </div>
             <div class="meta-grupo">
               <span class="meta-label">Partido</span>
-              <span class="meta-valor">{{ proposicao.partido || proposicao.sigla_partido || '—' }}</span>
+              <span class="meta-valor">{{ partidoLabel || '—' }}</span>
             </div>
             <div class="meta-grupo">
               <span class="meta-label">Data de Apresentação</span>
@@ -108,6 +108,24 @@ const dataFormatada = computed(() => {
   const d = proposicao.value?.data || proposicao.value?.data_apresentacao
   if (!d) return 'Não informada'
   try { return new Date(d).toLocaleDateString('pt-BR') } catch { return d }
+})
+
+const partidoLabel = computed(() => {
+  const p = proposicao.value
+  if (!p) return ''
+  if (p.partido && typeof p.partido === 'object') {
+    return p.partido.sigla || p.partido.nome || ''
+  }
+  return p.partido || p.sigla_partido || ''
+})
+
+const codigo = computed(() => {
+  const p = proposicao.value
+  if (!p) return ''
+  if (p.sigla_tipo && p.numero && p.ano) {
+    return `${p.sigla_tipo} ${p.numero}/${p.ano}`
+  }
+  return p.id
 })
 
 function formatarData(d) {

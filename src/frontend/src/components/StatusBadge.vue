@@ -16,7 +16,7 @@ const classe = computed(() => {
   const s = props.status?.toLowerCase() ?? ''
   if (s.includes('aprovado') || s.includes('sancionado')) return 'status--aprovado'
   if (s.includes('urgente') || s.includes('crítico')) return 'status--urgente'
-  if (s.includes('arquivado') || s.includes('retirado')) return 'status--arquivado'
+  if (s.includes('arquivado') || s.includes('retirado') || s.includes('encerrado')) return 'status--arquivado'
   return 'status--tramitacao'
 })
 </script>
