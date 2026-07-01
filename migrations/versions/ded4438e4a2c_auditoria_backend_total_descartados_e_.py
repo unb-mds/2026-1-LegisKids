@@ -21,13 +21,16 @@ depends_on = None
 
 
 def upgrade():
+    inspector = sa.inspect(op.get_bind())
+
     # 1. Coluna total_descartados em sync_executions
     with op.batch_alter_table('sync_executions', schema=None) as batch_op:
         batch_op.add_column(sa.Column(
             'total_descartados', sa.Integer(), nullable=False, server_default='0'
         ))
 
-    # 2. Índices em proposicoes + remoção de coluna legada 'categoria'
+    # 2. Índices em proposicoes + remoção condicional de coluna legada 'categoria'
+    proposicoes_columns = {col['name'] for col in inspector.get_columns('proposicoes')}
     with op.batch_alter_table('proposicoes', schema=None) as batch_op:
         batch_op.create_index('idx_proposicoes_classificacao_status', ['classificacao_status'], unique=False)
         # Os índices abaixo podem já existir em bancos criados pela migration babbb73a5d52;
@@ -38,8 +41,10 @@ def upgrade():
         batch_op.create_index('idx_proposicoes_partido_id',        ['partido_id'],              unique=False, if_not_exists=True)
         batch_op.create_index('idx_proposicoes_sigla_tipo',        ['sigla_tipo'],              unique=False, if_not_exists=True)
         batch_op.create_index('idx_proposicoes_tipo_ano',          ['sigla_tipo', 'ano'],       unique=False, if_not_exists=True)
-        # Remove coluna legada que existe no banco mas não no modelo
-        batch_op.drop_column('categoria')
+        # Remove coluna legada 'categoria' apenas se ainda existir: bancos criados
+        # do zero (migration babbb73a5d52) nunca a tiveram, só bancos antigos a possuem.
+        if 'categoria' in proposicoes_columns:
+            batch_op.drop_column('categoria')
 
     # 3. Favoritos: renomeia constraint única para o nome do modelo
     with op.batch_alter_table('favoritos', schema=None) as batch_op:
