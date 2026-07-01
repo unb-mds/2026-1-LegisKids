@@ -365,6 +365,16 @@ def get_estatisticas_dashboard() -> dict:
         else None
     )
 
+    data_inicio, data_fim = db.session.query(
+        func.min(Proposicao.data_apresentacao),
+        func.max(Proposicao.data_apresentacao),
+    ).first()
+    periodo = (
+        {"data_inicio": data_inicio.isoformat(), "data_fim": data_fim.isoformat()}
+        if data_inicio and data_fim
+        else None
+    )
+
     return {
         "total": total,
         "ativas": ativas,
@@ -373,6 +383,7 @@ def get_estatisticas_dashboard() -> dict:
         "por_status": por_status,
         "temporal": temporal,
         "ultima_atualizacao": ultima_atualizacao,
+        "periodo": periodo,
     }
 
 

@@ -7,9 +7,14 @@
           <h1 class="dashboard-title">Dashboard de Monitoramento</h1>
           <p class="dashboard-desc">Acompanhamento de proposições relacionadas à proteção infantil digital.</p>
         </div>
-        <span v-if="ultimaAtualizacao" class="last-update">
-          Última atualização: {{ ultimaAtualizacao }}
-        </span>
+        <div class="header-flags">
+          <span v-if="ultimaAtualizacao" class="last-update">
+            Última atualização: {{ ultimaAtualizacao }}
+          </span>
+          <span v-if="periodoTexto" class="last-update">
+            Proposições salvas de {{ periodoTexto }}
+          </span>
+        </div>
       </header>
 
       <div class="alert-banner" role="status">
@@ -206,8 +211,14 @@ function buscarRapido() {
   router.push({ path: '/busca', query: termoBuscaRapida.value ? { q: termoBuscaRapida.value } : {} })
 }
 
+function formatarDataSimples(isoDate) {
+  const [ano, mes, dia] = isoDate.split('-')
+  return `${dia}/${mes}/${ano}`
+}
+
 const stats = ref({})
 const ultimaAtualizacao = ref('')
+const periodoTexto = ref('')
 
 const graficoSubtemas = ref({ labels: [], values: [], cores: [] })
 const graficoStatus = ref({ labels: [], values: [] })
@@ -223,6 +234,10 @@ onMounted(async () => {
     stats.value = data.resumo ?? {}
     ultimaAtualizacao.value = data.ultima_atualizacao
       ? new Date(data.ultima_atualizacao).toLocaleString('pt-BR')
+      : ''
+
+    periodoTexto.value = data.periodo
+      ? `${formatarDataSimples(data.periodo.data_inicio)} até ${formatarDataSimples(data.periodo.data_fim)}`
       : ''
 
     const porSubtema = data.por_subtema ?? { labels: [], values: [] }
@@ -270,6 +285,13 @@ onMounted(async () => {
   line-height: 1.6;
 }
 
+.header-flags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
 .last-update {
   font-size: 12px;
   color: var(--text-caption);
@@ -279,7 +301,7 @@ onMounted(async () => {
   border-radius: 999px;
   box-shadow: var(--shadow);
   white-space: nowrap;
-  align-self: flex-start;
+  align-self: flex-end;
 }
 
 .alert-banner {
