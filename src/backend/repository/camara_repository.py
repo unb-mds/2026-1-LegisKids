@@ -348,6 +348,39 @@ def get_estatisticas_dashboard() -> dict:
         "values": [r.contagem for r in temporal_rows],
     }
 
+    meses_chave = [(int(r.ano), int(r.mes)) for r in temporal_rows]
+    temporal_subtema_rows = (
+        db.session.query(
+            _ano.label("ano"),
+            _mes.label("mes"),
+            Categoria.nome.label("categoria"),
+            func.count(proposicao_categoria.c.proposicao_id).label("contagem"),
+        )
+        .join(proposicao_categoria, proposicao_categoria.c.proposicao_id == Proposicao.id)
+        .join(Categoria, Categoria.id == proposicao_categoria.c.categoria_id)
+        .group_by(_ano, _mes, Categoria.nome)
+        .order_by(_ano, _mes)
+        .all()
+    )
+    contagem_por_categoria_mes = {}
+    for r in temporal_subtema_rows:
+        contagem_por_categoria_mes.setdefault(r.categoria, {})[(int(r.ano), int(r.mes))] = r.contagem
+
+    temporal_por_subtema = {
+        "labels": temporal["labels"],
+        "series": [
+            {
+                "nome": row.nome,
+                "values": [
+                    contagem_por_categoria_mes.get(row.nome, {}).get(chave, 0)
+                    for chave in meses_chave
+                ],
+            }
+            for row in por_subtema_rows
+            if row.nome in contagem_por_categoria_mes
+        ],
+    }
+
     ultimo_sync = (
         db.session.query(SyncExecution.finalizado_em)
         .filter(
@@ -382,6 +415,7 @@ def get_estatisticas_dashboard() -> dict:
         "por_subtema": por_subtema,
         "por_status": por_status,
         "temporal": temporal,
+        "temporal_por_subtema": temporal_por_subtema,
         "ultima_atualizacao": ultima_atualizacao,
         "periodo": periodo,
     }

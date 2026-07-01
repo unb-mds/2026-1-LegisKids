@@ -158,7 +158,7 @@
               </div>
             </RouterLink>
 
-            <a href="#graficos-secao" class="quick-action-card">
+            <RouterLink to="/analises" class="quick-action-card">
               <div class="quick-action-card__icon" style="background:#F1E4FF" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="18" y1="20" x2="18" y2="10"/>
@@ -170,7 +170,7 @@
                 <span class="quick-action-card__title">Análises e Relatórios</span>
                 <span class="quick-action-card__desc">Acesse métricas e indicadores legislativos</span>
               </div>
-            </a>
+            </RouterLink>
 
             <RouterLink to="/configuracoes" class="quick-action-card">
               <div class="quick-action-card__icon" style="background:#D9E4FF" aria-hidden="true">

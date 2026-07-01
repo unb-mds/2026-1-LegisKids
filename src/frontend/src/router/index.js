@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('@/views/SobreView.vue')
     },
     {
+      path: '/analises',
+      name: 'analises',
+      component: () => import('@/views/AnalisesView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       redirect: '/'
