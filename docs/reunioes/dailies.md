@@ -258,3 +258,29 @@ Caio: finalizou o backlog, arrumar algumas nomenclaturas (números), pegar US.
 Luís: fez o documento do estudo de Spec, e não vai conseguir ajudar até sexta. 
 
 Renan: acabei o planejamento do Banco de Dados,  
+
+## Quarta-feira 10/06
+
+Presentes: Arthur, Caio, ítalo, Luís e Renan
+
+Arthur: terminou a issue de OSS.
+
+Caio: terminou a 174, vai fazer a 176 hoje.
+
+Ítalo: terminando a 175.
+
+Luís: issue de documentação do DB e a configuração da hospedagem com Neon.
+
+Renan: revisou 3 PR's.
+
+## Quarta-feira 17/06
+
+Foi praticamente um Planning 2
+- Arrumar SKILLS (S/M)- Luís 
+- Issue de Scheduler (M) - Caio 
+- Issue de Filtro – filtro de padronização e IA para categorização e refiltro (L) - Renan 
+- Planejamento do site - Ítalo 
+- Issue de polimento do Front e Transicionar para o React (ajustar dashboards, telas, dados necessários) 
+- Issue de integração 
+Anotação: Front-end pedir controller, que pede services que consulta DB na nuvem 
+ -Issue de atualizar documentação 

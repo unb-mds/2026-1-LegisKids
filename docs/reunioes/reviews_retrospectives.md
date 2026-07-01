@@ -92,3 +92,51 @@ Foi identificada necessidade de melhoria na divisão de tarefas para aumento de 
 Presentes: Arthur, Caio, Ítalo, Luís e Renan
 
 Todos entregamos a maioria, mas ainda faltou algumas conclusões.
+
+## 01/06 - Sprint 9
+
+Presentes: Arthur, Caio e Renan 
+
+Review: 
+
+- A gente finalizou a R1 (documentação, implementação inicial do Front-End); 
+
+Retrospectiva: 
+
+- Para essa Sprint, nada a reclamar/mudar. 
+
+## 08/06 - Sprint 10
+
+Presentes: Arthur, Caio, Luís e Renan. 
+
+Review:
+
+- Renan: completou as issues 171, 172 e 173 
+- Arthur: realizou README e Requirements.txt 
+- Luís: fez o do OpenSpec e está fazendo a hospedagem com Neon. 
+- Caio: fez o estudo dos frameworks. 
+
+Retrospectiva:
+
+Melhorar comunicação e organização. 
+
+## 15/06 - Sprint 11
+
+Presentes: Luís e Renan. 
+
+Review: 
+
+- Arthur: entregou documentos OSS. 
+
+- Caio: entregou models SQLAlchemy. 
+
+- Luís: entregou Schema e conexão Neon. 
+
+- Ítalo: não entregou. 
+
+- Renan: não entregou.
+
+Retrospectiva: 
+
+- Melhorar comunicação, mais transparente. 
+- Não consegue fazer ou está sem tempo? Veja se alguém pode fazer por você, o mais cedo possível. Não desperdice o seu tempo, nem o dos outros. 

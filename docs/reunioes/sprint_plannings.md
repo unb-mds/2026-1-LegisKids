@@ -152,3 +152,57 @@ Até terça-feira à noite: acabar TODAS as pendências da Sprint7.
 Quarta-feira: criarmos o email do grupo, assinarmos o Claude, todos lermos o padrão que seguiremos para SDD, instalarmos em nossos PC’s, e nos alocarmos em User Stories de implementação. 
 
 R1 (27/05): front-end básico que chama o consumo de API’s. 
+
+## Sprint 9
+
+- Open Spec MUST S 
+
+- React (Next) - FrontEnd -> avaliar MUST M 
+
+- Banco de Dados COULD XL 
+
+- Arrumar o README.md - Renan XS 
+
+- Dcoumentos de OSS (Contributing, etc) 
+
+- requirements.txt 
+
+## Sprint 10
+TUDO NOS CONFORMES!
+
+Presentes: Arthur, Caio e Renan 
+
+Prioridade: 
+
+- Banco de Dados implementar inteiro - Caio, Luís, Ítalo e Renan 
+
+Alinhamento: 
+
+- Open Spec ? Avaliar -> Explicar melhor - Luís -> padrao_sdd.md 
+
+- React (Nest) - FrontEnd -> avaliar e planejar - Caio 
+
+Documentação: 
+
+- Arrumar o README.md - Arthur 
+
+- Documentos de OSS (Contributing, etc) - Arthur 
+
+- Requirements.txt - Arthur 
+
+Reservas – avaliar na sexta: 
+
+- Já transicionar o Front para o React/Nest 
+
+## Sprint 11
+
+Presentes: Arthur, Caio, Luís e Renan. 
+
+Acabar o Banco de Dados até Quarta-feira (Caio, Luís e Ítalo) 
+
+Scheduler (Renan e mais alguém) com filtro a mais da IA (Gemini) 
+
+## Sprint 12
+
+- ACABAR O BANCO DE DADOS 
+- Scheduler e IA (SDD) 
