@@ -1,6 +1,6 @@
 # Spec: api-estatisticas
 
-## Objetivo
+## Purpose
 
 Definir o endpoint `GET /api/estatisticas` do backend Flask, fornecendo métricas agregadas para o DashboardView.
 
@@ -15,7 +15,7 @@ O frontend (DashboardView) chama esta rota ao montar e distribui os dados para o
 - `temporal` agrupado por mês/ano com labels "MMM/YYYY" em português
 - `ultima_atualizacao` derivado de `sync_executions` com status de sucesso
 
-## Requisitos
+## Requirements
 
 ### Requirement: Estatísticas para o dashboard
 O sistema SHALL expor `GET /api/estatisticas` retornando métricas agregadas para alimentar os widgets e gráficos do DashboardView. A resposta SHALL conter `resumo`, `ultima_atualizacao`, `por_subtema`, `por_status` e `temporal`.

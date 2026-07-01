@@ -1,6 +1,6 @@
 # Spec: schema-banco-de-dados
 
-## Objetivo
+## Purpose
 
 Documentar o schema do banco de dados do LegisKids de forma completa e acessível, incluindo um Diagrama Entidade-Relacionamento versionado, documentação textual de cada tabela com colunas, constraints e relacionamentos, e integração dessa documentação ao README e ao MkDocs do projeto.
 
@@ -16,7 +16,7 @@ O LegisKids utiliza PostgreSQL com SQLAlchemy e Flask-Migrate. O schema atual co
 - Listagem de constraints relevantes: PKs, unique constraints, FKs com comportamento `ON DELETE`
 - Integração da documentação ao `README.md` e ao `mkdocs.yml`
 
-## Requisitos
+## Requirements
 
 ### Requirement: ERD do banco disponível e versionado
 O projeto SHALL possuir um Diagrama Entidade-Relacionamento representando o schema atual do banco, disponível como imagem em `docs/db/erd.png` e como código-fonte editável em `docs/db/erd.dbml`. O ERD SHALL cobrir todas as tabelas, chaves primárias, chaves estrangeiras e relacionamentos definidos nos models SQLAlchemy.

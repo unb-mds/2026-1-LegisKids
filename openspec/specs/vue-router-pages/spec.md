@@ -1,6 +1,6 @@
 # Spec: vue-router-pages
 
-## Objetivo
+## Purpose
 
 Definir o roteamento client-side da SPA Vue com Vue Router 4, cobrindo as páginas principais da Release 1: Dashboard, Busca e Detalhes de proposição.
 
@@ -14,9 +14,7 @@ O LegisKids é uma SPA Vue 3 que usa Vue Router 4 no modo `history` (HTML5 Histo
 - Rota `/busca` → BuscaView
 - Rota `/proposicao/:id` → DetalheView
 - Navbar persistente em App.vue fora do RouterView
-
-## Requisitos
-
+## Requirements
 ### Requirement: Roteamento client-side com Vue Router 4
 O sistema SHALL usar Vue Router 4 no modo `history` (HTML5 History API) para navegação entre páginas sem reload completo.
 
@@ -47,11 +45,11 @@ O sistema SHALL registrar a rota `/busca` mapeada para o componente `views/Busca
 - **THEN** os parâmetros relevantes (palavra-chave, filtros ativos, página) são refletidos na URL como query params
 
 ### Requirement: Rota de Detalhes da Proposição
-O sistema SHALL registrar a rota `/proposicao/:id` mapeada para o componente `views/DetalheView.vue`, exibindo informações completas de uma proposição específica (US15).
+O sistema SHALL registrar a rota `/proposicao/:id` mapeada para o componente `views/DetalheView.vue`, exibindo informações completas de uma proposição específica (US15) no layout de top bar, cabeçalho com badges, abas (Visão geral, Tramitação, Análise, Documentos, Comentários) e sidebar (status de tramitação, indicadores, compartilhamento) definido em `openspec/changes/dashboard-projeto-detalhado/spec.json`, com estado vazio explícito nas seções sem dado disponível na API.
 
 #### Scenario: Acesso aos detalhes com ID válido
 - **WHEN** o usuário navega para `/proposicao/123`
-- **THEN** o componente `DetalheView` busca e exibe os dados da proposição com id 123
+- **THEN** o componente `DetalheView` busca e exibe os dados da proposição com id 123 no layout de abas/sidebar do spec visual
 
 #### Scenario: ID inválido ou não encontrado
 - **WHEN** o usuário acessa `/proposicao/99999` e o backend retorna 404
@@ -63,3 +61,25 @@ O sistema SHALL renderizar o componente `Navbar` em `App.vue`, fora do `<RouterV
 #### Scenario: Navbar visível em todas as páginas
 - **WHEN** o usuário navega entre `/`, `/busca` e `/proposicao/:id`
 - **THEN** a Navbar permanece visível e o link da página atual é marcado como ativo via `RouterLink`
+
+### Requirement: Rota de Configurações
+O sistema SHALL registrar a rota `/configuracoes` mapeada para o componente `views/ConfiguracoesView.vue`, acessível via ícone de ação na Navbar.
+
+#### Scenario: Acesso às configurações
+- **WHEN** o usuário navega para `/configuracoes`
+- **THEN** o componente `ConfiguracoesView` é renderizado
+
+### Requirement: Rota de Notificações
+O sistema SHALL registrar a rota `/notificacoes` mapeada para o componente `views/NotificacoesView.vue`, acessível via ícone de ação na Navbar.
+
+#### Scenario: Acesso às notificações
+- **WHEN** o usuário navega para `/notificacoes`
+- **THEN** o componente `NotificacoesView` é renderizado
+
+### Requirement: Rota de Sobre
+O sistema SHALL registrar a rota `/sobre` mapeada para o componente `views/SobreView.vue`, acessível via link no rodapé, exibindo conteúdo institucional estático sobre o LegisKids.
+
+#### Scenario: Acesso à página Sobre
+- **WHEN** o usuário clica no link "Sobre" do rodapé
+- **THEN** a URL muda para `/sobre` e o componente `SobreView` é renderizado, sem reload da página
+

@@ -1,21 +1,5 @@
-# Spec: chart-visualizations
+## MODIFIED Requirements
 
-## Purpose
-
-Definir os componentes de visualização de dados usando Chart.js 4, cobrindo gráficos de barras (subtemas), linha temporal e rosca (status) — preparação para US11, US12, US13.
-
-## Contexto
-
-O LegisKids usa Chart.js 4 para gráficos convencionais (barras, linha, rosca). Os componentes vivem em `src/components/charts/`, consomem dados via props vindos dos services e destroem a instância no unmount para evitar vazamento de memória.
-
-## Escopo
-
-- `GraficoSubtemas.vue` — barras verticais por subtema
-- `GraficoTemporal.vue` — linha de evolução temporal
-- `GraficoStatus.vue` — rosca de distribuição por status
-- Estado vazio ("Nenhum dado disponível") para todos
-- Acessibilidade: `aria-label` e `role="img"` nos canvas
-## Requirements
 ### Requirement: Componente de gráfico de barras por subtema
 O sistema SHALL possuir o componente `src/components/charts/GraficoSubtemas.vue` que recebe dados e renderiza um gráfico de barras **verticais** com Chart.js, com cor de cada barra correspondente à cor real da categoria (quando disponível) e altura fixa no wrapper (`maintainAspectRatio: false`) para evitar área desproporcional ao redor do gráfico.
 
@@ -67,4 +51,3 @@ Cada componente de gráfico SHALL incluir um atributo `aria-label` descritivo no
 #### Scenario: Gráfico acessível por leitores de tela
 - **WHEN** um leitor de tela acessa o componente de gráfico
 - **THEN** o `aria-label` descreve o tipo e propósito do gráfico (ex: "Gráfico de barras: proposições por subtema")
-

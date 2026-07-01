@@ -158,18 +158,23 @@
               <div class="card">
                 <h2 class="card__title">Projetos relacionados</h2>
                 <div v-if="relacionados.length" class="related-grid">
-                  <button
-                    v-for="r in relacionados"
-                    :key="r.id"
-                    type="button"
-                    class="related-card"
-                    @click="irParaProposicao(r.id)"
-                  >
-                    <span class="badge badge--id">{{ codigoRelacionado(r) }}</span>
-                    <p class="related-card__title">{{ r.titulo || r.ementa }}</p>
-                    <StatusBadge :status="r.status || r.descricao_situacao || 'Em tramitação'" />
-                  </button>
-                </div>
+                <RouterLink
+                  v-for="r in relacionados"
+                  :key="r.id"
+                  :to="{ name: 'detalhe', params: { id: r.id } }"
+                  class="related-card"
+                >
+                  <span class="badge badge--id">{{ codigoRelacionado(r) }}</span>
+
+                  <p class="related-card__title">
+                    {{ r.titulo || r.ementa }}
+                  </p>
+
+                  <StatusBadge
+                    :status="r.status || r.descricao_situacao || 'Em tramitação'"
+                  />
+                </RouterLink>
+              </div>
                 <div v-else class="empty-state">
                   <p>Nenhum projeto relacionado disponível no momento.</p>
                 </div>
@@ -331,7 +336,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import StatusBadge from '@/components/StatusBadge.vue'
@@ -481,11 +486,16 @@ async function carregarRelacionados() {
   }
 }
 
-onMounted(async () => {
+async function carregarProposicao(id) {
+  carregando.value = true
+  erro.value = null
+
   try {
-    const data = await fetchProposicao(route.params.id)
+    const data = await fetchProposicao(id)
+
     proposicao.value = data.proposicao ?? data
     tramitacoes.value = data.tramitacoes ?? []
+
     await carregarRelacionados()
   } catch (e) {
     erro.value = e.message?.includes('404')
@@ -494,7 +504,18 @@ onMounted(async () => {
   } finally {
     carregando.value = false
   }
+}
+
+onMounted(() => {
+  carregarProposicao(route.params.id)
 })
+watch(
+  () => route.params.id,
+  (novoId) => {
+    carregarProposicao(novoId)
+  }
+)
+
 </script>
 
 <style scoped>
@@ -740,6 +761,8 @@ onMounted(async () => {
 .related-card {
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+  color: inherit;
   align-items: flex-start;
   gap: 8px;
   background: #F8FAFC;
