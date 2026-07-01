@@ -1,53 +1,96 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="Navegação principal">
     <RouterLink to="/" class="navbar__logo" aria-label="LegisKids — ir para o início">
-      <div class="logo-icon">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <rect width="32" height="32" rx="6" fill="white" fill-opacity="0.15"/>
-          <path d="M16 4L6 9v8c0 5.5 4.3 10.7 10 12 5.7-1.3 10-6.5 10-12V9L16 4z" fill="white" fill-opacity="0.9"/>
-          <path d="M13 16l2 2 4-4" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <div class="logo-badge">
+        <img class="logo-icon" src="@/assets/images/logo-legiskids.png" alt="LegisKids" />
       </div>
       <div class="logo-text">
-        <span class="logo-title">LegisKids</span>
         <span class="logo-subtitle">Monitoramento Legislativo</span>
       </div>
     </RouterLink>
 
-    <div class="navbar__menu" :class="{ 'navbar__menu--open': menuAberto }" role="menubar">
-      <RouterLink to="/" class="nav-item" active-class="active" exact @click="fecharMenu">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-          <polyline points="9,22 9,12 15,12 15,22"/>
-        </svg>
-        Dashboard
-      </RouterLink>
+    <div class="navbar__right">
+      <div class="navbar__menu" :class="{ 'navbar__menu--open': menuAberto }" role="menubar">
+        <RouterLink to="/" class="nav-item" active-class="active" exact @click="fecharMenu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+          Dashboard
+        </RouterLink>
 
-      <RouterLink to="/busca" class="nav-item" active-class="active" @click="fecharMenu">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        <RouterLink to="/busca" class="nav-item" active-class="active" @click="fecharMenu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          Busca
+        </RouterLink>
+
+        <RouterLink to="/configuracoes" class="nav-item navbar__action--mobile" active-class="active" @click="fecharMenu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+          Configurações
+        </RouterLink>
+
+        <RouterLink to="/notificacoes" class="nav-item navbar__action--mobile" active-class="active" @click="fecharMenu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 01-3.46 0"/>
+          </svg>
+          Notificações
+        </RouterLink>
+      </div>
+
+      <div class="navbar__actions">
+        <RouterLink
+          to="/configuracoes"
+          class="navbar__action"
+          active-class="active"
+          aria-label="Configurações"
+          title="Configurações"
+          @click="fecharMenu"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+          </svg>
+        </RouterLink>
+
+        <RouterLink
+          to="/notificacoes"
+          class="navbar__action"
+          active-class="active"
+          aria-label="Notificações"
+          title="Notificações"
+          @click="fecharMenu"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 01-3.46 0"/>
+          </svg>
+        </RouterLink>
+      </div>
+
+      <button
+        class="navbar__hamburger"
+        :aria-expanded="menuAberto"
+        aria-label="Abrir menu de navegação"
+        @click="toggleMenu"
+      >
+        <svg v-if="!menuAberto" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
-        Busca
-      </RouterLink>
+        <svg v-else width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
     </div>
-
-    <button
-      class="navbar__hamburger"
-      :aria-expanded="menuAberto"
-      aria-label="Abrir menu de navegação"
-      @click="toggleMenu"
-    >
-      <svg v-if="!menuAberto" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-      <svg v-else width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
   </nav>
 </template>
 
@@ -88,10 +131,20 @@ function fecharMenu() {
   text-decoration: none;
 }
 
-.logo-icon {
+.logo-badge {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.logo-icon {
+  display: block;
+  height: 36px;
+  width: auto;
 }
 
 .logo-text {
@@ -100,18 +153,18 @@ function fecharMenu() {
   line-height: 1;
 }
 
-.logo-title {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.logo-subtitle {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 2px;
 }
 
-.logo-subtitle {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 11px;
-  font-weight: 400;
-  margin-top: 2px;
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .navbar__menu {
@@ -141,6 +194,40 @@ function fecharMenu() {
 }
 
 .nav-item:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.navbar__action--mobile {
+  display: none;
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.navbar__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  transition: background var(--transition), color var(--transition);
+  outline-offset: 2px;
+}
+
+.navbar__action:hover,
+.navbar__action.active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.navbar__action:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.8);
 }
 
@@ -184,6 +271,14 @@ function fecharMenu() {
     display: flex;
   }
 
+  .navbar__right {
+    gap: 8px;
+  }
+
+  .navbar__actions {
+    display: none;
+  }
+
   .navbar__menu {
     display: none;
     width: 100%;
@@ -199,6 +294,10 @@ function fecharMenu() {
 
   .nav-item {
     padding: 10px 12px;
+  }
+
+  .navbar__action--mobile {
+    display: flex;
   }
 }
 </style>

@@ -82,10 +82,16 @@
 import { reactive, computed, onMounted } from 'vue'
 import { fetchTemas } from '@/services/temas'
 
+const props = defineProps({
+  initialTermo: {
+    type: String,
+    default: ''
+  }
+})
 const emit = defineEmits(['filter-changed'])
 
 const local = reactive({
-  termo: '',
+  termo: props.initialTermo,
   subtema: '',
   partido: '',
   parlamentar: '',
