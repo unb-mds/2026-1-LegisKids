@@ -49,7 +49,7 @@ def listar_proposicoes():
 
     try:
         items, total = repo.listar_proposicoes_paginado(filtros, pagina, por_pagina)
-    except Exception as exc:
+    except Exception:
         logger.exception("Erro ao listar proposições")
         return jsonify({"error": "Erro ao buscar proposições"}), 500
 
@@ -67,7 +67,7 @@ def listar_proposicoes():
 def detalhe_proposicao(proposicao_id):
     try:
         prop = repo.get_proposicao_detalhe(proposicao_id)
-    except Exception as exc:
+    except Exception:
         logger.exception("Erro ao buscar proposição %s", proposicao_id)
         return jsonify({"error": "Erro ao buscar proposição"}), 500
 
@@ -86,7 +86,7 @@ def detalhe_proposicao(proposicao_id):
 def estatisticas():
     try:
         dados = repo.get_estatisticas_dashboard()
-    except Exception as exc:
+    except Exception:
         logger.exception("Erro ao calcular estatísticas")
         return jsonify({"error": "Erro ao calcular estatísticas"}), 500
 
@@ -110,7 +110,7 @@ def estatisticas():
 def temas():
     try:
         categorias = repo.listar_categorias_com_total()
-    except Exception as exc:
+    except Exception:
         logger.exception("Erro ao listar temas")
         return jsonify({"error": "Erro ao listar temas"}), 500
 

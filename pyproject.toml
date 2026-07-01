@@ -1,0 +1,18 @@
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+exclude = ["backend", "migrations", "venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["src/backend"]
+omit = ["src/backend/schedulers/*"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "if __name__ == .__main__.:"]

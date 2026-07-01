@@ -118,7 +118,7 @@ Esse é o mesmo motivo pelo qual não travamos o número aqui: qualquer valor "c
 
 ```toml
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py311"
 exclude = ["backend", "migrations", "venv"]
 
@@ -174,22 +174,24 @@ pytest tests/                                # tudo (é o que o CI roda)
 
 ## 6. ESLint no frontend
 
-`src/frontend/eslint.config.js` (flat config, compatível com ESLint 9 + Vite 5):
+`src/frontend/eslint.config.js` (flat config, compatível com ESLint 10 + Vite 5):
 
 ```js
 import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
 
 export default [
+  { ignores: ['dist/**', 'node_modules/**'] },
   js.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
+  ...pluginVue.configs['flat/essential'],
   {
+    languageOptions: {
+      globals: { ...globals.browser },
+    },
     rules: {
       'vue/multi-word-component-names': 'off',
     },
-  },
-  {
-    ignores: ['dist/**', 'node_modules/**'],
   },
 ]
 ```
@@ -201,12 +203,18 @@ export default [
   "lint": "eslint src"
 },
 "devDependencies": {
-  "eslint": "^9.9.0",
-  "eslint-plugin-vue": "^9.28.0"
+  "@eslint/js": "^10.0.1",
+  "eslint": "^10.6.0",
+  "eslint-plugin-vue": "^10.9.2",
+  "globals": "^17.7.0"
 }
 ```
 
-`vue/multi-word-component-names` desligado porque o projeto já tem views nomeadas em uma palavra só (`DashboardView.vue` é composto, mas convém checar `App.vue` e afins antes de ativar a regra — ajustar durante a implementação se necessário).
+**Por que `flat/essential` e não `flat/recommended`:** `flat/recommended` inclui as camadas "strongly-recommended" do eslint-plugin-vue, que são regras de formatação (quebra de linha por atributo, self-closing tags, espaçamento em fechamento de tag) — ao rodar contra o código já existente, gerou **1076 problemas**, quase todos estéticos, sem relação com corretude. Retrofitar isso significaria reformatar dezenas de arquivos `.vue` já revisados visualmente, o que contraria a diretriz do projeto de não alterar identidade visual/formatação sem necessidade. `flat/essential` mantém só as regras de corretude do Vue (chaves de `v-for`, uso correto de diretivas, side-effects em computed) — rodando junto com `js.configs.recommended` (que cobre `no-unused-vars`, `no-undef` etc.), reduziu para **3 problemas reais**, todos corrigidos durante a implementação (dois `catch (e)` com variável não usada, uma função `irParaProposicao` morta em `DetalheView.vue` que arrastava um `useRouter()` também não usado).
+
+`globals.browser` é necessário porque `js.configs.recommended` sozinho não declara `window`/`navigator`/`setTimeout` como globais conhecidos — sem isso, todo uso desses objetos no `<script setup>` dispara falso-positivo de `no-undef`.
+
+`vue/multi-word-component-names` desligado porque o projeto já tem views nomeadas em uma palavra só (`SobreView.vue`, `BuscaView.vue` etc. são compostos, mas convém não travar nomes de componente a essa convenção sem alinhar com o time antes).
 
 `frontend-ci.yml` ganha um step entre "Install dependencies" e "Build":
 

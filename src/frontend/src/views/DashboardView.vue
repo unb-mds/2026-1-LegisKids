@@ -249,7 +249,7 @@ onMounted(async () => {
 
     graficoStatus.value = data.por_status ?? { labels: [], values: [] }
     graficoTemporal.value = data.temporal ?? { labels: [], values: [] }
-  } catch (e) {
+  } catch {
     erro.value = 'Não foi possível carregar as estatísticas. Verifique a conexão com o servidor.'
   } finally {
     carregando.value = false

@@ -1,10 +1,11 @@
 import os
 import sys
+
 import click
+from dotenv import load_dotenv
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
-from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '..', '.env'))
@@ -32,10 +33,10 @@ if not _secret_key:
     _secret_key = "dev-secret"
 app.config["SECRET_KEY"] = _secret_key
 
-from src.backend.database import db
-from src.backend import models  # noqa: F401
-from src.backend.controllers.proposicoes_controller import proposicoes_bp
-from src.backend.controllers.cron_controller import cron_bp
+from src.backend import models  # noqa: E402,F401
+from src.backend.controllers.cron_controller import cron_bp  # noqa: E402
+from src.backend.controllers.proposicoes_controller import proposicoes_bp  # noqa: E402
+from src.backend.database import db  # noqa: E402
 
 db.init_app(app)
 migrate = Migrate(app, db)
