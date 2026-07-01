@@ -13,7 +13,7 @@ def _serializar_proposicao(prop):
     d = prop.to_dict()
     d["status"] = prop.descricao_situacao
     cats = d.get("categorias", [])
-    d["subtema"] = cats[0]["nome"] if cats else None
+    d["subtemas"] = [c["nome"] for c in cats]
     d["nome_autor"] = None
     return d
 
