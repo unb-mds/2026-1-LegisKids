@@ -182,7 +182,7 @@ onMounted(async () => {
         cor: corPorNome.get(serie.nome) || null
       }))
     }
-  } catch (e) {
+  } catch {
     erro.value = 'Não foi possível carregar as estatísticas. Verifique a conexão com o servidor.'
   } finally {
     carregando.value = false

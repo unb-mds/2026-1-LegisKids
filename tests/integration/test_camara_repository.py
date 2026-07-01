@@ -16,6 +16,36 @@ def _get_app():
     return app
 
 
+def _limpar_proposicoes(ids):
+    """Remove proposições e seus vínculos na tabela de junção proposicao_categoria.
+
+    Usar Query.delete() (bulk delete) direto em `proposicoes` não aciona o
+    unit-of-work do SQLAlchemy, então vínculos criados por vincular_categoria()
+    ficam órfãos e violam a FK proposicao_categoria_proposicao_id_fkey. Este
+    helper sempre limpa a tabela de junção antes de apagar a proposição.
+    """
+    from src.backend.database import db
+    from src.backend.models import Proposicao, proposicao_categoria
+
+    ids = [i for i in ids if i is not None]
+    if not ids:
+        return
+
+    try:
+        db.session.execute(
+            proposicao_categoria.delete().where(
+                proposicao_categoria.c.proposicao_id.in_(ids)
+            )
+        )
+        db.session.query(Proposicao).filter(
+            Proposicao.id.in_(ids)
+        ).delete(synchronize_session=False)
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
+        raise
+
+
 class TestSeedCategorias(unittest.TestCase):
     """6.1 — seed_categorias() insere as 8 categorias e é idempotente."""
 
@@ -93,9 +123,7 @@ class TestVincularCategoria(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        from src.backend.models import Proposicao
-        cls.db.session.query(Proposicao).filter_by(id=9999800).delete()
-        cls.db.session.commit()
+        _limpar_proposicoes([9999800])
         cls.ctx.pop()
 
     def test_vincular_cria_relacao(self):
@@ -149,9 +177,7 @@ class TestUpsertProposicoes(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        from src.backend.models import Proposicao
-        cls.db.session.query(Proposicao).filter(Proposicao.id.in_([9999901, 9999902])).delete()
-        cls.db.session.commit()
+        _limpar_proposicoes([9999901, 9999902])
         cls.ctx.pop()
 
     def _dto(self, id_=9999901, **override):
@@ -172,10 +198,8 @@ class TestUpsertProposicoes(unittest.TestCase):
 
     def test_upsert_insere_proposicao_nova(self):
         from src.backend.repository.camara_repository import upsert_proposicoes_lote
-        from src.backend.models import Proposicao
 
-        self.db.session.query(Proposicao).filter_by(id=9999901).delete()
-        self.db.session.commit()
+        _limpar_proposicoes([9999901])
 
         resultado = upsert_proposicoes_lote([self._dto(9999901)])
         self.assertEqual(resultado["inseridos"], 1)
@@ -228,9 +252,7 @@ class TestGetIdsExistentes(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        from src.backend.models import Proposicao
-        cls.db.session.query(Proposicao).filter_by(id=9999850).delete()
-        cls.db.session.commit()
+        _limpar_proposicoes([9999850])
         cls.ctx.pop()
 
     def test_retorna_ids_existentes(self):
@@ -318,10 +340,7 @@ class TestRunSyncIntegration(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        from src.backend.database import db
-        from src.backend.models import Proposicao
-        db.session.query(Proposicao).filter(Proposicao.id.in_([9999999, 9999998])).delete()
-        db.session.commit()
+        _limpar_proposicoes([9999999, 9999998])
         cls.ctx.pop()
 
     def _dado_mock(self, id_=9999999, ementa="Proteção contra cyberbullying em redes sociais"):
@@ -357,8 +376,7 @@ class TestRunSyncIntegration(unittest.TestCase):
         from src.backend.models import Proposicao
         from src.backend.database import db
 
-        db.session.query(Proposicao).filter_by(id=9999998).delete()
-        db.session.commit()
+        _limpar_proposicoes([9999998])
 
         with patch("src.backend.services.camara_service._buscar_proposicoes_api",
                    side_effect=[[self._dado_mock(9999998)], []]):
@@ -426,7 +444,7 @@ class TestRunSyncIntegration(unittest.TestCase):
         categorias = prop.categorias.all()
         self.assertTrue(any(c.nome == "proteção de dados de menores" for c in categorias))
 
-        # Limpeza
+        # Limpeza (via ORM: session.delete() aciona a cascata na tabela de junção)
         db.session.delete(prop)
         db.session.commit()
 
@@ -507,8 +525,7 @@ class TestRunSyncIntegration(unittest.TestCase):
         # Gemini não foi chamado para proposição já no banco
         mock_gemini.assert_not_called()
 
-        db.session.query(__import__('src.backend.models', fromlist=['Proposicao']).Proposicao).filter_by(id=9999995).delete()
-        db.session.commit()
+        _limpar_proposicoes([9999995])
 
     def test_skip_gemini_para_id_ja_no_banco(self):
         """Proposição com ID já no banco não é enviada ao Gemini no run principal."""
@@ -561,9 +578,7 @@ class TestRunSyncIntegration(unittest.TestCase):
         self.assertEqual(len(ementas_enviadas), 1)
         self.assertIn("Segurança digital infantil", ementas_enviadas[0])
 
-        from src.backend.models import Proposicao
-        db.session.query(Proposicao).filter(Proposicao.id.in_([9999994, 8888881])).delete()
-        db.session.commit()
+        _limpar_proposicoes([9999994, 8888881])
 
 
 if __name__ == "__main__":

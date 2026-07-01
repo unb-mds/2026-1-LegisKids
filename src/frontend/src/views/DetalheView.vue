@@ -337,14 +337,13 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import StatusBadge from '@/components/StatusBadge.vue'
 import { fetchProposicao, fetchProposicoes } from '@/services/proposicoes'
 import { corBadge, linkFichaCamara } from '@/utils/proposicao'
 
 const route = useRoute()
-const router = useRouter()
 const carregando = ref(true)
 const erro = ref(null)
 const proposicao = ref(null)
@@ -406,10 +405,6 @@ function codigoRelacionado(r) {
     return `${r.sigla_tipo} ${r.numero}/${r.ano}`
   }
   return r.id
-}
-
-function irParaProposicao(id) {
-  router.push({ name: 'detalhe', params: { id } })
 }
 
 function mostrarToast(alvo, texto) {

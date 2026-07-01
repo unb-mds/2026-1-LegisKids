@@ -15,6 +15,37 @@ def _get_app():
     return app
 
 
+def _limpar_proposicoes(ids):
+    """Remove proposições e seus vínculos na tabela de junção proposicao_categoria.
+
+    Usar Query.delete() (bulk delete) direto em `proposicoes` não aciona o
+    unit-of-work do SQLAlchemy, então vínculos criados por vincular_categoria()
+    / vincular_categorias_lote() ficam órfãos e violam a FK
+    proposicao_categoria_proposicao_id_fkey. Este helper sempre limpa a
+    tabela de junção antes de apagar a proposição.
+    """
+    from src.backend.database import db
+    from src.backend.models import Proposicao, proposicao_categoria
+
+    ids = [i for i in ids if i is not None]
+    if not ids:
+        return
+
+    try:
+        db.session.execute(
+            proposicao_categoria.delete().where(
+                proposicao_categoria.c.proposicao_id.in_(ids)
+            )
+        )
+        db.session.query(Proposicao).filter(
+            Proposicao.id.in_(ids)
+        ).delete(synchronize_session=False)
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
+        raise
+
+
 class TestSerializacaoSubtemas(unittest.TestCase):
     """Serializer expõe `subtemas` (array) com todas as categorias vinculadas."""
 
@@ -27,7 +58,6 @@ class TestSerializacaoSubtemas(unittest.TestCase):
         cls.client = cls.app.test_client()
         cls.ctx = cls.app.app_context()
         cls.ctx.push()
-
         from src.backend.database import db
         from src.backend.repository.camara_repository import (
             seed_categorias,
@@ -36,7 +66,6 @@ class TestSerializacaoSubtemas(unittest.TestCase):
         )
         cls.db = db
         seed_categorias()
-
         upsert_proposicoes_lote([
             {
                 "id": cls.ID_MULTIPLAS,
@@ -70,11 +99,7 @@ class TestSerializacaoSubtemas(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        from src.backend.models import Proposicao
-        cls.db.session.query(Proposicao).filter(
-            Proposicao.id.in_([cls.ID_MULTIPLAS, cls.ID_SEM_CATEGORIA])
-        ).delete(synchronize_session=False)
-        cls.db.session.commit()
+        _limpar_proposicoes([cls.ID_MULTIPLAS, cls.ID_SEM_CATEGORIA])
         cls.ctx.pop()
 
     def test_listagem_retorna_todos_os_subtemas(self):
@@ -82,7 +107,6 @@ class TestSerializacaoSubtemas(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         items = resp.get_json()["items"]
         item = next(i for i in items if i["id"] == self.ID_MULTIPLAS)
-
         self.assertIn("subtemas", item)
         self.assertNotIn("subtema", item)
         self.assertEqual(
@@ -94,7 +118,6 @@ class TestSerializacaoSubtemas(unittest.TestCase):
         resp = self.client.get(f"/api/proposicoes/{self.ID_MULTIPLAS}")
         self.assertEqual(resp.status_code, 200)
         prop = resp.get_json()["proposicao"]
-
         self.assertIn("subtemas", prop)
         self.assertNotIn("subtema", prop)
         self.assertEqual(
@@ -106,7 +129,6 @@ class TestSerializacaoSubtemas(unittest.TestCase):
         resp = self.client.get(f"/api/proposicoes/{self.ID_SEM_CATEGORIA}")
         self.assertEqual(resp.status_code, 200)
         prop = resp.get_json()["proposicao"]
-
         self.assertEqual(prop["subtemas"], [])
 
 

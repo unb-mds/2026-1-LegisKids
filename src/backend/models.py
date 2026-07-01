@@ -5,6 +5,7 @@ e a documentação de arquitetura do projeto.
 """
 
 from datetime import datetime, timezone
+
 from src.backend.database import db
 
 # Tabela associativa many-to-many
@@ -110,9 +111,9 @@ class Proposicao(db.Model):
     classificacao_status = db.Column(db.String(30),  nullable=False, default=CLASSIFICACAO_PENDENTE)
 
     partido     = db.relationship("Partido",   back_populates="proposicoes")
-    categorias  = db.relationship("Categoria", secondary=proposicao_categoria, back_populates="proposicoes", lazy="dynamic")
-    tramitacoes = db.relationship("Tramitacao", back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
-    favoritos   = db.relationship("Favorito",   back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")
+    categorias  = db.relationship("Categoria", secondary=proposicao_categoria, back_populates="proposicoes", lazy="dynamic")  # noqa: E501
+    tramitacoes = db.relationship("Tramitacao", back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")  # noqa: E501
+    favoritos   = db.relationship("Favorito",   back_populates="proposicao", lazy="dynamic", cascade="all, delete-orphan")  # noqa: E501
 
     def __repr__(self):
         return f"<Proposicao {self.sigla_tipo} {self.numero}/{self.ano}>"
@@ -142,7 +143,7 @@ class Tramitacao(db.Model):
     __tablename__ = "tramitacoes"
 
     id                   = db.Column(db.Integer,     primary_key=True)
-    proposicao_id        = db.Column(db.Integer,     db.ForeignKey("proposicoes.id", ondelete="CASCADE"), nullable=False)
+    proposicao_id        = db.Column(db.Integer,     db.ForeignKey("proposicoes.id", ondelete="CASCADE"), nullable=False)  # noqa: E501
     data_hora            = db.Column(db.DateTime,    nullable=False)
     id_situacao          = db.Column(db.Integer,     nullable=False)
     descricao_situacao   = db.Column(db.String(150), nullable=False)
@@ -176,8 +177,8 @@ class Usuario(db.Model):
     google_id    = db.Column(db.String(100), nullable=False, unique=True)
     data_criacao = db.Column(db.DateTime,    nullable=False, default=lambda: datetime.now(timezone.utc))
 
-    favoritos           = db.relationship("Favorito",          back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")
-    historico_consultas = db.relationship("HistoricoConsulta", back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")
+    favoritos           = db.relationship("Favorito",          back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")  # noqa: E501
+    historico_consultas = db.relationship("HistoricoConsulta", back_populates="usuario", lazy="dynamic", cascade="all, delete-orphan")  # noqa: E501
 
     def __repr__(self):
         return f"<Usuario {self.email}>"

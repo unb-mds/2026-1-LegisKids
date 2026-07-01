@@ -46,11 +46,17 @@ def upgrade():
         if 'categoria' in proposicoes_columns:
             batch_op.drop_column('categoria')
 
-    # 3. Favoritos: renomeia constraint única para o nome do modelo
+    # 3. Favoritos: renomeia constraint única para o nome do modelo.
+    # Bancos criados do zero (migration babbb73a5d52) já nascem com o nome canônico
+    # e com o índice — só bancos antigos (criados antes dessa migration existir)
+    # ainda têm o nome autogerado pelo Postgres.
+    favoritos_constraints = {c['name'] for c in inspector.get_unique_constraints('favoritos')}
     with op.batch_alter_table('favoritos', schema=None) as batch_op:
-        batch_op.drop_constraint('favoritos_usuario_id_proposicao_id_key', type_='unique')
-        batch_op.create_index('idx_favoritos_usuario_proposicao', ['usuario_id', 'proposicao_id'], unique=False)
-        batch_op.create_unique_constraint('uq_favorito_usuario_proposicao', ['usuario_id', 'proposicao_id'])
+        if 'favoritos_usuario_id_proposicao_id_key' in favoritos_constraints:
+            batch_op.drop_constraint('favoritos_usuario_id_proposicao_id_key', type_='unique')
+        batch_op.create_index('idx_favoritos_usuario_proposicao', ['usuario_id', 'proposicao_id'], unique=False, if_not_exists=True)
+        if 'uq_favorito_usuario_proposicao' not in favoritos_constraints:
+            batch_op.create_unique_constraint('uq_favorito_usuario_proposicao', ['usuario_id', 'proposicao_id'])
 
 
 def downgrade():

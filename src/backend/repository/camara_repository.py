@@ -44,7 +44,7 @@ SEED_CATEGORIAS = [
     },
     {
         "nome": "conteúdos nocivos para menores",
-        "descricao": "Proposições sobre conteúdos impróprios, violentos ou prejudiciais a crianças e adolescentes online.",
+        "descricao": "Proposições sobre conteúdos impróprios, violentos ou prejudiciais a crianças e adolescentes online.",  # noqa: E501
         "cor": "#EC4899",
         "icone": "eye-off",
     },
