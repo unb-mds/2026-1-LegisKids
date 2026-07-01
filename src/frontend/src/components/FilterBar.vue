@@ -24,7 +24,7 @@
         <label for="filter-subtema" class="filter-label">Subtema</label>
         <select id="filter-subtema" v-model="local.subtema" class="filter-select" @change="emitir">
           <option value="">Todos</option>
-          <option v-for="t in temas" :key="t" :value="t">{{ t }}</option>
+          <option v-for="t in temas" :key="t.nome" :value="t.nome">{{ t.nome }}</option>
         </select>
       </div>
 

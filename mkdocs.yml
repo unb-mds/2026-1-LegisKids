@@ -97,7 +97,8 @@ nav:
           - Tecnologias Backend: estudos/backend/estudo_tecnologias_backend.md
       - API:
           - Visão Geral: estudos/API/index.md
-          - Levantamento da API: estudos/API/levantamento_api.md
+          - Referência da API interna: estudos/API/referencia_api.md
+          - API da Câmara: estudos/API/levantamento_api.md
   - Banco de Dados:
       - Visão Geral: estudos/banco_de_dados/index.md
       - Esquema e ERD: db/schema.md

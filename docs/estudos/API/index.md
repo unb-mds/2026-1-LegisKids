@@ -1,16 +1,18 @@
-# Backend / API
+# Backend e APIs
 
-Esta seção reúne os estudos, análises e definições relacionadas à API do sistema de monitoramento legislativo.
+Esta seção reúne a referência da API interna do LegisKids e o estudo da API
+externa usada como fonte de dados legislativos.
 
-Aqui são documentados o levantamento da API da Câmara dos Deputados, os critérios de integração, a estrutura dos dados e a comunicação entre backend e frontend.
+## API interna do LegisKids
 
-## Objetivos
+O backend Flask expõe endpoints JSON consumidos pelo frontend para pesquisa,
+detalhamento e visualização de estatísticas.
 
-- Entender como os dados legislativos são obtidos
-- Definir como a API externa será consumida
-- Estruturar a comunicação com o sistema
-- Garantir consistência e escalabilidade da integração
+- [Referência da API interna](referencia_api.md)
 
-## Conteúdo
+## API externa da Câmara
 
-- [Levantamento da API](levantamento_api.md)
+O backend coleta proposições e tramitações por meio da API de Dados Abertos da
+Câmara dos Deputados.
+
+- [Levantamento da API da Câmara](levantamento_api.md)

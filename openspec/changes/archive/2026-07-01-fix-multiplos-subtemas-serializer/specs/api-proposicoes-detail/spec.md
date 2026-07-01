@@ -1,21 +1,4 @@
-# Spec: api-proposicoes-detail
-
-## Objetivo
-
-Definir o endpoint `GET /api/proposicoes/<int:id>` do backend Flask, retornando dados completos de uma proposição incluindo categorias e histórico de tramitação.
-
-## Contexto
-
-O frontend (DetalheView) consome esta rota para exibir a página de detalhe. Implementado em `src/backend/controllers/proposicoes_controller.py`; delegado a `get_proposicao_detalhe` no repositório.
-
-## Escopo
-
-- Retorna `{ proposicao: {...}, tramitacoes: [...] }`
-- Tramitações ordenadas por `data_hora` ASC
-- Aliases de campo para compatibilidade com frontend: `status`, `subtemas`, `nome_autor`, `data`, `descricao`, `orgao`
-- 404 com JSON se proposição não encontrada
-
-## Requisitos
+## MODIFIED Requirements
 
 ### Requirement: Detalhe completo de proposição
 O sistema SHALL expor `GET /api/proposicoes/<int:id>` retornando todos os dados de uma proposição, incluindo categorias e histórico de tramitação. A resposta SHALL ter a forma `{ proposicao: {...}, tramitacoes: [...] }`.

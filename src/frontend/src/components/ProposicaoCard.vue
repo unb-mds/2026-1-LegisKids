@@ -1,7 +1,7 @@
 <template>
   <article class="proposicao-card" @click="navegar" role="button" tabindex="0" @keydown.enter="navegar" @keydown.space.prevent="navegar">
     <div class="card-header">
-      <span class="card-tag" :title="'Código: ' + (id || 'N/D')">{{ id || 'N/D' }}</span>
+      <span class="card-tag" :title="'Código: ' + (codigo || 'N/D')">{{ codigo || 'N/D' }}</span>
       <StatusBadge :status="status || 'Em tramitação'" />
       <span v-if="subtema" class="card-subtema">{{ subtema }}</span>
     </div>
@@ -50,10 +50,20 @@ const props = defineProps({
   partido: String,
   data: String,
   status: String,
-  subtema: String
+  subtema: String,
+  siglaTipo: String,
+  numero: [String, Number],
+  ano: [String, Number]
 })
 
 const router = useRouter()
+
+const codigo = computed(() => {
+  if (props.siglaTipo && props.numero && props.ano) {
+    return `${props.siglaTipo} ${props.numero}/${props.ano}`
+  }
+  return props.id
+})
 
 const dataFormatada = computed(() => {
   if (!props.data) return ''

@@ -1,22 +1,4 @@
-# Spec: api-proposicoes-list
-
-## Objetivo
-
-Definir o endpoint `GET /api/proposicoes` do backend Flask, responsável por retornar proposições paginadas com suporte a filtros combinados.
-
-## Contexto
-
-O frontend (BuscaView + useProposicoesStore) consome esta rota passando query params de paginação e filtros. A rota é implementada em `src/backend/controllers/proposicoes_controller.py` e delega a query a `listar_proposicoes_paginado` no repositório.
-
-## Escopo
-
-- Paginação via `pagina` e `por_pagina` (máx. 50)
-- Filtros: `q` (ementa ILIKE), `partido` (sigla_partido ILIKE), `data_inicio`, `data_fim`, `subtema` (via EXISTS em categorias)
-- Resposta: `{ items, total, pagina, total_paginas }`
-- Cada item inclui alias `status` e o array `subtemas` para compatibilidade com o frontend
-- Erros retornam JSON, nunca HTML
-
-## Requisitos
+## MODIFIED Requirements
 
 ### Requirement: Listagem paginada de proposições
 O sistema SHALL expor `GET /api/proposicoes` retornando proposições paginadas com suporte a filtros opcionais. A resposta SHALL ter a forma `{ items: [...], total: int, pagina: int, total_paginas: int }`.
