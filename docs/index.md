@@ -86,3 +86,4 @@ A plataforma contribui para:
 - [Frontend](estudos/frontend/tecnologias_estrutura.md)  
 - [Banco de Dados](estudos/banco_de_dados/definicao_banco_de_dados.md)  
 - [API](estudos/API/levantamento_api.md)  
+- oioi
